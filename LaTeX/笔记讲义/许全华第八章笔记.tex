@@ -1,0 +1,286 @@
+\documentclass{article}
+\input{../newcommand.tex}
+\title{泛函分析读书笔记}
+\author{章小明}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Hahn-Banach定理,弱拓扑与弱*拓扑}
+\subsection{Hahn-Banach定理:分析形式}
+首先给出一些定义上的比较:
+\begin{definition}
+    范数满足:\textcircled{0}$\F$-VS $E\to \R_{\geq 0}$;\textcircled{1}正定性 $p(x)=0\iff x=0$;\textcircled{2}正齐性 $\forall \lambda\in \F:p(\lambda x)=|\lambda|p(x)$;\textcircled{3}次可加性 $p(x+y)\leq p(x)+p(y)$.
+
+    半范数满足:\textcircled{0}\textcircled{2}\textcircled{3}.
+
+    次线性泛函满足:\textcircled{0}*$\R$-VS $E\to \R$;\textcircled{2}* $\forall \lambda\geq 0:p(\lambda x)=\lambda p(x)$;\textcircled{3}.
+\end{definition}
+\begin{lemma}
+    $\R$-VS $E$, VS $F\subset E$,$\codim F=1$.$p:E\to \R$次线性,$f:F\to \R$线性.若$f\leq p|_F$,则有线性延拓$\tilde{f}:E\to \R:\tilde{f}|_F=f, \tilde{f}\leq p$.
+\end{lemma}
+\begin{proof}
+    可以取$x_0\in E-F,E=\Span(F,x_0)$.可以构造线性泛函$\tilde{f}(x+tx_0)=f(x)+t\tilde{f}(x_0)$.仅需保证$a=\tilde{f}(x_0)$的存在性.
+
+    为保证另一条件$f(x)+ta\leq p(x+tx_0),t\in \R$,通过变换可以得到不等式$f(x/t)-p(x/t-x_0)\leq a\leq p(x/t+x_0)-f(x/t),t\geq 0$.容易证明不等式下限小于等于上限,因此符合条件的$a$是存在的.因此$\tilde{f}$是存在的.
+\end{proof}
+由上可知,实际上$\codim F<\infty$甚至可数时,都可以作线性延拓.下考虑任意多的$\codim$.
+
+\begin{theorem}[Hahn-Banach延拓定理($\R$)]
+    $\R$-VS $E$, VS $F\subset E$. $p:E\to \R$次线性,$f:F\to \R$线性,$f\leq p|_F$,则存在$f$的线性延拓$\tilde{f}:E\to \R, \tilde{f}|_F=f, \tilde{f}\leq p$.
+\end{theorem}
+\begin{proof}
+    此定理用Zorn引理证.考虑偏序集$\mathcal{F}$,其元素为$(G,g)$,$G$是含$F$的VS,$g$是$G$上满足题设的线性泛函,即$g|_F\!\!=\!\!f, g\!\!\leq\!\! p|_G$.\\
+    其上的偏序关系$\leq$定义为$(G,g)\leq (H,h)\iff G\subset H, h|_G=g$.首先,每条链$\mathcal{G}\subset \mathcal{F}$上都有最大元$(H,h)$.$H$是所有VS的并,$h$是对应的线性泛函的``粘贴''.由定义这样的$h$存在且确定,并且$h\leq p|_H$.因此$(H,h)\in \mathcal{F}$.
+
+    最后由引理可知,存在极大元$(M,m)\in \mathcal{F}$.可知$E=M$,否则$M$可以用上引理延拓,矛盾,因此可以得到符合条件的线性泛函.
+\end{proof}
+
+\begin{theorem}[Hahn-Banach延拓定理]\label{HBThm2}
+    $\F$-VS $E$, VS $F\subset E$.$p$是$E$上半范数,$f:F\to \F$线性,且$f\leq p|_F$.则其有线性延拓$\tilde{f}, \tilde{f}|_F=f, |\tilde{f}|\leq p$.
+\end{theorem}
+\begin{proof}
+    $\R$情形可直接由上定理得到相应线性泛函$\tilde{f}\leq p$.而$-\tilde{f}(x)\leq p(-x)=p(x)$,因此$|\tilde{f}|\leq p$.
+
+    $\C$情形可视$E$为$\R$-VS.设$\varphi=\Re f$,其为实线性泛函.由$f$的复线性可知$f=\varphi-\i \varphi(\i \cdot)$.可以认为$f\leftrightarrow \varphi$建立了实线性和复线性之间的对应关系.对$\varphi$可作$\R$-VS中的延拓$\tilde{\varphi}\leq p$.再取$\tilde{f}=\tilde{\varphi}-\i \tilde{\varphi}(\i \cdot)$,其复线性.
+
+    最后,对$x\in E$设$|\tilde{f}|(x)=\lambda \tilde{f}(x)=\tilde{\varphi}(\lambda x)-\i \tilde{\varphi}(\i \lambda x)\leq p(\lambda x)=p(x)$.其中最后一个不等号是因为模是实数,因此可以去掉虚部.这样就得到了我们需要的线性泛函.
+\end{proof}
+
+接下来我们给出一系列推论.它们很小但或许会有重要的作用.
+\begin{proposition}\label{HBProp1}
+    TVS $E$, VS $F\subset E$, $p$是$E$上连续半范数,$f:F\to \F$线性且$\abs{f}\leq p|_F$.因此有连续线性延拓$\tilde{f}\in E^*, \tilde{f}|_F=f, |\tilde{f}|\leq p$.
+\end{proposition}
+\begin{proof}
+    由上可得到相应延拓,只需证其连续.由其线性,仅需证其在原点连续.由$|\tilde{f}|(x)\leq p(x)<\varepsilon$可知其连续.
+\end{proof}
+
+\begin{proposition}
+    LCS $E$, VS $F\subset E$, $f\in F^*$,则其有延拓$\tilde{f}\in E^*$.
+\end{proposition}
+\begin{proof}
+    $E$有一个半范数族,由上[哪里?]有$\abs{f(x)}\leq C \max_{i\in J} p_i(x), J$有限.因此$|f|$小于连续半范数$C \max p_i$.由上命题\ref{HBProp1}得证.
+\end{proof}
+
+\begin{proposition}
+    TVS $E$, $p$是$E$上连续半范数,$x_0\in E$,则存在$f\in E^*,f(x_0)=p(x_0)$,且$|f|\leq p$.
+\end{proposition}
+\begin{proof}
+    可以先作$E$上的线性泛函$g$.$F=\Span(x_0), g:F\to \F, tx_0\mapsto tp(x_0)$,然后延拓之到$E$上,结论成立.
+\end{proof}
+
+\begin{proposition}\label{HBProp2}
+    $T_2$ LCS $E$则$E^*$可分点.
+\end{proposition}
+\begin{proof}
+    $E$有连续半范数$p, p(x_0)\neq 0$.由上命题可知有$f\in E^*, f(x_0)\neq 0$.
+\end{proof}
+
+接下来给出一个重要的推论,VS $F$上的$f\in F^*$不仅可以连续延拓,而且可以保范的连续延拓.
+\begin{proposition}\label{HBProp3}
+    $\F$-VS $E$, VS $F\subset E$且$f\in F^*$.则存在延拓$\tilde{f}\in E^*, \tilde{f}|_F=f,\norm{f}=\|\tilde{f}\|$.
+\end{proposition}
+\begin{proof}
+    首先由$\tilde{f}|_F=f, \norm{f}\leq \|\tilde{f}\|$.而$\abs{f}(x)\leq \norm{f}\norm{x}$在延拓后有$|\tilde{f}|(x)\leq \norm{f}\norm{x}$.因此有$\|\tilde{f}\|\leq \norm{f}$.因此可知保范.
+\end{proof}
+
+\begin{proposition}
+    赋范空间$E$中有非零元$x_0$,存在$f\in E^*, f(x_0)=\norm{x_0}, \norm{f}\leq 1$.
+\end{proposition}
+\begin{proof}
+    $F=\Span(x_0)$, 在$F$上取$g:x\mapsto \norm{x}$.其保范延拓到$E$上,为$f$.$\norm{f}=\norm{g}=1$.\\
+    \textcolor{red}{为什么不是$\leq 1$?}
+\end{proof}
+
+\begin{proposition}
+    赋范空间$E$,取$x\in E$有$\norm{x}=\sup\cbr{\abs{f(x)}:f\in E^*, \norm{f}\leq 1}$.且上确界是可以达到的. 
+\end{proposition}
+\begin{proof}
+    记右式为$\alpha$.首先,$\abs{f(x)}\leq \norm{f}\norm{x}\leq\norm{x}$,故$\alpha\leq \norm{x}$.另一方面由上命题,有$f_0\in E^*, f_0(x)=\norm{x}, \norm{f_0}\leq 1$.因此$\norm{x}\leq \alpha$.结论也得证.
+\end{proof}
+
+最后我们来讨论一下二次对偶空间$E^{**}$.考虑$B:(x,f)\mapsto f(x)$,显然$\abs{B(x,f)}\leq \norm{x}\norm{f}$,因此其连续,$B(x,\cdot)$连续,即$B(x,\cdot)\in E^{**}$且$\norm{B(x,\cdot)}_{E^{**}}\leq \norm{x}$.而上推论给出$\exists f\in \overline{B}_{E^*}:\norm{x}=\sup \abs{f(x)}=\sup \abs{B(x,f)}$,即反向情形,因此$\norm{B(x,\cdot)}=\norm{x}$.
+
+因此,$x\mapsto B(x,\cdot)$是等距同构,此映射为$E$等距嵌入到$E^{**}$中,记作$E\hookrightarrow E^{**}$.
+
+\begin{proposition}
+    $E$赋范, 闭VS $F\subset E$, $x\in E-F$.则存在$f\in E^*, \norm{f}=1, f|_F=0, f(x)=d(x,F)$.
+\end{proposition}
+\begin{proof}
+    给出$\Span(F,x)$上的线性泛函$\varphi:\F x+F\to \F, tx+y\mapsto td(x,F)$.显然$\varphi$满足上述条件.而$d(x,F)\leq d(x,y')=\norm{x-y'}$.更换记号$y'=-y/t$,有$\abs{\varphi(tx+y)}\leq \norm{tx+y}, \norm{\varphi}\leq 1$.
+
+    另一方面,取$y_n\in F, \norm{x-y_n}<d(x,F)+\frac{1}{n}, \frac{\abs{\varphi(x-y_n)}}{\norm{x-y_n}}>\frac{d(x,F)}{d(x,F)+\frac{1}{n}}$.因此$\sup \frac{\abs{\varphi(x-y_n)}}{\norm{x-y_n}}\geq 1$.因此$\norm{\varphi}=1$.
+
+    最后由推论\ref{HBProp3}给出结论.
+\end{proof}
+
+\subsection{Hahn-Banach定理:几何形式}
+对$f:E\to \R$记$\cbr{f<\alpha}:=\cbr{x\in E:f(x)<\alpha}$.
+\begin{theorem}[Hahn-Banach隔离定理]
+    TVS $E$中$A,B\subset E$非空凸且不交.若$A$开,则$\exists f\in E^*\exists \alpha\in \R:A\subset \cbr{\Re f<\alpha}, B\subset \cbr{\Re f\geq \alpha}$.\\
+    换言之,$\Re f(a)<\alpha\leq \Re f(b),\forall a\in A,b\in B$.
+
+    本定理就是说,TVS中不交凸集(需要其中一个开)射到$\R$上,可以用一个$E^*$的泛函和一个常数分割开两个集合的像.
+\end{theorem}
+\begin{proof}
+    先证$\R$情形.任取$a\in A,b\in B,x_0=b-a$,考虑$C=A-B+x_0$.这是一个开凸集.再考虑其确定的Minkowski泛函$p$.由前[哪里?],这是一个半范数.由于$A,B$不交,$x_0\notin C, p(x_0)\geq 1$.
+
+    由前[哪里?],可取$f\in E^*,f(x_0)=p(x_0),f\leq p$.因此$$1>f(0)=f(a)-f(b)+f(x_0)\geq f(a)-f(b)+1.$$
+    因此$f(a)\leq f(b), \sup f(A)\leq \inf f(B)$.
+
+    由$A,B$凸,$f$线性,因此$f(A),f(B)$凸,即为$\R$上区间.最后通过证明$f(A)$是开的来完成证明.$x\in A$则对足够小的$t$有$x+tx_0\in A$.而$f(x+tx_0)\in f(A)$,随之$t$变化其构成一个小的开区间.因此$f(A)$开.
+
+    对于开区间$f(A)$,$f(a)<\alpha=\sup f(A)\leq \inf f(B)$,得证.
+
+    $\C$情形下先将$E$看作$\R$-VS,这样由上有实的$\varphi\in E^*$符合条件.然后再取相应的复线性$f=\varphi-\i \varphi(\i\cdot)$.
+\end{proof}
+\begin{remark}
+    第三段说明TVS中非零线性泛函都是开映射.
+\end{remark}
+\begin{theorem}[Hahn-Banach严格隔离定理]\label{HBThm4}
+    $T_2$ LCS $E$中$A,B$非空凸且不交.若$A$紧而$B$闭,则$$\exists f\in E^*\exists \alpha,\beta\in \R:\sup \Re f(A)<\alpha<\beta<\inf \Re f(B).$$
+
+    本定理是前定理的加强,使得两集合的像足够分离.
+\end{theorem}
+\begin{proof}
+    取$x\in A$有$x\in B^c$,由$B^c$开可取邻域$x+V\subset B^c$.TVS中可取$U_x\in N(0):U_x+U_x\subset V$,故有$(x+U_x+U_x)\cap B=\emptyset$.
+
+    由$A$紧,可取有限元素及其对应$U_k: A\subset \bigcup(x_k+U_k)$.设$U=\bigcap U_k$,这是一个含原点的开凸集.考虑开凸集$\tilde{A}=A+U$,其中元素$\tilde{a}=a+u\in x_k+U_k+U$,后者不交$B$.故$\tilde{A}$不交$B$.
+
+    最后由前定理隔离$\tilde{A}$和$B$,有$\Re f(a)\leq \Re f(\tilde{a})<r\leq \Re f(b)$.而$A$紧凸则$\Re f(A)$紧凸,即有界闭区间$[r_1,r_2]$,取$r_2<\alpha<\beta<r$即可.
+\end{proof}
+
+由上两定理有一系列推论.以下均认为$E$是$T_2$ LCS.
+
+\begin{proposition}\label{HBProp4}
+    $B$是平衡闭凸集,$x_0\in B^c$,则有$f\in E^*, f(x_0)>1, \sup_{x\in B}\abs{f(x)}\leq 1$.
+\end{proposition}
+\begin{proof}
+    取$A=\cbr{x_0}$,运用定理\ref{HBThm4},可以得到(方向不是本质的)$\sup \Re f(B)<\alpha<\Re f(x_0).$
+    取$g=f/\alpha$,有$$\sup \Re g(B)<1<\Re g(x_0)\leq \abs{g(x_0)}=\lambda g(x_0)$$
+    考虑$h=\lambda g, |h|=|g|$,有$$\sup |h|(B)=\sup |g|(B)=\sup \Re g(\lambda B)=\sup \Re g(B)<1$$
+    最后一个等号是因为$B$平衡.取$h$为所需函数即可.
+\end{proof}
+\begin{proposition}
+    VS $F\subset E, x_0\in E$.有$x_0\in \overline{F}\iff \br{\forall f\in E^*:f|_F=0\implies f(x_0)=0}$.
+\end{proposition}
+\begin{proof}
+    $\implies$显然.$\impliedby$:若否,由上有$f(x_0)>1, \sup |f|(\overline{F})\leq 1$.而$\forall x\in F:|f(x)|\leq 1$可知$f|_F=0$.因此得证.
+\end{proof}
+这一命题直接给出:
+\begin{proposition}
+    VS $F\subset E$.$\overline{F}=E\iff \forall f\in E^*:f|_F=0\implies f=0$.
+\end{proposition}
+\begin{proposition}[命题\ref{HBProp2}的重新叙述]
+    $E^*$可分点\footnote{即$\forall x,y\in E\exists f\in E^*:x\neq y\implies f(x)\neq f(y)$.}
+\end{proposition}
+\begin{proof}
+    $F=\Span(x)$,分类讨论$y$.若$y\notin F$则存在$f\in E^*$有$f(x)=0\land f(y)\neq 0$(由反命题得到).
+\end{proof}
+
+\begin{proposition}[Mazur定理]
+    VS $E$, $\tau_1,\tau_2$是其上$T_2$拓扑,且$(E,\tau_1),(E,\tau_2)$均为LCS.若$(E,\tau_1)^*=(E,\tau_2)^*$,即对任意线性$f:E\to \F$,其在两拓扑上的连续性等价.则凸集$A\subset E$在两拓扑上的闭性等价.
+
+    本定理说明具有相同的连续线性泛函的$T_2$ LCS拓扑具有相同的凸闭集.
+\end{proposition}
+\begin{proof}
+    若$A$仅在$\tau_1$中闭,则$\exists x_0\in \overline{A}^{\tau_2}-A$.由定理\ref{HBThm4}可得不等式.而$f$在$\tau_2$下连续,因此$\sup \Re f(A)<\alpha\implies \Re f(x_0)\leq \alpha$,矛盾.
+\end{proof}
+
+\subsection{弱拓扑与弱*拓扑}
+$\F$-VS $E$上某些线性泛函\footnote{指$\mathcal{L}(E,\F)$}生成VS $F$,我们假设其可分点.$\cbr{|f|:f\in F}$是$E$上可分点的半范数族,其诱导拓扑$\sigma(E,F)$.\\由前(7.2.6)[哪里?]知$\sigma(E,F)$是与TVS$E$相容且使$F$元素连续的最弱拓扑,下证反向结论,即$(E,\sigma(E,F))^*=F$.
+
+\begin{lemma}
+    $\F$-VS $E$上有有限个线性泛函$\cbr{f_k}_{k=1}^n$.有等价命题:$$f=\sum_{k=1}^n \alpha_kf_k\iff \exists C\geq 0:\abs{f(x)}\leq C\max_{k\in [n]}\abs{f_k(x)}\iff \bigcap_{k\in [n]}\ker f_k\subset \ker f$$
+\end{lemma}
+\begin{proof}
+    $(1)\implies (2)\implies (3)$显然,仅需证$(3)\implies (1)$.
+
+    考虑$G=\cbr{(f_1(x),\cdots,f_n(x)):x\in E}\subset \F^n$.由线性性,$G$是VS.再有$\varphi:G\to \F, (f_1(x),\cdots,f_n(x))\mapsto f(x)$.\\
+    $(f_1(x),\cdots,f_n(x))=(f_1(x'),\cdots,f_n(x'))\iff (f_1(x-x'),\cdots,f_n(x-x'))=0\implies x-x'\in \bigcap \ker f_k\subset \ker f\implies f(x)=f(x')$.因此$\varphi$是映射.显然其为线性.由延拓定理[哪里?]可延拓其为线性泛函$\tilde{\varphi}:(y_1,\cdots,y_n)\mapsto\sum \alpha_ky_k$.因此有$f(x)=\tilde{\varphi}|_G(f_1(x),\cdots,f_n(x))=\sum \alpha_kf_k(x)$.
+\end{proof}
+\begin{theorem}
+    $(E,\sigma(E,F))^*=F$.即$f\in F\iff E$上线性泛函$f$是$\sigma(E,F)$-连续的.
+\end{theorem}
+\begin{proof}
+    由前(7.2.6)[哪里?]显然$F\subset (E,\sigma(E,F))^*$.下证反向.
+
+    $f\in (E,\sigma(E,F))^*$,则由前(7.2.9)[哪里?],有$|f|\leq C\max |f_k|,f_k\in F$.由上即$f=\sum \alpha_kf_k\in F$.
+\end{proof}
+
+\begin{definition}
+$E$上的弱拓扑指$\sigma(E,E^*)$.$(E,\sigma(E,E^*))$是$T_2$ LCS.约定不写$\sigma(E,E^*)$-,而写作$w$-.
+
+$\forall x\in E$定义$\hat{x}:E^*\to \F, f\to f(x)$,记$\hat{E}=\cbr{\hat{x}:x\in E}$.定义$\sigma(E^*,\hat{E})$为$E^*$上的弱*拓扑.$\sigma(E^*,\hat{E})$是$T_2$ LCS.约定不写$\sigma(E^*,\hat{E})$-,而写作$w$*-.
+
+$E\to \hat{E}, x\mapsto \hat{x}$是线性双射,即$E$线性同构于$\hat{E}$.可记$E=\hat{E},\sigma(E^*,\hat{E})=\sigma(E^*,E)$.
+
+若$E$赋范,则Banach空间$E^*$上有范数拓扑$\norm{\cdot}$,相对于$w$*-拓扑,称$\norm{\cdot}$为$E^*$上强拓扑.
+\end{definition}
+\begin{proposition}
+    \begin{enumerate}
+        \item 由上定理,$(E,\sigma(E,E^*))^*=E^*,(E^*,\sigma(E^*,E))^*=E$.
+        \item 凸集$A\subset E$有$\overline{A}=\overline{A}^w$.
+    \end{enumerate}
+\end{proposition}
+\begin{example}[缓增广义函数]
+    Schwartz函数类$\mathcal{S}(\R^n)$上有半范数族$\cbr{\norm{\cdot}_{\alpha,\beta}}_{\alpha,\beta},\norm{f}_{\alpha,\beta}=\sup_{x\in \R^n}\abs{x^\alpha D^\beta f(x)},\alpha,\beta\in \N^n$.\\
+    $\mathcal{S}(\R^n)$在此拓扑下是LCS,其对偶空间记为$\mathcal{S}'(\R^n)$,后者中元素为缓增广义函数.下给出例子:
+
+    \begin{itemize}
+        \item {Dirac函数}$\delta_a, a\in \R^n$:$\forall f\in \mathcal{S}(\R^n), \delta_a(f)=f(a)$.
+        \item $L_g(f)=\int_{\R^n}f(x)g(x)\d x, f\in \mathcal{S}(\R^n)$.容易验证$\forall p\in [1,\infty]\forall g\in L^p(\R^n),L_g$是缓增广义函数.
+    \end{itemize}
+\end{example}
+
+最后我们来证明双极定理.
+\begin{definition}
+    $T_2$ LCS $E$, $A\subset E$,称$\mathrm{pol}(A)=\cbr{x^*\in E^*:\abs{x^*(x)}\leq 1,\forall x\in A}$为$A$的极集.
+    
+    相应的,$B\subset E^*$时,称$\mathrm{pol}(B)=\cbr{x\in E:\abs{\abr{x^*,x}}\leq 1,\forall x^*\in B}$为$B$的极集.
+
+    极集的极集记作$\mathrm{pol}^2(\cdot)$.
+\end{definition}
+\begin{proposition}考虑$A\subset E,B\subset E^*$.
+    \begin{enumerate}
+        \item $\mathrm{pol}(A)$和$\mathrm{pol}(B)$均是凸平衡的,且分别是$w$*-闭的和$w$-闭的.
+        \item $\mathrm{pol}(\cdot)$是单调递减的,即$A_1\subset A_2\implies \mathrm{pol}(A_2)\subset \mathrm{pol}(A_2)$.
+        \item 记$A$的凸平衡包为$\mathrm{convba}(A)=\cbr{\sum_{k=1}^n \lambda_kx_k:x_k\in A,\lambda_k\in \F,\sum_{k=1}^n \abs{\lambda_k}\leq 1}$,闭凸平衡包$\mathrm{ccb}(A)=\overline{\mathrm{convba}(A)}$.\\有$\mathrm{pol}(\mathrm{ccb}(A))=\mathrm{pol}(A)$.
+        \item 非零$\lambda\in \F$有$\mathrm{pol}(\lambda A)=\lambda\rev\mathrm{pol}(A)$.
+        \item $\mathrm{pol}\br{\bigcup A_i}=\bigcap \mathrm{pol}(A_i)$
+        \item VS $F\subset E$,则$\mathrm{pol}(F)=\cbr{x^*\in E^*:x^*|_F=0}$,称后者为$F$的零化子$F^{\perp}$.并且$F^{\perp}$是$E^*$的$w$*-闭VS.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \begin{enumerate}
+        \item 取$\lambda x^*+(1-\lambda)y^*$和$\lambda x^*$,易证其为凸平衡的.
+        $\forall a\in A,\hat{a}$是$w$*-连续的,因此$\mathrm{pol}(A)=\bigcap_{a\in A}\hat{a}\rev(\overline{B}_\F)$是$w$*-闭的.\\
+        需要说明的是$\hat{a}\rev(\overline{B}_\F)=\cbr{x^*\in E^*:\abs{x^*(a)}\leq 1}$,取交后即为定义.$B$的情况同理.
+        \item 由$\mathrm{pol}(A)=\bigcap_{a\in A}\hat{a}\rev(\overline{B}_\F)$显然.
+        \item 显然$A\subset \mathrm{ccb}(A)$,下证$\mathrm{pol}(A)\subset \mathrm{pol}(\mathrm{ccb}(A))$.注意到$\forall x\in \mathrm{convba}(A):x=\sum \lambda_kx_k$,取$x^*\in \mathrm{pol}(A)$,\\$\abs{x^*\br{\sum \lambda_kx_k}}\leq \sum \abs{\lambda_k}\abs{x^*(x_k)}\leq 1$.由$x$任意性且$x^*$连续,$x^*\in \mathrm{pol}(\mathrm{ccb}(A))$.得证.
+        \item[4,5,6.] 易证.
+    \end{enumerate}
+    最后可以注意到$\mathrm{pol}(B)=\bigcap_{b\in B}b\rev (\overline{B}_\F)$及定义,同理可证上述性质对$B$成立.
+\end{proof}
+\begin{theorem}[双极定理]
+    $T_2$ LCS $E, A\subset E,B\subset E^*$.
+    \begin{enumerate}
+        \item $\mathrm{pol}^2(A)=A\iff A$是$w$-闭凸平衡的.一般$\mathrm{pol}^2(A)=\mathrm{ccb}(A)$.
+        \item $\mathrm{pol}^2(B)=B\iff B$是$w$*-闭凸平衡的.一般$\mathrm{pol}^2(B)=\mathrm{ccb}(B)$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    仅证(1).$\implies$显然,由上性质3得到.
+
+    $\impliedby$:显然$A\subset \mathrm{pol}^2(A)$,这是因为$\forall a\in A\forall x^*\in \mathrm{pol}(A):\abs{x^*(a)}\leq 1$.$A$是闭凸平衡集,任取$x\in A^c$,则由命题\ref{HBProp4}有$x^*\in E^*$满足条件.条件给出$x^*\in \mathrm{pol}(A)$而$x\notin \mathrm{pol}^2(A)$,因此$\mathrm{pol}^2(A)\subset A$.
+\end{proof}
+
+\section{符号表}
+\begin{tabular}{ll}
+    LCS&Locally Convex Space, 局部凸空间\\
+    $T_2$&Hausdorff空间,即满足$\forall x,y\exists O(x),O(y):x\neq y\implies O(x)\cap O(y)=\emptyset$.\\
+    TVS&Topological Vector Space, 拓扑向量空间\\
+    VS&Vector Space, 向量空间
+\end{tabular}
+\end{document}

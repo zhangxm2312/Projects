@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{mathrsfs,color}
+\input{../newcommand.tex}
+\title{局部紧空间性质的讨论}
+\author{V21914009 章亦流}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{定义}
+\begin{definition}
+    若拓扑空间$X$中每个点都有紧邻域,则称$X$是一个局部紧空间(Locally Compact Space).
+\end{definition}
+
+\section{性质}
+我们列举一些性质.首先显然有
+\begin{theorem}
+    紧空间都是局部紧空间.
+\end{theorem}
+\begin{theorem}
+    局部紧Hausdorff空间都是正则空间.
+\end{theorem}
+\begin{proof}
+    $X$是局部紧正则空间,$x\in X$,$U$是其开邻域,$D$是$x$的紧邻域.由于$X$是Hausdorff空间,$D$闭,因此$D$是紧Hausdorff空间,所以是正则空间.集合$W=U\cap D^\circ$是$x$在子空间$D$中的开邻域,因此$x$在正则空间$D$中有开邻域$V$,使得$\overline{V}_D\subset W$.
+
+    首先,$V$是$D$中的开集,且包含于$W$,因此$V$是$W$中的一个开集.而$W$是$X$中开集,因此$V$是$X$中开集.另一方面,$D$是$X$中闭集,因此$\overline{V}_D=\overline{V}$.因此$\overline{V}\subset W\subset U$.这说明$X$是一个正则空间.
+\end{proof}
+\begin{lemma}
+    $X$是局部紧正则空间,$x\in X$,则$x$的所有紧邻域构成的集族是$X$在$x$处的一个邻域基.
+    
+    换言之,局部紧正则空间在每一点处有紧邻域基.
+\end{lemma}
+\begin{proof}
+    令$U$是$x\in X$的开邻域,$D$是$x$的紧邻域,则$U\cap D^\circ$是$x$是开邻域.在正则空间$X$中,存在开邻域$V$使得$\overline{V}\subset U\cap D^\circ\subset D$,因此$\overline{V}$紧.因此对每个开邻域$U$都有紧邻域$\overline{V}$.
+\end{proof}
+\begin{theorem}
+    $X$是局部紧Hausdorff空间,$x\in X$,则$x$的所有紧致邻域构成的集族是$X$在$x$处的一个邻域基.
+\end{theorem}
+\begin{proof}
+    由前两定理立即得到.
+\end{proof}
+\begin{theorem}
+    局部紧正则空间是完全正则空间.
+\end{theorem}
+\begin{proof}
+    设$X$是局部紧正则空间,$x\in X, B$是$X$中的闭集,$x\notin B$.因此$U=B^c$是$x$是开邻域.由引理2.3,存在$x$的紧闭邻域$V\subset U$.$V$作为$X$的子空间是紧正则空间,因此是完全正则的,因此存在连续映射$g:V\to [0,1]$使得$g(x)=0$且$g(y)=1, \forall y\in V-V^\circ$.
+
+    定义连续映射$h:V^{\circ c}\to [0,1]$,使得$h(z)=1,\forall z\in V^{\circ c}$.
+
+    最后定义映射$f:X\to [0,1]$使得$\forall z\in X, f(z)=\begin{cases}
+        g(z),& z\in V\\ h(z),&z\in V^{\circ c}
+    \end{cases}$.$f$的定义是确切的,因为如果$z\in V^{\circ c}\cap V$则有$g(z)=1=h(z)$.另一方面,$V$和$V^{\circ c}$都是$X$中闭集,因此根据粘结引理,$f$连续.由上,最后有$f(x)=0, f(B)=1$.
+\end{proof}
+
+最后我们不加证明的列举一些性质.
+\begin{theorem}
+    局部紧Hausdorff空间必为Baire空间.
+\end{theorem}
+\begin{theorem}
+    局部紧Hausdorff空间可增加一点嵌入到紧Hausdorff空间中.
+\end{theorem}
+
+\section{例子}
+\begin{example}
+    $\R^n$是局部紧空间.
+\end{example}
+\begin{example}
+    局部紧Hausdorff空间的开或闭子集局部紧.
+\end{example}
+\begin{example}
+    $p$-adic空间$\Q_p$是局部紧空间.
+\end{example}
+\end{document}

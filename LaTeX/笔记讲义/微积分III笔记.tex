@@ -1,0 +1,448 @@
+\documentclass[UTF8]{book}
+\input{../preamble.tex}
+
+\usepackage{extarrows}
+
+\usepackage[center]{titlesec}
+% \titleformat{command}[shape]{format}{label}{sep}{before}[after]
+\titleformat{\chapter}{\centering\Large\bfseries}{第\,{\thechapter}\,讲}{1em}{}
+\titleformat{\section}{\raggedright\large\bfseries}{\,\thesection\,}{1em}{}
+\titleformat{\subsection}{\raggedright\large\bfseries}{\,\thesubsection\,}{1em}{}
+
+\title{微积分III课程笔记}
+% \date{2020年8月24日}
+\author{王良龙 {\small 授课}\qquad 章亦流 {\small 整理}}
+\date{2020年11月22日}
+\begin{document}
+    \maketitle
+    \tableofcontents
+
+    \chapter{实数理论}
+    \chapter{极限面面观---以数列极限为例}
+    \chapter{函数的一致连续性(uniformly continuous)}
+    \begin{definition}
+        函数$f(x)$在区间$I$上有定义,若$~\forall \varepsilon>0 ~\exists \delta=\delta(\varepsilon)>0~\forall x_1,x_2\in I:|x_1-x_2|<\delta \implies |f(x_1)-f(x_2)|<\varepsilon$,则称$f(x)$在区间$I$上\textbf{一致连续},否则为非一致连续.
+    \end{definition}
+    \begin{remark}
+        一致连续${\implies\atop\not\impliedby}$连续
+    \end{remark}
+    \begin{proof}
+        $~\forall x_0\in I~\forall \varepsilon>0 ~\exists \delta=\delta(x_0,\varepsilon)>0~\forall x\in I:|x-x_0|<\delta\implies |f(x)-f(x_0)|<\varepsilon$.\\ 
+        由于$f\in C(I)$在一致连续,因此$|f(x_1)-f(x_2)|<\varepsilon$必成立.取$x_1=x,x_2=x_0$,可知$f(x)$在$\forall x_0\in I$处连续.
+    \end{proof}
+    \begin{remark}
+        $f(x)$在区间$I$上一致连续是整体概念($x_1,x_2,|x_1-x_2|$充分小),而$f(x)$在区间$I$上连续是局部概念(在某点上).
+    \end{remark}
+    \begin{remark}
+        利用逻辑对偶:
+        \[\begin{aligned}
+            &f(x)\text{在区间上非一致连续}\\
+            \iff &\exists\varepsilon>0\forall \delta>0\exists x_1,x_2\in I:|x_1-x_2|<\delta\implies |f(x_1)-f(x_2)|\geq \varepsilon\\ 
+            \iff & \exists \varepsilon >0 \forall n\in \N^+( \delta = \frac{1}{n}) \exists x_1^n,x_2^n:|x_1^n-x_2^n|< \delta =\frac{1}{n}\implies |f(x_1^n)-f(x_2^n)|\geq \varepsilon\\ 
+        \end{aligned}\]
+        最后命题即点列中两个点无限靠近,但函数值仍$\geq \varepsilon$.
+
+        实战中瞄准``非一致连续''小区间:$\{x_1^n\}^\infty_{n=0}\quad \{x_2^n\}^\infty_{n=0}$使得$x\implies \infty$时$x_1^n\implies x_0,x_2^n\implies x_0$,从而$|x_1^n-x_2^n|<\delta=1/n$就可以满足,但$(f(x_1^n)-f(x_2^n))\not\implies 0(n\implies \infty)$
+    \end{remark}
+    \begin{example}
+        证明$f(x)=\dfrac{1}{x}$在$(0,1)$上非一致连续,但在$\forall a>0:(a,+\infty)$上一致连续.
+    \end{example}
+    \begin{proof}
+        使$x_1^n=\dfrac{1}{n},x_2^n=\dfrac{1}{n+1}:\qquad 0<x_1^n\implies 0\quad 0<x^n_2\implies 0\quad (n\implies \infty)$
+        但$|f(x_1^n)-f(x_2^n)|=1\not\implies 0(n\implies \infty)$,得证.
+
+        $\forall a>0:|f(x_1)-f(x_2)|=|\dfrac{1}{x_1}-\dfrac{1}{x_2}|=\dfrac{|x_1-x_2|}{x_1x_2}$,使$x_2>x_1$,$\dfrac{|x_1-x_2|}{x_1x_2}\leq \dfrac{|x_1-x_2|}{x_1^2}\leq \dfrac{|x_1-x_2|}{a^2}\leq \varepsilon\implies |x_1-x_2|< a^2\varepsilon$
+    \end{proof}
+    % 右边是I还是其他书,是开是闭都没有关系
+    \begin{remark}
+        $f(x)$在闭区间$I$上一致连续$\iff$ \\ $f\in C(I)\implies \forall x_0\in I\forall \varepsilon>0\exists \delta=\delta(x_0,\varepsilon)>0\forall x\in I:|x-x_0|<\delta\implies |f(x)-f(x_0)|<\varepsilon$.
+        
+        其中$\delta=\delta(\varepsilon)=\sup\{\delta(x_0,\varepsilon):x_0\in I\}$,这说明一致连续与点无关.
+    \end{remark}
+    实际上,$|f(x)-f(x_0)|<\varepsilon,|\dfrac{1}{x}-\dfrac{1}{x_0}|<\varepsilon$,假设$x>x_0\implies \dfrac{x-x_0}{x_0x}<\varepsilon<\dfrac{x-x_0}{x_0^2}<\varepsilon\implies x-x_0<x_0^2\varepsilon$.
+    \begin{proof}
+        求证$f(x)=\sin x$在$\R$上一致连续.
+
+        $\varepsilon>0~\exists\delta=\varepsilon\forall x_1,x_2\in\R\land |x_1-x_2|<\delta$:有\[|f(x_1)-f(x_2)|=|\sin x_1 -\sin x_2 |=|2\cos\frac{x_1+x_2}{2}\sin\frac{x_1-x_2}{2}|\leq |2\sin \frac{x_1-x_2}{2}|\leq 2\cdot\frac{|x_1-x_2|}{2}<\delta=\varepsilon\]
+        因此$f(x)=\sin x$在$\R$上一致连续.
+    \end{proof}
+    这个例子中$f(x)$都被$|x|$控制,增长速度小于$x$.
+    \begin{example}
+        求证$f(x)=\sqrt{x}$在$(0,+\infty)$上一致连续.
+    \end{example}
+    \begin{proof}
+        $\varepsilon>0~\exists\delta=\varepsilon^2\forall x_1,x_2\in\R^+\land |x_1-x_2|<\delta$,使得$x_1>x_2$:\[|f(x_1)-f(x_2)|=|\sqrt{x_1}-\sqrt{x_2}|=\frac{x_1-x_2}{\sqrt{x_1}+\sqrt{x_2}}<\frac{x_1-x_2}{\sqrt{x_1}}<\frac{x_1-x_2}{\sqrt{x_1-x_2}}=\sqrt{x_1-x_2}<\sqrt{\delta}=\varepsilon\]
+    \end{proof}
+    \begin{example}
+        求证$f(x)=x^2$在$(0,+\infty)$上非一致连续.
+    \end{example}\begin{proof}
+        取$x_1^n=\sqrt{n},x_2=\sqrt{n}+\dfrac{1}{2\sqrt{n}}:\qquad x_1^n\implies\infty,x_2^n\implies \infty\quad (n\implies \infty)$,但$\forall n\in\N^+:|f(x_1^n)-f(x_2^n)|=|n-(n+\dfrac{1}{2}\cdot 2+\dfrac{1}{4n})|=|\dfrac{1}{4n}+1|>1$,因此$f(x)=x^2$在$(0,+\infty)$上非一致连续.
+    \end{proof}
+    \begin{remark}
+        证明非一致连续时一定要弄清非一致连续发生的区域.\\ 
+        如$f(x)=\dfrac{1}{x}$在$(0,a)$上非一致连续,主要问题在$x\implies 0^-$上.而$f(x)=x^2$在$(0,\infty)$上非一致连续的主要问题在$x\implies +\infty$上.
+    \end{remark}
+    \begin{remark}
+        感觉$f(x)$在$(a,+\infty)$上一致连续与下列估计式有关:\[\exists a\geq 0,b\geq 0:\qquad |f(x)|\nonumber a|x|+b\]
+        换句话说,$f(x)$的增长速度没有$a|x|+b$快.一致连续增长速度不能太快,不能用$|x|$压缩.
+    \end{remark}
+    \begin{example}
+        $f(x)$在$I$上满足Lipschitz条件$\implies f(x)$在$I$上一致连续.
+    \end{example}\begin{proof}
+        $\forall x_1,x_2\in I:|f(x_1)-f(x_2)|\leq L|x_1-x_2|<\varepsilon\implies |x_1-x_2|<\dfrac{\varepsilon}{L}$.取$\delta=\dfrac{\varepsilon}{L+1}$即可.
+    \end{proof}
+    \begin{theorem}[Cantor定理]
+        $f(x)$在闭区间$I$上连续$\implies f(x)$在$I$一致连续.
+
+        $\biggl( f(x)$在有界开区间$I$上连续$\implies f(x)$在$I$一致连续$\biggr)\iff \lim\limits_{x\implies a^+}f(x),\lim\limits_{x\implies b^-}f(x)$均存在
+    \end{theorem}\begin{proof}
+        前者我们在前面证明过了,现在我们先证明必要性($\impliedby$).
+
+        取$\lim\limits_{x\implies a^+}f(x)=A,\lim\limits_{x\implies b^-}f(x)=B$,构造函数$F(x)=\begin{cases}A&x=a\\ f(x)&x\in (a,b)\\ B&x=b\end{cases}$
+
+        显然,$F(a^+)=\lim\limits_{x\implies a^+}F(x)=\lim\limits_{x\implies a^+}f(x)=A=F(a),F(b^-)=\lim\limits_{x\implies b^-}F(x)=\lim\limits_{x\implies b^-}f(x)=B=F(b)$,因此$F\in C(a,b),F(x)$在$x=a$右连续,$x=b$左连续,故$F\in C[a,b]$,因此由前命题,$F(x)$在$[a,b]$一致连续.
+
+        再证充分性($\implies$).由一致连续定义\[\forall \varepsilon>0\exists \delta=\delta(\varepsilon)>0\forall x_1,x_2\in(a,b):|x_1-x_2|<\delta \implies |f(x_1)-f(x_2)|<\varepsilon\]
+        可知\[\forall \varepsilon>0\exists \delta=\delta(\varepsilon)>0\forall x_1,x_2\in(a+a\delta)\cap (a,b):|f(x_1)-f(x_2)|<\varepsilon\]
+        由函数极限判别Cauchy法则得$\lim\limits_{x\implies a^+}f(x)=A$存在,同理可证另一端.
+    \end{proof}值得注意的是:
+    \begin{enumerate}
+        \item $(a,b)$为有界开区间即$a,b\in \R$为有限数
+        \item 反之不成立,如$f(x)=\sin x$在$(0,+\infty)$上一致连续但$\lim\limits_{x\implies +\infty}\sin x$不存在
+        \item 对$<a,b>$类型的区间要求$a,b\in \R$是有限数
+    \end{enumerate}
+    \begin{theorem}
+        若$f\in C(a,+\infty)$且$\lim\limits_{x\implies a^+}f(x)=A,\lim\limits_{x\implies +\infty}f(x)=B$,则$f(x)$在$(a,\infty)$上一致连续.
+    \end{theorem}\begin{proof}
+        由$a$有限且$f(x)$在$x=a$处右连续,可知$f\in C[a,+\infty]$.
+
+        由$\lim\limits_{x\implies +\infty}=B$存在及Cauchy准则,$\forall \varepsilon>0\exists M>0\forall x>M:|f(x)-B|<\varepsilon/2\implies$ \[\forall \varepsilon>0\exists M>0\varepsilon\delta>0 \forall x_1,x_2>M:|x_1-x_2|<\delta\implies |f(x_1)-f(x_2)|\leq|f(x_1)-B|+|f(x_2)-B|\leq \varepsilon\]
+        因此,$f(x)$
+    \end{proof}
+    \chapter{度量空间(metric space)}
+    \chapter{导数的惊人性质}
+    \section{左右导数,导数的左右极限}
+    \[f'_-(x_0)=\lim_{x\implies x_0^-}\frac{f(x)-f(x_0)}{x-x_0}\quad f'_+(x_0)=\lim_{x\implies x_0^+}\frac{f(x)-f(x_0)}{x-x_0}\quad f'(x_0)=\lim_{x\implies x_0}\frac{f(x)-f(x_0)}{x-x_0}\]
+    令$f'(x_0)=A\iff f'_-(x_0)=f'_+(x_0)=A$.
+
+    $f(x)$在$x_0$的邻域上可导,
+    % 5.1
+    \begin{proposition}
+        \[f'(x_0^-)=f'(x_0^+)=A\iff \lim_{x\implies x_0}f'(x)=A\]
+    \end{proposition}
+    因此我们问:$f'_-(x_0),f'_+(x_0),f'(x_0),f'(x_0^-),f'(x_0^+),\lim_{x\implies x_0}f'(x)$的关系如何.
+    \begin{example}
+        $f(x)=\lfloor x\rfloor,x_0=0$时求$f'_-(x_0),f'_+(x_0),f'(x_0),f'(x_0^-),f'(x_0^+),\lim_{x\implies x_0}f'(x)$.
+        \begin{proof}
+            在$U(0,\delta)$上有$f(x)=\begin{cases}
+                -1&,\delta<0\\ 0&,x\geq 0
+            \end{cases}$.
+
+            \[f'_-(x_0)=\lim_{x\implies 0^-}\frac{f(x)-f(0)}{x-0}=+\infty ,f'_+(x_0)=0\implies f'(x_0)\text{不存在}\]
+            因此$f'(x)=0(x\in (-1,1)\setminus \{0\}),f'(x_0^-)=f'(x_0^+)=\lim_{x\implies x_0}f'(x)=0$.
+        \end{proof}
+    \end{example}
+    \section{广义Rolle定理}
+    \begin{theorem}[Rolle定理]
+        $f\in C[a,b],f\in C^{(1)}(a,b)$且$f(a)=f(b)=A$,则$\exists \xi\in(a,b):f(\xi)=0$.
+    \end{theorem}
+    其中每个条件缺一不可:(1)若不连续:$f(x)=1/x~(x\in(0,1))$;(2)若不可导:$f(x)=|x|$;\\ (3)若不相等:$f(x)=x$
+
+    那么自然提问,能否(1)从有限开区间$(a,b)$推广到$\R$上?(2)左右端点函数值推广到区间左右极限\\ $\lim\limits_{x\implies a^+}f(x)=\lim\limits_{x\implies b^-}f(x)=A$
+    \begin{theorem}[广义Rolle定理]
+        对任意区间$(a,b)$有$f\in C[a,b],f\in C^{(1)}(a,b)$且$\lim\limits_{x\implies a^+}f(x)=\lim\limits_{x\implies b^-}f(x)=A$,\\ 则$\exists \xi\in(a,b):f(\xi)=0$.
+    \end{theorem}
+    \begin{proof}
+        此处取$a,b,A\in\R$,其他情况类似证明.
+
+        若$f(x)$为常函数,则定理显然成立.若否,则$\exists x_0\in(a,b):f(x_0)\neq A$.不失一般性,设$f(x_0)>A$.\\ 由$\lim\limits_{x\implies a^+}f(x)=\lim\limits_{x\implies b^-}f(x)=A$且$f\in C(a,b)$,有$$\forall M\in (A,f(x_0))\exists x_1\in (a,x_0)\exists x_2\in (x_0,b):f(x_1)=f(x_2)=M.$$
+        在$[x_1,x_2]$上应用Rolle定理,$\exists \xi\in[x_1,x_2]:f(\xi)=0.$
+    \end{proof}
+    \begin{example}
+        $f\in C[0,+\infty)$且$0\leq f(x)\leq \dfrac{x}{1+x^2},x\in[0,+\times)$,则$\exists \xi\in (0,+\infty):f'(\xi)=\dfrac{1-\xi^2}{(1+\xi^2)^2}$.
+        \begin{proof}
+            由夹逼定理:\[\lim_{x\implies +\infty}0=\lim_{x\implies 0^+}0=0, \lim_{x\implies +\infty}\frac{x}{1+x^2}=\lim_{x\implies 0^+}\frac{x}{1+x^2}=0\implies \lim_{x\implies +\infty}f(x)=\lim_{x\implies 0^+}f(x)=0\]
+            由$f\in C^{(1)}[0,+\infty)$,应用广义Rolle定理有$\exists \xi\in(0,+\infty):f'(\xi)=0.$
+
+            注意到$\left( \dfrac{x}{1+x^2} \right)'\!=\!\dfrac{1-x^2}{(1+x^2)^2}$,构造$F(x)\!=\!\dfrac{x}{1+x^2}-f(x),x\in(0,+\infty)$.\\ 易知$\lim\limits_{x\implies +\infty}F(x)\!=\!\lim\limits_{x\implies 0^+}F(x)\!=\!0$,对$F(x)$用广义Rolle定理,可知
+            \[\exists \eta\in(0,+\infty):F'(\eta)=0\implies f'(\eta)=\frac{1-\eta^2}{(1+\eta^2)^2}\]
+        \end{proof}
+        实际上题中$\dfrac{x}{1+x^2},\dfrac{1-x^2}{(1+x^2)^2}$可被在该区间上闭连续开可导的任意函数$g(x),g'(x)$替代.
+    \end{example}\begin{example}
+        $f\in \F[x]$且$f(x)\geq x, f(x)\geq 1-x (x\in\R)$.求证$f\left(\dfrac{1}{2}\right)>\dfrac{1}{2}$
+        \begin{proof}
+            由$f(x)>x$有$f\left( \dfrac{1}{2} \right)\geq \frac{1}{2}$,只需证$f\left( \dfrac{1}{2} \right)\neq \dfrac{1}{2}$.
+
+            \begin{itemize}
+                \item 对于$\forall x>\dfrac{1}{2}$,有$\dfrac{f(x)-f(\frac{1}{2})}{x-\frac{1}{2}}\geq \dfrac{x-\frac{1}{2}}{x-\frac{1}{2}}=1$,故$f'_+\left( \dfrac{1}{2} \right)\geq 1$.
+                \item 对于$\forall x<\dfrac{1}{2}$,有$\dfrac{f(x)-f(\frac{1}{2})}{1-x-\frac{1}{2}}\geq \dfrac{-x-\frac{1}{2}}{x-\frac{1}{2}}=-1$,故$f'_-\left( \dfrac{1}{2} \right)\leq -1$.
+            \end{itemize}
+            故$f(x)$在$x=\dfrac{1}{2}$处不可导,与题设矛盾.故$f\left( \dfrac{1}{2} \right)\neq \dfrac{1}{2}$,故$f\left(\dfrac{1}{2}\right)>\dfrac{1}{2}$.
+        \end{proof}
+    \end{example}
+    \section{导数的介值定理和导数无第一类间断点}
+    对于$x_0\in (a,b)$,若$f(x)$定义在$(a,b)\setminus \{x_0\}$,有:\begin{enumerate}
+        \item $\lim\limits_{x\implies x_0}f(x)\neq f(x_0)$,则称$x_0$为$f(x)$的\textbf{可去间断点}.
+        \item $\lim\limits_{x\implies x_0^+} f(x)\neq \lim\limits_{x\implies x_0^-}f(x)$,则称$x_0$为$f(x)$的\textbf{跳跃间断点}.
+        \item $\lim\limits_{x\implies x_0^+}$或$\lim\limits_{x\implies x_0^-} f(x)=\infty$,则称$x_0$为$f(x)$的\textbf{无穷间断点}.
+        \item $\lim\limits_{x\implies x_0^+}$或$\lim\limits_{x\implies x_0^-} f(x)\neq \infty$且不存在,则称$x_0$为$f(x)$的\textbf{振荡间断点}.
+    \end{enumerate}
+    其中前两者被称为\textbf{第一类间断点},后两者被称为\textbf{第二类间断点}.
+    \begin{example}
+        \(f(x)=\begin{cases}
+            \e^{-\frac{1}{x^2}}&,x\neq 0\\ 0&,x=0
+        \end{cases}\).当$x\neq 0$时$f'(x)=\dfrac{2}{x^3}\e^{-\frac{1}{x^2}}$. 当$x=0$时
+        \[f'(0)=\lim_{x\implies 0}\frac{f(x)-f(0)}{x-0}=\lim_{x\implies 0}\frac{\e^{-\frac{1}{x^2}}}{x}=\lim_{x\implies 0}\frac{1/x}{\e^{1/x^2}}\xlongequal{\text{L'Hospital}}\lim_{x\implies 0}\frac{x}{2\e^{-\frac{1}{x^2}}}=0\]
+        因此\(f'(x)=\begin{cases}
+            \dfrac{2}{x^3}\e^{-\frac{1}{x^2}}&,x\neq 0\\ 0&,x=0
+        \end{cases}\).而$\lim\limits_{x\implies 0}f'(x)=\lim\limits_{x\implies 0}\dfrac{2x^{-3}}{\e^{\frac{1}{x^2}}}\xlongequal{\text{L'Hospital}}\lim\limits_{x\implies 0} \dfrac{-6x^{-4}}{-2x^{-3}\e^{\frac{1}{x^2}}}=\lim\limits_{x\implies 0} \dfrac{3/x}{\e^{1/x^2}}\\ \xlongequal{\text{L'Hospital}}3\lim\limits_{x\implies 0} \dfrac{-x^{-2}}{-2x^{-3}\e^{\frac{1}{x^2}}}=\dfrac{3}{2}\lim\limits_{x\implies 0} \dfrac{x}{\e^{\frac{1}{x^2}}}=0=f'(0)$
+
+        因此$f'\in C(\R)$.
+    \end{example}\begin{example}
+        \(f(x)=\begin{cases}
+            x\sin \dfrac{1}{x}&,x\neq 0\\ 0&,x=0
+        \end{cases}\).由于$\sin\dfrac{1}{x}$有界,因此$\lim\limits_{x\implies 0} x\sin \dfrac{1}{x}=0=f(0)$,$f\in C(\R)$.
+
+        而$f'(x)=\sin \dfrac{1}{x}-\dfrac{1}{x}\cos\dfrac{1}{x} (x\neq 0)$.其显然在$x=0$处无极限,也无定义.
+    \end{example}\begin{example}
+        \(f(x)=\begin{cases}
+            x^2\sin \dfrac{1}{x}&,x\neq 0\\ 0&,x=0
+        \end{cases}\).类似的,可知$\lim\limits_{x\implies 0} x^2\sin \dfrac{1}{x}=0=f(0)$,$f\in C(\R)$.\\ 而\(f'(x)=\begin{cases}
+            2x\sin \dfrac{1}{x}-\cos\dfrac{1}{x}&,x\neq 0\\ 0&,x=0
+        \end{cases}\),这是因为$f'(0)=\lim\limits_{x\implies 0} \dfrac{x^2\sin \frac{1}{x}}{x}=\lim\limits_{x\implies 0} x\sin \dfrac{1}{x}=0$.
+
+        虽然$\lim\limits_{x\implies 0} x\sin \dfrac{1}{x}=0$,但$\lim\limits_{x\implies 0^+} \cos\dfrac{1}{x}$和$\lim\limits_{x\implies 0^-} \cos\dfrac{1}{x}$不存在,因此$x=0$为$f'(x)$的第二类间断点.
+    \end{example}
+    \begin{theorem}
+        $f\in C^{(1)}(a,b)$,则$f'(x)$在$(a,b)$中无第一类间断点.
+    \end{theorem}\begin{proof}
+        由$f\in C^{(1)}(a,b)$,有$\forall x\in (a,b):f'(x_0)$存在,且\[f'(x_0)=f'_+(x_0)=f'_-(x_0)=\lim_{x\implies x_0^+}\frac{f(x)-f(x_0)}{x-x_0}\xlongequal{\text{Lagrange定理}}\lim_{x\implies x_0^+}\frac{f'(\xi)(x-x_0)}{x-x_0}=\lim_{x\implies x_0^+}f'(\xi)\]
+        (此处认为$f'_+(x_0),f'_-(x_0)$存在)
+
+        因此$x\implies x_0^+$时$\xi\implies x_0^+$,故$f'(x_0)=f'_+(x_0)=\lim\limits_{x\implies x_0^+}f'(\xi)=\lim\limits_{\xi\implies x_0^+}f'(\xi)$.\\ 同理,$f'(x_0)=f'_-(x_0)=\lim\limits_{x\implies x_0^-}f'(\xi)=\lim\limits_{\xi\implies x_0^-}f'(\xi)$.(注意:此处都只在单侧极限成立)
+
+        设$x=x_0$为$f'(x)$的间断点,即$\lim\limits_{x\implies x_0^-}f'(x)\neq f(x_0)$.但此处$f(x)$有定义,若$\lim\limits_{x\implies x_0}f'(x)$存在,即$$f'(x_0)=f'_+(x_0)=f'_-(x_0)=f'(x_0^+)=f'(x_0^-)\lim\limits_{x\implies x_0}f'(x)$$.这和$x=x_0$为$f'(x)$的间断点矛盾.
+
+        因此$\lim\limits_{x\implies x_0}f'(x)$不存在,即$\lim\limits_{\xi\implies x_0^-}f'(\xi)$和$\lim\limits_{\xi\implies x_0^+}f'(\xi)$至少有一个不存在,因此$x_0$为$f'(x)$的第二类间断点.
+    \end{proof}\begin{theorem}[Darboux定理]
+        $f\in C^{(1)}[a,b]$:$\quad f'(a)<f'(b)\implies \forall M\in (f'(a),f'(b))\exists \xi\in (a,b):f'(\xi)=M$\\ 此即$f'(x)$在$[a,b]$上取遍$(f'(a),f'(b))$
+    \end{theorem}\begin{proof}[证明一]
+        取$g(x)=f(x)-Mx,g\in C^{(1)}[a,b],g'(x)=f'(x)-M$,因此$g'(a)=f'(a)-M<0$,\\ $g'(b)>f'(b)-M>0$.由于\[g'(a)=g'_+(a)=\lim_{x\implies a^+}\frac{g(x)-g(a)}{x-a}<0\qquad g'(b)=g'_-(b)=\lim_{x\implies b^-}\frac{g(x)-g(b)}{x-b}>0\]因此存在区间$(a,a+\delta_1)$使$g(x)<g(a)$,存在区间$(b-\delta_2,b)$使$g(x)<g(b)$.因此$g(x)$在$[a,b]$上的最小值不是$g(a)$和$g(b)$.
+
+        取$\xi\in (a,b):g(\xi)=\min\limits_{x\in [a,b]}g(x)$,由Fermat定理可知$g'(\xi)=0,f'(\xi)=M$,命题得证.
+    \end{proof}\begin{proof}[证明二]
+        取$g(x)=f(x)-Mx,g\in C^{(1)}[a,b],g'(x)=f'(x)-M$.
+
+        若$g(a)=g(b)$,则由Rolle定理可知必$\exists \xi\in (a,b):g'(\xi)=0,f'(\xi)=M$.
+
+        若否,不妨认为$g(a)<g(b)$.而$g'(a)<0$,由保号性可知$\exists \zeta\in (a,b):g(\zeta)<g(a)<g(b)$.\\ 由介值定理可知$\exists \delta\in (\zeta,b):g(\delta)=g(b)$.最后由Rolle定理可知$\exists \xi\in (\zeta,\delta):g'(\xi)=0,f'(\xi)=M$.
+
+        类似可以证明$g(a)>g(b)$的情况.定理得证.
+    \end{proof}
+    尽管$f'(x)$在$[a,b]$上不一定连续,但$f'(x)$在$[a,b]$上满足``介值性''.
+    \begin{example}
+        $f\in C^{(1)}[a,b]$,则$\exists \xi\in [a,b]: f'(\xi)=\dfrac{f'(a)+f'(b)}{2}$
+    \end{example}\begin{example}
+        $f\in C[a,b],f\in C^{(1)}(a,b)$且$f(a)=f(b)=0$.求证:$\forall \alpha\in \R \exists \xi\in (a,b):\alpha f(\xi)=f'(\xi)$
+    \end{example}\begin{proof}
+        考虑到Rolle定理:$g(a)=g(b)=0\implies \exists\xi\in (a,b):g(\xi)=0$,我们可以构造一个函数$g(x)$使得$g(a)=g(b)=0$且$g'(\xi)=0\iff \alpha f(\xi)=f'(\xi)$.
+
+        我们可以取$g(x)=\e^{-\alpha x}f(x),g'(x)=\e^{-\alpha x}(f'(x)-\alpha f(x))$.显然$g(a)=g(b)=0$,因此命题马上得证.
+    \end{proof}\begin{example}
+        $f\in C[a,b],f\in C^{(1)}(a,b)$且$f(a)=f(b)=0$.求证:$\forall \alpha\in \R \exists \xi\in (a,b):\alpha f(\xi)+\xi f'(\xi)=0$
+    \end{example}\begin{proof}
+        取$g(x)=x^\alpha f(x)$,其他同上.
+    \end{proof}
+    \begin{example}
+        求证$\forall a>0\forall b>a\exists \xi\in (a,b):\qquad a\e^b-b\e^a=(1-\xi)\e^\xi(a-b)$
+    \end{example}\begin{proof}
+        取$f(x)=x\e^{\frac{1}{x}},x\in \left( \dfrac{1}{b},\dfrac{1}{a} \right)$,有$f'(x)=\left( 1-\dfrac{1}{x} \right)\e^{\frac{1}{x}}$.由Lagrange定理有:
+        \[f\!\left( \frac{1}{b} \right)-f\!\left( \frac{1}{a} \right)=f'\!\left( \frac{1}{\xi} \right)\left( \frac{1}{b}-\frac{1}{a} \right)\implies \frac{\e^b}{b}-\frac{\e^a}{a}=\left( 1-\xi \right)\e^\xi\left( \frac{1}{b}-\frac{1}{a} \right)\implies \text{上式}\]
+    \end{proof}\begin{example}
+        $f,g\in C[a,b];f,g\in C^{(1)}(a,b)$且$\forall x\in (a,b):g'(x)\neq 0$.求证$\exists \xi\in (a,b): \dfrac{f'(\xi)}{g'(\xi)}=\dfrac{f(\xi)-f(a)}{g(b)-g(\xi)}$
+    \end{example}\begin{proof}
+        取$F(x)=\big(f(x)-f(a)\big)\big(g(b)-g(x)\big)$,有$F'(x)=f'(x)\big(g(b)-g(x)\big)-g'(x)\big(f(x)-f(a)\big)$.\\ 由$F(a)=F(b)=0$,有$\exists\xi\in (a,b):F'(\xi)=0,f'(\xi)\big(g(b)-g(\xi)\big)-g'(\xi)\big(f(\xi)-f(a)\big)=0$,化简即可得到上式,得证.
+    \end{proof}\begin{example}
+        $f\in C[a,b],f\in C^{(2)}(a,b)$.求证$\exists c\in (a,b):f(b)-2f\left( \dfrac{a+b}{2} \right)+f(a)=\dfrac{(b-a)^2}{4}f''(c)$
+    \end{example}\begin{proof}
+        取$g(x)=f\left( x+\dfrac{b-a}{2} \right)-f(x), x\in\left[ a,\dfrac{a+b}{2} \right]$.由Lagrange定理:
+        \[f(b)-2f\left( \frac{a+b}{2} \right)+f(a)=\left( f(b)-f\left( \frac{a+b}{2} \right) \right)-\left( f\left( \frac{a+b}{2} \right)-f(a) \right)=g\left( \dfrac{a+b}{2} \right)-g(a)=g'(\xi)\frac{b-a}{2}\]
+        其中$\xi\in \left( a,\dfrac{a+b}{2} \right)$.%$\xi_1\in \left( \dfrac{a+b}{2},b \right),\xi_2\in\left( a,\dfrac{a+b}{2} \right)$.
+        \[g'(\xi)=f'\left( \xi+\dfrac{b-a}{2} \right)-f'(\xi)=f''(c)\frac{b-a}{2}\]
+        其中$c\in \left( \xi,\xi+\dfrac{b-a}{2} \right)$.因此有:$\exists c\in (a,b):f(b)-2f\left( \dfrac{a+b}{2} \right)+f(a)=\dfrac{(b-a)^2}{4}f''(c)$,得证.
+    \end{proof}\begin{example}
+        $f\in C^{(2)}[0,a]$且$|f''(x)|\leq M$,且$f(x)$在$x\in (0,a)$中可取到最大值.求证$|f'(0)|+|f'(a)|\leq Ma$.
+    \end{example}\begin{proof}
+        由于$f(x)$在$x\in (0,a)$中可取到最大值,故$f'(0)f'(a)<0$.
+
+        若$f'(0)>0$,则$|f'(0)|+|f'(a)|=|f'(0)-f'(a)|=|-a\cdot f''(\xi)|\leq Ma$.
+
+        若$f'(0)<0$,则$|f'(0)|+|f'(a)|=|f'(a)-f'(0)|=|a\cdot f''(\xi)|\leq Ma$.
+    \end{proof}
+    \chapter{微积分的巅峰---Taylor公式}
+    \section*{函数及其导数之间有何联系?}
+    \begin{theorem}[Fermat定理]
+        $f\in C^{(1)}\{x_0\}$且$f(x)$在$x=x_0$处取得极值,则$f'(x_0)=0$
+    \end{theorem}
+    \setcounter{theorem}{2}
+    \begin{theorem}[Rolle定理]
+        $f\in C[a,b],f\in C^{(1)}(a,b)$且$f(a)=f(b)=A$,则$\exists \xi\in(a,b):f(\xi)=0$.
+    \end{theorem}
+    \setcounter{theorem}{7}
+    \begin{theorem}[Lagrange定理]
+        $f\in C[a,b],f\in C^{(1)}(a,b)$,则$\exists \xi\in(a,b):f(b)-f(a)=f'(\xi)(b-a)$.
+    \end{theorem}\begin{theorem}[Cauchy定理]
+        $f,g\in C[a,b],f,g\in C^{(1)}(a,b)$,则$\exists \xi\in(a,b):g'(\xi)\big(f(b)-f(a)\big)=f'(\xi)\big(g(b)-g(a)\big)$.
+    \end{theorem}\begin{theorem}[Taylor定理]
+        若$f\in C^{(n)}\{x_0\}$,则
+        \[\begin{aligned}
+            f(x)=&f(x_0)+f'(x_0)(x-x_0)+\frac{f''(x_0)}{2!}(x-x_0)^2+\cdots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+r_n(x_0;x)\\ 
+            =&f(x_0)+\sum_{i=1}^{n}\frac{f^{(i)}(x_0)}{i!}(x-x_0)^i+r_n(x_0;x)
+        \end{aligned}\]
+        \begin{itemize}
+            \item[\textnormal{Peano}型] $r_n(x_0;x)=o\left( (x-x_0)^n \right)$
+            \item[\textnormal{Lagrange}型] $r_n(x_0;x)=\dfrac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$
+            \item[积分余项型] $r_n(x_0;x)=\dfrac{1}{(n-1)!}\displaystyle\int_{x_0}^{x}f^{(n)}(t)(x-t)^{n-1}\d t$
+        \end{itemize}
+    \end{theorem}
+    \begin{example}
+        $f\in C[0,1],f\in C^{(1)}(0,1)$且$f(0)=f(1)=0, |f'(x)|<1$.求证$\forall x_1\in [0,1]\forall x_2\in [0,1]:|f(x_1)-f(x_2)|<\dfrac{1}{2}$.
+    \end{example}\begin{proof}
+        $|f(x_1)-f(x_2)|=|f'(\xi)||x_1-x_2|<|x_1-x_2|$.
+
+        若$|x_1-x_2|\leq \dfrac{1}{2}$,则$|f(x_1)-f(x_2)|<|x_1-x_2|\leq \dfrac{1}{2}$.
+
+        若$|x_1-x_2|>\dfrac{1}{2}$,设$0<x_1<x_2<1$,有\[|f(x_1)-f(x_2)|=|f(x_1)-f(x_0)+f(x_0)-f(x_2)|\leq |f(x_1)-f(x_0)|+|f(x_0)-f(x_2)|\]
+        取$f(x_0)=f(0)=f(1)$,有:
+        \[|f(x_1)-f(x_0)|+|f(x_0)-f(x_2)|=|f(x_1)-f(0)|+|f(1)-f(x_2)|=|f'(\xi_1)|x_1+|f'(\xi_2)|(1-x_2)<x_1+1-x_2<\frac{1}{2}\]命题得证.
+    \end{proof}\begin{example}
+        求证$\forall b>a>\e: a^b>b^a$
+    \end{example}\begin{proof}
+        即证$b\ln a>a\ln b$.取$f(x)=x\ln a-a\ln x, x\in [a,b]$,有$f'(x)=\ln a-\dfrac{a}{x}>\ln \e-\dfrac{a}{x}\geq \ln\e -\dfrac{a}{a}=0$.
+
+        由于$f(x)$单调递增,则$0<f(a)<f(b)<b\ln a-a\ln b$,得证.
+    \end{proof}\begin{example}
+        求数列$a_n=\sqrt[n]{n}$中的最大项.
+    \end{example}\begin{proof}
+        取$f(x)=x^{\frac{1}{x}},f'(x)=\left( \e^{\frac{\ln x}{x}} \right)'=\e^{\frac{\ln x}{x}}\left( \dfrac{1}{x}\cdot\dfrac{1}{x}-\dfrac{\ln x}{x^2} \right)=\dfrac{1-\ln x}{x^2}\e^{\frac{\ln x}{x}}$.
+
+        $f'(x)=0\implies x=\e$,而离$\e$最近的自然数即为3,故最大项为$\sqrt[3]{3}$.
+    \end{proof}\begin{example}
+        求证$\forall x\in \left( 0,\dfrac{\pi}{2} \right):\sin x>\dfrac{2}{\pi}x$
+    \end{example}\begin{proof}
+        
+    \end{proof}\begin{example}
+        求证:$\forall a\forall b\in \left( \dfrac{a}{4},a \right)\forall x\geq 0:f(x)=2x^3-3(a+b)x^2+6abx+ab^2>0$.
+    \end{example}\begin{proof}
+        $f'(x)=6x^2-6(a+b)x+6ab=6(x-a)(x-b), f'(x)=0\implies x=a\lor x=b$.
+    \end{proof}\begin{example}
+        求证$\forall k\in (\ln 2-1,+\infty)\forall x\in (0,1)\cup (1,+\infty):\quad (x-1)(x-\ln^2 x+2k\ln x-1)>0$
+    \end{example}\begin{proof}
+        $f(x)=x-\ln^2 x+2k\ln x-1,f'(x)=1-\dfrac{2\ln x}{x}+{\dfrac{2k}{x}}$
+    \end{proof}\begin{example}
+        $f\in C^{(2)}(\R),f''(x)>0$且$\lim\limits_{x\implies 0}\dfrac{f(x)}{x}=1$,求证恒有$f(x)\geq x$.
+    \end{example}\begin{proof}
+        由于$\lim\limits_{x\implies 0}\dfrac{f(x)}{x}=1$,故$f(0)=\lim\limits_{x\implies 0}f(x)=\lim\limits_{x\implies 0}x\dfrac{f(x)}{x}=\lim\limits_{x\implies 0}x\cdot \lim\limits_{x\implies 0}\dfrac{f(x)}{x}=0\cdot 1=0$.
+
+        而$f'(0)=\lim\limits_{x\implies 0}\dfrac{f(x)-f(0)}{x-0}=\lim\limits_{x\implies 0}\dfrac{f(x)}{x}=1$.因此$f(x)\!=\!f(0)+f'(0)x+\dfrac{f''(\xi)}{2!}x^2\!\\ =\!0+x+\dfrac{f''(\xi)}{2}x^2\geq x$.
+    \end{proof}\begin{example}
+        $f\in C[0,+\infty),f\in C^{(2)}(0,+\infty)$且$f''(x)<0,f(0)=0$.
+
+        求证$\forall x_1\!>\!0\forall x_2\!>\!0:f(x_1+x_2)\!<\!f(x_1)+f(x_2)$.
+    \end{example}\begin{proof}
+        令$g(x)=f(x+x_2)-f(x)-f(x_2),g(0)=f(0)=0,g'(x)=f'(x+x_2)-f'(x)<0$,因此$g(x)$单调递减,$0>g(0)>g(x)=f(x+x_2)-f(x)-f(x_2),f(x+x_2)<f(x)+f(x_2)$,得证.
+    \end{proof}\begin{example}
+        $f\in C^{(2)}[0,1],|f(x)|\leq a$且$|f''(x)|\leq b$,求证$|f'(x)|\leq 2a+\dfrac{b}{2}$.
+    \end{example}\begin{proof}
+        对于$\forall x_0\in [0,1]\forall x\in [0,1]$,有$f(x_0)=f(x)+f'(x)(x_0-x)+\dfrac{f''(\xi)}{2}(x_0-x)^2$
+    \end{proof}\begin{example}
+        $f\in C[0,1]$且$f(x)\geq 0,f(0)=f(1)=0$,求证$\forall a\in (0,1)\exists\xi\in [0,1):f(\xi)=f(\xi+a)$.[
+    \end{example}\begin{proof}
+        设$F(x)=f(x+a)-f(x),F(0)=f(a)-f(0)=f(a)\geq 0,F(1-a)=f(1)-f(1-a)=-f(1-a)\leq 0$,因此$\exists\xi\in (0,1-a):F(\xi)=f(\xi+a)-f(\xi)=0$.
+    \end{proof}
+    \section*{零点问题}
+    \chapter{曲线和曲面积分}
+    \begin{example}
+        $f(x,y)$连续,$L$为封闭光滑曲线\[U(x,y):=\oint_L f(x,y)\ln\frac{1}{\sqrt{(\xi-x)^2+(\eta-y)^2}}\d s\]试证:\[\lim_{x\implies \infty\atop y\implies \infty}U(x,y)=0\iff \oint_L f(x,y)\d s=0\]
+        \begin{proof}
+            \[U(x,y)+\ln\sqrt{x^2+y^2}\oint_L f(\xi,\eta)\d s=\frac{1}{2}\oint_L f(\xi,\eta)\ln \frac{x^2+y^2}{(\xi-x)^2+(\eta-y)^2}\d s\]
+            而\[\lim_{x\implies \infty\atop y\implies \infty} \oint_L f(\xi,\eta)\ln \frac{x^2+y^2}{(\xi-x)^2+(\eta-y)^2}\d s=0\implies \lim_{x\implies \infty\atop y\implies \infty} U(x,y)+\ln\sqrt{x^2+y^2}\oint_L f(\xi,\eta)\d s=0\]
+            另一方面:\[\lim_{x\implies \infty\atop y\implies \infty} U(x,y)=0\implies \lim_{x\implies \infty\atop y\implies \infty}\ln\sqrt{x^2+y^2}\oint_L f(\xi,\eta)\d s=0\implies \oint_L f(\xi,\eta)\d s=0\]
+            \[\oint_L f(\xi,\eta)\d s=0\implies \lim_{x\implies \infty\atop y\implies \infty}U(x,y)=0\]
+            由$L$紧且$f(x,y)$连续,则$f(\xi,\eta)$连续且有界,即有$\forall (\xi,\eta)\in L,\forall (x,y)\in \R^2$\[|f(x,y)\ln\frac{x^2+y^2}{(\xi-x)^2+(\eta-y)^2}|\leq M\ln\frac{x^2+y^2}{(\xi-x)^2+(\eta-y)^2}\]
+            运用二维极坐标变换$(\xi,\eta)\implies (\gamma,\theta),(x,y)\implies (\rho,\phi)$,有\[\ln\frac{x^2+y^2}{(\xi-x)^2+(\eta-y)^2}=-\ln\left( 1+\left( \frac{\gamma}{\rho} \right)^2-\frac{\gamma}{\rho}\cos(\theta-\phi) \right)\]
+            记$\gamma_0=\max \gamma(\theta)>0,(x,y)\implies(\infty,\infty)$时$\rho\implies +\infty$,此时\[\Big|\left( \frac{\gamma}{\rho} \right)^2-\frac{\gamma}{\rho}\cos(\theta-\phi)\Big|\leq \left( \frac{\gamma_0}{\rho} \right)^2-\frac{\gamma_0}{\rho}\implies 0\]
+            因此此时也有$\ln\dfrac{x^2+y^2}{(\xi-x)^2+(\eta-y)^2}\stackrel{\implies}{\implies}0$.故\[\lim_{x\implies \infty\atop y\implies \infty}U(x,y)=\oint_L f(\xi,\eta)\lim_{x\implies \infty\atop y\implies \infty}\ln\frac{1}{\sqrt{(\xi-x)^2+(\eta-y)^2}}\d s=\oint_L f(\xi,\eta)\d s=0\]
+        \end{proof}
+        实际只是控制收敛$\ln\dfrac{1}{\sqrt{(\xi-x)^2+(\eta-y)^2}}\implies 0$.或者说,将$\oint_L f(x,y)\ln\dfrac{1}{\sqrt{(\xi-x)^2+(\eta-y)^2}}\d s$拟合到$\oint_L f(x,y)\d s$附近.
+    \end{example}\begin{example}
+        计算\(I=\displaystyle\int_{L}x\d y-y\d x\),其中\(L:x^{2n+1}+y^{2n+1}=ax^ny^n(a,x,y\geq 0)\)
+        \begin{proof}
+            设$y=tx$,有\[L:\begin{cases}
+                x=\dfrac{at^n}{t^{2n+1}+1}&\\ 
+                y=\dfrac{at^{n+1}}{t^{2n+1}+1}&
+            \end{cases},t\geq 0\]
+            而\(x\d y-y\d x=x\d(tx)-tx\d x=x^2\d t\),因此\[I=\int_L x^2\d t=\int_0^{+\infty}\frac{a^2t^{2n}}{(1+t^{2n+1})^2}\d t=-\frac{a^2}{(1+t^{2n+1})(2n+1)}\Big|^{+\infty}_0=\frac{a^2}{2n+1}\]
+        \end{proof}
+    \end{example}\begin{example}
+        设$P(x,y,z),Q(x,y,z),R(x,y,z)$在长$l$的光滑曲线$L$上连续,记\[M=\max\{\sqrt{P^2+Q^2+R^2}\Big| (x,y,z)\in L\}>0\]
+        试证\[\Big|\int_L P\d x+Q\d y+R\d z\Big|\leq Ml\]
+        \begin{proof}
+            \[\begin{aligned}
+                \Big|\int_L P\d x+Q\d y+R\d z\Big|=&\Big|\int_L\left( P\cos \alpha+Q\cos \beta+R\cos \gamma \right)\d l\Big|\\ \leq&\int_L \sqrt{P^2+Q^2+R^2}\sqrt{\cos^2\alpha+\cos^2\beta+\cos^2\gamma}\d l\leq Ml
+            \end{aligned}\]
+        \end{proof}
+    \end{example}\begin{example}
+        计算\(I=\displaystyle\oint_{L} \dfrac{x\d y-y\d x}{4x^2+y^2}\),其中\(L:(x-1)^2+y^2=R^2(R\neq 1)\),方向逆时针.
+        \begin{proof}
+            $(x,y)\neq (0,0)$时\[\frac{\partial Q}{\partial x}=\frac{\partial P}{\partial y}=\frac{y^2-4x^2}{(4x^2+y^2)^2}\]
+            当$R<1$时应用Green公式:\[I=\iint_S \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\d x\d y=0\]
+            当$R>1$时作曲线$L_0^-:\dfrac{x^2}{(\varepsilon/2)^2}+\dfrac{y^2}{\varepsilon^2}=1(\forall \varepsilon>0)$,可以对$L+L_0^-$应用Green公式:
+            \[\int_L \frac{x\d y-y\d x}{4x^2+y^2}+\int_{L_0^-}\frac{x\d y-y\d x}{4x^2+y^2}=\int_{L+L_0^-}\frac{x\d y-y\d x}{4x^2+y^2}=\iint_{D'} \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\d x\d y=0\]
+            因此$I=-\int_{L_0^-}\dfrac{x\d y-y\d x}{4x^2+y^2}=\int_{L_0}\dfrac{x\d y-y\d x}{\varepsilon^2}$
+        \end{proof}
+    \end{example}\begin{example}
+        计算\[I=\oint_L \frac{x\d y-y\d x}{\left( (\alpha x+\beta y)^2+(\gamma x+\delta y)^2 \right)^a}\]
+        其中$\begin{vmatrix}
+            \alpha &\beta\\ \gamma&\delta
+        \end{vmatrix}\neq 0$且$L:(\alpha x+\beta y)^2+(\gamma x+\delta y)^2=1$的逆时针.
+        \begin{proof}
+            由$L$为封闭简单光滑曲线,且沿逆时针,因此有
+            \[I\xlongequal{(x,y)\in L}\oint_L x\d y-y\d x\xlongequal{\text{Green公式}}\iint_D 2\d x\d y\xlongequal[\xi=\alpha x+\beta y]{\eta=\gamma x+\delta y}1\iint ?\cdot J\d\xi\d \eta\]
+            其中$J=\left(\dfrac{\partial(\xi,\eta)}{\partial(x,y)}\right)^{-1}=\dfrac{1}{|\alpha\delta-\beta\gamma|}$.因此有
+            \[I=\frac{2}{|\alpha\delta-\beta\gamma|}\iint\limits_{\xi^2+\eta^2=1}\d \xi\d \eta=\frac{2\pi}{|\alpha\delta-\beta\gamma|}\]
+        \end{proof}
+    \end{example}\begin{example}
+        计算\[I=\oint_L P\d x+Q\d y=\oint\limits_{x^2+y^2=1} \frac{\e^y}{x^2+y^2}(x\sin x+y\cos x)\d x+\frac{\e^y}{x^2+y^2}(y\sin x-x\cos x)\d y\]
+    \begin{proof}
+        首先可知:$\forall (x,y)\neq (0,0):\partial_x Q=\partial_y P=\dfrac{\e^y}{x^2+y^2}\left( (y+1)\cos x+x\sin x-\dfrac{2y}{x^2+y^2}(y\cos x+x\sin x) \right)$.
+
+        再作曲线$L_r:x^2+y^2=r^2$,其中正数$r$足够小以使$L_r$在$L$内部.因此有
+        \[\begin{aligned}
+            &\oint_{L+L_r^-}P\d x+Q\d y=0\\ 
+            \implies I=&\oint_L P\d x+Q\d y=\oint_{L_r} P\d x+Q\d y\\ 
+            \xlongequal[y=r\cos t]{x=r\sin t}&\frac{1}{r^2}\int_0^{2\pi}\e^{r\sin t}\bigg(\big( r\cos t\sin(r\cos t)+r\sin t\cos(r\cos t) \big)(-r\sin t)\\ 
+            &+\big(r\sin t\sin(r\cos t)-r\cos t\cos(r\cos t)\big)(r \cos t)\bigg)\d t\\ 
+            =&-\int_0^{2\pi}\e^{r\sin t}\cos(r\cos t)\d t=\lim_{r\implies 0^+} \left( -\int_0^{2\pi}\e^{r\sin t}\cos(r\cos t)\d t \right)\\ 
+            =& -\int_0^{2\pi} \e^0\cos 0\d t=-2\pi
+        \end{aligned}\]
+    \end{proof}
+    \end{example}\begin{example}
+        计算\[\oint_L \left( x\cos(n,x)+y\cos(n,y) \right) \d s\]
+        其中$(n,x),(n,y)$分别为$x,y$轴正向与$L$外法线方向$\bm{n}$之间的夹角,$L$为任意封闭曲线.
+        \begin{proof}
+            由于$L$是逆时针方向的,因此$\bm{n}$逆时针旋转$\pi/2$就和切向量$\bm{\tau}$,因此有
+            \[\begin{cases}
+                (n,x)=(\tau,y)\\ (n,y)=\pi -(\tau,x)
+            \end{cases}\implies \begin{cases}
+                \cos(n,x)\d s=\cos(\tau,y)\d s&=\d y\\ \cos (n,y)\d s=-\cos(\tau,x)\d s&=-\d x
+            \end{cases}\]
+            因此$I=\oint_L x\d y-y\d x=2 m(L)$.
+        \end{proof}
+    \end{example}\begin{example}
+        $L=\partial D$为逐段光滑闭曲线,$U\in C^{(2)}(\bar{D})$.求证:\[\oint_L \frac{\partial U}{\partial \bm{n}}\d s=\iint_D \nabla^2 U(x,y)\d x\d y\]其中$\bm{n}$为$L$的外法线方向.
+        \begin{proof}
+            \[\frac{\partial U}{\partial \bm{n}}=\partial_x f\cdot \cos(n,x)+\partial_y f\cdot \cos(n,y)=\]
+        \end{proof}
+    \end{example}
+\end{document}

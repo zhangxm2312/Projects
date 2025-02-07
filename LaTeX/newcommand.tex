@@ -1,0 +1,132 @@
+%中文字体均设置为思源相应字体,若未安装思源宋体则使用下行命令,并酌情删除代码
+%\usepackage[fontset=fandol]{ctex}
+\usepackage[fontset=none]{ctex}
+\usepackage{xeCJK}
+\xeCJKsetup{CJKmath=true} %数学模式中可以输入中文
+\setCJKmainfont{思源宋体}[ItalicFont=FandolKai]
+\setCJKsansfont{思源黑体}
+\setCJKmonofont{FandolFang}
+
+%AMS全家桶,\DeclareMathOperator依赖之
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{tikz-cd} %用来画交换图
+\usepackage{bm} %粗体字母(含希腊字母)
+
+%纸张上下左右页边距
+\usepackage[a4paper,left=1cm,right=1cm,top=1.5cm,bottom=1.5cm]{geometry}
+%生成书签和目录上的超链接
+\usepackage[colorlinks=true,linkcolor=blue,filecolor=blue,urlcolor=blue,citecolor=cyan]{hyperref}
+
+%各种列表环境的行距
+\usepackage{enumitem}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=10pt}
+\setenumerate[2]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setenumerate[3]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+%在且仅在读书笔记中使得enumerate环境的数字编号加粗
+\ifdefined\note
+\setenumerate[1]{label=\textbf{\arabic*.}}
+\else\fi
+
+\everymath{\displaystyle} %全体公式为行间形式
+\setmainfont{CMU Serif} %能显示大量外文字体
+% 若在param中新定义了命令\dayhruletrue,则此命令生成分割线,否则不生成
+\newcommand{\dayhrule}{\ifdefined\dayhruletrue\hrulefill\else\fi}
+
+%收敛箭头
+\newcommand{\converge}[1]{\xrightarrow{#1}}
+\newcommand{\convergedot}{\converge{\cdot}}
+\newcommand{\convergeuni}{\converge{\mathrm{uni.}}}
+%左右配对符号
+\newcommand{\br}[1]{\!\left(#1\right)} %括号
+\newcommand{\cbr}[1]{\left\{#1\right\}} %大括号
+\newcommand{\abr}[1]{\left<#1\right>} %尖括号(内积)
+\newcommand{\bbr}[1]{\left[#1\right]} %中括号
+\newcommand{\abbr}[1]{\left(#1\right]} %左开右闭区间
+\newcommand{\babr}[1]{\left[#1\right)} %左闭右开区间
+\newcommand{\abs}[1]{\left|#1\right|} %绝对值
+\newcommand{\norm}[1]{\left\|#1\right\|} %范数
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor} %下取整
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil} %上取整
+%左右配对符号(标准大小)
+\newcommand{\brnormal}[1]{(#1)} %括号
+\newcommand{\cbrnormal}[1]{\{#1\}} %大括号
+\newcommand{\abrnormal}[1]{\langle#1\rangle} %尖括号(内积)
+\newcommand{\bbrnormal}[1]{[#1]} %中括号
+\newcommand{\absnormal}[1]{|#1|} %绝对值
+\newcommand{\normnormal}[1]{\|#1\|} %范数
+%常用数集简写
+\newcommand{\R}{\mathbb{R}} %实数域
+\newcommand{\N}{\mathbb{N}} %自然数集
+\newcommand{\Z}{\mathbb{Z}} %整数集
+\newcommand{\C}{\mathbb{C}} %复数域
+\newcommand{\F}{\mathbb{F}} %一般数域
+\newcommand{\Q}{\mathbb{Q}} %有理数域
+\renewcommand{\P}{\mathbb{P}} %本产生¶(段落符号)
+%代数符号
+\DeclareMathOperator{\aut}{Aut} %自同构
+\DeclareMathOperator{\inn}{Inn} %内自同构
+\DeclareMathOperator{\inv}{Inv}
+\DeclareMathOperator{\GL}{GL} %一般线性群
+\DeclareMathOperator{\GF}{GF}
+\DeclareMathOperator{\SL}{SL} %特殊线性群
+%正体符号
+\renewcommand{\i}{\mathrm{i}} %本产生无点i
+\newcommand{\id}{\mathrm{id}} %恒等映射
+\newcommand{\e}{\mathrm{e}} %自然常数e
+\renewcommand{\d}{\mathrm{d}} %微分符号，本产生重音符号
+\newcommand{\D}{\partial} %偏导符号
+\newcommand{\dfunc}[2]{\frac{\d #1}{\d #2}}
+\newcommand{\Dfunc}[2]{\frac{\D #1}{\D #2}}
+%运算符
+\DeclareMathOperator{\Arg}{Arg} %辐角
+\newcommand{\Span}{\mathrm{span}} %张成空间
+\DeclareMathOperator{\re}{Re} %实部
+\DeclareMathOperator{\im}{Im} %像,虚部
+\DeclareMathOperator{\tr}{tr} %迹
+\DeclareMathOperator{\grad}{grad} %梯度
+\DeclareMathOperator{\rank}{rank} %秩
+\DeclareMathOperator{\charfield}{char} %域的特征
+\DeclareMathOperator{\lcm}{lcm} %最小公倍数
+\DeclareMathOperator{\sgn}{sgn} %符号函数
+\DeclareMathOperator{\codim}{codim} %余维度
+\DeclareMathOperator{\conv}{conv} %凸包
+\DeclareMathOperator{\supp}{supp} %支撑
+\DeclareMathOperator{\Log}{Log} %广义对数函数
+\DeclareMathOperator{\card}{card} %集合的势
+\DeclareMathOperator{\Res}{Res} %留数
+%简写
+\newcommand{\ds}{\displaystyle} %行间公式形式
+\newcommand{\ve}{\varepsilon} %手写体ε
+\newcommand{\rev}{^{-1}\!} %逆
+\newcommand{\T}{^{\mathsf{T}}} %转置
+\renewcommand{\H}{^{\mathsf{H}}} %共轭转置
+\newcommand{\adj}{^\lor} %伴随
+\newcommand{\PowSet}[1]{\mathcal{P}\!\left(#1\right)} %幂集
+\newcommand{\textif}{\mathrm{if}\,}
+\newcommand{\sth}{\mathrm{sth.}}
+\DeclareMathOperator{\lhs}{LHS}
+\DeclareMathOperator{\rhs}{RHS}
+\newcommand{\other}{\text{Otherwise}}
+\newcommand{\hint}[1]{{\small (#1)}} %提示
+\newcommand{\why}{\textcolor{red}{(Why?)}}
+\newcommand{\tbc}{\textcolor{red}{(To be continued...)}} %未完待续
+
+%定理环境(随笔记形式更改)
+\theoremstyle{definition}
+\newtheorem{definition}{定义}
+\newtheorem{remark}{注}
+\ifdefined\notebook{
+    \newtheorem{example}{例}
+    \theoremstyle{plain}
+    \newtheorem{theorem}{定理}[chapter]
+}
+\else{
+    \newtheorem{example}{例}[section]
+    \newtheorem{theorem}{定理}[section]
+}
+\fi
+\theoremstyle{plain}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}

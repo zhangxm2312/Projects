@@ -1,0 +1,121 @@
+\documentclass[UTF8]{article}
+\usepackage{ctex,geometry,enumitem}
+\usepackage[compact]{titlesec}
+\usepackage[version=4]{mhchem}
+\geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
+% \pgfplotsset{width=10cm,compat=1.16}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=10pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+\newcounter{exercise}
+\renewcommand{\thesubsection}{\arabic{exercise}}
+\titleformat{\subsection}{\rmfamily}{\stepcounter{exercise}\thesubsection.}{0em}{}
+\renewcommand{\thesection}{\Roman{section}}
+%%% 小题*分数=总分
+\newcommand{\ptsMulti}[3]{ \small($#1\!\!$小题$\!\!\times #2\!\!$分$\!\!=\!\!#3\!\!$分)}
+\newcommand{\pts}[1]{ \small{(#1分)}}
+\newcommand{\p}{\mathrm{p}}
+\newcommand{\M}{\mathrm{M}}
+\newcommand{\shortline}{\underline{\hspace{1cm}}}
+\newcommand{\longline}{\underline{\hspace{2cm}}}
+\newcommand{\bfA}{\textbf{A.}}
+\newcommand{\bfB}{\qquad \textbf{B.}}
+\newcommand{\bfC}{\qquad \textbf{C.}}
+\newcommand{\bfD}{\qquad \textbf{D.}}
+\newcommand{\ind}{\hspace{-1pt}}
+\newcommand{\indLarge}{\hspace{-0.6cm}}
+
+\title{安徽大学2020-2021学年第一学期分析化学期中试卷(A卷)}
+\author{出卷人:金葆康}
+\date{}
+\begin{document}
+    \maketitle
+    \section{选择题\ptsMulti{10}{1}{10}}
+
+    \subsection{分析化学就其性质而言.是一门\shortline\ind 的科学.}
+        \indLarge \bfA 获取物质的物理性质
+        \indLarge \bfB 获取物质的化学性质
+        \indLarge \bfC 获取物质的化学组成与结构信息
+        \indLarge \bfD 获取物质的性质信息
+
+    \subsection{以0.1000 mol/L \ce{NaOH}滴定20 mL 0.1000 mol/L \ce{HCl}和2.0$\times 10^{-4}$ mol/L 盐酸羟胺($\p K_b$=8.00)混合溶液,则滴定\ce{HCl}至化学计量点的pH是\shortline.}
+    
+    \bfA 5.20\bfB 6.00\bfC 5.00\bfD 5.50
+    \subsection{下列有关随机误差的论述中不正确的是\shortline.}
+        \qquad \bfA 随机误差在滴定分析中是不可避免的
+        \bfB 绝对值相等的正负误差出现的概率均等
+        \par \bfC 随机误差是一些不确定因素造成的
+        \quad \bfD 通过增加平行测定次数可以消除随机误差
+
+    \subsection{要判断一组平行测定所得的分析数据是否存在可疑值,应用\shortline.}
+    \bfA F检验法和t检验法\bfB Q检验法\bfC U检验法\bfD t检验法
+
+    \subsection{0.040 mol/L的\ce{H2CO3}(饱和碳酸)的水溶液,$K_{a_1}=4.2\times 10^{-7},K_{a_2}=5.6\times 10^{-11}$分别为它的电离常数,该溶液中\ce{[H+]}和\ce{[CO_3^{2-}]}分别为\shortline.}
+    \bfA $\sqrt{0.04K_{a_1}},K_{a_1}$\bfB $\sqrt{0.04K_{a_1}},\sqrt{0.04K_{a_2}}$\bfC $\sqrt{0.04K_{a_1}K_{a_2}},K_{a_2}$\bfD $\sqrt{0.04K_{a_1}},K_{a_2}$
+
+    \subsection{用0.1000 mol/L \ce{HCl}滴定等浓度的\ce{NH3}溶液至化学计量点时的质子平衡式为\shortline.}
+    \indLarge \bfA \ce{[H+] = [OH-] + [NH3]}
+    \indLarge \bfB \ce{[NH4^+] + [H+] = [OH-]}
+    \indLarge \bfC \ce{[H+] = [OH-] + [Cl-]}
+    \indLarge \bfD \ce{[H+] + [NH4^+] = [OH-] + [Cl-]}
+
+    \subsection{以0.02000 mol/L \ce{EDTA}滴定同浓度\ce{Zn^{2+}},若$\Delta \p\M=0.2$,终点误差为0.1\%,要求$\lg K'_{\ce{ZnY}}$(条件稳定常数)的最小值为\shortline.}
+    \bfA 5\bfB 6\bfC 8\bfD 7
+
+    \subsection{若用0.02 mol/L \ce{EDTA}滴定 0.02 mol/L \ce{Zn^{2+}}溶液($\Delta \p\M=0.2$,TE=0.1\%)滴定时最高允许酸度大约是pH=\shortline.}
+        已知$\lg K_{\ce{ZnY}}=16.5$,且\begin{tabular}{c|cccc}
+            pH&4&5&6&7\\\hline $\lg \alpha_{\ce{Y(H)}}$&8.45&6.45&4.65&3.32
+        \end{tabular}.\qquad \qquad 
+    \bfA 4\bfB 5\bfC 6\bfD 7
+
+    \subsection{在pH=5.00时用\ce{EDTA}溶液滴定含有\ce{Al^{3+}},\ce{Zn^{2+}},\ce{Mg^{2+}}和大量\ce{F-}等离子的溶液.\\ 已知$\lg K_{\ce{AlY}}=16.3,\lg K_{\ce{MgY}}=8.7$.pH=5.00时$\lg \alpha_{\ce{Y(H)}}=6.5$,则测得的是\shortline.}
+    \bfA \ce{Al,Zn,Mg}的总量\bfB \ce{Zn,Mg}的总量\bfC \ce{Zn}的含量\bfD \ce{Mg}的含量
+
+    \subsection{用\ce{H3PO4}和\ce{Na3PO4}配制pH=7.20的缓冲溶液,\ce{H3PO4}和\ce{Na3PO4}的物质的量之比是\shortline .\\ 已知\ce{H3PO4}有$\p K_{a_1}=2.12,\p K_{a_2}=7.20,\p K_{a_3}=12.40$.}
+    \bfA 1:2\bfB 2:3\bfC 3:2\bfD 1:1
+
+    \section{填空题 \small($20\!\!$空$\!\!\times 1\!\!$分$\!\!=\!\!20\!\!$分)}
+    \subsection{一般分析天平的称量误差为$\pm 0.0001$g,为了使称量的相对误差小于0.1\%,那么称取\ce{Na2CO3}试样时可能引起的最大误差是\longline g,该试样的质量应大于\longline g.}
+    
+    \subsection{决定正态分布曲线形状的两个基本参数为$\mu$和$\sigma$,它们分别反映了测量值的\longline \ind 和\longline.\\ 检验和消除测定过程中的系统误差,可采用\longline ,\longline\ind 和校准仪器等方法.}
+    
+    \subsection{滴定分析法简便快速,可以用于测定多种元素及化合物,在常量组分分析中具有很高的\longline.\\ 但滴定分析法的\longline \ind 较低,\longline \ind 较差,不能用于\longline \ind 的分析.}
+    
+    \subsection{用同一浓度的草酸标准溶液分别滴定等体积的\ce{KMnO4}和\ce{NaOH}两种溶液.达到化学计量点时,若消耗的标准溶液体积相等,则说明$c_{\ce{NaOH}}:c_{\ce{KMnO4}}=$\shortline.}
+    
+    \subsection{选择酸碱指示剂的原则是使其变色点的pH处于滴定的\longline \ind 范围内,所???的$\p K_a$值越接近\longline \ind 的pH值,结果就越准确.}
+    
+    \subsection{金属离子与\ce{EDTA}的绝对稳定常数越大,测定时允许的溶液pH值就越\shortline. 一般情况下,能准确滴定单一离子M的判别式为\underline{\hspace{3cm}}.}
+        
+    \subsection{某一物质\ce{A^{3-}}的$\p K_{b_1}=1.0,\p K_{b_2}=6.0,\p K_{b_3}=11.0$,则其$\p K_{a_1}=$\longline ,$\p K_{a_2}=$\longline.}
+        
+    \subsection{某金属离子M与EDTA络合剂形成的配合物MY,其$\lg K'_{\ce{MY}}$首先随溶液的pH增大而增大,这是因为\\ \underline{\hspace{5cm}},然后又减小,这是因为\underline{\hspace{5cm}}.}
+        
+    \subsection{EDTA溶液中,\ce{H2Y^{2-}}和\ce{Y^{4-}}两种形式的分布系数之间的关系式为\underline{\hspace{5cm}}.}
+    
+    \section{简答题\ptsMulti{6}{5}{30}}
+
+    \subsection{为什么评价定量分析结果的优劣应从精密度和准确度两方面衡量?两者是什么关系?如何保证分析方法的准确度?}
+    
+    \subsection{用0.1000 mol/L \ce{NaOH}标准溶液滴定含有0.1 mol/L \ce{NH4Cl}的0.1000 mol/L HCl溶液.问:滴定\ce{HCl}时\ce{NH^+4}能否产生干扰?若能准确滴定,化学计量点的pH是多少?应选用何种指示剂?已知\ce{NH3}的$K_{b}=1.8\times 10^{-5}$.}
+    
+    \subsection{影响配位滴定误差大小的因素有哪些?请从Ringbom误差公式分析讨论.}
+    
+    \subsection{某化验室测定标样中的\ce{CaO}得到如下结果:$\overline{X}=30.51\%,S=0.05\%,n=6$.标样中\ce{CaO}标准值是30.43\%,问此测定方法是否存在系统误差?($P=95\%,t_{0.05,5}=2.57$)}
+    
+    \subsection{写出\ce{CH3COONH4}溶液的质子平衡方程,再推导出\ce{[H+]}的计算式和最简式.}
+    
+    \subsection{使用\ce{NaOH}标准溶液时,若该标准溶液已经吸收了空气中的\ce{CO2},则在以其测定某一强酸的浓度时,分别用甲基橙或酚酞作为指示剂指示终点,分析说明对测定结果的准确度各有何影响.}
+    
+    \section{计算题\ptsMulti{4}{10}{40}}
+
+    \subsection{计算下列各溶液的pH: (1)0.10 mol/L \ce{NH4Cl}; (2)0.010 mol/L \ce{Na2HPO4}.\\ 已知\ce{NH3}的$K_b=1.8\times 10^{-5}$,\ce{H3PO4}的$K_{a_1}=7.6\times 10^{-3}, K_{a_2}=6.3\times 10^{-8}, K_{a_3}=4.4\times 10^{-13}$}
+    
+    \subsection{在pH=10.00的氨性缓冲溶液中,以铬黑T(EBT)为指示剂,用0.0200 mol/L EDTA滴定同浓度的\ce{Zn^{2+}}.滴定终点时游离氨的浓度为0.10 mol/L,计算终点误差.
+        已知$\lg K_{\ce{ZnY}}=16.5$;pH=10.00时,$\lg \alpha_{\ce{Y(H)}}=0.45$,\ce{Zn^{2+}}与\ce{NH3}形成的络合物累计稳定常数分别为$\beta_1=2.37,\beta_2=4.81,\beta_3=7.31,\beta_4=9.46, \lg \alpha_{\ce{Zn(OH)}}=2.4, \p\ce{Zn_{ep}(EBT)}=12.2$.}
+    
+    \subsection{称取1.250g纯一元弱酸HA溶于适量水中并稀释到50.00 mL,然后用0.1000 mol/L \ce{NaOH}溶液滴定.滴定至化学计量点时,\ce{NaOH}溶液的用量为37.10 mL.当滴入7.42 mL \ce{NaOH}溶液时,测得pH=4.30.\\ 问:(1)\ind 该一元弱酸的摩尔质量;(2)\ind 该弱酸的解离常数\ind $K_a$;(3)\ind 滴定到化学计是点时溶液的\ind pH.\ind 滴定最好使用何种指示剂?}
+    
+    \subsection{以0.1000 mol/L \ce{NaOH}标准溶液滴定0.2000 mol/L \ce{NH4Cl}和0.1000 mol/L 的二氯乙酸的混合溶液.\\ 问:(1)是否可以进行分步滴定?(2)化学计量点时溶液的pH值为多少?(3)若滴定至pH=5.00,滴定终点误差为多少?\\ 已知:二氯乙酸的$K=5.0\times 10^{-2}$;氨水的$K_b=1.8\times 10^{-5}$.}
+\end{document}

@@ -1,0 +1,95 @@
+\documentclass[UTF8]{article}
+\usepackage{ctex,geometry,enumitem,amssymb}
+\usepackage[compact]{titlesec}
+\geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
+% \pgfplotsset{width=10cm,compat=1.16}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=10pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\newcounter{exercise}
+\renewcommand{\thesubsection}{\arabic{exercise}}
+\titleformat{\subsection}{\rmfamily}{\stepcounter{exercise}\thesubsection.}{0em}{}
+\newcommand{\shortline}{\underline{\hspace{1cm}}}
+\newcommand{\longline}{\underline{\hspace{2cm}}}
+\newcommand{\bfA}{\textbf{A.}}
+\newcommand{\bfB}{\qquad \textbf{B.}}
+\newcommand{\bfC}{\qquad \textbf{C.}}
+\newcommand{\bfD}{\qquad \textbf{D.}}
+
+\title{安徽大学2020-2021学年第二学期数理统计期末考试试卷(A卷)}
+\author{出卷人:王学军}
+\date{}
+\begin{document}
+    \maketitle
+    \section{填空题 \small($5\!\!$小题$\!\!\times 2\!\!$分$\!\!=\!\!10\!\!$分)}
+    \subsection{
+        设$X_1,X_2,\cdots,X_n$相互独立,且$X_i\sim N(\mu_i,\sigma^2),\quad i=1,2,\cdots,n$.则$\displaystyle \frac{1}{\sigma^2}\sum_{i=1}^{n} \left( X_i-\mu_i \right)^2$的分布为\longline.
+    }
+    \subsection{
+        设随机变量$X\sim t(10)$,已知$P(X^2>x_0)=0.05$,则$x_0$=\shortline.
+    }
+    \subsection{
+        已知某型号的导线电阻值服从$\!\!N(\mu,\sigma^2)$.现测量$\!\!16\!$次,算得$\displaystyle \!\!\bar{X}\!=\!\frac{1}{n}\sum_{i=1}^nX_i\!=\!10.78\Omega,S_*\!=\!\sqrt{\frac{1}{n\!-\!1}\sum_{i=1}^n(X_i-\bar{X})^2}=1.40 \Omega$,则均值$\mu$的置信水平$1-\alpha=0.95$的置信区间为\longline.其中$t_{0.025}(15)=2.131,t_{0.05}(15)=1.753$.
+    }
+    \subsection{
+        设$X_1,X_2,\cdots,X_m$是来自Bernoulli分布总体$B(n,p)$的简单随机样本,$\displaystyle \bar{X}=\frac{1}{m}\sum_{i=1}^mX_i,S_*=\sqrt{\frac{1}{m-1}\sum_{i=1}^m(X_i-\bar{X})^2}$. 若$\bar{X}+kS_*^2$是$np^2$的无偏估计,则$k=$\shortline.
+    }
+    \subsection{
+        设总体$X$的概率密度函数为$f(x;\theta)$,$X_1,X_2,\cdots,X_n$是来自总体的简单随机样本.\\ 考虑假设$H_0:\theta=\theta_0\leftrightarrow H_1:\theta=\theta_1$的UMP检验,利用似然比检验法,拒绝域为\longline.
+    }
+
+    \section{选择题 \small($5\!\!$小题$\!\!\times 2\!\!$分$\!\!=\!\!10\!\!$分)}
+    \subsection{
+        设$X_1,X_2,\cdots,X_n$是来自总体$U(\theta_1,\theta_2)$的简单随机样本,其中$\theta_1$已知,$\theta_2$未知,则\shortline 是统计量.
+    }\bfA $X_1+X_n+\bar{X}-\theta_2$\bfB $\min(X_1,X_2,X_3)+\theta_1$ \bfC $\bar{X}-\theta_1\theta_2^2$ \bfD $S^2-\theta_1\theta_2^2$
+    \subsection{
+        总体$X\sim N(\mu,\sigma_0^2),\sigma_0^2$已知.样本容量$n$不变时,若置信度$1-\alpha$减小,则$\mu$的置信区间\shortline.
+    }\bfA 长度变小 \bfB 长度变大 \bfC 长度不变 \bfD 以上都有可能
+    \subsection{
+        设$X_1,X_2,X_3,X_4$是来自总体$N(0,4)$的简单随机样本,若\shortline,则随机变量$X=a(X_1-2X_2)^2+b(3X_3-4X_4)^2$的分布为$\chi^2$分布.
+    }\bfA $\displaystyle a=\frac{1}{12}, b=\frac{1}{28}$
+    \bfB $\displaystyle a=\frac{1}{20}, b=\frac{1}{100}$
+    \bfC $\displaystyle a=\frac{1}{30}, b=\frac{1}{40}$
+    \bfD $\displaystyle a=\frac{1}{40}, b=\frac{1}{60}$
+    \subsection{下列说法正确的是\shortline.}
+    \qquad \bfA 设一个正态总体均值$\mu$的95\%置信区间是(8.6,10.4),这意味着$\mu$有95\%的概率落在(8.6,10.4)中\par 
+    \bfB 未知参数的最大似然估计是唯一的\par 
+    \bfC 在假设检验中,原假设$H_0$和对立假设$H_1$的地位是平等的\par 
+    \bfD UMP检验是指在限制第一类错误概率不超过$\alpha$的条件下,犯第二类错误概率最小的检验
+    \subsection{
+        设$X_1,X_2,\cdots,X_n$是来自总体$X\sim N(\mu,\sigma_0^2)$的样本,其中$\sigma_0^2$已知.若在显著性水平$\alpha=0.05$下接受了$H_0:\mu=\mu_0$,则在显著性水平$\alpha=0.01$下,下面结论正确的是\shortline.
+    }\bfA 必接受$H_0$ \bfB 必拒绝$H_0$\bfC 可能接受$H_0$,也可能拒绝$H_0$\bfD 无法求解
+
+    \section{解答题 \small($4\!\!$小题$\!\!\times 12\!\!$分$\!\!=\!\!48\!\!$分)}
+    \subsection{
+        设$X_1,X_2,\cdots,X_n$是来自总体$U(0,\theta)$的简单随机样本.考虑假设检验问题$H_0:\theta=3\leftrightarrow H_1:\theta=2$,拒绝域$W=\left\{ (X_1,X_2,\cdots,X_n)|\max(X_1,X_2,\cdots,X_n)<1.5\right\}$.求:(1)功效函数;(2)第一类和第二类错误的概率和检验水平.
+    }
+    \subsection{
+        设总体$X$的概率密度函数为$f(x;\mu)=\chi_{[\mu,+\infty)}(x)\textrm{e}^{\mu-x}$.其中$\mu\in\mathbb{R}$是未知参数,$X_1,X_2,\cdots,X_n$是来自总体的简单随机样本.
+    }(1)求参数$\mu$的矩估计$\hat{\mu}_1$和最大似然估计$\hat{\mu}_M$;\par 
+    (2)判断$\hat{\mu}_1$和$\hat{\mu}_M$是否是$\mu$的无偏估计.若否,则进行修正,并求两个无偏估计的均方误差.
+    \subsection{
+        设$X_1,X_2,\cdots,X_n$是来自Poisson分布总体$\mathcal{P}(\lambda)$的简单随机样本,其中$\lambda>0$为未知参数.
+    }(1)求未知参数$\lambda$的充分完全统计量; (2)求$g(\lambda)=\lambda$的UMVUE;\par 
+    (3)判断(2)中的UMVUE的方差是否达到Cramer-Rao下界.
+    \subsection{
+        设$X_1,X_2,\cdots,X_n$是来自总体$N(\mu,3^2)$的简单随机样本,其中$\mu\in\mathbb{R}$为未知参数.\\ 求检验问题$H_0:\theta\geq 0\leftrightarrow H_1:\theta<0$的水平$\alpha$的UMP检验.
+    }
+
+    \section{证明题 \small($12$分)}
+    \subsection{
+        设$X_1,X_2,\cdots,X_n$是来自正态总体$X$的简单随机样本,且$\displaystyle Y_1=\frac{1}{6}\sum_{i=1}^{6}X_i,Y_2=\frac{1}{3}\sum_{i=7}^{9}X_i,S_*^2=\frac{1}{2}\sum_{i=7}^{9}(X_i-Y_2)^2,\\ Z=\frac{Y_1-Y_2}{S_*/\sqrt{2}}$.求证$Z\sim t(2)$.
+    }
+
+    \section{应用题 \small($2\!\!$小题$\!\!\times 10\!\!$分$\!\!=\!\!20\!\!$分)}
+    \subsection{
+        在一正20面体的20个面上,分别标以数字$\!0,1,2,\cdots,9$,每个数字在两个面上标出.为检验它是否质地匀称,共做了800次投掷试验,数字$\!0,1,2,\cdots,9\!$朝正上方的次数如下.问:能否在显著性水平$\!\!\alpha=0.05\!\!$下认为该20面体是匀称的?\\ $\chi^2_{0.05}(10)=18.307,\chi^2_{0.05}(9)=16.919,\chi^2_{0.025}(10)=20.483,\chi^2_{0.025}(9)=19.023$.
+    }
+    $$\begin{array}{ccccccccccc}
+        \textrm{数字}&0&1&2&3&4&5&6&7&8&9\\ 
+        \textrm{频数}&74&92&83&79&80&73&77&75&76&91
+    \end{array}$$
+    \subsection{
+        某批矿砂的5个样品中的Ni含量经测定为3.25\%,3.27\%,3.24\%,3.26\%,3.24\%.设测定值总体服从正态分布,但参数均未知.问:在显著性水平$\alpha=0.01$下能否认为这批矿砂的Ni含量均值为3.25\%?
+    }
+\end{document}

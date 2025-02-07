@@ -1,0 +1,70 @@
+\documentclass[UTF8]{article}
+% \usepackage{amssymb,amsmath,amscd,latexsym,ctex}
+% \usepackage{tikz,tikz-cd,pgfplots,geometry,enumitem,bm}
+\usepackage{ctex,geometry,enumitem,amsmath,amssymb,bm}
+\usepackage[compact]{titlesec}
+\geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
+% \pgfplotsset{width=10cm,compat=1.16}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=10pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+\newcounter{exercise}
+\renewcommand{\thesubsection}{\arabic{exercise}}
+\titleformat{\subsection}{\rmfamily}{\stepcounter{exercise}\thesubsection.}{0em}{}
+\renewcommand{\thesection}{\Roman{section}}
+\newcommand{\ptsMulti}[3]{ \small($#1\!\!$小题$\!\!\times #2\!\!$分$\!\!=\!\!#3\!\!$分)}
+\newcommand{\pts}[1]{ \small{(#1分)}}
+\newcommand{\longline}{\underline{\hspace{2cm}}}
+\newcommand{\ind}{\hspace{-1pt}}
+\newcommand{\indLarge}{\hspace{-0.6cm}}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\grad}{\mathrm{grad}\,}
+
+\title{安徽大学2019-2020学年第二学期微积分II期末考试试卷(A卷)}
+\author{出卷人:王良龙}
+\date{}
+\begin{document}
+    \maketitle
+
+    \section{填空题\ptsMulti{4}{3}{12}}
+        \subsection{已知$A(0,0,0),B(1,1,1),C(1,2,3),M(x,y,z)$四点共面,则$M(x,y,z)$点的轨迹方程为\longline.}
+        \subsection{已知$f(x,y)=(3+e^{\cos x}\sin^2y)^{2\sin y}+(2x+1)^{y+1} $,则偏导数$ f'_x(0,0) $为\longline.}
+        \subsection{数量场$u=xy^2z^3$在点$P(0,0,0)$处沿方向$\bm{a}=(2,1,2)$的方向导数$\left.\dfrac{\partial u}{\partial \bm{a}}\right|_P=$\longline.}
+        \subsection{数量场$u=xy^2z^3$在点$P(1,1,1)$处的梯度$\grad u|_P$=\longline.}
+
+    \section{计算题\ptsMulti{6}{9}{54}}
+    \subsection{设$ x=e^{yz}+z^2 $,求$ \d z $}
+    \subsection{计算二重积分$\displaystyle I=\oint_D \frac{\sin x}{x}\d x\d y $,其中$ D $是由$ x=\pi,y=x,y=0 $所围闭区域.}
+    \subsection{计算三重积分$\displaystyle I=\iiint_\Omega(x^2+y^2+z^2)\d x\d y\d z $,其中$\Omega$是由锥面$z=\sqrt{x^2+y^2}$和球面$x^2+y^2+z^2=R^2$所围立体.}
+    \subsection{\!
+        记第二型曲线积分$\displaystyle \!\! I\!\!=\!\!\oint_L \frac{x\d y-y\d x}{x^2+y^2}$,二元函数$\!\!P(x,y)\!\!=\!\!\dfrac{-y}{x^2+y^2},Q(x,y)\!\!=\!\!\dfrac{x}{x^2+y^2}$.
+        \hspace{-9pt} (1)当$\!(x,y)\!\neq\! (0,0)\!$时,求$\dfrac{\partial P}{\partial y},\dfrac{\partial Q}{\partial x}$;\\ 
+        (2)若正向封闭曲线$L$所围区域不包含原点,求$I$;
+        (3)若原点在正向封闭曲线$L$所围闭区域内部,求$I$.
+    }
+    \subsection{计算第一型曲线积分$\displaystyle I=\oint_L z^2\d s $,其中$ L $为球面$ x^2+y^2+z^2=a^2(a>0) $和平面$ x+y+z=0 $的交线.}
+    \subsection{计算第二型曲线积分$\displaystyle I=\oint_L z\d x+x\d y+y\d z $,其中曲线$ L $为平面$ x+y+z=1 $和三个坐标面的交线,从$ x $轴的正向看去定向为逆时针.}
+
+    \section{应用题\ptsMulti{2}{8}{16}}
+    \subsection{\ind
+        半径为1的球置于$\!\!O\!-\!xyz\!\!$坐标系的原点$\!O\!$处,\ind 即该球面与原点$\!O\!$相切,\ind 球心在$\!(0,0,1)$.\ind 记该球面为$\!\Omega$,最高点为$\!N(0,0,2)$.\\ 
+        (1)求球面$ \Omega $的方程;
+        (2)设$ P $点坐标为$ (1,-1,0) $,直线$ NP $与球面$ \Omega $的交点为$ Q $,求点$ Q $的坐标;\\ 
+        (3)设球面$ \Omega $上点$ T $的坐标为$ (-\dfrac{5}{13}.\dfrac{12}{13},1) $,直线$ NT $与$ xOy $的坐标面的交点为$ M $,求$ M $点的坐标.
+    }
+    \subsection{要设置一个容量为$ V $的长方体开口水箱,试问水箱的长宽高分别等于多少时所用材料最省?}
+
+    \section{证明题\pts{8}}
+    \subsection{设空间有界闭区域$ \Omega $由曲面$ z=x^2+y^2 $与平面$ z=0 $围成,记$ \Omega $的表面的外侧为$ S^+ $,$ \Omega $的体积为$ V $,证明:}$$ \oint x^2yz^2\d y\d z-xy^2z^2\d z\d x+z(1+xyz)\d x\d y=V $$
+
+    \section{综合分析题\pts{10}}
+    \subsection{
+        记$ f(x)=\arctan\dfrac{1+x}{1-x} $.
+        (1)计算$ f(0) $的值;\\ 
+        (2)求$ f'(x) $在$ (-1,1) $上的解析表示式,并将$ f'(x) $展开成$ x $的幂级数;
+        (3)将$ f(x) $展开成$ x $的幂级数;\\ 
+        (4)该幂级数在点$ x=\pm 1 $处是否收敛?若收敛,是条件收敛还是绝对收敛?
+        (5)写出该幂级数的收敛域.
+    }
+\end{document}

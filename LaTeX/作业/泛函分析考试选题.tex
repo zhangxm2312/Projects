@@ -1,0 +1,189 @@
+\documentclass{article}
+\input{newcommand.tex}
+\title{泛函分析考试选题}
+\author{章亦流}
+
+\begin{document}
+\maketitle
+
+\paragraph{许全华习题2.2}$(E,d)$完备$\iff \forall\cbr{x_n}\forall n\in \N:d(x_n,x_{n+1})\leq 2^{-n}$则$\cbr{x_n}$收敛.
+\begin{proof}
+    $\implies:\cbr{x_n}$是Cauchy列,因为$$\forall \ve\in (0,1) \exists N=\ceil{-\log_2 \ve}\forall n,m\geq N: d(x_n,x_m)\leq \sum_{k=n}^m 2^{-k}< 2^{1-n}<2^{-N}<\ve$$
+    $\impliedby:$取$(E,d)$中Cauchy列$\cbr{x_n},\forall \ve=2^{-k}\exists N_k\forall n,m\geq N_k:d(x_n,x_m)<2^{-k}$,取子列使得$$n_1\leq N_1\leq n_2\leq \cdots \leq n_k\leq N_k\leq n_{k+1}\leq \cdots$$
+    有$\forall k\in \N:d(x_{n_k},x_{n_{k+1}})<2^{-k}$.其收敛,即Cauchy列的收敛子列,故Cauchy列收敛于同极限,故空间完备.
+\end{proof}
+
+\paragraph{许全华习题2.8}$f:\R^n\to \R$一致连续,证明$\exists a,b\geq 0:\abs{f(x)}\leq a\norm{x}+b$.其中$\norm{x}$为$x$的Euclidean范数.
+\begin{proof}
+    首先取$\ve=1,\forall x,y\in \R^n \exists \delta:d(x,y)<\delta\implies \abs{f(x)-f(y)}<1$.再考虑0与点$x$的连线上有点$a_x$满足$$\norm{x}=\frac{\delta}{2}n_x+\norm{x-a_x}, t_x=\norm{x-a_x}\in \left[0,\frac{\delta}{2}\right),\qquad n_x=\frac{2}{\delta}(\norm{x}-t_x)\leq \frac{2\norm{x}}{\delta}$$
+    而$$t_x=\norm{x-a_x}<\delta\implies \abs{f(x)-f(a_x)}<1$$
+    对$a_x$与0间$n_x$段距离$<\dfrac{\delta}{2}$的线段应用这一不等式,因此有$$|f(x)|\leq \abs{f(a_x)-f(0)}+\abs{f(x)-f(a_x)}+\abs{f(0)}\leq n_x+1+|f(0)|\leq \frac{2}{\delta}\norm{x}+1+\abs{f(0)}$$
+    取$ a=\frac{2}{\delta},b=1+\abs{f(0)}$即可.
+\end{proof}
+
+\paragraph{许全华习题2.9}$f:E\to F$是两度量空间间的连续映射,且$f$在$E$的每个有界子集上一致连续.\\
+1.证明$f$将$E$中Cauchy列映为$F$中Cauchy列;\\
+2.设$E$在度量空间$\tilde{E}$中稠密且$F$完备,证明$f$可唯一延拓为连续映射$\tilde{f}:\tilde{E}\to F$.
+\begin{proof}
+    1.考虑$E$中Cauchy列$\cbr{x_n}$,则首先考虑$\forall \ve \exists N\forall n,\geq N:d_E(x_n,x_m)<\ve$,则$ \cbr{x_n}\subset B_E(x_N,\ve)\cup\bigcup_{k\in [N]}\cbr{x_k}$,而后者有界,故$f$在其上一致连续.
+
+    记$\cbr{y_n}\subset F, y_n=f(x_n)$.有$$\forall \ve \exists \delta \exists N_\delta \forall n,m\geq N_\delta:d_E(x_n,x_m)<\delta\implies d_F(y_n,y_m)<\ve$$
+    故$\cbr{y_n}$也是Cauchy列.
+
+    2.考虑$\tilde{f}(x)=\begin{cases}
+        f(x)&x\in E\\ \lim f(x_n)&x\in \tilde{E}-E, x_n\to x
+    \end{cases}.$由于$\forall x\in \tilde{E}-E$,一定有收敛列$\cbr{x_n}$使$x_n\to x$,而收敛列是Cauchy列.由1.的结论,$\cbr{f(x_n)}$也是,故有极限,即$\tilde{f}$在$\tilde{E}-E$上有定义.
+
+    首先考虑这一定义是否良定,即$\lim x_n=\lim x'_n=x\implies \lim f(x_n)=\lim f(x'_n)=f(x)$.由$d_E(x_n,x'_n)\to 0$和$f$的一致连续性,有$$\forall\ve \exists \delta\exists N_\delta\forall n\geq N_\delta:d_E(x_n,x'_n)<\delta\implies d_F(f(x_n),f(x'_n))<\ve$$
+    故$d_F(f(x_n),f(x'_n))\to 0$,而$d(\cdot,\cdot)$连续,故$\lim d_F(f(x_n),f(x'_n))=d_F\br{\lim f(x_n),\lim f(x'_n)}=0$,故极限相同,即良定.
+
+    再证明其连续.考虑$$\begin{gathered}
+        \forall x,x'\in \tilde{E}\exists \cbr{x_n},\cbr{x'_n}\subset E\exists N_\ve\forall n\geq N_\ve:d_E(x_n,x)<\ve\land d_E(x',x'_n)<\ve\\
+        \forall \ve \exists \delta:d_E(x_n,x'_n)<\delta\implies d_F(f(x_n),f(x'_n))<\ve
+    \end{gathered}$$
+    因此
+    $$\begin{aligned}
+        &\forall x\in \tilde{E}\forall \ve\exists \delta\forall x'\in B_{\tilde{E}}\br{x,\frac{\delta}{3}}\exists\cbr{x_n},\cbr{x'_n}\subset E\exists N_{\delta/3}\forall n\geq N_{\delta/3}:\\
+        &d_E(x_n,x'_n)\leq d_E(x_n,x)+d_E(x,x')+d_E(x',x'_n)\leq \delta\implies d_F(f(x_n),f(x'_n))<\ve
+    \end{aligned}$$
+    由$d(\cdot,\cdot)$连续,则取$n\to +\infty, \tilde{f}(x)=\lim f(x_n), \tilde{f}(x')=\lim f(x'_n)$,有$$d_F(\tilde{f}(x),\tilde{f}(x'))=\lim d_F(f(x_n),f(x'_n))\leq \ve$$
+    即$$\forall x\in \tilde{E}\forall\ve \exists \delta\forall x'\in \tilde{E}:d_{\tilde{E}}(x,x')<\frac{\delta}{3}\implies d_F(\tilde{f}(x),\tilde{f}(x'))\leq \ve<2\ve$$
+    故连续性得证.最后证明其唯一性.假设连续映射$\tilde{f}':\tilde{E}\to F$,且同样有$\tilde{f}'|_E=\tilde{f}|_E=f$,则由连续性有
+    $$\forall x\in\tilde{E}\exists \cbr{x_n}\subset E:x_n\to x,\qquad \tilde{f}'(x)=\lim \tilde{f}'(x_n)=\lim f(x_n)=\tilde{f}(x)$$
+    故得证.
+\end{proof}
+
+\paragraph{许全华习题2.12}记$I=(0,+\infty)$上通常拓扑为$\tau$.\\ 1.证明$\tau$可被完备距离$d:(x,y)\mapsto \abs{\ln x-\ln y}$诱导;\\
+2.设$f\in C^1(I)$满足$\exists \lambda<1\forall x\in I:x\abs{f'(x)}\leq \lambda f(x)$,证明$f$在$I$上有唯一不动点.
+\begin{proof}
+    1.容易验证$d(\cdot,\cdot)$是一个距离.设$B(x,\ve)=\cbr{y>0:|x-y|<\ve},B_d(x,\ve)=\cbr{y>0:\abs{\ln x-\ln y}<\ve}$.而$$y\in B_d(x,\delta)\iff \abs{\ln x-\ln y}<\delta\implies y\in \br{\e^{\ln x-\delta},\e^{\ln x+\delta}}=\br{\e^{-\delta}x,\e^\delta x}$$
+    而$\e^\delta-x\geq x-\e^{-\delta}$(由$(\e^\delta-1)^2\geq 0$),故$B(x,\e^{-\delta} x)\subset B_d(x,\delta)\subset B(x,\e^\delta x)$,因此它们诱导同一度量拓扑,下证$d(\cdot,\cdot)$是完备的距离.考虑$\cbr{x_n}$是$d$下的Cauchy列,即$$\forall \ve\exists N\forall n,m\geq N:\abs{\ln x_n-\ln x_m}<\ve,x_m\in B_d(x_n,\ve)\subset B(x_n,\e^\ve x_n)$$
+    即$$\forall \ve\exists N\forall n,m\geq N:|x_n-x_m|<\e^\ve x_n\leq M\e^\ve,\qquad M=\sup_{n\in \N}x_n\in B_d(x_N,2\ve)<+\infty$$
+    因此$\cbr{x_n}$是Cauchy列,其收敛,故$d$完备.
+
+    2.$$\forall x,y\in I:\frac{d(f(x),f(y))}{d(x,y)}=\abs{\frac{\ln f(x)-\ln f(y)}{\ln x-\ln y}}=\abs{\frac{f'(\xi)/f(\xi)}{1/\xi}}=\frac{\xi\abs{f'(\xi)}}{f(\xi)}\leq \lambda$$
+    故$f$是压缩映射,故在$I$上有唯一不动点.
+\end{proof}
+
+\paragraph{许全华习题3.1}$\forall f\in C[0,1]:\norm{f}_\infty=\sup_{t\in [0,1]}\abs{f(t)}, \norm{f}_1=\int_0^1\abs{f(t)}\d t$.\\
+证明1.$\norm{\cdot}_\infty,\norm{\cdot}_1$都是$C[0,1]$的范数;2.$C[0,1]$关于$\norm{\cdot}_\infty$完备;3.$C[0,1]$关于$\norm{\cdot}_1$不完备.
+\begin{proof}
+    1.显然有正定,正齐,三角不等式.
+
+    2.考虑Cauchy列$\cbr{f_n}$,$$\forall \ve\exists N\forall n,m\geq N:\norm{f_n-f_m}_\infty=\sup_{t\in [0,1]}\abs{f_n(t)-f_m(t)}<\ve$$
+    此即一致收敛定义.考虑$f(x)=\lim_{n\to\infty}f_n(x)$,则首先$\forall x\in [0,1]:f(x)$存在.其次证明其连续性.$$\forall x\in [0,1]\forall \ve\exists \delta\exists N\forall n\geq N\forall y\in B(x,\delta):\abs{f_n(x)-f(x)}<\ve, \abs{f_n(x)-f_n(y)}<\ve, \abs{f_n(y)-f(y)}<\ve$$
+    因此$\forall x\in [0,1]\forall \ve\exists \delta\forall y\in B(x,\delta):\abs{f(x)-f(y)}<3\ve$,即$f\in C[0,1]$.
+
+    3.考虑Cauchy列$\cbr{f_n}$,$$\forall \ve\exists N\forall n,m\geq N:\norm{f_n-f_m}_1=\int_0^1\abs{f_n(t)-f_m(t)}\d t<\ve$$
+    取$f_n(x)=x^{n}$,则$\int_0^1\abs{f_n(t)-f_m(t)}\d t\leq \frac{1}{1+\max\cbr{n,m}}\to 0$,但$f_n(x)\to 1_{\cbr{1}}(x)$不连续.
+
+    \textcolor{blue}{题解认为$\cbr{x^n}$虽然逐点收敛到不连续函数,但在$L^1$范数下收敛到$f=0$,因此函数列极限在$C[0,1]$中存在.题解给出的函列为$f_n(x)=\begin{cases}
+        -1&x\in \babr{0,\frac{1}{2}-\frac{1}{n}}\\
+        n\br{t-\frac{1}{2}}&x\in \bbr{\frac{1}{2}-\frac{1}{n},\frac{1}{2}+\frac{1}{n}}\\
+        1&\abbr{\frac{1}{2}+\frac{1}{n},1}
+    \end{cases}$.}
+\end{proof}
+
+\paragraph{许全华习题3.10}$f\in L^2(\R),g(x)=\frac{1_{\babr{1,+\infty}}(x)}{x}$,证明$fg\in L^1(\R)$.举例说明$f_1,f_2\in L^1(\R),f_1 f_2\notin L^1(\R)$.
+
+\begin{proof}
+    由H\"{o}lder不等式,$$\norm{fg}_1\leq \norm{f}_2\norm{g}_2=\int_1^{+\infty}\frac{\d x}{x^2}\norm{f}_2=\norm{f}_2<\infty$$
+    因此$fg\in L^1(\R)$.
+
+    考虑$f(x)=x^{-\frac{1}{2}}1_{\abbr{0,1}}(x),\norm{f}_1=2,\norm{f^2}_1=+\infty$.
+\end{proof}
+
+\paragraph{许全华习题3.11}$(\Omega,\mathcal{A},\mu)$为有限测度空间.\\
+1.证明$0<p<q\leq \infty$则$L^q(\Omega)\subset L^p(\Omega)$.举反例说明$\mu(\Omega)=\infty$时结论不成立.\\
+2.证明若$f\in L^\infty(\Omega)$则$f\in\bigcap_{p<\infty}L^p(\Omega)$且$\norm{f}_\infty=\lim_{p\to\infty}\norm{f}_p$.\\
+3.设$f\in\bigcap_{p<\infty}L^p(\Omega)$且$\varlimsup_{p\to \infty}\norm{f}_p<\infty$,证明$f\in L^\infty(\Omega)$.
+
+\begin{proof}
+    1.由H\"older不等式,考虑$p\rev=q\rev+s\rev$,其中$s=\br{p\rev-q\rev}\rev\in (0,+\infty)$,有$$\forall f\in L^q(\Omega):\norm{f}_p\leq \norm{f}_q\norm{1}_s=\mu(\Omega)^{\frac{1}{s}}\norm{f}_q<\infty\implies f\in L^p(\Omega)$$
+    $\mu(\Omega)=\infty$时,$\norm{1}_\infty=1, \norm{1}_p=\mu(\Omega)=\infty$.
+
+    2.由上,$\forall p\in (0,\infty):L^\infty(\Omega)\subset L^p(\Omega)$,因此$L^\infty(\Omega)\subset \bigcap_{p<\infty}L^p(\Omega)$.\\
+    而$\norm{f}_p\leq \mu(\Omega)^{\frac{1}{s}}\norm{f}_\infty$,$q=\infty$时$s=p$.两端取$p\to \infty$有$\lim_{p\to \infty}\norm{f}_p\leq \norm{f}_\infty$.\\
+    另一方面,设$S_\delta=\cbr{x\in\Omega:\abs{f(x)}\geq \norm{f}_\infty-\delta},\delta\in \br{0,\norm{f}_\infty}$.有$$\norm{f}_p\geq \br{\int_{S_\delta}\br{\norm{f}_\infty-\delta}^p\d \mu}^{1/p}=\br{\norm{f}_\infty-\delta}\mu(S_\delta)^{1/p}\implies \lim_{p\to \infty}\norm{f}_p\geq \norm{f}_\infty-\delta$$
+    而$\delta>0$,因此有$\lim_{p\to \infty}\norm{f}_p\geq \norm{f}_\infty$.综上,$\lim_{p\to \infty}\norm{f}_p=\norm{f}_\infty$.
+
+    3.若否,即对$E_M=\cbr{x\in \Omega:\abs{f(x)}\geq M},\forall M>0:\mu(E_M)>0$,则$\norm{f}_p\geq \int_{E_M}\abs{f}^p\d \mu\geq M\mu(E_M)^{1/p}$.两端取$p\to \infty$有$\infty>\lim_{p\to \infty}\norm{f}_p\geq M$.由$M$的任意性,$\lim_{p\to \infty}\norm{f}_p=\infty$,矛盾.
+\end{proof}
+
+\paragraph{许全华习题4.1}
+\paragraph{许全华习题4.18}
+
+\paragraph{习题5.2}$M\subset C[a,b]$有界,则$S=\cbr{F(x)=\int_a^x f(t)\d t:f\in M}$相对紧.
+\begin{proof}
+    我们有$$\begin{gathered}
+        \forall F\in S\forall x\in [a,b]:F(x)\leq \int_a^b\abs{f(t)}\d t=\norm{f}_1\leq (b-a)\norm{f}_\infty\\
+        \abs{F(x)-F(x_0)}=\abs{\int_{x_0}^x f(t)\d t}\leq \int_{x_0}^x\abs{f(t)}\d t\leq \abs{x-x_0}\norm{f}_\infty
+    \end{gathered}$$
+    因此在$M$关于$\norm{\cdot}_\infty$有界时,$S$一致有界,且$F$是Lipschitz映射,故$S$等度连续.
+
+    最后由Ascoli定理,$S$是列紧的.
+\end{proof}
+
+\paragraph{习题5.4}设$(M,d)$是一个列紧距离空间,$E\subset C(M)$,其中$C(M)$表示$M$上一切实值或复值连续函数全体,$E$中函数一致有界并满足下列不等式
+$$|x(t_1)-x(t_2)|\leq c\cdot d(t_1,t_2)^\alpha,\qquad \forall x\in E, t_1,t_2\in M$$
+其中$0<\alpha\leq 1,c>0$,求证$E$在$C(M)$中是列紧集.
+\begin{proof}
+    仅需证明$E$等度连续.$$\forall t_0\in M\forall\varepsilon\exists B\br{t_0,\sqrt[\alpha]{\frac{\varepsilon}{c}}}\forall t\in B\br{t_0,\sqrt[\alpha]{\frac{\varepsilon}{c}}}\forall x\in E:\abs{x(t)-x(t_0)}\leq c\cdot d(t,t_0)^\alpha<\varepsilon$$
+\end{proof}
+
+\paragraph{许全华习题5.3}拓扑空间$K$和度量空间$(E,d)$中,若$\cbr{f_n}$在$C(K,E)$中依一致范数收敛,则$\cbr{f_n}$等度连续.
+\begin{proof}
+    若$\norm{f}=\sup_{t\in K}\abs{f(t)}, \exists f\in C(K,E):\norm{f-f_n}\to 0$,则$\forall \varepsilon>0$,取$N\in \Z_{\geq 1}$,有$\forall n\geq N:\norm{f-f_n}<\varepsilon$.\\
+    考虑$\forall x_0\in K\exists O(x)\forall x\in O(x_0):d(f(x),f(x_0))<\varepsilon$,则$\forall \varepsilon>0\forall x_0\in K\exists O(x_0)\forall x\in O(x_0)\forall n\geq N$时有$$d(f_n(x),f_n(x_0))\leq d(f_n(x),f(x))+d(f(x),f(x_0))+d(f(x_0),f_n(x_0))\leq 3\varepsilon$$
+    因此$\cbr{f_n}_{n\geq N}$等度连续,故$\cbr{f_n}_{n\geq 1}=\cbr{f_n}_{1\leq n< N}\cup \cbr{f_n}_{n\geq N}$等度连续.
+\end{proof}
+
+\paragraph{许全华习题5.12}$[0,1]$上所有偶多项式$\mathcal{Q}$是否稠密于$C([0,1],\R)$?$[-1,1]$上所有偶多项式$\mathcal{R}$是否稠密于$C([-1,1],\R)$?
+\begin{proof}
+    首先$\mathcal{Q}$可分点,仅需注意到$x^2$在$[0,1]$上是双射.其次,$\forall x\in [0,1]:x^2+1\neq 0$.\\
+    最后证明$\mathcal{Q}$是一个子代数:$\forall P,Q\in \mathcal{Q},\forall c\in \R$,记$P=\sum_{k= 0}^na_kx^{2k},Q=\sum_{k= 0}^mb_kx^{2k}$,
+    $$cP=\sum_{k= 0}^nca_kx^{2k}\in\mathcal{Q},P+Q=\sum_{k= 0}^{\max\cbr{n,m}}(a_k+b_k)x^{2k}\in\mathcal{Q}, PQ=\sum_{k= 0}^{m+n}\br{\sum_{i+j=k}a_ib_j}x^{k}\in\mathcal{Q}$$
+    因此由Stone-Weierstrass定理可知$\mathcal{Q}$稠密于$C([0,1],\R)$.
+
+    另一方面,$\mathcal{R}$中的多项式都不是$[-1,1]$上的双射,因为$\forall P\in \mathcal{R}\forall x\in [0,1]:P(x)=P(-x)$.因此不能用Stone-Weierstrass定理.
+\end{proof}
+
+\paragraph{孙炯习题4.1}设$\sup_{n\geq 1}\abs{\alpha_n}<\infty$,在$\ell^1$上定义$T:\cbr{\xi_k}\mapsto \cbr{\alpha_k\xi_k}$.证明$T$有界线性且$\norm{T}=\sup_{n\geq 1}\abs{\alpha_n}$.
+\begin{proof}
+    $T$的线性性显然.设$a=\sup_{n\geq 1}\abs{\alpha_n},\xi=\cbr{\xi_k}_{k\geq 1}$,有$\norm{T\xi}_1=\sum_{k\geq 1}\abs{\alpha_k\xi_k}\leq a\sum_{k\geq 1}\abs{\xi_k}=a\norm{\xi}_1$,因此$\norm{T}\leq a$.\\
+    另一方面对$\forall n\in \Z_{\geq 1}$,仅需考虑$\xi_k=\delta_{kn},\norm{\xi}_1=1,\norm{T\xi}_1=\abs{\alpha_n},\norm{T}\geq\sup_{n\geq 1}\abs{\alpha_n}$.故$\norm{T}=a$.
+\end{proof}
+
+\paragraph{孙炯习题4.9}$X,Y$是Banach空间,$T\in \mathcal{B}(X,Y)$.若$T$是双射,证明$\exists a>0\exists b>0\forall x\in X:a\norm{x}\leq \norm{Tx}\leq b\norm{x}$.
+\begin{proof}
+    考虑双射$T\rev:Y\to X$,首先$\forall y_1,y_2\in Y\forall a_1,a_2\in \F\exists x_1,x_2\in X:$$$T\rev(a_1y_1+a_2y_2)=T\rev(a_1T(x_1)+a_2T(x_2))=T\rev\circ T(a_1x_1+a_2x_2)=a_1T\rev(y_1)+a_2T\rev(y_2)$$
+    因此$T\rev$线性.其次由开映射定理,$\exists r>0:rB_Y\subset T(B_X)\implies rT\rev(B_Y)\subset B_X$,因此$\norm{T\rev}=\sup_{y\in B_Y}\norm{T\rev(y)}\leq r\rev$,因此$T\rev\in \mathcal{B}(X,Y)$,
+    $$\forall x\in X\exists y\in Y:\norm{x}=\norm{T\rev(y)}\leq \norm{T\rev}\norm{y}\leq r\rev\norm{Tx}\implies r\norm{x}\leq \norm{Tx}$$
+    因此仅需取$a=r,b=\norm{T}$即可.
+\end{proof}
+
+\paragraph{孙炯习题4.13}考虑$T:C^1[-1,1]\to C[-1,1], x(t)\mapsto x'(t)$.\\
+1.若$C^1[-1,1]$中范数是$\norm{x}_1=\max\cbr{\max_{t\in [-1,1]}\abs{x(t)},\max_{t\in [-1,1]}\abs{x'(t)}}$,则$T$是否有界?\\
+2.若$C^1[-1,1]$中范数是$\norm{x}_2=\max_{t\in [-1,1]}\abs{x(t)}$,则$T$是否有界?
+\begin{proof}
+    1.$\frac{\norm{Tx}}{\norm{x}_1}=\frac{\norm{x'}_\infty}{\max\cbr{\norm{x}_\infty,\norm{x'}_\infty}}\leq 1$,因此$\norm{T}\leq 1$,有界.
+
+    2.$\frac{\norm{Tx}}{\norm{x}_2}=\frac{\norm{x'}_\infty}{\norm{x}_\infty}$,因此取$x(t)=t^n$时,$\frac{\norm{Tx}}{\norm{x}_2}=n$,由$n$任意性,其无界.
+\end{proof}
+
+\paragraph{孙炯习题4.14}定义$T(f)(x)=\int_a^x f(t)\d t,\forall f\in L^1[a,b]$.证明:\\
+1.若$T:(L^1[a,b],\norm{\cdot}_1)\to (C[a,b],\norm{\cdot}_\infty)$,则$\norm{T}=1$;\\
+2.若$T:(L^1[a,b],\norm{\cdot}_1)\to (L^1[a,b],\norm{\cdot}_1)$,则$\norm{T}=b-a$.
+\begin{proof}
+    1.$\norm{Tf}_\infty=\max_{x\in [a,b]}\abs{\int_a^x f(t)\d t}\leq \max_{x\in [a,b]}\int_a^x \abs{f(t)}\d t=\int_a^b \abs{f(t)}\d t=\norm{f}_1$,因此$\norm{T}\leq 1$.\\
+    另一方面,$f(t)=\frac{1}{b-a}, \norm{Tf}_\infty=\max_{x\in [a,b]}\abs{\frac{x-a}{b-a}}=1$,因此$\norm{T}\geq 1$,得证.
+
+    2.$\norm{Tf}_1=\int_a^b\abs{\int_a^xf(t)\d t}\d x\leq \int_a^b\int_a^x\abs{f(t)}\d t\d x\leq \int_a^b\int_a^b\abs{f(t)}\d t\d x=\int_a^b\norm{f}_1\d x=(b-a)\norm{f}_1$,因此$\norm{T}\leq b-a$.\\
+    另一方面,取$f_n(t)=n\cdot 1_{[a,a+\frac{1}{n}]}(t),\norm{f_n}_1=1,\norm{Tf}_1=b-a-\frac{1}{2n}$,因此$\norm{T}\geq \sup_{n\geq 1}\frac{\norm{Tf_n}_1}{\norm{f_n}_1}=b-a$.因此$\norm{T}=b-a$.
+\end{proof}
+
+\paragraph{孙炯习题5.9}
+\paragraph{孙炯习题5.14}
+\paragraph{孙炯习题5.27}
+\paragraph{孙炯习题5.32}
+\end{document}

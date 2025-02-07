@@ -1,0 +1,669 @@
+\documentclass[UTF8,a4paper,notitlepage]{book}
+\input{../preamble.tex}
+
+\title{My Basic Algebra Notebook}
+\date{2020年3月3日}
+\author{zhangxm2312@gmail.com}
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \chapter{Linear Equations and Polynomial}
+    \section{The Root of Linear Equations}
+    \section{Unary Polynomial Ring(一元多项式环)}
+    \subsection{多项式的基本概念}
+    \begin{definition}
+        一元多项式指的是具有如下形式的表达式:
+        $$\sum_{i=0,\cdots,n}a_ix^i$$
+        其中$x$是一个符号,被称为\textbf{不定元(indeterminate)},$a_i\in K$被称为\textbf{系数(coefficient)},$a_ix^i$被称为\textbf{i次项},其中$a_0$被称为\textbf{常数项}.$a_i=0$的多项式被称为零多项式,记为0.\\ 
+        一元多项式$f(x)$中系数非0的最高项$a_nx^n$被称为首项,其次数记作$\deg~f(x)$且规定$\deg~0:=-\infty$.\\ 
+        数域$K$上一元多项式的全集记作$K[x]$,并可在其中自然地定义加法和乘法.
+    \end{definition}
+    需要注意的是,一元多项式具有以下两个性质:
+    \begin{property}[]\mbox{}\begin{enumerate}
+        \item  $\forall K\ni f(x),g(x)\neq 0\Rightarrow f(x)g(x)\neq 0$
+        \item $\forall f(x),g(x),h(x)\in K,h(x)\neq 0:f(x)h(x)=g(x)h(x)\Rightarrow f(x)=g(x)$
+    \end{enumerate}\end{property}
+    \begin{theorem}[一元多项式的次数公式]
+        $\forall f,g\in K[x]:$
+        \begin{eqnarray*}
+             \deg(f\pm g)\leq \max~\{\deg~f,\deg~g\} \\ 
+             \deg(fg)=\deg~f+\deg~g \\ 
+        \end{eqnarray*}
+    \end{theorem}
+    我们不加证明的给出这个重要但显然的结论.
+    \subsection{Ring}
+    集合$S$上的一个代数运算指的是$S\times S=S^2\rightarrow S$的映射.
+    \begin{definition}[环的基本概念]\mbox{}
+        若非空集合$S$内定义了两个代数运算:加法(+)和乘法($\cdot$),且存在加法的逆元和单位元0,并成立两个运算的结合律和加法交换律,乘法(对加法的)分配律,那么称此集合为一个\textbf{环}.\\ 
+        环$S$内对加法与乘法也成为一个环的非空子集$R$被称为是$S$的\textbf{子环},其对加法与乘法运算封闭.\\ 
+        若$\exists a \exists b\neq 0:ab=0 / ba=0$,则称$a$为一个\textbf{左/右零因子},可简称为\textbf{零因子}.0是\textbf{平凡的}零因子,其他的均被称为\textbf{非平凡的}.若环中无非平凡零因子,称其为\textbf{无零因子环}.\\
+        满足乘法交换律的环被称为\textbf{交换环};\\ 
+        存在乘法单位元1的环被称为\textbf{有单位元的环};\\ 
+        有单位元的无零因子环被称为\textbf{整环}.\\ 
+    \end{definition}
+    容易验证:$\mathbb{Z},K[x],M_n[K]$都是环,且任意一个域也是环.
+    \chapter{Linear Space and Linear Map}
+    %4.6例题和习题作为正交的补充
+    \chapter{Determinant}
+        \section{Laplace展开定理}
+        考虑在数域$\mathbb{F}$上的$n$阶行列式$A$,取其中$k$行$k$列,分别记其为$i_1,i_2,\cdots,i_k$和$j_1,j_2,\cdots,j_k$,且其指标数单调增长.
+        \\在$A$中,取其中被选中的行列交叉处的$k^2$个元素,按其原来顺序组成$k$阶行列式,称之为$A$的一个$k$阶子式.
+          而剩余的$(n-k)$行和列组成的行列式为其$(n-k)$阶余子式.分别记为:
+          $$A\begin{pmatrix}i_1 & i_2 & \cdots & i_k \\ j_1 & j_2 & \cdots & j_k\end{pmatrix},~
+          M_A \begin{pmatrix}i_1 & i_2 & \cdots & i_k \\ j_1 & j_2 & \cdots & j_k\end{pmatrix}$$
+          定义其代数余子式:
+        $$A^c \begin{pmatrix}i_1 & i_2 & \cdots & i_k \\ j_1 & j_2 & \cdots & j_k\end{pmatrix}:= (-1)^{\sum_{a\in \{1,2,\cdot,k\}} (i_a+j_a)} \cdot M_A \begin{pmatrix}i_1 & i_2 & \cdots & i_k \\ j_1 & j_2 & \cdots & j_k\end{pmatrix} $$
+        \begin{lemma}
+            $$A\begin{pmatrix}i_1 & i_2 & \cdots & i_k \\ j_1 & j_2 & \cdots & j_k\end{pmatrix}\cdot A^c \begin{pmatrix}i_1 & i_2 & \cdots & i_k \\ j_1 & j_2 & \cdots & j_k\end{pmatrix}$$
+            中的每一项都是$A$展开式中的一项
+        \end{lemma}
+        \begin{proof}
+            先取子式在$A$左上角的时候,即$i_l=j_l=l(l\in \{1,2,\cdots,k\})$时.此时,
+            $$A^c \begin{pmatrix}1 & 2 & \cdots & k \\ 1 & 2 & \cdots & k\end{pmatrix}=(-1)^{2\sum_{l=1,\cdots,k}l}M_A \begin{pmatrix}1 & 2 & \cdots & k \\ 1 & 2 & \cdots & k\end{pmatrix}=A\begin{pmatrix}{k+1} & {k+2} & \cdots & n \\ {k+1} & {k+2} & \cdots & n\end{pmatrix}$$
+            任意子式中和代数余子式中的项形如:
+            $$(-1)^{\tau(s_1s_2\cdots s_k)}\prod_{i=1,\cdots,k}a_{i,s_i} \qquad (-1)^{\tau(t_{k+1}t_{k+2}\cdots t_n)}\prod_{j=k+1,\cdots,n}a_{j,t_j}$$
+            故两者积中任一项形如:
+            $$(-1)^{\tau(s_1s_2\cdots s_kt_{k+1}t_{k+2}\cdots t_n)}\prod_{i=1,\cdots,n}a_{i,j_i}$$
+            其必为$A$中一项.
+            而将选取的行进行对换,使得第$l$行对换至第$i_l$行,相应的,第$l$列至第$j_l$列,故新行列式
+            $$D=(-1)^{\sum_{l=1,\cdots,k}(i_l-l)+\sum_{l=1,\cdots,k}(j_l-l)}A=(-1)^{\sum_{l=1,\cdots,k}(i_l+j_l)}A$$
+            而子式在$D$的左上角,$A^c=(-1)^{\sum_{l=1,\cdots,k}(i_l+j_l)}M_D=(-1)^{\sum_{l=1,\cdots,k}(i_l+j_l)}M_A$,对应项一致,得证.
+        \end{proof}
+        所以可得:
+        \begin{theorem}[Laplace展开定理]
+            在$n$阶行列式$A$中任取k行,记其为$i_1,i_2,\cdots,i_k(1\leq i_1<i_2<\cdots<i_k\leq n)$,则:
+            $$A=\sum_{1\leq j_1<j_2<\cdots<j_k\leq n} A\begin{pmatrix}i_1 & i_2 & \cdots & i_k \\ j_1 & j_2 & \cdots & j_k\end{pmatrix}A^c \begin{pmatrix}i_1 & i_2 & \cdots & i_k \\ j_1 & j_2 & \cdots & j_k\end{pmatrix}$$
+        \end{theorem}
+        \begin{proof}
+            由上引理,且易知:\\ 
+            $j_1j_2\cdots j_k\neq j'_1j'_2\cdots j'_k$时,$A^c$不相等.
+            \paragraph*{}
+            而$A$展开式有$n!$项,右式中每一式展开有$k!(n-k)!$项,共有$C^k_{\phantom{k}n}$式求和,故右式也有$n!$项,得证.\\ 
+		其本质还是矩阵的子式和代数余子式的乘积,是按行/列(一阶张量)展开的推广,也就是按低阶张量展开.
+        \end{proof}
+
+        \section{Cramer法则}
+        Cramer法则是为了解决n阶线性方程组$\mathbf{Ax=b}$而建立的:\\ 
+        当$|A|\neq 0$时,可知\textbf{x}只有一组解,记之为$\textbf{x}=(x_1,x_2,\cdots,x_n)^T$.
+        \begin{theorem}[Cramer法则]
+            n阶线性方程组$\mathbf{Ax=b}$的解的第$i$个坐标为:$$x_i=\dfrac{|D_i|}{|A|}(i=1,\cdots ,n)$$.其中:
+            $$D_i=\begin{pmatrix}
+                a_{11} & \cdots & a_{1,i-1} & b_1 & a_{1,i+1} & \cdots & a_{1n}\\ 
+                \vdots & & \vdots & \vdots & \vdots & & \vdots \\ 
+                a_{n1} & \cdots & a_{n,i-1} & b_n & a_{n,i+1} & \cdots & a_{nn}\\
+            \end{pmatrix}=\sum_{k=1,\cdots ,n}b_kA_{ki}$$
+        \end{theorem}
+        \begin{proof}
+            由$\sum_ja_{ij}x_{j}=b_i$和$|A|=\sum_k a_{kj}A_{kj}$可即得.\\ 
+            另外也可有$\mathbf{x=A^{-1}b=\dfrac{A^* b}{|A|}}$,在第$i$行上有$\mathbf{A^*_i b}=D_i$,得证.
+        \end{proof}
+    \chapter{Matrix}
+        \section{Matrix Operation and Special Matrix}%P164
+        \subsection{矩阵运算}
+        我们定义:在数域$K$上的$m\times n$阶矩阵的全体集合为$M_{m\times n}(K)$.若$m=n$,则记为$M_n(K)$.
+        \subsection{部分特殊矩阵的定义}
+        \begin{definition}[换位元素]
+            $\forall A,B\in M_n(K),[A,B]:=AB-BA $
+        \end{definition}
+        \begin{property}[换位元素的性质]\mbox{}\begin{enumerate}
+                \item $[k_1A+k_2B,C]=k_1[A,C]+k_2[B,C]$
+                \item $[A,B]+[B,A]=0$
+                \item $\sum_{cyc}[A,[B,C]]=[A,[B,C]]+[B,[C,A]]+[C,[A,B]]=0$
+        \end{enumerate}\end{property}
+        \begin{definition}[Kronecker积]
+        \end{definition}
+        \begin{definition}[(Skew-)Symmetric Matrix]
+            $\forall A\in M_n(A^T=A)$,称A为对称矩阵$(\mathrm{Symmetric~Matrix})$;\\$\forall A\in M_n(A^T=-A)$,称A为反/斜(对)称矩阵$(\mathrm{Skew-Symmetric~Matrix})$.
+        \end{definition}
+        \begin{property}[对称和反称矩阵的性质]\mbox{}\begin{enumerate}
+                \item $A^T=A,B^T=B:((AB)^T=AB)\Leftrightarrow(AB=BA)$\\ $A^T=-A,B^T=-B:((AB)^T=\pm AB)\Leftrightarrow(AB=\pm BA)$
+                \item $n~\mathrm{is~odd},A^T=-A:\det A=0$
+                \item $\forall A\in M_n\exists!(M~\mathrm{is~sym~and}~M'~\mathrm{is~skew-sym}):(A=M+M'),2M=A+A^T,2M'=A-A^T$
+                \item $\forall A\in M_{s\times n}:(AA^H=0)\Rightarrow(A=0)$\\ $\Rightarrow(\forall A\in M_n:(AA^T=0)\Rightarrow(A=0))$
+                \item $A,B~\mathrm{are~(skew-)sym}\Rightarrow A+B,kA~\mathrm{are~(skew-)sym},[A,B]~\mathrm{is~skew-sym}$
+                \item $A^T=-A\Rightarrow \rank~A~\mathrm{is~even}$
+                \item $\sum_j a_{ij}=\sum_j a_{ji}$
+        \end{enumerate}\end{property}
+        \begin{proof}
+        \end{proof}
+        \begin{definition}[Nilpotent Matrix]
+            $\forall A\in M_n \exists k\in \mathbb{N}(A^k=O)$,称A为幂零矩阵,k为幂零指数.
+        \end{definition}
+        \begin{property}[幂零矩阵的性质]\mbox{}\begin{enumerate}
+            \item 三角矩阵为$\Leftrightarrow a_{ii}=0(i=1,\cdots,n) \Rightarrow k\leq n$.
+            \item 实对称的幂零矩阵为零矩阵.
+        \end{enumerate}\end{property}
+        \begin{definition}[幂等矩阵]
+        \end{definition}
+        \begin{definition}[对合矩阵]
+        \end{definition}
+        \begin{definition}[Cyclic Matrix]
+            称$C=\begin{pmatrix} 0&1&0&\cdots&0\\ 0&0&1&\cdots&0\\ \vdots&\vdots&\vdots&\ddots&\vdots\\ 0&0&0&\cdots&1\\ 1&0&0&\cdots&0 \end{pmatrix}$为n阶循环移位矩阵.\\ 
+            称$A=\begin{pmatrix} a_1&a_2&a_3&\cdots&a_n\\ a_n&a_1&a_2&\cdots&a_{n-1}\\ \vdots&\vdots&\vdots&\ddots&\vdots\\ a_2&a_3&a_4&\cdots&a_1\end{pmatrix}$为n阶循环矩阵.
+        \end{definition}
+        \begin{property}\mbox{}\begin{enumerate}
+            \item $$\sum_{i=1,\cdots,n}C^{i-1}=J$$
+            \item $$A=\sum_{i=1,\cdots,n}a_iC^{i-1}$$
+        \end{enumerate}\end{property}
+        \begin{definition}[随机矩阵]%置换矩阵,P266
+        \end{definition}
+        \begin{definition}[整数矩阵]
+        \end{definition}
+        \begin{definition}[邻接矩阵]
+        \end{definition}
+        \begin{definition}[周期矩阵]
+        \end{definition}
+        \begin{definition}[Hadamard矩阵]
+        \end{definition}
+        \begin{definition}[Frobenius矩阵]%279
+        \end{definition}
+        \subsection{区组设计的关联矩阵}
+        \section{Partitioned Matrix(分块矩阵) and Rank}%补充题4,5.2
+        分块矩阵和矩阵的秩都是在简单的矩阵论中处理矩阵的重要工具,且一般结合使用,因此将其放在一起.
+        \subsection{Partitioned Matrix(分块矩阵)}
+        分块矩阵的加法、数乘和乘法和一般的矩阵的类似.其定义暂缺,在这里我们不再叙述简单的运算规则,我们只阐述部分性质和结论.
+        \begin{corollary}\mbox{}\begin{enumerate}
+                \item $$\begin{pmatrix}A&B\\ O&C\\ \end{pmatrix}^{-1}=\begin{pmatrix}A^-1&O\\ -B^{-1}CA^{-1}&B^{-1}\\ \end{pmatrix}$$
+                \item $$\begin{vmatrix}A&B\\ O&C\\ \end{vmatrix}=\begin{vmatrix}A&O\\ B&C\\ \end{vmatrix}=|A||C|$$
+                \item $$\begin{vmatrix}A&B\\ C&D\\ \end{vmatrix}=\left\{\begin{array}{ll}|A||D-CA^{-1}B|&(A\textrm{可逆})\\ |D||A-BD^{-1}C|&(D\textrm{可逆})\\ \end{array}\right.$$
+                    若$A,D$均可逆,可得矩阵的降幂公式:$$\frac{|A|}{|D|}=\frac{|A-BD^{-1}C|}{|D-CA^{-1}B|}$$
+                \item $$\begin{vmatrix}A&B\\ C&D\\ \end{vmatrix}=\left\{\begin{array}{ll}|AD-CB|&(AC=CA)\\ |DA-CB|&(AB=BA)\\ \end{array}\right.$$
+                \item 准对角矩阵$$\begin{vmatrix}A_1&&&\\ &A_2&&\\ &&\ddots & \\ &&&A_m \end{vmatrix}=\prod |A_i|$$
+                \item $$\begin{vmatrix}A&B\\ B&A\\ \end{vmatrix}=|A+B||A-B|$$
+                \item $AB=BA$时,$$\begin{vmatrix}A&-B\\ B&A\\ \end{vmatrix}=|A^2+B^2|$$
+                \item $$\begin{vmatrix}I&A\\ B&I\\ \end{vmatrix}=|I-AB|=|I-BA|$$
+        \end{enumerate}\end{corollary}
+        \subsection{Equivalence}
+        \begin{definition}[矩阵的等价]
+            下列描述等价:
+            \begin{enumerate}
+                \item $A\simeq B$,即A和B等价.
+                \item $\exists P_{s\times s},Q_{m\times m}(B=PAQ)$
+                \item A经过有限次初等变换能得到B.
+                \item 两矩阵的行、列、秩均相等.
+            \end{enumerate}
+            $$\begin{pmatrix} I_r&O\\O&O\\ \end{pmatrix}$$被成为其等价标准形.
+        \end{definition}
+        $M_{s\times n}$上有$1+\min\{s,n\}$个等价类.
+        \subsection{Cauchy-Binet定理}
+		这个定理是Laplace定理在矩阵乘法上的推广,在流形上有更深的推广和意义.将两矩阵乘积的det与两者分别的子式的积联系起来,使其在有向体积上存在一定联系.
+        \paragraph{} 首先,我们曾比较显然地得到结论:对于两个方阵$A$和$B$,$$|A||B|=\begin{vmatrix} A&O\\ C&B\\ \end{vmatrix}=\begin{vmatrix} O&AB\\ -I&*\\ \end{vmatrix}=|AB|$$
+        因此我们可以考察:对于$m\times n$阶矩阵$A$和$n\times m$阶矩阵$B$,其乘积$m$阶矩阵$AB$的行列式$|AB|$.
+        \begin{theorem}[Cauchy-Binet定理]
+            对于任意矩阵$A_{m\times n}$和$B_{n\times m}$,有:
+            $$|AB|=\left\{\begin{array}{ll} 0&m>n\\ \sum\limits_{1\leq j_1<j_2<\cdots<j_m\leq n} 
+                A\begin{pmatrix}1 & 2 & \cdots & m \\ j_1 & j_2 & \cdots & j_m\end{pmatrix} 
+                B\begin{pmatrix}j_1 & j_2 & \cdots & j_m \\ 1 & 2 & \cdots & m\end{pmatrix}
+                &m\leq n\\ \end{array}\right.$$
+            取定$\mathbb{N}\ni r\leq m$,有:
+            $$AB\begin{pmatrix}i_1 & i_2 & \cdots & i_r \\ j_1 & j_2 & \cdots & j_r\end{pmatrix}=
+                \left\{\begin{array}{ll} 0&r>n\\ \sum\limits_{1\leq k_1<k_2<\cdots<k_r\leq n} 
+                A\begin{pmatrix} i_1 & i_2 & \cdots & i_r \\ k_1 & k_2 & \cdots & k_r\end{pmatrix} 
+                B\begin{pmatrix} k_1 & k_2 & \cdots & k_r \\ j_1 & j_2 & \cdots & j_r\end{pmatrix}
+                &r\leq n\\ \end{array}\right.$$
+            \end{theorem}
+        \begin{proof}\mbox{}
+            $m>n$时,由$\rank~AB\leq \rank~A\leq n<m$可得$|AB|=0$.\\ 
+            $m=n$时,即上述结论:$|AB|=|A||B|$.\\ 
+            $m<n$时,我们通过两种方法计算$n+m$阶矩阵$C=\begin{pmatrix}A&O\\ -I_n&B\\ \end{pmatrix}$的行列式$|C|$.\\ 
+            通过分块矩阵的初等变换,我们可以得到:$$M=\begin{pmatrix}O&AB\\ -I_n&B\\ \end{pmatrix}=\begin{pmatrix}I_m&A\\ O&I_n\\ \end{pmatrix}C$$
+            故有$|M|=|C|$.再用Laplace定理计算,有:$$|M|=(-1)^{nm}|-I_n||AB|=(-1)^{n(m+1)}|AB|$$
+            而$$|C|=\sum_{1\leq j_1<j_2<\cdots <j_m\leq n}A\begin{pmatrix}1 & 2 & \cdots & m \\ j_1 & j_2 & \cdots & j_m\end{pmatrix}C^c\begin{pmatrix}1 & 2 & \cdots & m \\ j_1 & j_2 & \cdots & j_m\end{pmatrix}$$
+            注意:这里选取子式是在前$m$行$n$列中选取.前$m$行是由题设固定,也是矩阵$A$的范围里.前$n$列是因为,若所选取的一列在其他$m$列中,那么子式为0.故其余子式必定有一部分落在矩阵$B$的范围内.\\ 
+            后者有:$$C^c\begin{pmatrix}1 & 2 & \cdots & m \\ j_1 & j_2 & \cdots & j_m\end{pmatrix}=(-1)^{\sum\limits_{k=1,\cdots,m}(k+j_k)}|N|$$
+            其中$n$阶矩阵$N=(-\epsilon_{i_1},\cdots,-\epsilon_{i_{n-m}},B)$,$\epsilon_i$表示第$i$个标准$n$维列向量,这些列向量相当于从前$n$列中除去子式中$j_1,j_2,\cdots,j_m$列所剩余的$n-m$列.\\ 
+            再用Laplace定理展开$|N|$的前$n-m$列,得到的$n-m$阶子式中只有一个(即$|-I_{n-m}|$)非零,其余子式即为$$B\begin{pmatrix}j_1 & j_2 & \cdots & j_m \\ 1 & 2 & \cdots & m\end{pmatrix}$$
+            注意到$\sum\limits_{k=1,\cdots,n-m}i_k+\sum\limits_{k=1,\cdots,m}j_k=\sum\limits_{k=1,\cdots,n}k$,有:
+            $$C^c\begin{pmatrix}1 & 2 & \cdots & m \\ j_1 & j_2 & \cdots & j_m\end{pmatrix}=(-1)^{\sum\limits_{k=1,\cdots,m}(k+j_k)+\sum\limits_{k=1,\cdots,n-m}(k+i_k)+(n-m)}B\begin{pmatrix}j_1 & j_2 & \cdots & j_m \\ 1 & 2 & \cdots & m\end{pmatrix}$$
+            代入上式,定理得证.
+            \paragraph{}而对于$AB$的第$i,j$元$c_{ij}=\sum\limits_{k=1,\cdots,n}a_{ik}b_{kj}$,
+            $$AB\begin{pmatrix}i_1 & i_2 & \cdots & i_r \\ j_1 & j_2 & \cdots & j_r\end{pmatrix}=
+                \begin{pmatrix}
+                    a_{i_11}&a_{i_12}&\cdots&a_{i_1n}\\ 
+                    a_{i_21}&a_{i_22}&\cdot&a_{i_2n}\\ 
+                    \vdots&\vdots&\ddots&\vdots\\ 
+                    a_{i_r1}&a_{i_r2}&\cdots&a_{i_rn}\\ 
+                \end{pmatrix}
+                \begin{pmatrix}
+                    b_{1j_1}&b_{1j_2}&\cdots&b_{1j_r}\\ 
+                    b_{2j_1}&b_{2j_2}&\cdots&b_{2j_r}\\ 
+                    \vdots&\vdots&\ddots&\vdots\\ 
+                    b_{nj_1}&b_{nj_2}&\cdots&b_{nj_r}\\ 
+                \end{pmatrix}$$
+            后者即两余子式相乘,故定理推广得证.
+        \end{proof}
+        \paragraph{}最后,补充定理的一个应用: 
+        \begin{theorem}[Cauchy恒等式]
+            对于四个n个数的数组(也可视为n维列向量)$a_i,b_i,c_i,d_i$:
+            $$(\sum_{1\leq i\leq n} a_ic_i)(\sum_{1\leq i\leq n} b_id_i)-(\sum_{1\leq i\leq n} a_id_i)(\sum_{1\leq i\leq n} b_ic_i)=\sum_{1\leq j<k\leq n}(a_jb_k-a_kb_j)(c_jd_k-c_kd_j)$$
+        \end{theorem}
+        \begin{proof} 
+            $$\begin{array}{ll}LHS
+            &=\begin{vmatrix} \sum\limits_{1\leq i\leq n} a_ic_i &\sum\limits_{1\leq i\leq n} b_id_i \\ \sum\limits_{1\leq i\leq n} a_id_i & \sum\limits_{1\leq i\leq n} b_ic_i\\ \end{vmatrix}
+            =\left|\begin{pmatrix}a_1 & a_2 & \cdots & a_n \\ b_1 & b_2 & \cdots & b_n\end{pmatrix}\begin{pmatrix}c_1 & d_1 \\ c_2 & d_2 \\ \vdots & \vdots \\ c_n & d_n \end{pmatrix}\right| \\ 
+            &=\sum\limits_{1\leq j<k\leq n} \begin{vmatrix} a_j&a_k\\ b_j&b_k\\ \end{vmatrix}\begin{vmatrix} c_j&c_k\\ d_j&d_k\\ \end{vmatrix} 
+            =RHS \end{array}$$
+        \end{proof}
+        当$a_i=c_i,b_i=d_i$时,得到Lagrange恒等式,由此可显然得到$n$维的Cauchy-Schwarz不等式.
+        \subsection{满秩分解}
+        对于任意矩阵$A_{m\times n}(\rank~A=r\leq\min\{m,n\})$,始终存在矩阵$B_{m\times r},C_{r\times n}(A=BC,\rank~B=\rank~C=r)$.
+        \begin{proof}\mbox{}\begin{enumerate}
+            \item 取$A$的等价标准型的分解:$$PAQ=\begin{pmatrix} I_r&O\\ O&O\\ \end{pmatrix}\Rightarrow 
+            A=P^{-1}\begin{pmatrix} I_r\\ O \end{pmatrix}\begin{pmatrix} I_r&O \end{pmatrix}Q^{-1}=BC$$
+            \item 取$A$行向量组的一组极大线性无关组$\alpha_1,\alpha_2,\cdots,\alpha_r$,故:
+            $$A=\begin{pmatrix} k_{11}\alpha_1+k_{12}\alpha_2+\cdots+k_{1r}\alpha_r\\ k_{21}\alpha_1+k_{22}\alpha_2+\cdots+k_{2r}\alpha_r\\ \vdots \\ k_{m1}\alpha_1+k_{m2}\alpha_2+\cdots+k_{mr}\alpha_r \end{pmatrix}
+            =\begin{pmatrix} k_{11}&k_{12}&\cdots&k_{1r}\\ k_{21}&k_{22}&\cdots&k_{2r}\\ \vdots&\vdots&\ddots&\vdots \\ k_{m1}&k_{m2}&\cdots &k_{mr}\\ \end{pmatrix}
+            \cdot \begin{pmatrix} \alpha_1\\ \alpha_2\\ \vdots \\ \alpha_r \\ \end{pmatrix}
+            =BC$$
+        \end{enumerate}\end{proof}
+        \subsection{LU-分解}%p214
+        \subsection{关于秩和分块矩阵的结论}%4.5例题和习题
+        \begin{corollary}\mbox{}\begin{enumerate}
+            \item $\rank~(A+B)\leq \rank~A+\rank~B$
+            \item $\rank~AB\leq\min\{\rank~A,\rank~B\}$
+            \item $(A_{m\times s}B_{s\times n}=0)\Rightarrow (\rank~A+\rank~B\leq n)$
+            \item $\rank~AA^T=\rank~A^TA=\rank~A$
+            \item $\dim~W_A+\rank~A=n$
+            \item $A_{m\times s}B_{s\times n}=0\Rightarrow \rank~A+\rank~B\leq s$
+            \item (幂等矩阵)$(A^2=A)\Leftrightarrow(\rank~A+\rank(I-A)=n)$
+            \item (对合矩阵)$(A^2=I)\Leftrightarrow(\rank~(I+A)+\rank(I-A)=n)$
+            \item (Sylvester公式)$\rank~A+\rank~B-\rank~AB\leq n$
+            \item (Frobenius公式)$\rank~AB+\rank~BC\leq \rank~B+\rank~ABC$
+            \item $A\in M_n$:$$\rank~A^*=\left\{\begin{array}{ll} n&\rank~A=n\\ 1&\rank~A=n-1\\ 0&\rank~A<n-1\\ \end{array}\right.$$
+            \item $A\in M_n(n\geq 2), (A^*)^*=\left\{\begin{array}{ll}|A|^{n-2}A&n\geq 3\\ A&n=2\end{array}\right.$
+            \item $\forall A\in M_n \forall k\in \mathbb{N}(\rank~A^n=\rank~A^{n+k})$
+            \item $\rank~A=1\Rightarrow A^2=kA(A\in \mathbb{F})$
+        \end{enumerate}\end{corollary}
+        \begin{proof}\mbox{}\begin{enumerate}%P199
+                \item 实际上由于矩阵$A$和$B$的列向量组$\{\alpha_1,\cdots,\alpha_n\},\{\beta_1,\cdots,\beta_n\}$都作为基,必能线性表出$\{\alpha_1+\beta_1,\cdots,\alpha_n+\beta_n\}$,后者即$A+B$.也即,在基相加之后使得其中一部分基不再线性无关,秩减小了,因此有$$\rank~(A+B)=\rank\{\alpha_1+\beta_1,\cdots,\alpha_n+\beta_n\}\leq \rank\{\alpha_1,\cdots,\alpha_n,\beta_1,\cdots,\beta_n\}=\rank~A+\rank~B$$,得证.
+                \item[6.] 将其看作方程组$AX=0$,其中$X$即$B$的所有列向量,故由上一个性质,$\rank~B\leq \dim~W=n-\rank~A$,得证.
+                \item[7.] $A^2=A\Leftrightarrow A(I-A)=0$,视其为线性方程组的解,立得.\\ 也可由$$\begin{pmatrix}A&O\\ O&I-A\\ \end{pmatrix}\simeq \begin{pmatrix}A-A^2&O\\ O&I\\ \end{pmatrix}$$得到.
+                \item[9.] 即证:$$n+\rank~AB\geq \rank~A+\rank~B$$\\ 
+                    我们已经有显然的一个结论:$$\rank~\begin{pmatrix}A&B\\ O&C\\\end{pmatrix}\geq \rank~\begin{pmatrix}A&O\\ O&C\\\end{pmatrix}=\rank~A+\rank~C$$ 
+                    所以即证$$\begin{pmatrix}I_n&O\\ O&AB\\ \end{pmatrix}\simeq \begin{pmatrix}A&*\\ O&B\\ \end{pmatrix}$$
+                    此式在分块矩阵的初等变换下是易证的.
+                \item[11.] $A^*$是由$A$的代数余子式$(n-1$阶子式)的一个排列定义的,所以我们应该将$\rank~A=n-1$时特别看待.在其他两种情况下,这是显然的————$|A|\neq 0\Leftrightarrow |A^*|\neq 0$.\\ 而在$\rank~A=n-1$时存在一个$n-1$阶子式不为0,故$A^*\neq 0$.但$AA^*=|A|I=0$,由性质5.6,$\rank~A^*\leq n-\rank~A=1$,得证.
+        \end{enumerate}\end{proof}
+        
+        \newpage
+        \section{Orthogonal Matrix(正交矩阵)}
+        \subsection{定义和基本性质}
+        \begin{definition}
+            若$A\in M_n(\mathbb{R})(AA^T=A^TA=I)$,称A为正交矩阵.
+        \end{definition}
+        \begin{corollary}[正交矩阵的基本性质]
+            \begin{enumerate}
+                \item $A^{-1}=A^T$
+                \item $AA^T=BB^T=I\Rightarrow (AB)(AB)^T=I$
+                \item $A^i(A^j)^T=A_i^TA_j=\delta_{ij}$(这里的上下标是行列向量的指标,右端为Kronecker符号)
+                \item A的行/列向量组是$\mathbb{R}^n$上的一个标准正交基(由第三条易证)
+                \item 若A是上三角矩阵,则A为对角矩阵,且$A_{ij}=\pm \delta_{ij}$
+                \item 若A实对称,T正交,则$T^{-1}AT$实对称
+            \end{enumerate}
+        \end{corollary}
+        \subsection{基本定理和应用}
+        \begin{theorem}[Gram-Schmidt Orthogonalization]
+            对于线性空间$V$中的任意一个基$(\alpha_1,\cdots,\alpha_n)$,总存在一个等价的正交基$(\beta_1,\cdots,\beta_n)$及其标准化的正交基$(\epsilon_1,\cdots,\epsilon_n)$,且$\Span(\alpha_1,\cdots,\alpha_j)=\Span(\beta_1,\cdots,\beta_j)=\Span(\epsilon_1,\cdots,\epsilon_j)$.\\ 
+            令$\epsilon_j=\dfrac{\beta_j}{||\beta_j||}$,有:$$\beta_j=\alpha_j-\sum_{i=1,\cdots,j-1}\frac{\left<\alpha_j,\beta_i\right>}{\left<\beta_i,\beta_i\right>}\beta_i=\alpha_j-\sum_{i=1,\cdots,j-1}\left<\alpha_j,\epsilon_i\right>\epsilon_i$$当$j=1$时$\beta_1=\alpha_1$.容易验证,$\left<\beta_i,\beta_j\right>=0$.\\ 
+            其标准正交基,有:$$\epsilon_j=\frac{\beta_j}{||\beta_j||}=\frac{\alpha_j-\sum_{i=1,\cdots,j-1}\left<\alpha_j,\epsilon_i\right>\epsilon_i}{||\alpha_j-\sum_{i=1,\cdots,j-1}\left<\alpha_j,\epsilon_i\right>\epsilon_i||}$$
+        \end{theorem}
+        \begin{theorem}[QR-分解]
+            $A\in M_{m\times n}(m>n)$中的列向量组$(\alpha_1,\cdots,\alpha_n)$线性无关,则其可被唯一分解为$$A_{m\times n}=Q_{m\times n}R_{n\times n}$$
+            其中$Q$是列向量组为正交单位向量组的矩阵,$R$为主对角元为整数的上三角矩阵.\\ $A\in M_n$可逆时,$Q$即为单位正交矩阵.
+        \end{theorem}
+        \begin{proof}
+            $$\begin{array}{rcl}
+                A&=&(\alpha_1,\cdots,\alpha_n)\\ &=&
+                (\beta_1,\cdots,\beta_n)\begin{pmatrix}
+                1&b_{12}&\cdots&b_{1n}\\ 
+                0&1&\cdots&b_{2n}\\ 
+                \vdots&\vdots&\ddots&\vdots\\ 
+                0&0&\cdots&1\\ 
+                \end{pmatrix}\\ &=&
+                (\epsilon_1,\cdots,\epsilon_n) \begin{pmatrix}
+                ||\beta_1||&0&\cdots&0\\ 
+                0&||\beta_2||&\cdots&0\\ 
+                \vdots&\vdots&\ddots&\vdots\\ 
+                0&0&\cdots&||\beta_n||\\ 
+            \end{pmatrix}\begin{pmatrix}
+                1&b_{12}&\cdots&b_{1n}\\ 
+                0&1&\cdots&b_{2n}\\ 
+                \vdots&\vdots&\ddots&\vdots\\ 
+                0&0&\cdots&1\\ 
+            \end{pmatrix}\\ &=&
+            (\epsilon_1,\cdots,\epsilon_n) \begin{pmatrix}
+                ||\beta_1||&b_{12}||\beta_1||&\cdots&b_{1n}||\beta_1||\\ 
+                0&||\beta_2||&\cdots&b_{2n}||\beta_2||\\ 
+                \vdots&\vdots&\ddots&\vdots\\ 
+                0&0&\cdots&||\beta_n||\\ 
+            \end{pmatrix}\\ &=&QR
+            \end{array}$$
+            其中$$b_{ij}=\frac{\left<\alpha_j,\beta_i\right>}{\left<\beta_i,\beta_i\right>}(i=1,\cdots,j-1;j=1,\cdots,n),\epsilon_j=\frac{\beta_j}{||\beta_j||}$$
+            唯一性易证,略去.
+        \end{proof}
+		这个定理实际上说明了,在对任意一个矩阵的列向量组做正交化过程中,相当于使其右乘一个上三角矩阵.
+        \begin{corollary}[正交矩阵的部分性质]\begin{enumerate}\mbox{}
+                \item 考虑上述的QR-分解,线性方程组$A^TA\mathbf{X}=A^T\mathbf{\beta}(\mathbf{\beta}\in \mathbb{R}^m)$的唯一解为$\mathbf{X}=R^{-1}Q^T\mathbf{\beta}$
+                \item 所有二阶正交矩阵的形式为:$$\det~A=\pm 1\Leftrightarrow \begin{pmatrix}\cos~\theta&\mp \sin~\theta\\ \sin~\theta&\pm \cos~\theta\\ \end{pmatrix},\theta \in \mathbb{R}$$
+                \item $A\in M_n(\mathbb{R}),(|A|=\pm 1 \lor (n\geq 3,~A\neq 0)),(a_{ij}=A_{ij})\Leftrightarrow (AA^T=I)$
+                \item $\forall \alpha\in\mathbb{R}^n\forall A\in M_n (AA^T=I\Rightarrow ||A\alpha||=||\alpha||)$
+                \item 对R上n阶矩阵,正交矩阵、对称矩阵和对合矩阵中任意两个条件可推出第三个.
+                \item 对于任意n阶正交矩阵A,取定任意两行/列,其上的所有二阶子式的平方和为1.
+        \end{enumerate}\end{corollary}
+        \begin{proof}\begin{enumerate}
+                \item 由Q是正交矩阵,即$Q^TQ=I$,故$A^TA(R^{-1}Q^T\beta)=(QR)^T(QR)(R^{-1}Q^T\beta)=A^T\beta$,而$\rank~A^TA=\rank~A=n$,故其只有唯一解,得证.
+                \item[3.] $|A|=\pm 1$时,$$A^T=A^{-1}=\frac{A^*}{|A|}\Leftrightarrow a_{ij}=\frac{A^*_{ji}}{|A|}=\frac{A_{ij}}{|A|}$$\\ $(n\geq 3,~A\neq 0$时,
+                \item[6.] $$\sum_{1\leq j_1<j_2\leq n} \left[A\begin{pmatrix} i_1 & i_2 \\ j_1 & j_2\end{pmatrix}\right]^2=\sum_{1\leq j_1<j_2\leq n}\left[A\begin{pmatrix} i_1 & i_2 \\ j_1 & j_2\end{pmatrix}A^T\begin{pmatrix} j_1 & j_2 \\ i_1 & i_2\end{pmatrix}\right]=AA^T\begin{pmatrix} i_1 & i_2 \\ i_1 & i_2\end{pmatrix}=1$$
+        \end{enumerate}\end{proof}
+        \section{Generalized Inverse Matrix(广义逆)}%5.2
+        \subsection{普通的广义逆}
+        广义逆一些具有逆矩阵部分性质的矩阵,在计算应用有作用.
+        \begin{definition}[普通的广义逆]
+            对于数域$\mathbb{F}$上的$m\times n$阶矩阵$A$,称任意符合条件$$AXA=A$$的$n\times m$阶矩阵$X$为$A$的广义逆,并记为$A^-$.
+        \end{definition}
+        不难看出,广义逆一般不唯一.
+        \begin{proof}
+            若$\rank(A)=r\leq \min\{m,n\}$,则通过初等变换有$PAQ=\begin{pmatrix} I_r&O \\ O&O \\ \end{pmatrix}$.\\ 
+            取$X=Q\begin{pmatrix} I_r&B \\ C&D \\ \end{pmatrix}P=A^-$,则可满足定义式,其中$B,C,D$均为适当大小矩阵.\\
+            \end{proof}
+        $\rank(A^-)=k$时,可知$\rank(D)=k-r$,故:$$\rank(A)\leq\rank(A^-)\leq\min\{m,n\}$$.
+        而$A$可逆时,可知$P=Q=I$,故广义逆唯一且$A^-=A^{-1}$.
+        且有如下性质:
+        \begin{corollary}[广义逆的性质]\mbox{}
+            \begin{enumerate}
+                \item $(A^T)^-=(A^-)^T$
+                \item $(\lambda A)^-=\lambda^{-1}A^-(\lambda\neq 0)$
+                \item P,Q满秩时,$(PAQ)^-=Q^{-1}A^-P^{-1}$
+                \item $\rank(A)=\rank(AA^-)=\rank(A^-A)$
+                \item $\rank(A)\leq\rank(A^-)\leq\min\{m,n\}$
+            \end{enumerate}
+        \end{corollary}
+        \subsection{Moore-Penrose逆}
+        \begin{definition}[Moore-Penrose逆]
+            对于复数域$\mathbb{C}$上的$m\times n$阶矩阵$A$,称任意符合条件
+            $$AXA=A;\qquad XAX=X;\qquad (AX)^H=AX;\qquad (XA)^H=XA$$
+            的$n\times m$阶矩阵$X$为$A$的\textbf{Moore-Penrose逆},并记为$A^+$.
+        \end{definition}
+        任意矩阵均有唯一的Moore-Penrose逆:
+        \begin{theorem}
+            对任意复矩阵$A$的满秩分解$A=BC$(即$B$和$C$的$\rank$),有:
+            $$A^+=C^T(CC^H)^{-1}(B^HB)^{-1}B^H$$
+            当$A$可逆时,$A^+=A^{-1}$
+        \end{theorem}
+        故不加证明的给出下列性质:
+        \begin{corollary}[Moore-Penrose逆的性质]\mbox{}
+            \begin{enumerate}
+                \item $(A^+)^+=A$
+                \item $A^+=A^H(AA^H)^+=(A^HA)^+A^H$
+                \item $(AA^H)^+=(A^H)^+A^+=(A^+)^HA^+$
+                \item $(A^HA)^+=A^+(A^H)^+=A^+(A^+)^H$
+            \end{enumerate}
+        \end{corollary}
+        \subsection{广义逆在解方程中的应用}
+        对于任意有解/相容的(consistent)矩阵方程$\mathbf{AX=B}$,有:
+        $$\mathbf{X}=A^-B+(I-A^-A)W$$
+        其中$W$为任意$n\times m$阶矩阵.$B\neq O$时,$\mathbf{X}=A^-B$.\\
+        由于$\{A^+\}\in \{A^-\}$,其对$A^+$同样有效.
+        而对任意(甚至无解的)线性方程组,若$$\exists \mathbf{x_0}\forall \mathbf{x(||Ax_0-B||\leq ||Ax-B||)}$$
+        则称$\mathbf{x_0}$为方程的一个\textbf{最小二乘解},其在有解方程组中即为解.\\ 
+        而最小二乘解一般不唯一,我们不加证明的给出结论:
+        $$\min_{x\in x_0}{||x||}=||A^+B||$$
+        故$A^+B$被称为\textbf{最佳最小二乘解}.
+        \section{Character Value and Character Vector}
+        \subsection{定义与基本性质}
+        \begin{definition}[特征值和特征向量]
+            $A\in M_n(K),\exists \alpha \in K^n~:$$$A\alpha =\lambda_0\alpha,~\lambda_0\in K$$,则称$\lambda_0$是A的一个特征值,$\alpha$是A的属于$\lambda_0$的特征向量.
+            \end{definition}
+        下列描述是等价的,都是刻画特征值和特征向量的手段:
+        \begin{enumerate}
+            \item $\lambda_0$是A的一个特征值,$\alpha$是A的属于$\lambda_0$的特征向量
+            \item $A\alpha =\lambda_0\alpha,\lambda_0\in K$
+            \item $\lambda_0$是$|\lambda_0I-A|=0$在K中的一个根,$\alpha$是齐次线性方程组$(\lambda_0I-A)\mathbf{X}=0$的一个解
+        \end{enumerate}
+        将上式变形,可得到:
+            $$\lambda I-A=\begin{pmatrix}
+                \lambda-a_{11}&-a_{12}&\cdots &-a_{1n}\\ -a_{21}&\lambda-a_{22}&\cdots &-a_{2n}\\\vdots&\vdots&\ddots &\vdots\\-a_{n1}&-a_{n2}&\cdots &\lambda-a_{nn}
+            \end{pmatrix}$$
+            其为A的特征矩阵,$\det~(\lambda I-A)$为其特征多项式,其所有根即为A的所有特征值.
+        显然,每个特征值所对应的特征向量的集合(或是线性空间)都是有限个一维不变子空间的直和,我们称其为$A$属于$\lambda_j$的特征子空间.
+        \begin{definition}[重数]
+            对存在特征值的矩阵$A$中某特征值$\lambda_j$,称\\ 其几何重数为其特征子空间的维数$\dim~V_{\lambda_j}$,\\ 
+            其代数重数为其特征多项式的根中$\lambda_j$的重根数,即其特征多项式中$(\lambda-\lambda_j)$的次数
+        \end{definition}
+        \subsection{基本定理和结论}
+        接下来叙述一些比较重要的结论:
+        \begin{theorem}
+            特征值不同的非零特征向量之间线性无关.
+        \end{theorem}
+        由此,矩阵$A$的特征值数量不超过$\rank~A$个.
+        \begin{theorem}
+            特征值的几何重数不超过其代数重数.
+        \end{theorem}
+        \begin{theorem}
+            $A\in M_n(K)$的特征多项式$|\lambda I-A|$是一个n次多项式,且
+            \begin{eqnarray*}
+                f(\lambda)&=&\sum_{k=0,\cdots,n} (-1)^k c_k\lambda^{n-k}\\ 
+                c_0&=&1\\ 
+                c_k&=&\sum_{1\leq i_1<\cdots<i_k\leq n} \det\left[A\begin{pmatrix}i_1 & i_2 & \cdots & i_k \\ i_1 & i_2 & \cdots & i_k\end{pmatrix}\right] \\ 
+            \end{eqnarray*}
+            $c_k$即矩阵中所有k阶主子式的和.\\ 
+            特别的,$\lambda^{0}$和$\lambda^{n}$的系数分别为$(-1)^k|A|$和1.
+        \end{theorem}
+        \begin{proof}
+            将行列式中的每一行分解为:$$(-a_{i1},\cdots,-a_{i,i+1},\lambda-a_{ii},-a_{i,i+1},\cdots,-a_{in})=(0,\cdots,\lambda,\cdots,0)+(-a_i1,\cdots,-a_{in})$$
+            则可得到$2^n$个分解式,其中行列式最高项为$k$的式有$C^k_n$个,其第$i_1,\cdots,i_k$列为$(\lambda\epsilon_{i_1},\cdots,\lambda\epsilon_{i_k})$,其他的第$i'_1,\cdots,i'_{n-k}$列为$(-\alpha_1,\cdots,-\alpha_{n-k})$.
+            其中$1\leq i_1<\cdots<i_k\leq n,~1\leq i'_1<\cdots<i'_{n-k}\leq n,~\{i_1,\cdots,i_k\}\cup\{i'_1,\cdots,i'_{n-k}\}={1,\cdots,n}$\\ 
+            利用Laplace定理,我们对第$i_1,\cdots,i_k$列展开,得:
+            $$(-1)^{(i_1,\cdots,i_k)+(i_1,\cdots,i_k)}(-A)\begin{pmatrix}i'_1 & i'_2 & \cdots & i'_{n-k} \\ i'_1 & i'_2 & \cdots & i'_{n-k}\end{pmatrix}\lambda^k=(-1)^kA\begin{pmatrix}i_1 & i_2 & \cdots & i_{n-k} \\ i_1 & i_2 & \cdots & i_{n-k}\end{pmatrix}\lambda^k$$
+            得证.
+        \end{proof}
+        \begin{corollary}[特征值的结论]\begin{enumerate}\mbox{}%P281
+            \item 幂零矩阵的特征值有且仅有0
+            \item 幂等矩阵的特征值有:$$\lambda(A)=\left\{\begin{array}{ll}
+                0&\rank~A=0\\ 1,0&0<\rank~A<n\\ 1&\rank~A=n\\ 
+            \end{array}\right.$$
+            \item 可逆矩阵的特征值不为0；$|A|=0\Leftrightarrow A$有特征值为0
+            \item 若$\lambda$为$A$的一个$l$重特征值,那么$\lambda^{-1}$是$A^{-1}$的$l$重特征值,$k\lambda$是$kA$的$l$重特征值,$\lambda^m$是$A^m$的至少$l$重特征值.%P275
+            \item 对合矩阵和有特征值的正交矩阵 的特征值为-1或1.\\且对$n$阶正交矩阵$A$有:$$\left\{\begin{array}{lll}
+                |A|=-1&\Rightarrow&\text{-1为其一个特征值}\\
+                |A|=1\land n\text{~is~odd}&\Rightarrow&\text{1为其一个特征值}\\
+                |A|=1\land n\text{~is~even}&\Rightarrow&\text{若存在特征值,则1为其中一个}\\
+            \end{array}\right.$$
+            \item 两矩阵的左右乘（若均存在）的特征多项式相同,非零特征值（及其重数）相等.\\ 若$\alpha$是$AB$中属于$\lambda_0$的特征向量,则$B\alpha$是$BA$中属于$\lambda_0$的特征向量.
+            \item 元素全为1的方阵的特征值为n和0,重数分别为1和n-1
+            \item 对于有限阶多项式$f(x)\in \mathbf{P}(K)$:若矩阵$A$存在其特征值$\lambda_0$,及其上的特征向量$\alpha$,则在矩阵$f(A)$上有特征值$f(\lambda_0)$,$\alpha$为其上的特征向量.
+            \item $\mathbb{C}$上周期为n的周期矩阵和n阶循环移位矩阵$C$的全部特征值为全部n次单位根$1,\xi^1,\cdots,\xi^{n-1}$\\ 循环矩阵$A=a_1I+a_2C+\cdots+a_nC^{n-1}=f(C)$在复数域上的特征值为$f(1),f(\xi^1),\cdots,f(\xi^{n-1})$,且$$|A|=\prod_{i=1,\cdots,n}f(\xi^i)$$
+            \item Frobenius矩阵的特征多项式为$$|\lambda I-A|=\sum_{i=0,\cdots,n}a_i\lambda^i~(a_n=1)$$,其属于特征值$\lambda_i$的特征向量为$(\lambda_i^0,\lambda_i^1,\cdots,\lambda_i^{n-1})^T$
+        \end{enumerate}\end{corollary}
+        \begin{proof}\mbox{}\begin{enumerate}
+                \item[2.] 若幂等矩阵A有特征值$\lambda$,则由$A\alpha=\lambda\alpha,~A^2\alpha=A\lambda\alpha=\lambda^2\alpha$,故$\lambda-\lambda^2=0\Rightarrow\lambda=0~$or~1.\\ 
+                    下证存在性:零秩和满秩(即$A=I$)时易证,而$0<\rank~A<n$时由结论$\rank~(I-A)+\rank~A=n$可知$|I-A|=|A|=0$,对应项一致,得证.
+                \item[4.] 暂缺
+                \item[5.] 暂缺
+                \item[9.] 暂缺
+                \item[10.] 暂缺%P279
+        \end{enumerate}\end{proof}
+        \section{Similar Matrix and Trace}
+        \begin{definition}[相似矩阵和可对角化]\mbox{}
+            对K上的n阶矩阵$A$和$B$,若存在一n阶可逆矩阵$P$使得$$P^{-1}AP=B$$成立,则称A和B相似,记为$A\sim B$.\\ 
+            当$P$为正交矩阵时,关系被称为正交相似.\\
+            相似关系是$M_n(K)$上的一个等价关系,其等价类被成为相似类.\\
+            若某矩阵相似于一对角矩阵,则称之可对角化
+        \end{definition}
+        \begin{definition}[迹]
+            $A\in M_n,\tr~A:=\sum a_{ii}$
+        \end{definition}
+        \begin{property}[相似矩阵和迹的基本性质]\begin{enumerate}\mbox{}
+            \item $A\sim B\Rightarrow kA\sim kB,~A^T\sim B^T$
+            \item $A_1\sim B_1,~A_2\sim B_2\Rightarrow $ \\ $(A_1+A_2)\sim(B_1+B_2), (A_1A_2)\sim(B_1B_2), A^m_1\sim B^m_1,\begin{pmatrix}A_1&O\\ O&A_2\\\end{pmatrix}\sim \begin{pmatrix}B_1&O\\ O&B_2\\\end{pmatrix}$
+            \item A可逆,则$AB\sim BA$
+            \item $A\sim B\Rightarrow \det~A=\det~B,~\rank~A=\rank~B,~\tr~A=\tr~B$
+            \item $\tr~(A+B)=\tr~A+\tr~B,~\tr~(kA)=k~\tr~A,\tr~(AB)=\tr~(BA)$
+        \end{enumerate}\end{property}
+        \begin{corollary}\begin{enumerate}\mbox{}
+            \item 对称矩阵只和对称矩阵相似
+            \item 幂等矩阵只和幂等矩阵相似
+            \item 对合矩阵只和对合矩阵相似
+            \item 幂零矩阵只和幂零矩阵相似,且幂零指数相同.
+            \item 可对角矩阵相似于其转置.
+            \item 若A不相似于其他矩阵,则其为数量矩阵.
+            \item 幂等矩阵的秩和迹相等.
+            \item 实对称矩阵间的相似和正交相似等价.
+            \item 相似矩阵的特征多项式和特征值（及其重数）相等
+            \item $[A,B]=A\Rightarrow A$不可逆,且$\tr~A^k=0,k\in \mathbb{N}$\\ $n=2$时,$A^2=0$.
+            \item 若$A\sim B$,取定某一使$P_0B=AP_0$成立的$P_0$,$$\{P|PB=AP\}=\{SP_0|SA=AS\}$$
+        \end{enumerate}\end{corollary}
+        \begin{proof}
+            
+        \end{proof}
+        \section{Diagonalize(对角化)}
+        \subsection{可对角化矩阵}
+        \begin{theorem}[可对角化的充要条件]\mbox{}
+            矩阵A可对角\\
+            $:=~A\sim \mathrm{diag}(\lambda_1,\cdots,\lambda_n)$\\ 
+            $\Leftrightarrow~$存在$K^n$的一个基$(\alpha_i)$和$K$上$n$个数$(\lambda_i)$,恒成立$$A\alpha_i=\lambda_i\alpha_i~(i=1,\cdot,n)$$\\ 
+            $\Leftrightarrow~$A有$n$个线性无关的特征向量$(\alpha_1,\cdots,\alpha_n)$\\
+            $\Leftrightarrow~$A所有特征值在$K$中,且其两重数相等\\
+            此时向量组的矩阵$P=(\alpha_1,\cdots,\alpha_n)$有:$$P^{-1}AP=\mathrm{diag}(\lambda_1,\cdots,\lambda_n)$$
+            后者被称为$A$的相似标准形.
+        \end{theorem}
+        \begin{proof} 
+            $A\sim B=\mathrm{diag}(\lambda_1,\cdots,\lambda_n)\Leftrightarrow AP=PB$,即\\ 
+            $(A\alpha_1,\cdots,A\alpha_n)=(\lambda_1\alpha_1,\cdots,\lambda_n\alpha_n)$,而P可逆,故其列向量组线性无关.故得证.
+        \end{proof}
+        \begin{corollary}[矩阵的可对角性]\begin{enumerate}\mbox{}%P285
+                \item 任意复矩阵均可对角化
+        \end{enumerate}\end{corollary}
+        \subsection{实对称矩阵、正交相似和可对角化}
+        实对称矩阵在可对角化矩阵中有特殊地位,而且在这个过程中,正交相似关系有着独特作用,下面我们来阐述.
+        \begin{theorem}\label{Skew-Diag}
+            实矩阵$A$对称$\Leftrightarrow~A$正交相似于对角矩阵$\Leftrightarrow~A$可对角化
+        \end{theorem}
+        这个定理实际上也说明了,实对称矩阵中的正交相似和相似关系是等价的.
+        \begin{proof}\mbox{}
+            由正交矩阵的基本性质6可知,实对称矩阵与且只与实对称矩阵正交相似,即:正交相似在实对称矩阵中划分了等价类.而对角矩阵是实对称矩阵的子集,且不同的对角矩阵必不相似(证明略),故可认为对角矩阵为正交相似关系的商空间中的代表元.而正交相似是相似的充分条件,所以顺推得证.而由相似矩阵的推论可知,两相似矩阵的特征值相同,设其为$\lambda_1,\cdots,\lambda_m$,故两者均正交相似于$\mathrm{diag}(\lambda_1,\cdots,\lambda_m)$,即其相似标准形,定理得证.
+        \end{proof}
+        在上述证明过程中,所有实对称矩阵由（正交）相似关系所划分的等价类中相似标准形和特征值（及其重数）相同,故可以认为,这两者都是实对称矩阵的相似关系中的完全不变量.
+        \begin{corollary}[可对角化实矩阵]\begin{enumerate}\mbox{}
+            \item 实对称矩阵可对角化/实对称矩阵有n个特征值,且都是实数
+            \item 实对称矩阵中属于不同特征值的特征向量正交
+            \item 任意实矩阵和其转置的积$AA^T$的特征值均为非负实数
+            \item 可对角化实矩阵必正交相似于三角矩阵
+            \item 对可对角化实矩阵$A$若成立$AA^T=A^TA$,则其对称
+            \item 实斜称矩阵的复特征值的实部均为0
+            \item 主对角元为1的实矩阵的复特征值为非负实数,则$\det~A\leq 1$
+            \item 对于实斜称矩阵$A$,成立$$\begin{vmatrix}
+                2I_n&A\\ A&2I_n\\ 
+            \end{vmatrix}\geq 2^{2n}$$等号成立时当且仅当$A=0$
+        \end{enumerate}\end{corollary}
+        \begin{proof}\begin{enumerate}\mbox{}
+                \item 
+        \end{enumerate}\end{proof}
+        \paragraph{实对称矩阵的对角化}实对称矩阵的相似标准形只需求得其所有特征值即可得到.令每个特征值$\lambda_j$对应的特征向量,即\\ 
+        $|\lambda_j I-A|=0$的根为$\alpha_{j1},\cdots,\alpha_{jr_j}$,其Schmidt正交化得到$\eta_{j1},\cdots,\eta_{jr_j}$,则:\begin{eqnarray*}
+            T=(\eta_{11},\cdots,\eta_{1r_1},\cdots,\eta_{m1},\cdots,\cdots_{mr_m})\\ 
+            T^{-1}AT=\mathrm{diag}(\underbrace{\lambda_1,\cdots,\lambda_1}_{r_1},\cdots,\underbrace{\lambda_m,\cdots,\lambda_m}_{r_m})
+        \end{eqnarray*}
+        \section{Quadratic Form(二次型) and Congruence(合同)}
+        \subsection{Congruence}
+        \begin{definition}[二次型]
+            数域$K$上的$n$元\textbf{二次型}是指系数在$K$中的$n$个变量二次齐次多项式,其可被写为:
+            \begin{eqnarray*}
+                f(x_1,\cdots,x_n)&=&\sum_{i,j=1,\cdots,n} a_{ij}x_ix_j \\ 
+                &=&a_{11}x_1^2+2a_{12}x_1x_2+\cdots+2a_{1n}x_1x_n \\ 
+                &&+a_{22}x_2^2+2a_{23}x_2x_3+\cdots+2a_{2n}x_2x_n \\ 
+                &&+\cdots+a_{nn}x^2_n \\ 
+            \end{eqnarray*}
+        \end{definition}
+                其中$a_{ij}=a_{ji}$,即矩阵对称.
+        \begin{definition}[二次型矩阵]
+            \begin{eqnarray*}
+                f(x_1,\cdots,x_n)&=&X^TAX \\
+                X= \begin{pmatrix}
+                x_1\\ x_2\\ \vdots \\ x_n \\ 
+            \end{pmatrix},A&=& \begin{pmatrix}
+                a_{11}&a_{12}&\cdots&a_{1n}\\ 
+                a_{21}&a_{22}&\cdots&a_{2n}\\ 
+                \vdots&\vdots&\ddots&\vdots\\ 
+                a_{n1}&a_{n2}&\cdots&a_{nn}\\ 
+            \end{pmatrix}
+        \end{eqnarray*}
+            其中后者被称为二次型$f(x_1,\cdots,x_n)$的矩阵,其主对角元分别为$x_1^2,x_2^2,\cdots,x_n^2$的系数.
+            若对$n$阶可逆方阵$C$和$Y=\begin{pmatrix}
+                y_1\\ y_2\\ \vdots \\ y_n\\ 
+            \end{pmatrix}$,存在$$X=CY$$,则称$(x_1,\cdots,x_n)\to (y_1,\cdots,y_n)$的一个\textbf{非退化线性替换}.\\ 
+            若$C$为正交矩阵,则称此为\textbf{正交替换}.
+        \end{definition}
+        考虑存在这样的非退化线性替换$X=CY$使得$$X^TAX=(CY)^TACT=Y^T(C^TAC)Y$$令$B=C^TAC$,则$B$也为变量$y_1,\cdots,y_n$的一个二次型,故也有:
+        \begin{definition}[Congruence(合同)]
+            数域$K$上的$n$元二次型$X^TAX,Y^TBY$,若存在一个非退化线性替换$X=CY$使得$$X^TAX=Y^TBY$$则称两二次型等价,记为$X^TAX\cong Y^TBY$.\\ 
+            与之等价的:若存在一个可逆方阵使得$$C^TAC=B$$则称两矩阵合同,记为$A\simeq B$.\\ 
+            若二次型等价于某只含平方项的二次型$$\lambda_1y^2_1+\lambda_2y_2^2+\cdots+\lambda_ny^2_n$$,则称之为前者的\textbf{标准形}.\\ 
+            相应的,若某方阵合同于某一对角矩阵,则称之为前者的\textbf{合同标准形}.
+        \end{definition}
+        很显然,合同和等价(二次型的)关系和相似关系一样,都是等价关系,接下来我们揭示他们之间的关系.
+        \begin{theorem}
+            合同标准形的主对角元为方阵的所有特征值.
+        \end{theorem}
+        \begin{proof}
+            由定理\ref{Skew-Diag}易证之:二次型的矩阵必然对称,而对称矩阵均可对角化,且正交相似于其相似标准形.而正交矩阵的逆和转置相同,故正交相似的相似标准形必为合同标准形,得证:所有对称矩阵必然相似且合同于其相似标准形,且在这种情况下的线性替换必然是正交替换.作为推论,每个二次型都可以等价于一标准形.\\ 
+            需要注意的是,某实对称矩阵的相似标准形只有一个,且为合同标准形的真子集.\\ 
+        \end{proof}
+        最后,我们来定义二次型的秩:
+        \begin{definition}[二次型的秩]
+            二次型$X^TAX$的秩即等于其矩阵$A$的秩,也可以视为其标准形非0系数的个数.
+        \end{definition}
+        \begin{corollary}[]\begin{enumerate}\mbox{}
+            \item %P327 
+        \end{enumerate}\end{corollary}
+        \subsection{Sylvester's Law of Inertia(惯性定理)}
+        对于实对称矩阵$A$必存在一个合同标准形$$D=C^TAC=\mathrm{diag}(d_1,\cdots,d_n)$$使得$d_i=0\lor \pm 1$,其被称为$A$的\textbf{合同规范形},其对应的二次型$d_1x_1^2+d_2x_2^2+\cdots+d_nx_n^2$被称为规范形.\\ 
+        其中0,1,-1的个数分别记为$n_0,n_+,n_-$,被称为矩阵的零度$\dim(\ker~A)$,正惯性指数和负惯性指数.显然成立$$n_0+n_++n_-=n=n_0+\rank~A$$
+        而矩阵的符号差定义为$\mathrm{sgn}(A):=n_+-n_-$.\\ 
+        至于这种合同标准形的存在性是很显然的:取其相似标准形,令$|\lambda_i|^2 x_i^2=y_i^2$,得到这样的非奇异线性替换,即可得.\\ 
+        \begin{theorem}[惯性定理]下列叙述等价:
+            \begin{enumerate}
+                \item 实二次型的规范形唯一
+                \item 实对称矩阵的每个合同类的合同规范性唯一
+                \item 实对称矩阵的合同类中惯性指数不变
+            \end{enumerate}
+        \end{theorem}
+        \begin{proof}
+            这是不太难证明的:若存在两个不同的规范形
+            \begin{eqnarray*}
+                 X^TAT&=& d_1y_1^2+\cdots+d_py_p^2-d_{p+1}y_{p+1}^2-\cdots-d_ry_r^2 \\ 
+                 &=&d_1z_1^2+\cdots+d_qz_q^2-d_{q+1}z_{q+1}^2-\cdots-d_rz_r^2
+            \end{eqnarray*}
+            我们取前$p$个$y_i$分别为给定不全为零实数$k_i$.其他均为0,此时二次型显然为正,我们只需证明存在一个非奇异线性替换使得右端为非正.取最简单的情况:即前$q$个$z_j$为0,即使得:
+            $$g_{ij}y_i=z_j=0~(i=1,\cdots,p;j=1,\cdots,q)$$其中两下标$i,j$均为自由指标.这样的齐次线性方程组在$p<q$时存在非零解,使得那样的线性替换存在,这时右端非正,矛盾,因此$p\geq q$.同理,$p\leq q$.因此两者相等,即惯性指数相等.
+        \end{proof}
+        因此,在合同类内惯性指数是不变量,更完全决定了合同类的等价关系,类似于相似关系中的特征值.基于此,我们也可推论出:
+        \begin{corollary}
+            二次型间等价/实对称矩阵间合同$\Leftrightarrow$两者惯性指数相等$\Leftrightarrow$两者秩和正惯性指数均相等
+        \end{corollary}
+        对于复矩阵,显然其规范形中$d_i=0\lor 1$,故其正惯性系数即其秩,因此我们知道,两复对称矩阵合同等价于两者秩相等.
+        \subsection{Positive Definite(正定)}
+        \begin{definition}[(Semi-)Positive Definite and (Semi-)Negative Definite]\mbox{}
+            对于二次型$X^TAX$或矩阵$A$,对$\mathbb{R}^n$中任意列向量$\alpha$均成立$$\alpha^TA\alpha\left\{\begin{array}{c}>\\ \geq \\ \leq \\ <\\ \end{array}\right\}0$$
+                则称其为\textbf{正定/半正定/半负定/负定}的.
+        \end{definition}
+        这里符号的选取所得到的是对实对称矩阵的分类:我们只需要研究正定矩阵的性质,就能类似且显然的得到剩下的部分.
+        \begin{property}[正定矩阵的性质]
+            $n$阶实对称矩阵$A$为正定矩阵:
+            \begin{enumerate}
+            \item $\Leftrightarrow $ 二次型$X^TAX$正定
+            \item $\Leftrightarrow A $的正惯性指数为其阶数
+            \item $\Leftrightarrow A $合同于对角矩阵
+            \item $\Leftrightarrow A $特征值均正
+            \item $\Leftrightarrow A $满秩/非奇异
+            \item $\Leftrightarrow A $的合同类均为正定矩阵(也即同阶正定矩阵是一个合同类)
+            \item $\Leftrightarrow A $所有顺序主子式为正
+        \end{enumerate} \end{property}
+        需要注意的是,对于负定矩阵,最后一个性质有所不同:
+        \begin{property}
+            实对称矩阵负定$\Leftrightarrow$矩阵的奇数阶顺序主子式小于0,偶数阶顺序主子式大于0.
+        \end{property}
+        此性质由矩阵$-A$的正定性易证.
+\end{document}
+%Αα alpha  Ββ beta  Γγ gamma  Δδ delta  Εε epsilon  Ζζ zeta  Ηη eta  Θθ thet  Ιι iota  Κκ kappa  Λλ lambda  Μμ mu  Νν nu  Ξξ xi  Οο omicron  ∏π pi  Ρρ rho  ∑σ sigma  Ττ tau  Υυ upsilon  Φφ phi  Χχ chi  Ψψ psi  Ωω omega

@@ -1,0 +1,328 @@
+\documentclass{article}
+\usepackage{mathrsfs,color}
+\input{../newcommand.tex}
+\title{点集拓扑学作业}
+\author{章亦流}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{第一章作业}
+
+\paragraph{题1.2.4}$n\in \N^*$,对集族$\cbr{A_i}_{i=1}^n$有
+$$\bigcup_{i=1}^n A_i-\bigcap_{i=1}^n A_i=\bigcup_{i=1}^n(A_i-A_{i+1})$$
+其中认为$A_{n+1}=A_1$.
+\begin{proof}
+    首先,$\lhs=\bigcup_{i=1}^n A_i-\bigcap_{i=1}^n A_i=\bigcup_{i=1}^n \br{A_i-\bigcap_{j=1}^n A_j}=\bigcup_{i=1}^n\bigcup_{j=1}^n(A_i-A_j)=\bigcup_{i,j=1}^n (A_i-A_j)\supset \bigcup_{i=1}^n(A_i-A_{i+1})=\rhs$.
+
+    其次,注意到$A_i-A_j\subset (A_i-A_{i+1})\cup (A_{i+1}-A_j)$,这是因为$x\in A_i-A_j$时,若$x\in A_{i+1}$则$x\in A_{i+1}-A_j$,否则$x\in A_i-A_{i+1}$.
+
+    因此,$A_i-A_j\subset (A_i-A_{i+1})\cup \cdots \cup (A_{j-1}-A_j)=\bigcup_{k=i}^{j-1}(A_k-A_{k+1})\subset \rhs$,因此$\lhs=\bigcup_{i,j=1}^n(A_i-A_j)\subset \rhs$.
+
+    综上等式得证.
+\end{proof}
+
+\paragraph{题1.3.4}关系$R\subset X\times Y$,则$\forall A,B\subset X, R(A)\cap R(B)=R(A\cap B)$等价于$\forall x,y\in X, x\neq y, R(x)\cap R(y)=\emptyset$.
+\begin{proof}
+    $\implies$显然.$\impliedby$:首先需要注意到$$\bigcup_{a\in A}R(a)=R(A).$$
+    这是因为$y\in \bigcup_{a\in A}R(a)\iff \exists a\in A:aRy\iff y\in R(A)$.因此我们有
+    $$R(A)\cap R(B)=\br{\bigcup_{a\in A}R(a)}\cap\br{\bigcup_{b\in B}R(b)}=\bigcup_{(a,b)\in A\times B}(R(a)\cap R(b))=\bigcup_{\substack{(a,b)\in A\times B\\ a=b}}(R(a)\cap R(b))=R(A\cap B).$$
+    其中第2个等号用到了题1.6.1的第一个等式.
+\end{proof}
+
+\paragraph{题1.4.4}定义$\R$上关系$R=\cbr{(x,y)\in \R^2:x-y\in\Z}$,说明这是一个等价关系.
+\begin{proof}
+    自反性:$x-x=0\in\Z$;传递性:$xRy\land yRz\implies x-z=x-y+y-z\in\Z\implies xRz$.对称性:$x-y\in\Z\iff y-x=-(x-y)\in\Z$.
+\end{proof}
+
+\paragraph{题1.5.1}$f:X\to Y$,有(1)$\forall A\subset X, A\subset f\rev(f(A))$;(2)$\forall B\subset Y, B\supset f(f\rev(B))$;(3)$f$为满射$\iff B=f(f\rev(B))$.
+\begin{proof}
+    (1)$\forall a\in A: a\in \cbr{x\in X:f(x)=f(a)}=f\rev(f(a))\subset f\rev(f(A))$.
+
+    (2)$\forall x\in f\rev(B):f(x)\in B$,因此$f(f\rev(B))\subset B$.
+
+    (3)$f$满时,$\forall y\in B\exists x\in f\rev(B):y=f(x)\in f(f\rev(B))$,因此$B\subset f(f\rev(B))$,综上,两者相等.\\
+    另一方面,$f(f\rev(Y))=Y$,由$f\rev(Y)=X$有$f(X)=Y$,故$f$满.
+\end{proof}
+
+\paragraph{题1.5.2}$f:X\to Y, \forall A,B\subset X$,有下列条件等价:\\
+(1)$f$是单射;(2)$f(A\cap B)=f(A)\cap f(B)$;(3)$A=f\rev(f(A))$;(4)$f(X-A)=f(X)-f(A)$.
+\begin{proof}
+    (1)$\iff$(2):(同题1.3.4)注意到$x\neq y\implies f(x)\cap f(y)=\emptyset$等价于$f$是单射,而$f(A)\cap f(B)=f(A\cap B)$中令$A=\cbr{x},B=\cbr{y}$即有上式,因此得到$\implies$.反之,注意到$\bigcup_{a\in A}f(a)=f(A)$,其余过程同题1.3.4,得到$\impliedby$.
+
+    (1)$\implies$(3):$f$是单射,这等价于$\cbr{x}=\cbr{x'\in X:f(x')=f(x)}=f\rev(f(x))$.之后需要说明
+    $$f\br{\bigcup_{i\in I}A_i}=\bigcup_{i\in I}f(A_i),\qquad f\rev\br{\bigcup_{i\in I}B_i}=\bigcup_{i\in I}f\rev(B_i).$$
+    由于$f$和$f\rev$都是关系,因此仅需证明对关系$R\subset X\times Y$有$$R\br{\bigcup_{i\in I}A_i}=\bigcup_{i\in I}R(A_i).$$
+    注意到$y\in R\br{\bigcup_{i\in I}A_i}\iff \exists i\in I\exists x\in A_i:xRy\iff \exists i\in I:y\in R(A_i)\iff y\in \bigcup_{i\in I}R(A_i)$,得证.最后有
+    $$A=\bigcup_{x\in A}\cbr{x}=\bigcup_{x\in A}f\rev(f(x))=f\rev(f(A)),$$得证.
+
+    (3)$\implies$(1):令$A=\cbr{x}$得到$\cbr{x}=f\rev(f(x))$,这等价于$f$是单射.
+
+    (2)$\implies$(4):我们直接说明$f(A-B)=f(A)-f(B)$,最后令$A=X$即可.我们有$f(A)=f(B)\cup f(A-B)$,因此$f(A)-f(B)=(f(B)\cup f(A-B))\cap f(B)^c=f(A-B)\cap f(B)^c=f(A-B)\cap X-f(A-B)\cap f(B)=f(A-B)$.
+
+    (4)$\implies$(1):若不是单射,即有$x_1\neq x_2, f(x_1)=f(x_2)$,则$f(x_2)\in f(X-\cbr{x_1})=f(X)-\cbr{f(x_1)}$,矛盾.
+\end{proof}
+
+\paragraph{题1.5.3}$f:X\to Y$,有下列条件等价:(1)$f$是双射;(2)$f\rev$是满射;(3)$f\rev\circ f=\id_X$且$f\circ f\rev=\id_Y$.
+\begin{proof}
+    (1)$\implies$(2):显然$f\rev(Y)=X$,下证$f\rev$是映射.由于$f$是双射,$\forall y\in Y\exists! x\in X:y=f(x)$,即$x=f\rev(y)$,得证.
+
+    (2)$\implies$(1):由于$f\rev$是映射,因此$f\rev$在$Y$每点都有定义,即均有$x=f\rev(y),y=f(x)$,因此$f$是满射.另一方面,$\forall y\in Y=f(X)\exists!x\in f\rev(Y)=X:x=f\rev(y),y=f(x)$,因此$f$是单射.
+
+    (1)(2)$\iff$(3):由题1.5.2(3),代入$A=\cbr{x}$,得到$f\rev\circ f=\id_X$.另一方面注意到题1.5.1(3)且$f\rev$是满射,因此得证.反方向同样利用该二结论.
+\end{proof}
+
+\paragraph{题1.6.1}对非空集族$\cbr{A_i}_{i\in I}$和$\cbr{A_i}_{i\in J}$,有
+$$\br{\bigcup_{i\in I}A_i}\cap \br{\bigcup_{j\in J}A_j}=\bigcup_{(i,j)\in I\times J}(A_i\cap A_j),\qquad \br{\bigcap_{i\in I}A_i}\cup \br{\bigcap_{j\in J}A_j}=\bigcap_{(i,j)\in I\times J}(A_i\cup A_j)$$
+\begin{proof}
+    $$\br{\bigcup_{i\in I}A_i}\cap \br{\bigcup_{j\in J}A_j}=\bigcup_{i\in I}\br{A_i\cap \bigcup_{j\in J}A_j}=\bigcup_{i\in I}\bigcup_{j\in J}(A_i\cap A_j)=\bigcup_{(i,j)\in I\times J}(A_i\cap A_j)$$
+    另一式同理.
+\end{proof}
+
+\paragraph{题1.6.2}给非空集族$\cbr{I_i}_{i\in I}$配备非空集族$\cbr{A_\alpha}_{\alpha\in I_i}$,有
+$$\bigcup_{\alpha\in \bigcup_{i\in I}I_i}A_\alpha=\bigcup_{i\in I}\bigcup_{\alpha\in I_i}A_\alpha,\qquad \bigcap_{\alpha\in \bigcup_{i\in I}I_i}A_\alpha=\bigcap_{i\in I}\bigcap_{\alpha\in I_i}A_\alpha$$
+\begin{proof}
+    (1)$a\in \bigcup_{\alpha\in \bigcup_{i\in I}I_i}A_\alpha\iff \exists \alpha\in \bigcup_{i\in I}I_i:a\in A_\alpha\iff \exists i\in I\exists \alpha\in I_i:a\in A_\alpha\iff a\in \bigcup_{i\in I}\bigcup_{\alpha\in I_i}A_\alpha$.
+
+    (2)首先有$a\in \bigcap_{\alpha\in I_i}A_\alpha\subset \lhs$,两端取$\bigcap_{i\in I}$得到$\lhs\supset \rhs$.另一方面,$a\in \lhs$则说明$a\in A_\alpha$,其中$\alpha$在某些$I_i$中.换言之\footnote{我依然不理解这里如何处理的下标上的并,突然就变成了两个任意.},对每个$i\in I$,以及每个$\alpha\in I_i$,都有$x\in A_\alpha$,这实际上就是$a\in \rhs$,因此$\lhs\subset \rhs$.
+\end{proof}
+
+\section{第二章作业}
+我们用$A'$表示$A$的导集,$A^c$表示$A$的补集,$A^\circ$表示$A$的内部,$\overline{A}$或$A^-$表示$A$的闭包.
+
+\paragraph{题2.1.1}定义$\sigma,\sigma':\R^2\to\R, \sigma(x,y)=(x-y)^2, \sigma'(x,y)=\abs{x^2-y^2}$,证明其均非$\R$上的度量.
+\begin{proof}
+    对$\sigma$,取$z=\frac{x+y}{2}$,我们有$\sigma(x,z)+\sigma(z,y)=\frac{(x-y)^2}{2}<(x-y)^2=\sigma(x,y)$,不满足三角不等式.
+
+    对$\sigma'$,$\sigma'(x,-x)=0$,而对$x\neq 0$均有$x\neq -x$,因此$\sigma'$不满足正定性,不是度量.
+\end{proof}
+
+\paragraph{题2.1.2}只含有限点的度量空间是离散的度量空间.
+\begin{proof}
+    对含有限点的度量空间$(X,d)$取$\delta=\min_{x,y\in X}d(x,y)$,则$\cbr{x}=B(x,\delta/2)$是开集,这说明空间中每点都是开的.
+\end{proof}
+
+\paragraph{题2.1.3}对离散的度量空间$(X,\rho)$证明(1)$X$子集均开;(2)$Y$是另一度量空间,则任一映射$f:X\to Y$连续.
+\begin{proof}
+    (1)$A=\bigcup_{x\in A}\cbr{x}$开.
+
+    (2)对开集$V\subset Y$,$f\rev(V)\subset X$一定开,因此$f$连续.
+\end{proof}
+
+\paragraph{题2.1.4}集合上称两度量等价,若一个度量下的开集等价于另一个度量下的开集.\\
+若$X$上度量$\rho_1,\rho_2$等价,$Y$是另一度量空间,$f:X\to Y$.证明$f$在$\rho_1$下连续等价于$f$在$\rho_2$下连续.
+\begin{proof}
+    取$V\subset Y$开,则$f\rev(V)$在$(X,\rho_1)$下开相当于在$(X,\rho_2)$下开,因此连续性是等价的.
+\end{proof}
+
+\paragraph{题2.2.1}证明可数补拓扑$\tau=\cbr{U\subset X:U^c可数}\cup\cbr{\emptyset}$是一个拓扑.
+\begin{proof}
+    如果$X$空,则$\tau=\cbr{\emptyset}$是一个拓扑,因为$X=\emptyset\in\tau$.
+
+    对$\cbr{U_i}_{i\in I}\subset \tau$,(1)由$\br{\bigcup_{i\in I}U_i}^c=\bigcap_{i\in I}U_i^c$可数,因此$\bigcup_{i\in I}U_i\in \tau$.
+
+    (2)$I$有限时,$\br{\bigcap_{i\in I}U_i}^c=\bigcup_{i\in I}U_i^c$可数,因此$\bigcap_{i\in I}U_i\in \tau$.
+
+    (3)$X^c=\emptyset$,故$X\in\tau$,且$\emptyset\in \tau$.
+
+    综上,$\tau$是一个拓扑.
+\end{proof}
+
+\paragraph{题2.2.6}$(X,\rho)$是度量空间,则$X$是离散空间等价于$\rho$是离散度量.
+\begin{proof}
+    $\implies:$注意到$X$的拓扑由每一点$x$的邻域基$\cbr{B(x,\delta):\delta>0}$诱导,因此对每个含$x$的邻域$O(x)$有开球$B(x,\delta)\subset O(x)$.由于$\cbr{x}$开,因此可取$O(x)=\cbr{x}$,故有$\delta$使得$x\in B(x,\delta)\subset \cbr{x}$.换言之,对每个$x$有$\delta$使得$B(x,\delta)=\cbr{x}, \forall y\neq x: \rho(x,y)>\delta$.因此$\rho$是离散度量.
+
+    $\impliedby:$由$\forall x\exists \delta\forall y\neq x: \rho(x,y)>\delta$,有$B(x,\delta)=\cbr{x}$开,因此$X$中每一点开,故$X$是离散度量.
+\end{proof}
+
+\paragraph{题2.2.9}$(X,\tau)$是拓扑空间,$\infty\notin X,X^*=X\cup\cbr{\infty},\tau^*=\tau\cup\cbr{X^*}$,则$(X^*,\tau^*)$是拓扑空间.
+\begin{proof}
+    取$\tau^*$中的集族$\cbr{U_i}_{i\in I}$.
+
+    (1)记$U=\bigcup_{i\in I}U_i$.若$\cbr{U_i}_{i\in I}$中有$U_i=X^*$,则$U=X^*$.否则由$\tau$是一个拓扑,$U\in \tau$,故均有$U\in \tau^*$.
+
+    (2)设$I$有限,记$V=\bigcap_{i\in I}U_i$.若$\infty\in V$,则$U_i=X^*, V=X^*$.若否,则$V\subset X, V\in \tau$.故$V\in \tau^*$.
+
+    (3)显然$X^*,\emptyset\in \tau^*$.
+
+    综上,$(X^*,\tau^*)$是拓扑空间.
+\end{proof}
+
+\paragraph{题2.2.10}证明(1)从拓扑空间到平凡空间的任何映射都是连续映射;\\
+(2)从离散空间到拓扑空间的任何映射都是连续映射.
+\begin{proof}
+    (1)平凡拓扑中开集仅有全集和空集,其对任意映射的原像也为全集和空集,因此必然连续.
+
+    (2)取到达域中的开集的原像,其在离散拓扑下一定是开集,因此任意映射是连续映射.
+\end{proof}
+
+% \hrule\hspace{1pt}
+
+\paragraph{题2.4.1}求下列集合的导集和闭包.\\
+(1)有限补空间$X$中的一个无限子集$A$;
+(2)可数补空间$X$中的一个不可数子集$A$;\\
+(3)实数空间$\R$中的有理数集$\Q$;
+(4)设$X^*$是题2.2.9中定义的拓扑空间,其中的单点集$\cbr{\infty}$.
+
+\begin{proof}
+    (1)$x\in X$的邻域$O(x)$都有$X$去掉一个有限集$U(x)$的形式,即$x\in O(x)=X-U(x)$.有$O(x)\cap (A-\cbr{x})=(X-U(x))\cap (A-\cbr{x})=U(x)^c\cap A\cap \cbr{x}^c=A-(U(x)\cup\cbr{x})$.这显然是一个无限集,故$x\in A'$.因此$A'=\overline{A}=X$.
+
+    (2)同上,改``有限''为``可数'',``无限''为``不可数''即可.
+
+    (3)$x\in \Q$的邻域中总有有理数和无理数,因此实际上$\Q'=\overline{\Q}=\R$.
+
+    (4)对$x\in X$,取其含于$X$的邻域$O(x)\subset X$,有$O(x)\cap(\cbr{\infty}-\cbr{x})=\emptyset$,而对$\infty$的邻域$X^*$有$X^*\cap(\cbr{\infty}-\cbr{\infty})=\emptyset$,因此$\cbr{\infty}'=\emptyset,\overline{\cbr{\infty}}=\cbr{\infty}$.
+\end{proof}
+
+\paragraph{题2.4.8}度量空间中子集的导集都是闭集.
+\begin{proof}
+    在度量空间$(X,\rho)$中,注意到题2.5.5的结论,有$x\notin A'\iff \rho(x,A-\cbr{x})>0\iff x\in (A-\cbr{x})^{c\circ}$,即$A'^c$开,$A'$闭.
+\end{proof}
+
+\paragraph{题2.5.1}就题2.4.1的各款求取指定集合的内部和边界.
+\begin{proof}
+    (1)若$A^c$是无穷集,则由题2.4.1(1)有$A^\circ=A^{c-c}=X^c=\emptyset,\partial A=\overline{A}\cap \overline{A^c}=X\cap \emptyset=\emptyset$.\\
+    若$A^c$是有限集,则$A^\circ=A^{c-c}=(A^c)^c=A,\partial A=\overline{A}\cap \overline{A^c}=X\cap A^c=A^c$.
+
+    (2)同上,改``有限''为``可数'',``无限''为``不可数''即可.
+
+    (3)$\Q^\circ=\Q^{c-c}=\emptyset,\partial\Q=\overline{\Q}\cap\overline{\Q^c}=\R$.
+
+    (4)$\cbr{\infty}^\circ=\cbr{\infty}^{c-c}=\overline{X}^c=\cbr{\infty},\partial\cbr{\infty}=\overline{\cbr{\infty}}\cap\overline{\cbr{\infty}^c}=\cbr{\infty}\cap X=\emptyset$.
+\end{proof}
+
+\paragraph{题2.5.2}拓扑空间$X$中有$A,B\subset X$.证明:\\
+(1)$\overline{A}=A\cup \partial A, A^\circ=A-\partial A$;(2)$\partial(A^\circ)\subset \partial A, \partial\overline{A}\subset \partial A$;(3)$\partial(A\cup B)\subset \partial A\cup \partial B, (A\cup B)^\circ\supset A^\circ\cup B^\circ$;\\
+(4)$\partial A=\emptyset\iff A$开且闭;(5)$\partial\partial A\subset \partial A$;(6)$A\cap B\cap \partial(A\cap B)=A\cap B\cap (\partial A\cup \partial B)$.
+\begin{proof}
+    (1)$A\cup\partial A=A\cup(\overline{A}\cap \overline{A^c})=\overline{A}\cap(A\cup\overline{A^c})=\overline{A}$;
+    
+    $A-\partial A=A-(\overline{A}\cap\overline{A^c})=A\cap(\overline{A}^c\cup\overline{A^c}^c)=A\cap(A^{c\circ}\cup A^\circ)=\emptyset\cup A^\circ=A^\circ$.
+
+    (2)$\partial(A^\circ)=\overline{A^\circ}\cap\overline{A^{\circ c}}\subset \overline{A}\cap\overline{\overline{A^c}}=\partial A$.
+
+    $\partial(\overline{A})=\overline{\overline{A}}\cap\overline{\overline{A}^c}\subset \overline{A}\cap \overline{A^c}=\partial A$.
+
+    (3)$\partial(A\cup B)=\overline{A\cup B}\cap\overline{(A\cup B)^c}=(\overline{A}\cup\overline{B})\cap\overline{(A\cup B)^c}=(\overline{A}\cap\overline{(A\cup B)^c})\cup(\overline{B}\cap\overline{(A\cup B)^c})\subset(\overline{A}\cap\overline{A^c})\cup(\overline{B}\cap\overline{B^c})=\partial A\cup\partial B$.
+
+    $A^\circ\cup B^\circ$是$A\cup B$中的开集,而$(A\cup B)^\circ$是$A\cup B$中最大的开集,因此有$(A\cup B)^\circ\supset A^\circ\cup B^\circ$.
+
+    (4)
+\end{proof}
+
+\paragraph{题2.5.5}设$A$是度量空间$(X,\rho)$中的一个子集.\\
+证明:(1)$x\in A^\circ\iff \rho(x,A^c)>0$;
+(2)$x\in \partial A\iff \rho(x,A)=0$且$\rho(x,A^c)=0$.
+\begin{proof}
+    (1)$x\in A^\circ=A^{c-c}\iff x\notin A^{c-}\iff \rho(x,A^c)>0$.
+
+    (2)$x\in \partial A=\overline{A}\cap\overline{A^c}\iff (x\in \overline{A})\land (x\in \overline{A^c})\iff \rho(x,A)=0\land \rho(x,A^c)=0$.
+\end{proof}
+
+\paragraph{题2.5.6}设$X$和$Y$是两个拓扑空间,$f:X\to Y$,证明$f$连续等价于$\forall B\subset Y: f\rev(B^\circ)\subset (f\rev(B))^\circ$.
+\begin{proof}
+    $f\rev(B^{c-c})=f\rev(B^\circ)\subset (f\rev(B))^\circ=(f\rev(B))^{c-c}\iff f\rev(\overline{B^c})\supset (f\rev(B))^{c-}=\overline{f\rev(B^c)}$.由$B$的任意性,这是$f$连续的等价条件,得证.
+\end{proof}
+
+\paragraph{题2.6.1}设$X$是一个集合.若$X$的子集族$\mathscr{B}$和$\widetilde{\mathscr{B}}$是$X$的同一拓扑的两个基,则$\mathscr{B}$和$\widetilde{\mathscr{B}}$满足条件:\\
+(1)如果$x\in B\in \mathscr{B}$,则存在$\widetilde{B}\in \widetilde{\mathscr{B}}$使得$x\in \widetilde{B}\subset B$;\\(2)如果$x\in \widetilde{B}\in \widetilde{\mathscr{B}}$,则存在$B\in\mathscr{B}$使得$x\in B\subset \widetilde{B}$.
+\begin{proof}
+    $\implies:B$是$x$的一个邻域,因此由于$\widetilde{\mathscr{B}}$是一个基,因此有$\widetilde{B}\in\widetilde{\mathscr{B}}$使得$x\in \widetilde{B}\subset B$.同理(2)得证.
+
+    \textcolor{red}{$\impliedby:$}设$\mathscr{B},\widetilde{\mathscr{B}}$分别是$\mathscr{T},\widetilde{\mathscr{T}}$的基,则由(1)有$\forall x\in B\in \mathscr{B}\exists \widetilde{B}_x\in\widetilde{\mathscr{B}}:x\in \widetilde{B}_x\subset B$,因此$B=\bigcup_{x\in B}\cbr{x}\subset \bigcup_{x\in B}\widetilde{B}_x\subset B$,因此$B=\bigcup_{x\in B}\widetilde{B}_x$.对于$\forall A\in\mathscr{T}:A=\bigcup_{B\in \mathscr{B}_A}B=\bigcup_{B\in \mathscr{B}_A}\bigcup_{x\in B}\widetilde{B}_x\in \widetilde{\mathscr{T}}$,因此$\mathscr{T}\subset \widetilde{\mathscr{T}}$.同理,$\widetilde{\mathscr{T}}\subset \mathscr{T}$,因此$\mathscr{T}=\widetilde{\mathscr{T}}$,得证.
+\end{proof}
+
+\paragraph{题2.6.3}证明$\R$中有拓扑以集族$\cbr{\babr{a,\infty}:a\in\R}\cup\cbr{\abbr{-\infty,b}:b\in\R}$为其子基,并说明该拓扑的特点.
+\begin{proof}
+    注意到$\R$中所有单点集$\cbr{x}$由该子基的有限交生成,因此其生成$\R$中的离散拓扑.
+\end{proof}
+
+\paragraph{题2.6.7}$X$是度量空间,证明:若$X$中有一个基仅含有限个元素,则$X$为仅含有限个点的离散空间.
+\begin{proof}
+    对于度量空间$(X,\rho)$及其基$\mathscr{B}=\cbr{B_i}_{i=1}^n$,取$X$中互异$n+1$个点$\cbr{x_i}_{i=1}^{n+1},\delta=\min_{1\leq i\leq j\leq n+1}\frac{\rho(x_i,x_j)}{2}$.因此$\cbr{B(x_i,\delta)}_{i=1}^{n+1}$互不交.另一方面,$\forall i\in [n+1]\exists B_i\in \mathscr{B}: x_i\in B_i\subset B(x_i,\delta)$,因此$B_i$之间不交且$\mathscr{B}$中有至少$n+1$个元素,矛盾.因此$X$中至多仅含$n$个元素,且由题2.1.2,该空间是离散的.
+\end{proof}
+
+\paragraph{题2.7.1}$X$是一个离散空间,$\cbr{x_i}_{i\geq 1}$是其中序列.证明:$\cbr{x_i}_{i\geq 1}$收敛$\iff \exists M\in \Z_{>0}\forall i,j>M:x_i=x_j$.
+\begin{proof}
+    $\impliedby$显然,下证$\implies$.设$x_i\to x$,取$x$的开邻域$\cbr{x}$有$\exists M\in \Z_{>0}\forall i>M:x_i\in \cbr{x}$,即$x_i=x$,即$\exists M\in \Z_{>0}\forall i,j>M:x_i=x_j$.
+\end{proof}
+
+\paragraph{题2.7.3}$X$是度量空间,证明(1)$X$中任一收敛序列极限唯一;\\
+(2)定理2.7.2的逆命题成立,即:$x\in A'$则存在序列$\cbr{x_i}_{i\geq 1}\subset A-\cbr{x}$且$x_i\to x$;\\
+(3)定理2.7.3的逆命题成立,即:$x_i\to x\implies f(x_i)\to f(x)$,则$f$在$x$处连续.
+\begin{proof}
+    (1)若极限不唯一,即$x_i\to x$且$x_i\to x'$,则$\forall \varepsilon>0\exists M\in \Z_{>0}\forall i\geq M:x_i\in B(x,\varepsilon)\cap B(x',\varepsilon), \rho(x,x')<2\varepsilon$.由$\varepsilon$任意性,$x=x'$.
+
+    (2)$x\in A'$则邻域$B(x,1/n)\cap (A-\cbr{x})\neq\emptyset$,因此可取$x_n\in B(x,1/n)\cap (A-\cbr{x}), n\in \Z_{>0}$.此时$x_i\to x$.
+
+    (3)若$f$在$x$处不连续,则$f(x)$的邻域$O(f(x))$的原像$f\rev(O(f(x)))$不是$x$的邻域.而$x_i\to x$时,$f(x)$的邻域中总有$f(x_i)$,其原像含有$x_i$,这与$x_i\to x$矛盾.
+\end{proof}
+
+\section{第三章作业}
+
+\paragraph{题3.1.1}证明(1)$\R$同胚于任一开区间;(2)$\R^n$同胚于其中任一开方体,也同胚于其中任一球形邻域.
+\begin{proof}
+    (1)$f:\R\to (a,b), x\mapsto \frac{b-a}{\pi}\arctan x+\frac{a+b}{2}$是双射且连续,逆映射$f\rev(x)=\tan\br{\frac{\pi}{b-a}\br{x-\frac{a+b}{2}}}$也连续.
+
+    (2)$f:(x_1,\cdots,x_n)\mapsto \br{\tan\frac{2x_1-a_1-b_1}{2(b_1-a_1)}\pi,\cdots,\tan\frac{2x_n-a_n-b_n}{2(b_n-a_n)}\pi}$给出开方体$[a_1,b_1]\times\cdots\times[a_n,b_n]$到$\R^n$的同胚.而对于$x\in B(a,r)$,其可以在极坐标下唯一表为$a+r_x\omega(x)$,其中$$\omega(x)=(\cos\varphi_1,\sin\varphi_1\cos\varphi_2,\cdots,\sin\varphi_1\sin\varphi_2\cdots\sin\varphi_{n-1}\cos\varphi_n).$$
+    而$g:a+r_x\omega(x)\mapsto \tan\frac{r_x}{2r}\pi\omega(x)$给出开球$B(a,r)$到$\R^n$的同胚.
+\end{proof}
+
+\paragraph{题3.1.2}(1)若$Y$是拓扑空间$X$的开子空间,则$A\subset Y$是$Y$中开集$\iff A$是$X$的一个开集;\\
+(2)若$Y$是拓扑空间$X$的闭子空间,则$A\subset Y$是$Y$中闭集$\iff A$是$X$的一个闭集.
+\begin{proof}
+    (1)$\impliedby:$若$A$为$X$中开集,则$A=A\cap Y$为$Y$中开集.$\implies:$若$A$为$Y$中开集,则存在$X$中开集$B$使得$A=B\cap Y$,即$A$是$X$中开集.
+
+    (2)同理可证.
+\end{proof}
+
+\paragraph{题3.1.3}$Y$是拓扑空间$X$的子空间,$A\subset Y$,证明:(1)$A_X^\circ=A_Y^\circ\cap Y_X^\circ$;(2)$\partial_Y A\subset \partial_X A\cap Y$.
+\begin{proof}
+    (1)$A_Y^\circ\cap Y_X^\circ=A_Y^{c-c}\cap Y_X^{c-c}=(\overline{A_Y^c}\cup \overline{Y_X^c})^c=((\overline{A_X^c}\cap Y)\cup \overline{Y_X^c})^c=(\overline{A_X^c}\cup Y_X^c)^c=A_X^{c-c}=A_X^\circ$.
+
+    (2)$\partial_Y A=\overline{A_Y}\cap\overline{A^c_Y}=(\overline{A_X}\cap Y)\cap \overline{(A\cap Y)_X^c}\subset \overline{A_X}\cap \overline{A_X^c}\cap Y=\partial_X A\cap Y$.
+
+    反例:$X=\R, Y=[a,b], A=Y, \partial_Y A=\emptyset, \partial_X A=\cbr{a,b}$.
+\end{proof}
+
+\paragraph{题3.1.4}$Y$是拓扑空间$X$的子空间,$y\in Y$,证明:(1)若$\mathscr{I}$是$X$的一个子基,则$\mathscr{I}|_Y$是$Y$的一个子基;(2)若$\mathscr{W}_y$是$y$在$X$中的一个邻域子基,则$\mathscr{W}_y|_Y$是点$y$在$Y$中的一个邻域子基.
+\begin{proof}
+    (1)设$\mathscr{I}$生成的基为$\mathscr{B}$,则$\mathscr{B}|_Y$的元素为$\bigcap_{i=1}^n S_i\cap Y=\bigcap_{i=1}^n (S_i\cap Y)$,即$\mathscr{I}|_Y$生成的基,因此得证.
+
+    (2)同理.
+\end{proof}
+
+\paragraph{题3.1.7}拓扑空间$X,Y$中$A\subset X$,证明:$f:X\to Y$连续则$f|_A$也连续.
+\begin{proof}
+    设$U\subset Y$为开集,有$f|_A\rev(U)=f|_A\rev(U\cap f(A))=f\rev(U\cap f(A))=f\rev(U)\cap A$是$A$中的开集.
+\end{proof}
+
+\paragraph{题3.2.1}度量空间$(X,\rho)$中$\rho:X\times X\to\R$连续.
+\begin{proof}
+    对$(x,y)\in X\times X$,取$\rho(x,y)$在$\R$中的邻域$V$,有$\varepsilon>0, B(\rho(x,y),\varepsilon)\subset V$.由于$(x',y')\in B(x,\varepsilon/2)\times B(y,\varepsilon/2)$时$\rho(x',y')\in V$,因此$\rho\rev(V)$是$(x,y)$的邻域.而由$(x,y)$的任意性,可知$\rho$连续.
+\end{proof}
+
+\paragraph{题3.2.3}有$n$个度量空间$(X_i,\rho_i), i\in [n], X=\prod_{i=1}^n X_i$,定义$d_1,d_2:X\times X\to \R, d_1:(x,y)\mapsto \sum_{i=1}^{n}\rho_i(x_i,y_i), d_2:(x,y)\mapsto \max_{i\in [n]}\rho_i(x_i,y_i)$.证明$d_1,d_2$都是$X$中的度量,且均与$X$中积度量$\rho$等价.
+\begin{proof}
+    首先容易验证$d_1,d_2$是度量,其次我们可以给出关于积度量$\rho(x,y)=\sqrt{\rho_1^2(x_1,y_1)+\cdots+\rho_n^2(x_2,y_2)}$的不等式:
+    $$\sum_{i=1}^n \rho_i\leq \sqrt{n}\sqrt{\sum_{i=1}^n \rho_i^2}\leq \sqrt{n}\sum_{i=1}^n \rho_i,\qquad \max_{i\in [n]} \rho_i\leq \sqrt{\sum_{i=1}^n \rho_i^2}\leq \sqrt{n}\max_{i\in [n]}\rho_i$$
+    因此我们由$\frac{d_1}{\sqrt{n}}\leq \rho\leq d_1, d_2\leq \rho\leq \sqrt{n}d_2$,因此度量是等价的.
+\end{proof}
+
+\paragraph{题3.3.1}离散(平庸)空间的任一商空间都是离散(平庸)空间.
+\begin{proof}
+    (1)设$(X,\mathscr{T})$是离散空间,$(X/R,\mathscr{T}_1)$是商空间,$p:X\to X/R$是自然投射.对于任意$u\subset X/R$都有$p\rev(u)\in \mathscr{T}$,即$u\in \mathscr{T}_1$,因此$(X/R,\mathscr{T}_1)$是离散空间.
+
+    (2)设$(X,\mathscr{T})$是平庸空间,$(X/R,\mathscr{T}_1)$是商空间,$p:X\to X/R$是自然投射.若非空$u\in \mathscr{T}_1$
+\end{proof}
+
+\paragraph{题3.4.6}$p:[0,1]\to S^1, t\mapsto (\cos 2\pi t,\sin 2\pi t)\in S^1$,证明:(1)$p$是满的连续闭映射;(2)例3.4.2中的商空间$[0,1]/\sim$同胚于$S^1$.
+
+\section{第四章作业}
+
+\paragraph{题4.1.1}$A,B$是拓扑空间$X$的隔离子集,证明:若$A_1\subset A,B_1\subset B$,则$A_1,B_1$也是隔离子集.
+
+还有一次作业没写上来.
+
+\end{document}

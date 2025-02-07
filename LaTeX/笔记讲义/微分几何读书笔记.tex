@@ -1,0 +1,199 @@
+\documentclass{article}
+\input{../newcommand.tex}
+\setmainfont{CMU Serif}
+\title{微分几何读书笔记}
+\author{章小明}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{曲线论}
+\paragraph{预备知识}
+\begin{itemize}
+    \item $\bm{a}$恒长$\iff \bm{a}'\cdot \bm{a}\equiv 0$.
+    \item $\bm{a}$恒向$\iff \bm{a}'\times \bm{a}\equiv 0$.
+    \item $\bm{a}$恒垂直于某向$\implies (\bm{a},\bm{a}',\bm{a}'')\equiv 0$.反向需要$\bm{a}'\times \bm{a}\not\equiv 0$
+\end{itemize}
+曲线$\bm{r}(t)$的弧长$s=\int_{a}^{b}\abs{\bm{r}'(t)}\d t$,弧长参数$s(t)=\int_a^t\abs{\bm{r}'(t)}\d t$,弧长元素$\d s=\abs{\bm{r}'(t)}\d t$.
+
+\paragraph{Frenet公式}
+
+\section{标架与曲面论基本定理}
+对于曲面$S\subset \R^3$一般取其自然标架$\cbr{\bm{r};\bm{r}_1,\bm{r_2},\bm{n}}$.而更一般地可以选取其上的活动标架$\cbr{\bm{r};\bm{x}_1,\bm{x}_2,\bm{x}_3}$,这需要这三个向量场处处线性无关.一般需要保证这是正定向且单位正交的标架.
+
+一般通过伸缩和旋转变换(即一个正交变换),可以把自然标架变为任一单位正交标架.事实上对于任一$\R^3$中曲线,都可以作正交变换使其成为一个Frenet标架.
+
+\paragraph{自然标架的运动方程}
+记$g_{\alpha\beta}=\bm{r}_\alpha\cdot\bm{r}_\beta, b_{\alpha\beta}=\bm{r}_{\alpha\beta}\cdot\bm{n}=-\bm{r}_\alpha\cdot\bm{n}_\beta, g=\det(g_{\alpha\beta}), b=\det(b_{\alpha\beta})$.另外,$(g^{\alpha\beta})=(g_{\alpha\beta})\rev, g^{\alpha\beta}g_{\beta\gamma}=\delta^\alpha_\gamma$.我们略去麻烦的推导过程,得到:
+$$\bm{r}_{\alpha\beta}=\Gamma^\gamma_{\alpha\beta}\bm{r}_\gamma+b_{\alpha\beta}\bm{n},\qquad \bm{n}_\alpha=-b^\beta_\alpha\bm{r}_\beta.$$
+换言之我们得到$$\begin{pmatrix}
+    \bm{r}_{11}\\\bm{r}_{12}\\\bm{r}_{22}
+\end{pmatrix}=\begin{pmatrix}
+    \Gamma^1_{11}&\Gamma^2_{11}&b_{11}\\\Gamma^1_{12}&\Gamma^2_{12}&b_{12}\\\Gamma^1_{22}&\Gamma^2_{22}&b_{22}
+\end{pmatrix}\begin{pmatrix}
+    \bm{r}_1\\\bm{r}_2\\\bm{n}
+\end{pmatrix},\qquad \begin{pmatrix}
+    \bm{n}_1\\\bm{n}_2
+\end{pmatrix}=-\begin{pmatrix}
+    b_1^1&b_1^2\\b_2^1&b_2^2
+\end{pmatrix}\begin{pmatrix}
+    \bm{r}_1\\\bm{r}_2
+\end{pmatrix}$$
+其中$\Gamma_{\alpha\beta}^\gamma$为曲面的Christoffel符号,且有如下定义
+$$\Gamma^\gamma_{\alpha\beta}=\frac{g^{\gamma\xi}}{2}\br{\Dfunc{g_{\alpha\xi}}{u^\beta}+\Dfunc{g_{\beta\xi}}{u^\alpha}-\Dfunc{g_{\alpha\beta}}{u^\xi}},\qquad \Gamma_{\xi\alpha\beta}=g_{\gamma\xi}\Gamma^\gamma_{\alpha\beta}=\frac{1}{2}\br{\Dfunc{g_{\alpha\xi}}{u^\beta}+\Dfunc{g_{\beta\xi}}{u^\alpha}-\Dfunc{g_{\alpha\beta}}{u^\xi}},\qquad b^\beta_\alpha=b_{\alpha\gamma}g^{\gamma\beta}.$$
+仅需记住对曲面的第二类Christoffel符号$\Gamma_{\xi\alpha\beta}$有加减顺序``123+132-231''.更换符号,我们得到
+$$\begin{aligned}
+    \Gamma^1_{11}&=\frac{G\D_u E+F\D_vE-2F\D_uF}{2(EG-F^2)},&\Gamma^1_{12}=\Gamma^1_{21}&=\frac{G\D_vE-F\D_uG}{2(EG-F^2)},&\Gamma^1_{22}&=\frac{2G\D_vF-G\D_uG-F\D_vG}{2(EG-F^2)},\\
+    \Gamma^2_{11}&=\frac{2E\D_uF-F\D_uE-E\D_vE}{2(EG-F^2)},&\Gamma^2_{12}=\Gamma^2_{21}&=\frac{E\D_uG-F\D_vE}{2(EG-F^2)},&\Gamma^2_{22}&=\frac{F\D_uG+E\D_vG-2F\D_vF}{2(EG-F^2)}.\\
+\end{aligned}$$
+若$F=0$,即在正交参数网下有:
+$$\begin{aligned}
+    \Gamma^1_{11}&=\frac{\D_u \ln E}{2},&\Gamma^1_{12}=\Gamma^1_{21}&=\frac{\D_v \ln E}{2},&\Gamma^1_{22}&=-\frac{\D_u G}{2E},\\
+    \Gamma^2_{11}&=-\frac{\D_v E}{2G},&\Gamma^2_{12}=\Gamma^2_{21}&=\frac{\D_u \ln G}{2},&\Gamma^2_{22}&=\frac{\D_v \ln G}{2}.\\
+\end{aligned}$$
+
+\paragraph{Gauss-Codazzi方程}
+$$\Dfunc{\Gamma^\xi_{\alpha\beta}}{u^\gamma}-\Dfunc{\Gamma^\xi_{\alpha\gamma}}{u^\beta}+\Gamma^\eta_{\alpha\beta}\Gamma^\xi_{\eta\gamma}-\Gamma^\eta_{\alpha\gamma}\Gamma^\xi_{\eta\beta}-b_{\alpha\beta}b^\xi_\gamma+b_{\alpha\gamma}b^\xi_\beta=0,
+\qquad \Dfunc{b_{\alpha\beta}}{u^\gamma}-\Dfunc{b_{\alpha\gamma}}{u^\beta}+\Gamma^\xi_{\alpha\beta}b_{\xi\gamma}-\Gamma^\xi_{\alpha\gamma}b_{\xi\beta}=0.$$
+定义Riemann记号
+$$R_{\delta\alpha\beta\gamma}=g_{\delta\xi}\br{\Dfunc{\Gamma^\xi_{\alpha\beta}}{u^\gamma}-\Dfunc{\Gamma^\xi_{\alpha\gamma}}{u^\beta}+\Gamma^\eta_{\alpha\beta}\Gamma^\xi_{\eta\gamma}-\Gamma^\eta_{\alpha\gamma}\Gamma^\xi_{\eta\beta}}$$
+有Gauss方程$R_{\delta\alpha\beta\gamma}=b_{\alpha\beta}b_{\gamma\delta}-b_{\alpha\gamma}b_{\beta\delta}$.根据Riemann记号的对称性$R_{\delta\alpha\beta\gamma}=R_{\beta\gamma\delta\alpha}=-R_{\alpha\delta\beta\gamma}=-R_{\delta\alpha\gamma\beta}$可知仅有一个独立方程
+$$R_{1212}=g_{1\xi}\br{\Dfunc{\Gamma^\xi_{21}}{u^2}-\Dfunc{\Gamma^\xi_{22}}{u^1}+\Gamma^\eta_{21}\Gamma^\xi_{\eta 2}-\Gamma^\eta_{22}\Gamma^\xi_{\eta 1}}=-b.$$
+
+另一方面Codazzi方程在$\beta=\gamma$时平凡,因此仅有$(\alpha,\beta,\gamma)=(1,1,2)$或$(2,1,2)$两个独立方程.
+
+最后,若$F=0$,即在正交参数网下Gauss-Codazzi方程为:
+$$\begin{aligned}
+    -\frac{1}{\sqrt{EG}}\br{\D_v\br{\frac{\D_v\sqrt{E}}{\sqrt{G}}}+\D_u\br{\frac{\D_u\sqrt{G}}{\sqrt{E}}}}&=\frac{LN-M^2}{EG}=K\\
+    \D_v\frac{L}{\sqrt{E}}-\D_u\frac{M}{\sqrt{E}}-N\frac{\D_v\sqrt{E}}{G}-M\frac{\D_u\sqrt{G}}{\sqrt{EG}}&=0\\
+    \D_u\frac{N}{\sqrt{G}}-\D_v\frac{M}{\sqrt{G}}-L\frac{\D_u\sqrt{G}}{E}-M\frac{\D_v\sqrt{E}}{\sqrt{EG}}&=0
+\end{aligned}$$
+而$F=M=0$时Codazzi方程变为$$\D_vL=H\D_vE,\qquad \D_uN=H\D_uG$$
+其中$H=\frac{LG-2MF+NE}{2(EG-F^2)}=\frac{1}{2}\br{\frac{L}{E}+\frac{N}{G}}$是平均曲率,$K=\frac{LN-M^2}{EG-F^2}={LN-M^2}{EG}$是Gauss曲率.
+
+\paragraph{曲面的存在唯一性定理}
+\begin{enumerate}
+    \item 定义在同一参数域的曲面若在每一对应点有相同的两个基本形式,则有一个刚体运动将一个曲面变为另一个.
+    \item 若参数域上对称正定阵$g_{\alpha\beta}$和对称阵$b_{\alpha\beta}$得到的$\Gamma^\gamma_{\alpha\beta}$和$b^{\alpha\beta}$满足Gauss-Codazzi方程,则在参数域任意点有邻域可定义曲面,使$g_{\alpha\beta}\d u^\alpha\d u^\beta$和$b_{\alpha\beta}\d u^\alpha\d u^\beta$为其两个基本形式.
+\end{enumerate}
+
+\paragraph{正交活动标架}
+% $(\bm{e}_1,\bm{e}_2)^T, (\bm{r}_u,\bm{r}_v)^T,(\d u,\d v)^T,(\omega_1,\omega_2)^T$.
+对正交活动标架$\cbr{\bm{r};\bm{e}_1,\bm{e}_2,\bm{e}_3=\bm{n}}$,有$(\bm{r}_u,\bm{r}_v)^T=\bm{A}(\bm{e}_1,\bm{e}_2)^T$.令$(\omega_1,\omega_2)^T=\bm{A}(\d u,\d v)^T$,因此$\d r=(\d u,\d v)(\bm{r}_u,\bm{r}_v)^T=(\omega_1,\omega_2)(\bm{e}_1,\bm{e}_2)^T$.其中$\omega_1,\omega_2$均为一次微分形式.
+
+对$\cbr{\bm{e}_1,\bm{e}_2,\bm{e}_3}$作微分,得到
+$$\d\begin{pmatrix}
+    \bm{r}\\\bm{e}_1\\\bm{e}_2\\\bm{e}_3
+\end{pmatrix}=\begin{pmatrix}
+    \omega_1&\omega_2&0\\
+    0&\omega_{12}&\omega_{13}\\
+    -\omega_{12}&0&\omega_{23}\\
+    -\omega_{13}&-\omega_{23}&0
+\end{pmatrix}\begin{pmatrix}
+    \bm{e}_1\\\bm{e}_2\\\bm{e}_3
+\end{pmatrix},\qquad \bm{\Omega}=\begin{pmatrix}
+    0&\omega_{12}&\omega_{13}\\
+    -\omega_{12}&0&\omega_{23}\\
+    -\omega_{13}&-\omega_{23}&0
+\end{pmatrix}$$
+
+容易得到$\mathrm{I}=\d\bm{r}\cdot\d\bm{r}=\omega_1^2+\omega_2^2, \mathrm{II}=-\d\bm{r}\cdot\d\bm{e}_3=\omega_1\omega_{13}+\omega_2\omega_{23}$.另外$\mathrm{I}=(\d u,\d v)\bm{A}\bm{A}^T(\d u,\d v)^T, \bm{AA}^T=\begin{pmatrix}E&F\\F&G\end{pmatrix}$.
+
+我们有\begin{enumerate}[resume]
+    \item I与正交标架选取无关,II与同法向正交标架的选取无关.\hint{考虑旋转$(\bm{e}_1,\bm{e}_2)^T$得到的I和II.}
+\end{enumerate}
+
+接着考虑$(\omega_{13},\omega_{23})=(\omega_1,\omega_2)\bm{B}$,有$\mathrm{II}=(\omega_1,\omega_2)\bm{B}(\omega_1,\omega_2)^T=(\d u,\d v)\begin{pmatrix}L&M\\M&N\end{pmatrix}(\d u,\d v)^T$,\\有$\bm{ABA}^T=\begin{pmatrix}L&M\\M&N\end{pmatrix}.$
+
+$\bm{B}$的特征值即为曲面的主曲率,且$K=\det\bm{B},H=\frac{\tr \bm{B}}{2}$.实际上Weingarten变换在$\cbr{\bm{e}_1,\bm{e}_2}$下的系数矩阵即为$\bm{B}$,而在自然基下的变换矩阵为$\bm{ABA}\rev$.
+
+\paragraph{曲面的结构方程(外微分法)}
+我们先给出$\R^3$中外微分的运算法则:\begin{enumerate}
+    \item 零次外微分形式$\d f=\D_uf \d u+\D_vf \d v$,一阶外微分形式$\theta=f\d u+g\d v$,二阶外微分形式$\varphi=f\d u\wedge\d v$.
+    \item $\wedge$是线性且反交换的,其对一阶外微分形式起作用.
+    \item 对一阶外微分形式$\theta=f\d u+g\d v, \d \theta=(\D_u g-\D_v f)\d u\wedge\d v$.对二阶外微分形式$\varphi$,$\d\varphi=0$.
+    \item 对函数$f,g$和一阶外微分形式$\varphi$,$\d(fg)=f\d g+g\d f$,$\d(f\varphi)=\d f\wedge \varphi+f\d\varphi, \d(\varphi f)=f\d \varphi-\varphi\wedge\d f$,$\d(\d f)=0$.
+\end{enumerate}
+
+讨论上节正交活动标架.首先,$\omega_1\wedge\omega_2=(\det \bm{A})\d u \wedge\d v$.
+
+考虑正交活动标架的运动方程.首先在$\d\br{\sum_{\alpha=1}^2 \omega_\alpha\bm{e}_\alpha}=0$中考虑$\bm{e}_1,\bm{e}_2,\bm{e}_3$的系数,得到
+$$\d \omega_1=-\omega_2\wedge\omega_{12},\qquad \d \omega_2=\omega_1\wedge\omega_{12},\qquad \omega_1\wedge\omega_{13}+\omega_2\wedge\omega_{23}=0.$$
+前两式代入最后一式,可知其等价于$\bm{B}$是对称的.
+
+同理考虑$\d\br{\sum_{i=1}^3\omega_{\alpha i}\bm{e}_i}=0$,得到
+$$\d \omega_{12}=-\omega_{13}\wedge\omega_{23}=-K\omega_1\wedge\omega_2,\qquad \d\omega_{13}=\omega_{12}\wedge\omega_{23},\qquad \d\omega_{23}=-\omega_{12}\wedge\omega_{13}.$$
+其中前一式为Guass方程,后二式为Codazzi方程,其统称正交标架的结构方程式.
+
+在正交活动标架的语言下,曲面的各个基本量可表为:\begin{enumerate}
+    \item $\mathrm{I}=\omega_1\omega_1+\omega_2\omega_2,\mathrm{II}=\omega_1\omega_{13}+\omega_{2}\omega_{23},\mathrm{III}=\d\bm{e}_3\cdot\d\bm{e}_3=\omega_{13}\omega_{13}+\omega_{23}\omega_{23}$.
+    \item 面元$\d A=\omega_1\wedge\omega_2$,Gauss映射的面元$\d\sigma=\omega_{13}\omega_{23}=K\d u\wedge\d v$.
+    \item Hopf不变式$\psi=\omega_1\omega_{23}-\omega_{2}\omega_{13}$.
+\end{enumerate}
+上述基本量均在不同的$\cbr{\bm{e}_1,\bm{e}_2}$(即对其旋转$\theta$)下不变.但需要注意的是,$\bar{\omega}_{12}=\omega_{12}+\d \theta$,这与其他微分形式不同.
+
+\section{曲面的内蕴几何学}
+\paragraph{等距变换与保角变换}
+等距变换$\sigma$是曲面$S$到曲面$\tilde{S}$的一个双射,且使$S$上任一曲线$C$与其在$\tilde{S}$上的像曲线$\sigma(C)$的长度相等.
+
+等距变换有如下等价条件:\begin{enumerate}
+    \item 保持两曲面的第一基本形式不变.若$\sigma:(u,v)\mapsto(\tilde{u}(u,v),\tilde{v}(u,v))$,则$\mathrm{I}(u,v)=\mathrm{I}(\tilde{u}(u,v),\tilde{v}(u,v))$.\\
+    比方说$\mathrm{I}(u,v)=\d u^2+(1+u^2)\d v^2,\mathrm{I}(\tilde{u},\tilde{v})=\frac{\tilde{u}^2}{\tilde{u}^2-1}\d \tilde{u}^2+\tilde{u}^2\d\tilde{v}^2$.则可以选取$(u,v)\mapsto(\sqrt{1+u^2},v)$,有\\$\d \tilde{u}=\frac{u\d u}{\sqrt{1+u^2}},\d \tilde{v}=\d v$.因此$\mathrm{I}(u,v)=\mathrm{I}(\tilde{u}(u,v),\tilde{v}(u,v))$.
+    \item 在变换下有$\begin{pmatrix}E&F\\F&G\end{pmatrix}=J_\sigma\begin{pmatrix}\tilde{E}&\tilde{F}\\\tilde{F}&\tilde{G}\end{pmatrix}J_\sigma^T$,其中$J_\sigma$是$\sigma$的Jacobi矩阵$\begin{pmatrix}
+        \D_u\tilde{u}&\D_u\tilde{v}\\\D_v\tilde{u}&\D_v\tilde{v}
+    \end{pmatrix}$.
+    \item 可以在$S$和$\tilde{S}$上选取适当的正交标架,使得在对应点有$\omega_1=\tilde{\omega}_1,\omega_2=\tilde{\omega}_2$.
+\end{enumerate}
+接着我们定义,在变换$\sigma$下两个对应点的切平面之间的切映射$\sigma_*:T_PS\to T_{\sigma(P)}\tilde{S},\bm{v}\mapsto \tilde{\bm{v}}$.这是一个线性映射,且有
+$$\begin{pmatrix}
+    \sigma_*(\bm{r}_u)\\\sigma_*(\bm{r}_v)
+\end{pmatrix}=J_\sigma\begin{pmatrix}
+    \tilde{\bm{r}}_{\tilde{u}}\\\tilde{\bm{r}}_{\tilde{v}}
+\end{pmatrix}$$
+因此可以得到\begin{enumerate}[resume]
+    \item $S$的任二切向量$\bm{v},\bm{w}$有$\abr{\sigma_*(\bm{v}),\sigma_*(\bm{w})}=\abr{\bm{v},\bm{w}}$.
+\end{enumerate}
+
+对于保角映射,我们没有太多性质可叙述,但我们有如下等价条件
+\begin{enumerate}
+    \item 有正函数$\lambda(u,v)$在对应点有$\lambda^2\mathrm{I}(u,v)=\mathrm{I}(\tilde{u}(u,v),\tilde{v}(u,v))$.\hint{认为$\lambda=\abs{\sigma_*(\bm{e}_1)}$,考虑正交标架下的分解$\bm{v}=a\bm{e}_1+b\bm{e}_2,\bm{w}=\bm{e}_2$.}
+\end{enumerate}
+另外,任意曲面上每点有邻域可以和$E^2$上一区域建立保角变换.
+
+\paragraph{曲面的协变微分}
+我们先定义一阶微分形式$\omega_{12}$为曲面关于某一标架的联络形式.
+
+首先,联络形式$\omega_{12}$被运动方程$\d \omega_1=\omega_{12}\wedge\omega_2,\d\omega_2=\omega_{21}\wedge\omega_1$唯一确定.但另一方面,联络形式依赖于标架的选取,这是由于上面提到过的$\tilde{\omega}_{12}=\omega_{12}+\d \theta$.
+
+其次,由于$\d\omega_{12}=-K\omega_1\wedge\omega_2$中$\d \omega_{12}$和$\omega_1,\omega_2$仅依赖于第一基本形式,\hint{由上述运动方程注意到$\omega_{12}$仅依赖于$\omega_1,\omega_2$.}故Gauss曲率$K$仅依赖于第一基本形式.也因此在等距变换下,Gauss曲率不变.这就是Gauss绝妙定理.
+
+实际上根据Gauss方程,已经有完全用$E$和$G$表示$K$的方式.如果考虑等温参数系$\mathrm{I}=\lambda^2(\d u^2+\d v^2)$,仅有$K=-\frac{\Delta\ln\lambda}{\lambda^2}$.
+
+接下来我们讨论标架的协变微分.定义切向量的协变微分$D\bm{v}=\abr{\d \bm{v},\bm{e}_1}\bm{e}_1+\abr{\d \bm{v},\bm{e}_2}\bm{e}_2$.这实际上就是切向量的微分$\d \bm{v}$在切平面内的部分.其中,$D\bm{e}_1=\omega_{12}\bm{e}_2,D\bm{e}_2=\omega_{21}\bm{e}_1,D(f_1\bm{e}_1+f_2\bm{e}_2)=(\d f_1+f_2\omega_{21})\bm{e}_1+(\d f_2+f_1\omega_{12})\bm{e}_2$.
+协变微分是线性的,且有$D(f\bm{v})=\bm{v}\d f+fD\bm{v},D\abr{\bm{v},\bm{w}}=\abr{D\bm{v},\bm{w}}+\abr{\bm{v},D\bm{w}}$.
+
+在曲面上可以像欧式几何中一样平移向量.我们定义连接两点的曲线$\gamma(t)$上的切向量场$\bm{v}(t)$在Levi-Civita意义下平行,若$\frac{D\bm{v}}{\d t}=0$.因此我们可以认为此切向量在两点之间均平行.事实上,可以在曲线上任给两平行切向量场,其内积(即夹角)在曲线上不变.
+
+\paragraph{测地曲率与测地线}
+根据曲面上的弧长参数曲线$\bm{r}(s)$上取曲面的正交标架,使得$\bm{e}_1=\bm{r}',\bm{e}_3=\bm{n}$.此时我们定义此曲线上一点的测地向量为$\bm{\kappa}_g=\frac{D\bm{e}_1}{\d s}$,测地曲率即其长度,即$\kappa_g=\abs{\bm{\kappa}_g}=\abr{\frac{D\bm{e}_1}{\d s},\bm{e}_2}$.
+
+考虑曲面上曲线的曲率向量$\bm{r}''$和曲率$\kappa=\abs{\bm{r}''}$,将前者在曲面的切向和法向上分解,得到$\bm{r}''=\bm{\kappa}_g+\kappa_n\bm{e}_3$,其中$\kappa_n$是曲线的法曲率.这也说明了测地曲率即曲率在切平面上的部分.另外也有$\kappa^2=\kappa_g^2+\kappa_n^2$.
+
+通过考虑测地向量在自然标架下的表现,计算曲线$\bm{r}''$的二阶导,可以得到$\bm{\kappa}_g=\br{\frac{\d^2 u^\alpha}{\d s^2}+\Gamma^\alpha_{\beta\gamma}\frac{\d u^\beta}{\d s}\frac{\d u^\gamma}{\d s}}\bm{r}_\alpha$.在正交参数($F=0$)下,我们可以通过重整化此式,也可以通过直接计算正交标架和曲线的正交标架,以及正交参数下$\omega_{12}=-\frac{\partial_v\sqrt{E}}{\sqrt{G}}\d u+\frac{\partial_u\sqrt{G}}{\sqrt{E}}\d v$,得到Liouville公式:
+\begin{enumerate}
+    \item 具有正交参数$(u,v)$的曲面上的弧长参数曲线$C$与$u$线的夹角为$\theta$,则$C$的测地曲率
+    $$\kappa_g=\frac{\d \theta}{\d s}-\frac{\partial_v\ln E}{2\sqrt{G}}\cos \theta+\frac{\partial_u\ln G}{\sqrt{E}}\sin \theta.$$
+\end{enumerate}
+
+我们定义曲面上测地曲率$\kappa_g\equiv 0$的曲线为曲面的测地线.由自然标架下的测地向量表达可得到测地线方程
+$$\frac{\d^2 u^1}{\d s^2}+\Gamma^1_{\alpha\beta}\frac{\d u^\alpha}{\d s}\frac{\d u^\beta}{\d s}=0,\qquad \frac{\d^2 u^2}{\d s^2}+\Gamma^2_{\alpha\beta}\frac{\d u^\alpha}{\d s}\frac{\d u^\beta}{\d s}=0,$$
+其解即为测地线.
+
+我们给出测地线的所有性质.最后一项(短程性)需要用到变分法.
+\begin{enumerate}[resume]
+    \item 对曲面上任一点上任一切向量,都有测地线过该点并切于该切向量.
+    \item 仅有测地线的主法向量$\bm{\beta}$与曲面的法向量$\bm{n}$总平行.
+    \item 在曲面上连接两点的曲线中,测地线最短.
+\end{enumerate}
+\end{document}

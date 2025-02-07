@@ -1,0 +1,228 @@
+\documentclass[UTF8]{book}
+\usepackage{amssymb,amsmath,amsthm,amscd,latexsym,ctex}
+\usepackage{tikz,tikz-cd,pgfplots,geometry,enumitem,bm}
+% \usepackage{mhchem}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+\pgfplotsset{width=10cm,compat=1.16}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+% \renewcommand\thesection{\chinese{section}}
+% \addtocounter{section}{-1}
+% \newcounter{EX}
+% \renewcommand{\theEX}{\text{第}\chinese{EX}\text{条}}
+% \newcommand{\Emp}{\vspace{0.3cm}\par\refstepcounter{EX}\textbf{\theEX}\hspace{1em}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+% \newcommand{\P}{\mathbb{P}}
+\renewcommand{\d}{\mathrm{d}}
+
+\newcommand{\To}{\Longrightarrow}
+\newcommand{\Gets}{\Longleftarrow}
+
+\renewcommand{\contentsname}{Contents}
+\newtheorem{definition}{定义}
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{引理}
+\newtheorem{axiom}{公理}
+\newtheorem{proposition}{命题} 
+\newtheorem{conclusion}{结论}
+\newtheorem{corollary}{推论}
+\newtheorem{property}{性质}
+\newtheorem{example}{例}
+\newtheorem{remark}{注}
+\newtheorem{algorithm}{算法}
+\newtheorem{condition}{条件}
+\newtheorem{assumption}{假设}
+\title{Ordinary Differential Equation Notebook}
+\date{2020年8月24日}
+\author{zhangxm2312@gmail.com}
+\begin{document}
+    \maketitle
+    \tableofcontents
+
+    \chapter{Basic Concept}
+    \section{微分方程及其解的定义}
+    凡是联系自变量$ x $的未知函数$ y=y(x) $及其$ n $阶导数（若存在）在内的函数方程$$ F(x,y,y',\cdots,y^{(n)})=0 $$叫做\textbf{常微分方程}，其中导数实际出现的最高阶数$ n $叫做常微分方程的\textbf{阶}。
+
+    若$ F $对$ y,y',\cdots,y^{(n)} $是一次的，则称之为\textbf{线性常微分方程}，否则为非线性常微分方程。若未知函数$ y(x) $是多元的，则微分方程中将出现偏导数，则称之为\textbf{偏微分方程}。
+
+    若$ \varphi\in C^{(n)}(I_x) $且对于$ \forall x\in I: $$$ F(x,\varphi(x),\varphi'(x),\cdots,\varphi^{(n)}(x))\equiv 0 $$则称$ y=\varphi(x) $为上述微分方程在$ I $上的一个\textbf{解}。
+
+    若$ n $阶微分方程的解$ y=\varphi(x,C_1,\cdots,C_n) $包含$ n $个独立的任意常数$ C_1,C_2,\cdots,C_n $，则称之为\textbf{通解}；若解$ y=\varphi(x) $不包含任何常数，则称之为\textbf{特解}。
+
+    之所以说任意常数$ C_1,C_2,\cdots,C_n $是独立的，指的是$ \varphi,\varphi',\cdots,\varphi^{(n-1)} $关于$ C_1,C_2,\cdots,C_n $的Jacobi行列式$$ \frac{\partial(\varphi,\varphi',\cdots,\varphi^{(n-1)})}{\partial(C_1,C_2,\cdots,C_n)}\neq 0 $$
+    这应当是分析学中$ \varphi,\varphi',\cdots,\varphi^{(n-1)} $的函数之间的函数无关性的体现。% 为什么？函数独立性
+    显然，任意常数一旦确定后，通解就变成了特解。如果通过存在某些条件使得该常数被确定，则可以得到该方程的特解，即\textbf{初值条件}：$$ \varphi^{(i)}(x_0)=\alpha_i\qquad(i=0,\cdots,n-1) $$被确定，且和通解$ \varphi(x,C_1,\cdots,C_n) $联立即可得特解。\\ 求初值被确定的微分方程解的问题被称为初值问题，也被称为Cauchy问题。
+    \begin{quotation}
+        从上面简单实例的分析中,可以得出下面的启示:
+        
+        第一,微分方程的求解,与一定的积分运算相联系.因此也常把求解微分方程的过程称为积分-一个微分方程,而把微分方程的解称为积分由于每进行一次不定积分运算,会产生一个任意常数,因此仅从微分方程本身去求解(不顾及定解条件),则$ n $阶方程的解应该包含$ n $个任意常数.
+        
+        第二,微分方程所描述的是物体运动的瞬时(局部)规律.求解微分方程，就是从这种瞬时(局部)规律出发,去获得运动的全过程.为此，需要给定这一运动的一个初始状态(即上述初值条件),并以此为基点去推断这一运动的未来,同时也可追溯它的过去.对于n阶微分方程,初值条件的一般提法是$$ y(x_0) = y_0,\quad y'(x_0) = y'_0 ,\cdots, y^{(n-1)}(x_0) = y_0^{(n-1)} $$其中$ x_0 $是自变量的某个取定的初值,而$ y_0, y'_0,\cdots, y_0^{(n-1)} $是未知函数及其相应导数的给定的初值.这样,不失一般性，n阶微分方程的初值问题可以提成如下形式:
+        $$ \begin{cases}
+            y^{(n)}=F(x,y,y',\cdots,y^{(n-1)})\\ 
+            y(x_0) = y_0,\quad y'(x_0) = y'_0 ,\cdots,y^{(n-1)}(x_0) = y_0^{(n-1)}
+        \end{cases} $$自然要问:当函数F满足什么条件时此方程的解是存在的,或者更进一步,是存在而且唯一的？这是常微分方程理论中的一个基本问题. 在后续内容中我们将就$ n= 1 $的情形进行证明:\begin{quote}
+            只要$ F $是连续的，则此方程的解局部存在。
+        \end{quote}
+        并在某些条件下可以证明该解的存在和唯一性。此结论可以推广到$ n\geq 2 $的情况。
+    \end{quotation}
+
+    \vspace{1cm}最后，我们来介绍如何构造对于某个（具有一定性质的）函数对应的微分方程，其严格证明在后续内容中出现。
+    \begin{theorem}
+        对于函数$ y(x)=\varphi(x,C_1,C_2,\cdots,C_n),\varphi\in C^{(n)}(I_x)$，其具有独立变量$ C_1,C_2,\cdots,C_n $，即$ \varphi,\partial_x \varphi,\cdots,\partial^{n-1}_x \varphi\in C^{(1)}(I\times G) $，且在$ (C_1,C_2,\cdots,C_n)\in G\subseteq \R^n,x\in I $：$$ \frac{\partial(\varphi,\partial_x \varphi,\cdots,\partial^{n-1}_x \varphi)}{\partial(C_1,C_2,\cdots,C_n)}\neq 0 $$
+        则一定存在微分方程$ F(x,y,y',\cdots,y^{(n)})=0 $的解为上述函数。
+    \end{theorem}
+    \begin{proof}
+        定理的证明实际需要我们取得某个（隐）函数使得独立变量项$ C=(C_1,\cdots,C_n)\in G $被方程联立消去。
+        
+        题设条件已经允许我们使用隐函数定理了：首先我们取$ Y=(y,y',\cdots,y^{(n-1)})(x)$ \\  $=(\varphi,\partial_x \varphi,\cdots,\partial^{n-1}_x \varphi)(x,C) $，可以记作$ Y=\varPhi(x,C) $。可以构造函数$ f(x,C,Y)=\varPhi(x,C)-Y\equiv 0 $，有$ f'_C(x,C,Y)=\varPhi'_C(x,C)\neq 0 $，因此由隐函数定理，一定存在函数$ g\in C^{(1)}:g(x,Y)=C $，即：$$ C_i=g^i(x,y,y',\cdots,y^{(n-1)})\qquad (i=1,\cdots,n) $$
+        最后回代入方程$ y^{(n)}=\partial^n_x\varphi(x,C) $有：$$ F(x,Y)=\partial^n_x\varphi(x,g^1(x,Y),\cdots,g^{n-1}(x,Y))-y^{(n)}=0 $$
+        由于$ f(x,C,Y)\equiv 0 $，因此方程在$ I\times G $上均成立，因此得证。
+    \end{proof}
+    实际操作中，应该通过反复求导得到$ y,\cdots,y^{(n)} $关于$ C_1,\cdots,C_n $的方程组，消去后者即可。
+    \begin{example}
+        求二维平面中过坐标原点所有圆所满足的微分方程。
+    \end{example}\begin{proof}
+        已知其一定满足$ (x-a)^2+(y-b)^2=a^2+b^2 $，求导两次有：$$ (x+a)+(y+b)y'=0\qquad 1+y'^2+(y+b)y''=0\qquad x^2+2ax+y^2+2by=0$$
+        因此可得$$ (x^2+y^2)y''=2(1+y'^2)(xy'-y) $$
+    \end{proof}
+    \section{微分方程及其解的几何解释}
+    我们在上一节给出了微分方程及其解的定义，本节将对这些定义就一阶方程的情形给出几何解释。依据这些解释，我们可以从微分方程本身获得它的任一解所应具有的某些几何特征。
+
+    考虑一阶微分方程$$ y'=f(x,y)\quad ((x,y)\in G) \To \Gamma:\quad y=\varphi(x)\quad(x\in I) $$
+    函数$ y=\varphi(x) $在平面上是一条光滑曲线，它被称为该微分方程的一条\textbf{积分曲线}。
+
+    对于$ \forall P_0(x_0,y_0)\in\Gamma $，即$ x_0\in I,y_0=\varphi(x_0) $，由导数的几何意义有：$ \Gamma $在$ P_0 $处切线斜率为$$ \varphi'(x_0)=f(x,\varphi(x_0))=f(x_0,y_0) $$
+    因此积分曲线$ \Gamma $在$ P_0 $点切线方程为$$ y-y_0=f(x_0,y_0)(x-x_0) $$
+    因此对于$ f $的定义域$ G $上每一点$ P(x,y) $都可以构造映射：$$ G\ni P\mapsto f(P)=f(x,y)\in \R $$
+    可以用一以$ f(P) $为斜率的短直线$ l(P) $标明积分曲线在该点的切线方向，此被称为微分方程$ y'=f(x,y) $在$ P(x,y) $点的\textbf{线素}，而$ G\ni P\mapsto l(P) $被称为微分方程$ y'=f(x,y) $的\textbf{方向场}或\textbf{线素场}。
+
+    显然，微分方程的任何积分曲线都可以与其线素场吻合（嵌入之）：对$ \forall P\in \Gamma\subset G $都有$ f(P) $和$ l(P) $一阶相切。反之，在$ G $中有一条连续可微的曲线$ \Lambda:y=\psi(x) $和上述方程的方向场吻合，则$ \Lambda $是该方程的一条积分曲线。
+
+    事实上，给定一阶方程$ y'=f(x,y) \quad (x,y)\in G$就是给定在$ G $上的一个方向场；而求解初值问题$$ y'=f(x,y),\quad y(x_0)=y_0 $$ 就是求一条和上述方向场吻合且过$ (x_0,y_0) $点的连续可微曲线。
+    \begin{quotation}
+        尽管人们根据线素场很难精确地描绘出这样的曲线，但只要这些小线素取得足够细密，就可以作出相当近似的积分曲线。 这在无法或无必要求出解的精确表达式时，使我们可以从微分方程本身的特有性质，去推断它的解的某些属性，使所讨论的问题在一定程度上获得解决。即使在方程可解的情况下，也常常需要利用这种几何解释，从微分方程本身去获得解族的直观几何形象，这时通解的表达式可能仅起辅助作用。
+
+        一般而言 ，关系式$ f(x,y)= k $确定一条曲线$ L_k $。显然，线素场在曲线$ L_k $上各点的斜率都等于$ k $，称这种曲线$ L_k $为线素场的\textbf{等斜线}。在利用线素场研究积分曲线的分布状况时，作出等斜线常常是有帮助的。
+    \end{quotation}
+    为了解决在坐标轴上出现失去意义的点（比如在$ y $轴上出现$ \dfrac{y}{x} $）的情况，用线素场的观点来看，不能再把积分曲线仅仅看成$ y $对$ x $的单值函数，这促使我们把一阶微分方程写成关于$ x $和$ y $的\textbf{对称形式}：$$ P(x,y)\d x+Q(x,y)\d y=0 $$
+    但是当$ P(x_0,y_0)=Q(x_0,y_0)=0 $时，在$ (x_0,y_0) $无法定义上述线素，此即该微分方程的\textbf{奇异点}。
+
+    这样，对对称形式的微分方程积分可以得到：$$ \int (P(x,y)\d x+Q(x,y)\d y)=C$$
+    此即二维上的曲线积分。这种用隐函数方式给出的通解被称为方程的\textbf{通积分}。
+    \begin{quotation}
+        在对称形式的微分方程和通积分中，$ x $与$ y $处于平等的地位.在$ x\neq 0 $时，可以视$ x $为$ y $的函数;而当$ y\neq 0 $时,可以视$ y $为$ x $的函数.(注意,原点0是微分方程的奇异点).这种灵活的观点比较方便,可以省去对微分方程和其通积分中变量含意(即谁是自变量,谁是未知函数)的解释.其实,在我们求解之前,本没有理由认为沿着积分曲线一定能将$ y $整体地表成$ x $的函数,或将$ x $整体地表成$ y $的函数.因此把微分方程写成对称形式似更合理.在讨论微分方程的解法时,我们将广泛应用对称形式.
+        
+        还应该一提的是,当我们应用对称形式的微分方程时,微分方程的解族可能有所扩大。
+        \begin{example}
+            方程$ y\d x-x\d y=0 $的解除了通解$ y=Cx $外，还有特解$ x=0 $。
+
+            实际上该方程不是全微分方程，不能直接积分。由二维曲线积分和积分路径无关的条件$$ \partial_x Q=\partial_y P $$可知该方程的解与积分路径有关，不能直接积分。对该方程两边同除$ xy $，立即可得解。
+        \end{example}
+    \end{quotation}
+    \chapter{初等积分法}
+    \section{恰当方程}
+    考虑对称形式的一阶微分方程$ P(x,y)\d x+Q(x,y)\d y=0 $，若存在可微函数$ \varPhi(x,y) $使$$ \partial_x \varPhi=P(x,y)\qquad \partial_y \varPhi=Q(x,y)\qquad \d \varPhi(x,y)=P(x,y)\d x+Q(x,y)\d y $$
+    则称此一阶微分方程被称为\textbf{恰当方程}或\textbf{全微分方程}，此时有$$ \d \varPhi(x,y)\equiv 0\qquad \varPhi(x,y)=C $$
+    实际上固定该常数$ C $之后可以由隐函数定理得到$ y=u(x) $或$ x=v(x) $之类的显函数作为该微分方程的一个解；另一方面，若已知这样的显函数作为上述微分方程的一个解，因此也满足该恰当方程。
+
+    一般情况下，我们需要解决的问题是：\begin{enumerate}
+        \item 如何判断一个给定的微分方程是否是恰当方程？
+        \item 当它是恰当方程时，如何求出相应全微分的原函数？
+        \item 当它不是恰当方程时，能否将其求解问题转化为一个与之相关的恰当方程的求解问题？
+    \end{enumerate}
+    对于任意恰当方程，有：$$ \varPhi(x,y)=\int \d \varPhi(x,y)=\int P(x,y)\d x+Q(x,y)\d y=C $$
+    后者是一个二维的曲线积分。实际上积分是在\emph{单连通}区域$ G $上任意积分曲线上进行的，因此满足该微分方程的充要条件是曲线积分于路径无关，也即在微积分中学过的条件：$$ \text{曲线积分}\int P\d x+Q\d y\text{的值与路径无关}\iff \frac{\partial y}{\partial P}=\frac{\partial x}{\partial Q} $$
+    求解恰当方程的关键是构造相应全微分的原函数$ \varPhi(x,y) $，这就是场论中的位势问题。值得一提的是，当区域不是单连通的，或是条件不够好的时候，$ \varPhi(x,y) $很有可能是多值的。
+    \begin{example}
+        $$ \frac{x\d y-y\d x}{x^2+y^2}=0 $$在$ 0<x^2+y^2<1 $上成立，而其解$$ \varPhi(x,y)=\arctan (\frac{y}{x})$$在$ x $轴上不连续(从1突跃到-1)。
+    \end{example}
+    \section{变量分离的方程}
+    若微分方程$$ P(x,y)\d x+Q(x,y)\d y=0 $$中的$ P(x,y)=P_1(x)P_2(y),Q(x,y)=Q_1(x)Q_2(y) $，即系数上关于$ x,y $函数可被分解为$ x $的函数和$ y $的函数的乘积，则称该方程为\textbf{变量分离的方程}。当$ P_2(y)=Q_1(x)=1 $的时候，显然该方程为恰当方程。对于其一般形式，可以将其化为$$ \frac{P_1(x)}{Q_1(x)}\d x+\frac{Q_2(y)}{P_2(y)}\d y=0 \lor P_2(y)Q_1(x)=0$$
+    之所以要加后式，是因为到前式的变换需要条件$P_2(y)Q_1(x)\neq 0$，这时会漏掉某些解。其中，前式的解是变量分离的方程的通积分，而后者是某些特解，有形式$$\begin{cases}
+        x=a_i&,Q_1(a_i)=0\\  y=b_i&,P_2(b_i)=0
+    \end{cases}$$显然，如$x=a_i$有$Q_1(a_i)=0,\d x=0$，一定满足变量分离前的方程。
+    \begin{example}
+        显然，这是一个变量分离的方程，可以立即得到$$\frac{x^2+1}{x}\d x+\frac{y}{y^2-1}\d y=0\lor x(y^2-1)=0$$解得$x^2\exp(x^2)|y^2-1|=C$或$y=\pm 1,x=0$，当$C$可以为0时，即有：$$y^2=1+C\frac{e^{-x^2}}{x^2}\lor x=0$$
+    \end{example}
+    \rule{\textwidth}{1pt}
+    % 添加到后续内容
+    \begin{theorem}
+        设微分方程$$\frac{\d y}{\d x}=f(y)$$其中$f(y)$在$y=a$的某邻域$I$内连续，且$f(y)=0\iff y=a$，则有$$y=a\text{上任一点上}\frac{\d y}{\d x}=f(y)\text{的解局部唯一}\iff \left|\int^{a\pm \epsilon}_a \frac{\d y}{f(y)}\right|\text{发散}$$
+    \end{theorem}
+    % 4.跟踪;设某4从rOg平面上的原点出发沿z轴正方向前进;同时某B从点(0,b)开始跟踪A,即B与A永远保持等距b.试求B的光滑运动轨迹.
+    \section{一阶线性方程}
+    对于最简单的线性方程：一阶线性方程有形式$$y'+p(x)y=q(x)$$其中$p,q\in C(a,b)$。当$q(x)=0$时，该方程被称为\textbf{齐次线性方程}，否则称之为\textbf{非齐次线性方程}。
+
+    方程是好解的，先研究齐次情况：对其变量分解，有$$\frac{\d y}{y}+p(x)\d x=0\To y=Ce^{-P(x)}$$其中$P(x)=\int p(x)\d x$。特解$y=0$已经包含在$C=0$的情况中，不需要另行添加。
+
+    对于非齐次情况，有$$\d y+p(x)y\d x=q(x)\d x$$为转化其为恰当方程，取一函数因子$\mu(x,y)\neq 0$乘在对称形式两侧，有条件：$$\mu'_x=\mu p+\mu'_ypy$$取$\mu'_x,\mu'_y$其中一个为0(以构造简单的函数)，此处取$\mu'_y=0$，有$$\mu=e^{P(x)}\neq 0$$得到$$\mu \d y+\mu py=\mu q\d x\To \d(\mu y)=\mu q\d x\To y=e^{-P(x)}\left(C+\int e^{P(x)}q(x)\d x\right)$$
+    若存在初值$y(x_0)=y_0$，有：$$y=e^{-\int^x_{x_0}p(x)\d x}\left(C+\int_{x_0}^xq(x)e^{\int_{x_0}^xp(x)\d x}\d x\right)=e^{P(x_0)-P(x)}\left(y_0+\int_{x_0}^x q(t)e^{P(x)-P(t)}\d t\right)$$
+    用一个函数因子$\mu$对方程进行变换使其能被转化为一个恰当方程，这种方法被称为\textbf{积分因子法}。另一种重要方法\textbf{常数变易法}将在后续内容中进行详细介绍。
+
+    线性微分方程有一些特有的性质：\begin{enumerate}
+        \item 齐次线性微分方程的解要么恒为0，要么恒非0
+        \item 线性微分方程的解整体存在于$p(x)$和$q(x)$均连续的整个区间
+        \item 齐次线性微分方程的解的线性组合仍是它的解\\ 非齐次线性方程的任意两解差为相应齐次线性方程的解\\ 齐次线性方程的的解与相应非齐次线性方程的解之和是非齐次线性方程的解\\ 齐次线性方程的的通解与相应非齐次线性方程的任一解之和即是非齐次线性方程的通解
+        \item 线性微分方程的初值问题解存在且唯一
+    \end{enumerate}
+    \begin{example}
+        设微分方程$$y'+ay=f(x)$$其中常数$a>0$且$f(x)$是以$2\pi$为周期的连续函数。求此方程的$2\pi$的周期解。
+        
+        方程有通解$$y=Ce^{-ax}+\int^x_0 e^{-a(x-t)}f(t)\d t$$现在解积分常数$C$，使$y(x)$的周期为$2\pi$。先来证明$$\forall x:y(x+2\pi)\equiv y(x)\iff \exists x_0:y(x_0+2\pi)=y(x_0)$$
+        由$f(x+2\pi)\equiv f(x)\To y'+ay=f(x+2\pi)=f(x)$，因此$y(x+2\pi)$也是该微分方程的解，而由$u(x)=y(x+2\pi)-y(x)$有初值条件$u(x_0)=0$和性质1可知，$u(x)\equiv 0,y(x+2\pi)\equiv y(x)$，得证。
+
+        取$x_0=0$，有$$C=\frac{1}{1-e^{-2a\pi}}\int^{2\pi}_0 e^{-a(2\pi -t)}f(t)\d t=\frac{1}{1-e^{-2a\pi}}\int_{-2\pi}^0 e^{at}f(t)\d t$$
+        最后代入原解，有$$y(x)=\frac{1}{e^{2a\pi}-1}\int^{x+2\pi}_x e^{-a(x-t)}f(t)\d t$$
+    \end{example}
+    \begin{example}
+        求证$$\varphi'(x)+p(x)\varphi(x)\leq 0\To \varphi(x)\leq \varphi(0)e^{-\int^x_0 p(t)\d t}\qquad (x\geq 0)$$
+
+        设$y=\varphi(x),y_0=\varphi(0),y'+py=k\leq 0$，有：$$y=y_0e^{-\int^x_0 p(t)\d t}+ke^{-\int^x_0 p(t)\d t}\int^x_{0}e^{\int^x_t p(t)\d t}\d t$$，其中$$k\leq 0\qquad e^{-\int^x_0 p(t)\d t}\geq 0\qquad \int^x_{0}e^{\int^x_t p(t)\d t}\d t\geq 0$$得证。
+        % ？
+    \end{example}\begin{example}
+        考虑$$y'+p(x)y=q(x)$$其中$p,q$均是以$\omega>0$为周期的连续函数，求证：\begin{align*}
+            y(x)\not\equiv 0\text{有周期}\omega\iff&\overline{p}=\frac{1}{\omega}\int^\omega_0p(x)\d x=0
+            &q(x)\equiv 0\\ 
+            \text{方程有唯一的}\omega\text{周期解}\iff&\overline{p}=\frac{1}{\omega}\int^\omega_0p(x)\d x\neq 0&q(x)\not\equiv 0
+        \end{align*}
+
+        对于第一个，即齐次的情况时，有$y=Ce^{-P(x)}$，带入$x=0$和$x=\omega$，有：$$y(0)=Ce^{-P(0)}=Ce^{-P(\omega)}=y(\omega)\To C=Ce^{P(\omega)-P(0)}=Ce^{\int^\omega_0 p(x)\d x}\To C=0\lor \int^\omega_0 p(x)\d x=0$$
+        而$C$为任意常数，故只有后者成立，得证。
+
+        对于第二个，设$Q(x)=\int q(x)e^{P(x)}\d x$，有：$$y(0)=e^{-P(0)}\left( C+Q(0) \right)=e^{-P(\omega)}\left( C+Q(\omega) \right)=y(\omega)\To C(e^{P(\omega)-P(0)}-1)=Q(\omega)-e^{P(\omega)-P(0)}Q(0)$$
+        显然，$P(\omega)-P(0)\neq 0$，否则由$$q(x)\not\equiv 0,e^{P(x)}\not\equiv 0\To Q(x)=\int q(x)e^{P(x)}\d x$$
+        会推出矛盾。又有$$P(\omega)-P(0)=\int^\omega_0 p(x)\d x\qquad Q(\omega)-Q(0)=\int^\omega_0 q(x)e^{P(x)}\d x\neq 0$$
+        可得$\bar{p}\neq 0$，得证。
+        
+        另一方面，若$\bar{p}=0$，则方程一定无解，故不存在$\omega$周期解，得证。
+        带入方程，有$$y=e^{-P(x)}\left( \frac{Q(\omega)-e^{P(\omega)-P(0)}Q(0)}{e^{P(\omega)-P(0)}-1}+Q(x) \right)$$
+        
+    \end{example}\begin{example}
+        设连续函数$f(x)$在$I\subset \R$上有界\begin{enumerate}
+            \item 求证$$y'+ay=f(x)$$在$I$上存在唯一的有界解$y(x)$，并求出它
+            \item 当$f(x)$是$\omega$周期函数时，解$y(x)$也是$\omega$周期函数
+        \end{enumerate}
+    \end{example}\begin{example}
+        令$H^0_{2\pi}=\{f(x)|\exists I:f\in C(I),f(x+2\pi)\equiv f(x)\}$，$H^0_{2\pi}$在$\R$上构成线性空间。对于$\forall f\in H^0_{2\pi}$:$$\|f\|:=\max_{0\leq x\leq 2\pi}|f(x)|$$
+        求证：\begin{enumerate}
+            \item $H^0_{2\pi}$是一个Banach空间
+            \item 定义$\varphi:H^0_{2\pi}\to H^0_{2\pi},\forall f\in H^0_{2\pi}$:$$g(x)=\varphi(f):=\frac{1}{e^{2a\pi}-1}\int^{x+2\pi}_x e^{-a(x-t)}f(t)\d t$$求证$\varphi$线性且有界，即$$\|\varphi(f)\|\leq k\|f\|\qquad (k>0)$$
+        \end{enumerate}
+    \end{example}
+    \section{初等变换法}
+    \subsection{齐次方程}
+    若对于某微分方程\(P(x,y)\d x+Q(x,y)\d y=0\)存在\[P(tx,ty)=t^mP(x,y)\qquad Q(tx,ty)=t^mQ(x,y)\]则称此方程为\textbf{齐次方程}.
+
+    我们可以用\(y=ux\)来进行变量替换:\[P(x,y)=P(x,xu)=x^mP(1,u)\qquad Q(x,y)=Q(x,xu)=x^mQ(1,u)\]
+    代入即有\[x^m\left( P(1,u)+uQ(1,u) \right)\d x+x^{m+1}Q(1,u)\d u=0\]
+    这是一个变量分离的方程.
+
+    
+\end{document}

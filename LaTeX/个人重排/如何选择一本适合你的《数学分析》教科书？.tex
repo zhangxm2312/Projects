@@ -1,0 +1,358 @@
+\documentclass[UTF8]{article}
+\usepackage{amssymb,amsmath,amsthm,amscd,latexsym,ctex,geometry,enumitem}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\title{如何选择一本适合你的《数学分析》教科书？}
+\author{刘思齐 教授\qquad 出处 BV1xp4y1e7Nh}
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \section{一般原则}
+    \subsection{为什么要选书？}
+    数学教材怎么写是一个教育学问题，而教育学属于社会科学，社会科学不存在标准答案。
+    
+    一本好的数学分析教材反映的是作者对数学分析乃至整个现代数学的认识，这种认识因人而异。
+
+    从读者角度来说，人和人的成长经历不同，对教学方式的偏好也不同。
+    \begin{itemize}
+        \item 有的人只看Bourbaki的书就能学会数学，有的人思考任何问题都需要在黑板上画一个图。
+    \end{itemize}
+    所以，\textbf{学习数学分析一定要选择适合自己的书}。
+    \subsection{选一本就够了吗？}
+    作者写书是要将其数学观念全都写到书里，读者读书则是要建立属于自己的数学观念。就算读者选到一本最适合他的教材，作者的观念也未必完全符合读者的观念。所以，\textbf{只看一本书是不够的，要看很多本才能达到能够凭此建立观念的程度。}
+
+    但是另一方面，时间有限，不可能把很多书都看完。因此需要\textbf{以一本为主，对其精读，然后以其他书做参考才是合理的做法。}
+
+    所以真正的问题是：\textbf{哪一本书是适合精读的，哪些书适合做参考？}
+
+    \subsection{选国内的还是选国外的？}
+    外国有很多，这里我们所说的国外仅指发达国家，而把中国这个发展中国家跟所有发达国家的总和去比较是不公平的。国外当然也有不那么好的教材，只是它们不会被引进到中国，所以我们看不到。
+
+    中国最好的一批数学分析教材的平均水平的确\emph{略逊于}国外最好的几套数学分析教材。但国内教材的好处是微积分和数学分析一起学，和高中知识衔接较好。而国外数学分析教材往往只讲数学分析不讲微积分，因为国外学生在高中学过了微积分。所以，\textbf{国内的学生选择外国教材的话，一定要自己补充微积分知识}，比如微积分的运算技巧。
+    \subsection{选经典的还是选新出的？}
+    经典之所以成为经典就是因为它们真的很经典。
+    \begin{enumerate}
+        \item Whittakcr-Watson,\emph{A Course of Modern Analysis}(1902)
+        \item Goursat,\emph{A Course in Mathematical Analysis}(1904)
+    \end{enumerate}
+
+    新书有新书的好处：定义更合理、结论更强、证明更简单、观点更现代。新书也更容易买到（或者更容易获取电子版）。作者仍在世的书会不断更新，书中的各种错误会得到修正。而且，读者的水平也比以前的时代提高了。
+
+    所以，\textbf{所以，最好还是选择能跟上时代发展的新书作为精读的备选}。
+    \section{好书的看点}
+    \subsection{实数的定义}
+    实数理论是数学分析的基础，好的数学分析书必须要讲清楚什么叫实数。
+
+    实数的几种定义方法：\begin{enumerate}
+        \item 无穷小数法\\ 优点：直观、易于证明完备性\\ 缺点：不易定义四则运算、与实数不是一一对应的
+        \item Dedekind分割法\\ 优点：可以证明各种性质（包括四则运算、完备性等）\\ 缺点：不够直观、证明过程比较冗长
+        \item Cantor/Cauchy基本列法\\ 优点：可以证明各种性质（包括四则运算、完备性等）\\ 缺点：需要先讲数列极限、需要等价关系和商集的知识
+        \item 公理法\\ 优点：不必谈论具体构造，直接从公理出发\\ 缺点：公理系统的相容性依赖于前三种构造\\ （实数公理系统的相容性依赖于集合论公理系统的相容性，而后者从Goedel定理可知是无法解决的）
+    \end{enumerate}
+    四种方法各有优劣，但都是很好的方法，最重要的是看教材是否能讲清楚它们。
+    \subsection{微积分基本定理}
+    微积分基本定义是数学分析I的终极目标。
+
+    入门版：$F(x)$连续可导、$f(x)$是其导数。
+
+    标准版：$F(x)$可导、$f(x)$Riemann可积、$f(x)=F'(x)$
+    \begin{itemize}
+        \item 存在的问题：一个函数的导数也不一定Riemann可积、Riemann可积的函数不一定是某函数的导数
+    \end{itemize}
+    推广的版本：\begin{itemize}
+        \item $F(x)$可导、$f(x)$Riemann可积、$f(x)=F'(x)$可以在有限多个点处不成立
+        \item $F(x)$可导、$f(x)$Riemann可积、$f(x)=F'(x)$可以在可数多个点处不成立
+        \item $F(x)$Lipschitz连续、$f(x)$Riemann可积、$f(x)=F'(x)$几乎处处成立
+        \item $F(x)$绝对连续、$f(x)$是其几乎处处导数（Lebesgue积分版）
+    \end{itemize}
+    \subsection{隐函数定理}
+    隐函数定理的各种推论对于理解流形的概念非常重要，而流形的概念是条件极值、曲面积分等后续内容的基础。
+
+    常见证明方法：\begin{enumerate}
+        \item 消元法\\ 优点：传统方法、思路清晰、易于理解\\ 缺点：证明过程繁琐，无法推广到无穷维空间
+        \item 极值法\\ 优点：证明过程简洁\\ 缺点：技巧性较强，只适用于欧氏空间
+        \item 不动点法\\ 优点：现代方法、证明过程简介、可推广到Banach空间\\ 缺点：需要度量空间、压缩映照原理等准备知识
+    \end{enumerate}
+    \subsection{重积分换元法}
+    重积分换元法是整个数学分析中最难的一个定理，但很多常见的数学分析教材对这个定理的处理都是不严格的。
+
+    常见证明方法：\begin{enumerate}
+        \item 最简微分同胚法\\ 优点：传统方法\\ 优点：需要微分同胚和单位分解的知识
+        \item Schwartz法(1954)\\ 优点：现代方法、易于Lebesgue积分对接\\ 缺点：需要无穷范数和相应的有限增量定理
+        \item Lax法\\ 优点：后现代方法、证明过程简洁\\ 缺点：对区域边界要求较高、需要先讲曲面积分
+    \end{enumerate}
+    \subsection{如何在数学分析中讲拓扑、实分析、复分析、泛函分析、微分流形\dots\dots}
+    数学分析中的很多定理其实是拓扑、泛函中某些更加一般的定理在欧氏空间中的特殊情况，暂时忘掉欧氏空间中那些不相关的结构、只保留最必要的结构反而可以使定理得到简化，让证明思路更加清晰。
+
+    另一方面，数学分析中的很多结果如果不引入更高级的知识的话是讲不清楚的\begin{enumerate}
+        \item 有理函数的不定积分依赖代数基本定理、代数基本定理依赖复分析
+        \item 积分学中的很多结果在实分析中有更优美的形式
+        \item Green公式、Gauss公式和Stokes公式都是流形上的一般Stokes公式的特例
+    \end{enumerate}
+    讲高级知识还是初级知识都只是一种讲授的途径，主要看的还是到底怎么讲这些知识。
+
+    数学分析中高级知识的各种讲法：\begin{itemize}
+        \item[$\times$] 我觉得这东西很牛逼、很流行、很现代，所以要讲给你们听
+        \item[$\surd$] 我觉得这东西对理解数学分析很有帮助，所以要讲给你们听
+        \item[$\times$] 我把高级知识课本里的定义、定理堆在这儿，你们就应该能学懂了
+        \item[$\surd$] 我结合数学分析的具体问题，把高级知识改造成更容易理解的形式
+    \end{itemize}
+    \section{精读书籍}
+    以下均代表作者本人观点及品味。书的内容普遍偏难，可以自己寻找更适合更简单的。
+    \subsection{(Baby) Rudin（美）}
+    \begin{itemize}
+        \item 实数定义：Dedekind分割
+        \item 微积分基本定理：标准版
+        \item 隐函数定理：不动点法
+        \item 重积分换元法：最简微分同胚法
+        \item 高级内容：\begin{enumerate}
+            \item 度量空间
+            \item 微分形式的Stokes公式（不太好）
+            \item Lebesgue积分（不太好）
+        \end{enumerate}
+        \item 其他特色：清晰简明，可能过于简明；习题比较多
+    \end{itemize}
+    \subsection{Zorich（俄）}
+    \begin{itemize}
+        \item 实数定义：公理法
+        \item 微积分基本定理：有限例外点
+        \item 隐函数定理：消元法（第一册）+不动点法（第二册）
+        \item 重积分换元法：最简微分同胚法（附Schwartz法）
+        \item 高级内容：\begin{enumerate}
+            \item 度量空间的拓扑学
+            \item 赋范空间的微分学
+            \item 一般流形上的积分学
+        \end{enumerate}
+        \item 其他特色：非常传统（俄式）、重视物理应用
+    \end{itemize}
+    \subsection{Amann-Escher（德）: Analysis}
+    \begin{itemize}
+        \item 实数定义：Dedekind分割+Cantor基本列（漂亮，涉及抽代，不友好）
+        \item 微积分基本定理：极简法+Lebesgue积分
+        \item 隐函数定理：不动点法
+        \item 重积分换元法：Schwartz法（Lebesgue积分）
+        \item 高级内容：所有你能想到的都讲了\dots\dots
+        \item 其他特色：\begin{enumerate}
+            \item 完全的现代观点、对传统内容交代不足
+            \item 内容过于丰富、不要奢望完全掌握
+            \item 适合自学（至少作者是这么希望的）
+        \end{enumerate}
+    \end{itemize}
+    \subsection{Godement（法）: Analysis}
+    \begin{itemize}
+        \item 实数定义：Dedekind分割（极简）+公理法（有思路，友好）
+        \item 微积分基本定理：标准版+可数例外点
+        \item 隐函数定理：不动点法
+        \item 重积分换元法：Schwartz法（有调和分析）
+        \item 高级内容：你甚至能学到模形式
+        \item 其他特色：\begin{enumerate}
+            \item 非常话痨、经常跑题、注重传统
+            \item 内容过于丰富、不要奢望完全掌握
+            \item 法式章节顺序（多一种讲法，多一种证法，多一种理解）
+        \end{enumerate}
+    \end{itemize}
+    \subsection{陈天权（中）：数学分析讲义}
+    \begin{itemize}
+        \item 实数定义：公理法（附Dedekind分割）
+        \item 微积分基本定理：标准版+可数例外点
+        \item 隐函数定理：不动点法
+        \item 重积分换元法：Schwartz法（Lebesgue法）
+        \item 高级内容：比Goldment只少了模形式
+        \item 其他特色：\begin{enumerate}
+            \item 补充教材、注记和参考文献极具价值
+            \item 习题极好，但是可能做不完
+            \item 部分内容与其他教材有改动地雷同
+            \item 文本比较粗糙，较难理解
+        \end{enumerate}
+    \end{itemize}
+    \section{参考书籍（国外）}
+    \subsection{Terrence Tao（美）：陶哲轩实分析}
+    \begin{itemize}
+        \item 此书的章节安排和选材与Baby Rudin类似，可视为对Baby Rudin 的补充
+        \item 缺少重积分换元法、流形上的积分等重要内容，所以只能做参考
+        \item 第5章用Cantor基本列法定义实数是其它书中少见的讲法，最具参考价值
+        \item 陶哲轩的文风轻松亲切，不像Rudin那么冷峻，对很多东西背后的思想解释得比较到位
+        \item 中译本质量很高，而且译者力图还原了原文轻松亲切的口语化文风
+    \end{itemize}
+    \subsection{Apostol（美）:Mathematical Analysis}
+    这是一本在各种意义上都和Baby Rudin互补的书：\begin{enumerate}
+        \item Baby Rudin的三个版本出版于1953年、1964年和1976年，此书的两个版本出版于1957年和1974年
+        \item 两者都讲了Riemann-Stieltjes积分
+        \item Baby Rudin的隐函数定理用的不动点法，此书用的极值法
+        \item Baby Rudin的重积分换元用的最简微分同胚法，此书用的Schwartz法
+        \item 对Lebesgue积分的处理，Baby Rudin用的是测度论讲法，此书用的是泛函讲法
+        \item 此书包含一些Big Rudin的内容如（Fourier分析和复分析），但是完全没讲流形上的积分
+        \item Baby Rudin语言简练，此书有些话痨（这是好事）
+        \item Baby Rudin的习题比较难，此书习题较容易
+    \end{enumerate}
+    \subsection{阿黑波夫、萨多夫尼奇、丘巴里阔夫（俄）：数学分析讲义}
+    \begin{itemize}
+        \item 这是一本比较新的教材，初版出版于1999年，最新版出版于2004年，中译本出版于2006年
+        \item 它的实数理论部分讲的很糟糕，其它看点也乏善可陈
+        \item 但是它包含很多别的书里没有的现代或古典内容，比如:\begin{enumerate}
+            \item 滤子基上累次极限存在且相等的条件(1995)（强于卓里奇的结果）
+            \item 复合函数高阶导数的Faà di Bruno公式（陈天权的习题）
+            \item Lagrange反演公式
+            \item Kepler问题和Bessel级数
+            \item 无穷行列式的Poincare定理
+        \end{enumerate}
+    \end{itemize}
+    \subsection{菲赫金哥尔茨（俄）：微积分学教材}
+    之前我们说过，国外的数学分析教材往往缺乏微积分的内容，菲赫金哥尔茨的这套书正好补足这个缺陷
+
+    这套书包含有非常丰富的例题，如：\begin{enumerate}
+        \item 椭圆积分的处理方法
+        \item $e$的超越性的证明
+        \item 各种稀奇古怪的积分和级数的计算
+        \item Lagrange反演公式
+        \item Kepler问题和Bessel级数
+    \end{enumerate}
+    最后的附录还讨论了Moore-Smith的``网''的概念以及基于此的一般极限理论，这是滤子基方法之前的一种极限理论。
+    \subsection{吉米多维奇（俄）：数学分析习题集}
+    此书市面上有多种版本，但是我只推荐高教社俄选的这版。
+
+    这一版的序言很有意思:\begin{quotation}
+        和许多数学家一样，我也曾两次使用这部广为流传的著作:首先是别人教我数学分析的时候，然后是我自己教别人数学分析的时候.在B.P.吉米多维奇的习题集筹备再版之际，我深感欣喜,并以特别感激的心情应其子V.B.吉米多维奇之邀为本版作序.
+    \end{quotation}
+
+    序言的作者是卓里奇，所以精读卓里奇的《数学分析》时，建议以吉米多维奇作为参考。卓里奇上习题一般偏难，而且不强调计算，因此要用吉米多维奇来补充。
+    
+    \textbf{做题的目的，一个是为了检查自己是否学懂了，另一个是锻炼计算能力，把计算变成本能一样的东西。}我们要把计算培养一种肌肉记忆一样的东西，不应认为它是一个难题或是障碍，而是非常自然的东西。我们要计算得非常熟练、非常快，以达到一种程度：我们在计算见过的题时只是在通过计算回忆出自己曾算出过的结果。在后续学习中难以理解一个事物时，可以通过大量的计算相关例子以培养出经验和直觉。
+
+    最后，别看题解，做错了就记下题号，过几天再做。
+    \subsection{Biler,Witkowski（俄）:Problems in Mathematical Analysis}
+    题目超难：如果吉米多维奇不能满足你，那么可以试试这本。
+
+    我只会做第一题：\\ 
+    1.1 Show that an irrational power of an irrational number can be rational.
+
+    第二题是这样的\\ 
+    1.2 Prove that if $c > 8/3$, then there exists a real number $\theta$ such that $\lfloor \theta^{c^n}\rfloor $ is prime for every positive integer $n$.
+
+    像这样的变态题目后面还有1333道。
+
+    喜报：这本书的后半本是答案。（强烈不推荐大家刷）
+    \subsection{Stein,Shakarchi（美）: Princeton Lectures in Analysis}
+    书是好书，但是当教科书好像差点意思，当参考书正好。\begin{itemize}
+        \item 第一本《Fourier Analysis》可以作为Baby Rudin的后续，或者直接取代卓里奇的第十八章。
+        \item 第二本《Complex Analysis》对几何观点讲得不够，建议参考Ahlfors或者Kodaira的复分析。
+        \item 第三本某些定理的处理方法比较初等，学数学分析的话可以借鉴，比如Lebesgue微分定理是用Riesz的日出引理证的，不需要Vitali覆盖（陈天权的习题）。
+        \item 书里的练习和问题都很不错，建议多做做。
+        \item 作者的写作动机是想凸显分析的整体性，以使四大分析内容相互穿插，不适合单独使用某一本作为教材。但实际上却导致四本书的内容安排有些凌乱，读者总是找不到想找的主题。
+    \end{itemize}
+    \subsection{Munkres(or Spivak)（美）: Analysis(or Calculus) on Manifolds}
+    Baby Rudin对流形上的微积分处理得不够充分，这两本书可作为其后续。
+    
+    Spivak的书写于1965年，非常薄，证明简捷、图示清晰，但是错误很多，有的还很严重，不建议初学者读。
+    Munkres的书写于1991年，很厚，证明详细（有的甚至可以说冗长），读着有点累，但是好在都是对的。
+
+    可以先看Munkres把东西学会，然后再看Spivak看看能不能挑出错。
+    \subsection{Duistermaat,Kolk（荷）: Multidimensional Real Analysis}
+    这是流形上的微积分的高级版，一般作为研究生教材。
+    \begin{itemize}
+        \item 第一册讲微分学，重点是隐函数、流形和切空间的几何。
+        \item 第二册讲积分学，给了重积分换元法的三种证明，正确地区分了对密度的第一型积分和对微分形式的第二型积分。
+        \item 这两本书的结构非常奇特，前半本全是定理、后半本全是习题，而且习题超多，对于培养几何的感觉非常有好处。
+    \end{itemize}
+    \section{参考书籍（国内）}
+    \subsection{张筑生：数学分析新讲}
+    \begin{itemize}
+        \item 实数定义：无穷小数法（Dedekind风格）
+        \item 微积分基本定理：入门版
+        \item 隐函数定理：不动点法
+        \item 重积分换元法：Schwartz法+最简微分同胚法（没用单位分解）
+        \item 高级内容：非常有限
+        \item 其他特色：\begin{enumerate}
+            \item 对于传统内容的讲解极为出色
+            \item 没有习题，这是一个重大缺陷
+        \end{enumerate}
+    \end{itemize}
+    \subsection{王昆扬：数学分析简明教程}
+    \begin{itemize}
+        \item 实数定义：无穷小数法（Cantor风格）
+        \item 微积分基本定理：标准版
+        \item 隐函数定理：不动点法
+        \item 重积分换元法：Schwartz法
+        \item 高级内容：测度论（尤其是曲线和曲面上的测度）
+        \item 其他特色：\begin{enumerate}
+            \item 一维和多维混在一起讲，难度忽上忽下
+            \item 有理数、无理数译成比例数、非比例数
+            \item 不能讲授一般流形上的第二型积分
+        \end{enumerate}
+    \end{itemize}
+    \subsection{郇中丹、刘永平、王昆扬：简明数学分析}
+    \begin{itemize}
+        \item 实数定义：无穷小数法（Dedekind风格）
+        \item 微积分基本定理：标准版
+        \item 隐函数定理：不动点法
+        \item 重积分换元法：Schwartz法（Lebesgue积分）
+        \item 高级内容：滤子基和Lebesgue积分
+        \item 其他特色：\begin{enumerate}
+            \item 完全匹配阿黑波夫的书的教程，但某些地方写得更好。可与阿黑波夫等人的书课对比着读。
+            \item 并没有充分发挥滤子集的作用
+            \item 有Faà di Bruno公式，但证明``细节留做习题''
+        \end{enumerate}
+    \end{itemize}
+    \subsection{梅加强：数学分析}
+    \begin{itemize}
+        \item 实数定义：Dedekind分割
+        \item 微积分基本定理：标准版（定积分换元法加强）
+        \item 隐函数定理：不动点法
+        \item 重积分换元法：Schwartz法（绕过无穷范数）
+        \item 高级内容：\begin{enumerate}
+            \item 余面积公式
+            \item Riemann-Stieltjes积分
+            \item 微分形式的Stokes公式
+        \end{enumerate}
+        \item 其他特色：在连续函数的最后，一致连续性部分讲了定积分的定义和性质，应用了一致连续性
+    \end{itemize}
+    \subsection{常庚哲、史济怀：数学分析教程}
+    \begin{itemize}
+        \item 实数定义：错的
+        \item 微积分基本定理：入门版
+        \item 隐函数定理：消元法
+        \item 重积分换元法：错的
+        \item 高级内容：无
+        \item 其他特色：\begin{enumerate}
+            \item 这是何琛、史济怀、徐森林的《数学分析》的不成器的后代，后面徐森林、薛春华的也是。
+            \item 此书唯一的亮点是练习题和问题不错，很多题目其实来自华罗庚
+            \item 网上有视频教程，可以看
+        \end{enumerate}
+    \end{itemize}
+    \subsection{徐森林、薛春华：数学分析}
+    \begin{itemize}
+        \item 实数定义：四种全讲了，但是都有问题
+        \item 微积分基本定理：入门版+有限例外点
+        \item 隐函数定理：消元法+不动点法
+        \item 重积分换元法：Schwartz法（反证无穷范数）
+        \item 高级内容：\textbf{堆砌}了一些点集拓扑的东西
+        \item 其他特色：\begin{enumerate}
+            \item 逻辑混乱，有大量冗余内容，从复杂到简单（不要按顺序学）
+            \item 有配套的习题解答（这是缺点）
+            \item 常庚哲、史济怀中的问题做不出来可以在这里找答案
+        \end{enumerate}
+    \end{itemize}
+    \subsection{谢惠民、恽自求、易法槐、钱定边：数学分析习题课讲义}
+    \begin{itemize}
+        \item 这才是真正的数学分析习题集，吉米多维奇只能叫微积分习题集
+        \item 这套书中有很多其它书中没有的有趣的结果
+        \item 很多问题都带美国数学月刊之类的参考文献
+        \item 如果参考题实在做不出来，书后有提示
+        \item 与动力系统相关的东西可以不看
+        \item 不要只做题，正文中的各种讨论更有价值
+    \end{itemize}
+\end{document}
+落花随风落梦乡
+说真的，看哭了，把我很多的困惑都说到了。进入大学后我先读的是清华的《数理逻辑与集合论》，然后看了陶哲轩的实分析，Baby Rudin，卓里奇和Munkres的Topology。我从一开始就在实数的定义上卡住了。陶哲轩从自然数开始讲，用的是皮亚诺公理，在末尾用同构的方式谈了下皮亚诺结构的唯一性。但《数理逻辑与集合论》中对自然数集给出的是冯诺依曼编码，我有点困惑，就看了其他的几本书。Munkres和卓里奇用的都是公理化定义，我就开始琢磨数学结构之间的同构是怎么一回事，公理系统到底是什么。然后了解到了范畴论，读的是Category Theory for Working Mathematics，这本书在附录里有说可以抛开集合论公理直接建立范畴论，于是我又去了解Elementary Theory for Category of Sets。在Google上找相关的资料，七七八八读了些讨论数学基础的论文，还了解了一下Homotopy Type Theory、Lambda演算和形式证明。至此我已经有些迷茫了，《数理逻辑与集合论》里说数学理论是建立在集合论上的，但集合论好像有多缺点，范畴论又没办法彻底脱离集合的概念，而类型论的语言又讲不清子集的概念… 我想，哎，好吧，先不管这些数理逻辑的东西了，学数学要紧。但是我开始一味地追求高级内容了，我觉得就是要用最现代的语言推最强的结论。可又觉得我这样根本做不成任何事情。反正推出来的结论别人早就推出来了，又写不成论文。然后学得东西也不系统，东学一点西学一点… 这个暑假我就是在反复地想我是不是哪里错了，可是眼看后天就开学了，还是没想通。看了这个视频，感慨良多，多谢老师了。
+
+三逢夏露
+同，不过我没有你那么猛，我也有困惑，也是去读了集合论，最后放弃治疗。
+大三学拓扑学的时候，看了《度量空间的拓扑学》后，就有点悟了。只要“柯西列的极限值就在集合内”这种完备性，就把它叫做实数，或者说它与实数集同态就行了。谈论的太深了，就没法继续迈步子了，毕竟大学期间以学习数学的各个大领域为主，深入的事情该是后续的学生生涯该干的。
+当然，这只是学渣的一种狡辩罢了，不过拓扑学真的是个好东西，学了之后感觉自己之前那些小想法根本就没一点水平，拓扑学把我该说的，或者根本想不出来的全说了，只能留下一句牛逼。
+或者说，我觉得实数集合最关键的性质就是完备性，而拓扑学谈论完备性空间已经谈论的很棒了，所以就只能说牛逼了。
+
+落花随风落梦乡回复 @三逢夏露:
+我现在觉得吧，实数集，怎么说呢，从结构主义的观点上看，它就是一个完备全序域，或者说柯西完备的阿基米德域。关键是如何证明这样的结构存在，并且这样的结构是unique up to isomorphism的。目前有几种方案，一种是采用建立在一阶逻辑上的ZFC、NBG或者Grothendieck-Tarski公理集合论，采用冯诺依曼编码的方式定义自然数集，然后从自然数集出发一步步证明。陶哲轩的《实分析》就是很好的例子，要把陶哲轩给出的方案完全按照集合论语言严格化也不难，只需要把商集定义为幂集合的分割即可。但这样做的话，我们就构造了一堆“在正常的数学里头根本用不到的东西”。当然，我们可以把无穷公理拿掉，直接把完备全序域的存在作为公理，然后证明这样的结构在同构意义下唯一。但是一阶逻辑有个缺陷，它没办法让我们在各种各样的完备有序域中选定其中一个。我们只能说"任意一个完备有序域都具有什么什么性质"，这样我们一来就只能以一种很奇怪的方式定义度量、测度、n维欧式空间等等这样的东西了。比如：设X是一个完备有序域，M是一个集合，则d: M×M -> X 称为是X上的度量，若… 这是非常麻烦的。但是范畴论的语言非常适合于处理这种问题。不难看出，全体阿基米德域连同它们之间的域同态构成一个范畴，而完备有序域就是这个范畴里的Final Object。这样的语言适用于许许多多的数学概念，因为绝大多数时候我们真的不外乎一个集合里头的元素是什么，只在乎这个集合有哪些结构。但是范畴论的基础还有很大的争议。如果用NBG或者Grothendieck-Tarski集合论来定义范畴的话，则无法讨论像Heigher Category这样的东西。而且我们有足够的理由怀疑，一阶逻辑的各种缺陷导致了在一阶逻辑里是无法建立高阶范畴论的。目前来看似乎只有HoTT（Homotopy Type Theory）比较合适，但无法很好地定义子集这一概念是类型论的固有缺陷。所以总的来说，一阶逻辑有着让人很难受的缺陷，但如何彻底解决这个缺陷还有待进一步研究。就现在来看，已经不再像布尔巴基的时代那样有一个公理系统可以作为全部数学理论的“基础”了。
+NBG或者GT(Grothendieck-Tarski)公理集合论引入了"全体集合的Collection"这样的概念，从而我们可以讨论各种各样定义在集合上的结构连同它们之间的态射所构成的一阶范畴，但是无法讨论定义在一阶范畴上的结构所构成的二阶范畴了。我们可以采用类似于完备有序域这样的结构主义观点来看待全体集合所构成的Collection，从范畴论的角度上讲，全体集合连同它们之间的映射构成了一个具备若干性质的Elementary Topos，并且这样的Element Topos 在同构意义下是唯一的。但Topos是定义在一阶范畴上的一种结构，超出NBG和GT的表达能力了。所以我个人觉得，带有各种局限性的一阶逻辑是迟早要弃用的，有很多概念，比如实数集、自然数集、多项式环、商集等等，我们没必要再去考虑它们的集合论定义（因为我们真的不在乎它们里头有什么元素）。但是collection这一概念，就像"if","and","or"这些词一样，属于逻辑的基本组成部分，是无法取代的。所以我更倾向于把"universe of sets"看作是一个被选定的满足若干性质的elementary topos，然后把实数集看作是全体定义在这个topos上的阿基米德域的范畴的final object。

@@ -1,0 +1,46 @@
+\documentclass{article}
+\input{newcommand.tex}
+\title{集合与函数的基础知识}
+\author{章小明}
+
+\begin{document}
+\maketitle
+% \tableofcontents
+\section{集合}
+\section{映射}
+\begin{itemize}
+    \item $X,Y$是集合,$R\subset X\times Y$是$X$与$Y$间的关系.$(x,y)\in R$可记作$xRy$.
+    \begin{itemize}
+        \item $\mathrm{Dom}(R)=\cbr{x\in X:\exists y\in Y:xRy},\mathrm{Ran}(R)=\cbr{y\in Y:\exists x\in X:xRy}$.
+        \item $A\subset X$,$R$在$A$上的限制$R|_A=A\times Y\cap R$.
+        \item $R\rev\subset Y\times X, xRy\iff yR\rev x$.
+        \item $R(A)=\cbr{y\in Y:\exists x\in A:xRy}=\mathrm{Ran}(R|_A),R\rev(B)=\cbr{x\in X:\exists y\in B:xRy}$.
+        \item 关系的复合:$R_1\subset X\times Y,R_2\subset Y\times Z, R_2\circ R_1\subset X\times Z$.$x(R_2\circ R_1)z\iff (\exists y\in Y: xR_1y\land yR_2z)$
+    \end{itemize}
+    \item 特殊的关系\begin{itemize}
+        \item 等价关系$\sim \subset X^2$:\textcircled{1}自反性 $x\sim x$;\textcircled{2}传递性 $x\sim y\land y\sim z\implies x\sim z$;\textcircled{3}对称性 $x\sim y\iff y\sim x$.
+        \item 偏序关系$\leq\subset X^2$:\textcircled{1}自反性;\textcircled{2}传递性;\textcircled{3}反对称性 $x\leq y\land y\leq x\iff x=y$.
+    \end{itemize}
+    \item 一个映射$f:X\to Y$是指一个$X$到$Y$的关系$f$,满足$\forall x\in X\exists! y\in Y: xfy$,记$y=f(x)$.
+    \begin{itemize}
+        \item $B\subset Y, f\rev(B):=\cbr{x\in X:f(x)\in B}$.
+    \end{itemize}
+    \item $f:X\to Y$是单射$\iff \forall y\in \im f \exists! x:y=f(x) \iff f\rev(y)$是单点集.\\
+    $f:X\to Y$是满射$\iff \forall y\in Y\exists x\in X:y=f(x)\iff f(X)=Y\iff f\rev(Y)=X$.\\
+    $f$是双射$\iff f$是单射且是满射.
+    \item $f:X\to Y$和$g:Y\to X$\begin{tabular}{l}单\\满\end{tabular}$\implies g\circ f$\begin{tabular}{l}单\\满\end{tabular}$\implies$\begin{tabular}{l}$f$单\\$g$满\end{tabular}$\iff \exists$\begin{tabular}{l}$g:Y\to X$\\$f:X\to Y$\end{tabular}$:g\circ f=\id_X$,但仅当$f\circ g=\id_Y$时两者互逆.
+    \item $f\rev$不一定是映射,但$\cbr{f\rev(y):y\in Y}$是$X$上分划.
+    \item $f$单时$f\rev|_{\im f}$是映射.特别的,$f$是双射时存在唯一的逆$f\rev$作为映射.但$f$的左右逆不一定唯一.
+\end{itemize}
+
+以下设$f:X\to Y, A\subset X, B\subset Y$.蓝色符号表示$f$单时取等,红色符号表示$f$满时去等.
+\begin{enumerate}
+    \item $A_1\subset A_2\implies f(A_1)\subset f(A_2), B_1\subset B_2\implies f\rev(B_1)\subset f\rev(B_2)$.
+    \item $f\br{\bigcap_{i\in I}A_i}{\color{red}\subset} \bigcap_{i\in I}f(A_i), \bigcup_{i\in I}f(A_i)=f\br{\bigcup_{i\in I}A_i}$.$f\rev\br{\bigcap_{i\in I}B_i}=\bigcap_{i\in I}f\rev(B_i), \bigcup_{i\in I}f\rev(B_i)=f\rev\br{\bigcup_{i\in I}B_i}$.
+    \item $f(A_1-A_2){\color{red}\supset}f(A_1)-f(A_2), f\rev(B_1-B_2)=f\rev(B_1)-f\rev(B_2)$.
+    \item $f\rev(f(A)){\color{red}\supset }A,f(f\rev(B)){\color{blue}\subset}B, f(f\rev(B)\cap A)=B\cap f(A)$.
+\end{enumerate}
+\section{拓扑学}
+红色符号表示$I$有限时取等.
+    $$\overline{\bigcap_{i\in I} E_i}\subset \bigcap_{i\in I} \overline{E_i}, \bigcup_{i\in I} \overline{E_i}{\color{red}\subset} \overline{\bigcup_{i\in I} E_i},\qquad \br{\bigcap_{i\in I}E_i}^\circ{\color{red}\subset} \bigcap_{i\in I} E_i^\circ, \bigcup_{i\in I}E_i^\circ\subset \br{\bigcup_{i\in I}E_i}^\circ$$
+\end{document}

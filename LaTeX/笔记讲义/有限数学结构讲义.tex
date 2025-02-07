@@ -1,0 +1,289 @@
+\documentclass[11pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\tableofcontents
+
+\section{作业}
+\subsection{第四次作业}
+\paragraph{1}5男6女中取3男4女的方法数
+
+即$\binom{5}{3}\binom{6}{4}=150$种.
+
+\paragraph{2}考虑含有充分多个蓝,绿,黄,白色石子的罐子(认为石子除颜色不可分辨),从罐子中取三个石子的组合数量.
+
+即$e_1+\cdots+e_4=3$的非负整数解的个数,即$\binom{4+3-1}{3}=20$.
+
+\paragraph{3}重排单词MATHEMATICS,使得排列中最后一个元音为I的方法数.
+
+单词长11,有辅音字母2个M,2个T,1个H,1个C和1个S;元音字母2个A,1个E和1个I.首先从11个位置中选择4个放元音字母,即$\binom{11}{4}=330$种可能;再排列元音字母使I为最后一个,即排列A,A,E,有$3!/2!=3$种可能.最后在剩下7个位置放辅音字母,它们有$\frac{7!}{2!2!}=1260$种排列.因此答案是$330\cdot 3\cdot 1260=1247400$.
+
+\paragraph{4}证明恒等式:
+$$(1)\quad \sum_{k=r}^n \binom{k}{r}=\binom{n+1}{r+1};\qquad (2)\quad \sum_{k=0}^r \binom{m}{k}\binom{n}{r-k}=\binom{m+n}{r}.$$
+
+(1)注意到
+$$\binom{n+1}{r+1}-\binom{n}{r}=\binom{n}{r+1}, \binom{n+1}{r+1}-\br{\binom{n}{r}+\binom{n-1}{r}}=\binom{n-1}{r+1},\cdots, \binom{n+1}{r+1}-\sum_{k=r+1}^{n}\binom{k}{r}=\binom{r+1}{r+1}=\binom{r}{r}$$
+从而得证.(2)考虑生成函数$f(x)=\sum_{r=0}^{\infty}\binom{m+n}{r}x^r=(1+x)^{m+n}$,我们有
+$$f(x)=(1+x)^m(1+x)^n=\br{\sum_{i=0}^{m}\binom{m}{i}x^i}\br{\sum_{j=0}^{n}\binom{n}{j}x^j}=\sum_{r=0}^{m+n}\sum_{i+j=r, i,j\geq 0}\binom{m}{i}\binom{n}{j}x^r$$
+比较系数可得$\sum_{i+j=r}\binom{m}{i}\binom{n}{j}=\sum_{k=0}^{r}\binom{m}{k}\binom{n}{r-k}=\binom{m+n}{r}$.
+
+\subsection{第五次作业}
+\paragraph{1}给出下式中$x^{18}$的系数.
+$$(1)\quad \br{\sum_{k=0}^{\infty}x^{3k}}^6\qquad (2)\quad (1-4x)^{-5} \qquad (3)\quad \frac{x-3x^3}{(1-x)^4}$$
+\begin{proof}
+    (1)原式$=(1-x^3)^{-6}=\sum_{k=0}^\infty \binom{k+5}{k}x^{3k}$,其中$x^{18}$的系数即$k=6,\binom{11}{6}=462$.
+    
+    (2)$(1-4x)^{-5}=\sum_{k=0}^{\infty}(-1)^k\binom{-n}{k}4^kx^k=\sum_{k=0}^{\infty}\binom{k+4}{4}4^kx^k$,其中$x^{18}$的系数即$k=18,\binom{22}{4}4^{18}$.
+    
+    (3)考虑$(1-x)^{-4}=\sum_{k=0}^{\infty}a_kx^k$,即求$a_{17}-3a_{15}$,注意到$a_k=\binom{k+3}{k}$,故求得$a_{17}-3a_{15}=-1308$.
+\end{proof}
+
+
+\paragraph{2}证明$$\sum_{k=0}^{\infty}2^{-k}\binom{n+k-1}{k}=2^n.$$
+
+\begin{proof}
+    $$\sum_{k=0}^{\infty}2^{-k}\binom{n+k-1}{k}=\sum_{k=0}^{\infty}\br{-\frac{1}{2}}^k\binom{-n}{k}=\br{1-\frac{1}{2}}^{-n}=2^n$$
+\end{proof}
+
+\paragraph{3}从4个孩子和6个大人中收24元,每人至少给出1元,但每个孩子至多给4元,每个大人至多给7元.问收钱的方法数.
+\begin{proof}
+    生成函数为$\br{\sum_{k=1}^4 x^k}^4 \br{\sum_{k=1}^{7}x^k}^6=x^4\br{\frac{1-x^4}{1-x}}^4 x^6\br{\frac{1-x^7}{1-x}}^6=x^{10}\frac{(1-x^4)^4(1-x^7)^6}{(1-x)^{10}}$,取其中$x^{24}$次项为$a_{24}=414143$.
+\end{proof}
+
+\paragraph{4}用便士(pennies),镍币(nickels),角币(dimes)和25分硬币(quarters)组成$r$-排列,其中至少有一个便士和奇数个25分硬币,给出排列方法数.
+\begin{proof}
+    硬币的面值实际上没有任何意义,只需要当作四种不同种类的硬币A,B,C,D即可.用指数生成函数方法计算,其生成函数分别对应为$\e^x-1, \e^x, \e^x, \sum_{k=0}^{\infty}\frac{x^{2k+1}}{(2k+1)!}=\sinh x=\frac{\e^x-\e^{-x}}{2}$,从而整体生成函数$$f(x)=\e^{2x}(\e^x-1)\frac{\e^x-\e^{-x}}{2}=\frac{\e^x-\e^{2x}-\e^{3x}+\e^{4x}}{2}$$
+    其中$x^n$的系数为$\frac{n!}{2}\br{4^n-3^n-2^n+1}$,从而方法数是$\frac{4^n-3^n-2^n+1}{2}$.
+\end{proof}
+
+\paragraph{5}安置20人于3个帐篷中,第一个帐篷中至少有一人,给出安置方法数.
+\begin{proof}
+    若人是可区分的,则注意到无限制的安置方法有$3^{20}$种,而把所有人安置在除第一个帐篷外的帐篷中有$2^{20}$种方法,故总体方法为$3^{20}-2^{20}=3485735825$.
+
+    若不可区分,即$x_1+x_2+x_3=20, x_1\geq 1, x_2,x_3\geq 0$的整数解,其等价于$y_1+y_2+y_3=19, y_i\geq 0$的整数解数,即$\binom{19+3-1}{19}=\binom{21}{2}=210$.
+\end{proof}
+
+\subsection{第六次作业}
+\paragraph{1}在700个家庭中有150个没有孩子,180个仅有一个男孩,200个仅有一个女孩,有多少家庭有男孩(们)和女孩(们)?
+\begin{proof}
+    $700-150-180-200=170$.
+\end{proof}
+
+\paragraph{2}把6本不同的书给4个孩子,使得每个孩子拿到至少一本书有多少种方法?
+\begin{proof}
+    记$X$为所有分配方法,$A_k$为第$k$个学生没拿到书的所有方法,即求$A_\varnothing$,显然$A_\varnothing=X-\bigcup_{k=1}^4 A_k$.而$\abs{X}=4^6, \abs{A_k}=3^6, \abs{A_i\cap A_j}=2^6, \abs{A_i\cap A_j\cap A_k}=1^6=1, \abs{\bigcap_{k=1}^4 A_k}=0^6=0$.由容斥原理考虑:
+    $$\begin{aligned}
+        \abs{A_\varnothing}&=\sum_{I\subset [4]}(-1)^{\abs{I}}\abs{A_I}=\abs{X}-\sum_{\abs{I}=1}\abs{A_I}+\sum_{\abs{I}=2}\abs{A_I}-\sum_{\abs{I}=3}\abs{A_I}+\sum_{\abs{I}=4}\abs{A_I}\\
+        &=4^6 - \binom{4}{1}3^6 +\binom{4}{2}2^6-\binom{4}{3}1^6+\binom{4}{4}0^6\\
+        &=4096-4\cdot 729+6\cdot 64-4\cdot 1+1\cdot 0=1560
+    \end{aligned}$$
+    故有1560种方法.另可用第二类Stirling数计算:$S(6,4)=65$,而孩子可区分,从而共有$4!S(6,4)=1560$种方法.
+\end{proof}
+
+\paragraph{3}有多少种方法可以发出一手6张牌,其中至少有一张J,至少有一张8且至少有一张2?
+\begin{proof}
+    记不出现J,8,2的一手6张牌的方法分别为$A_1,A_2,A_3$,$X$为所有可能方法.注意到$\abs{X}=\binom{52}{6},\abs{A_i}=\binom{48}{6},\abs{A_i\cap A_j}=\binom{44}{6},\abs{\bigcap_{k=1}^3 A_k}=\binom{40}{6}$.从而由容斥原理有
+    $$\begin{aligned}
+        \abs{A_\varnothing}&=\sum_{I\subset [3]}(-1)^{\abs{I}}\abs{A_I}=\abs{X}-\sum_{\abs{I}=1}\abs{A_I}+\sum_{\abs{I}=2}\abs{A_I}-\sum_{\abs{I}=3}\abs{A_I}\\
+        &=\binom{52}{6} - \binom{3}{1}\binom{48}{6} +\binom{3}{2}\binom{44}{6}-\binom{3}{3}\binom{40}{6}\\
+        &=20358520-3\cdot 12271512+3\cdot 7153630-3838380=1166212
+    \end{aligned}$$
+    故有1166212种方法.
+\end{proof}
+
+\paragraph{4}有多少个数位出现了2,4,8的十进制$m$位数?
+\begin{proof}
+    记不出现2,4,8的$m$位数构成集合$A_1,A_2,A_3$,$X$为所有十进制$m$位数.注意到$\abs{X}=9\cdot 10^{m-1},\abs{A_i}=8\cdot 9^{m-1},\abs{A_i\cap A_j}=7\cdot 8^{m-1},\abs{\bigcap_{k=1}^3 A_k}=6\cdot 7^{m-1}$.从而由容斥原理有
+    $$\abs{A_\varnothing}=\sum_{I\subset [3]}(-1)^{\abs{I}}\abs{A_I}=\abs{X}-\sum_{\abs{I}=1}\abs{A_I}+\sum_{\abs{I}=2}\abs{A_I}-\sum_{\abs{I}=3}\abs{A_I}=9\cdot 10^{m-1}-24\cdot 9^{m-1} +21\cdot 8^{m-1}-6\cdot 7^{m-1}$$
+\end{proof}
+
+\paragraph{5}在如下条件下$x_1+x_2+x_3+x_4=28$有多少个整数解? (1)$0\leq x_i\leq 12$. (2)$x_i\geq 0, x_1\leq 6, x_2\leq 10, x_3\leq 15, x_4\leq 21$?
+\begin{proof}
+    (1)记满足$x_i\geq 13$的整数解构成集合$A_i$,则$\abs{X}=\binom{28+4-1}{28}=\binom{31}{3},\abs{A_i}=\binom{28-13+4-1}{28-13}=\binom{18}{3},\abs{A_i\cap A_j}=\binom{28-13-13+4-1}{4-1}=\binom{5}{3}$,更高阶均为0.由容斥定理知
+    $$\abs{A_\varnothing}=\binom{31}{3}-\binom{4}{1}\binom{18}{3}+\binom{4}{2}\binom{5}{3}=4495-4\cdot 816+6\cdot 10=1291$$
+
+    (2)记满足$x_1\geq 7, x_2\geq 11, x_3\geq 16, x_4\geq 22$的整数解构成集合$A_1, A_2, A_3, A_4$,我们有:
+    $$\begin{gathered}
+        \abs{X}=\binom{31}{3}, \abs{A_1}=\binom{24}{3}, \abs{A_2}=\binom{20}{3}, \abs{A_3}=\binom{15}{3}, \abs{A_4}=\binom{9}{3}, \abs{A_1\cap A_2}=\binom{13}{3},\abs{A_1\cap A_3}=\binom{8}{3}\\
+        \abs{A_2\cap A_3}=\binom{4}{3}, \abs{A_1\cap A_4}=\abs{A_2\cap A_4}=\abs{A_3\cap A_4}=\abs{A_i\cap A_j\cap A_k}=\abs{\bigcap_{k=1}^4 A_k}=0
+    \end{gathered}$$
+    因此由容斥定理得
+    $$\begin{aligned}
+        \abs{A_{\varnothing}}&=\abs{X}-\br{\abs{A_1}+\abs{A_2}+\abs{A_3}+\abs{A_4}}+\br{\abs{A_1\cap A_2}+\abs{A_1\cap A_3}+\abs{A_2\cap A_3}}\\
+        &=\binom{31}{3}-\br{\binom{24}{3}+\binom{20}{3}+\binom{15}{3}+\binom{9}{3}}+\br{\binom{13}{3}+\binom{8}{3}+\binom{4}{3}}\\
+        &=4495-3703+346=1138
+    \end{aligned}$$
+\end{proof}
+
+\section{第六章基础内容}
+\subsection{生成函数模型}
+数列$\cbr{a_r}_{r=0}^\infty$的生成函数即$f(x)=\sum_{r=0}^\infty a_rx^r$.\footnote{生成函数即(一般)无限项$x^n$的线性累加,实际上即形式幂级数,因为我们实际上不考虑其收敛性.}从简单情形开始,考虑$a_r=\binom{n}{r}$的生成函数
+$$f(x)=\sum_{r=0}^\infty \binom{n}{r}x^r=\sum_{r=0}^{n}\binom{n}{r}x^r=(1+x)^n$$
+在通过分配律计算$(1+x)^n=\underbrace{(1+x)(1+x)\cdots (1+x)}_{n个}$的展开式时,我们首先是从$n$个$(1+x)$中的每个$(1+x)$中取出$1$或$x$,将其相乘,最后对所有取法累加得到结果.如取$n=3$时
+$$(1+x)^3=(1+x)(1+x)(1+x)=\underbrace{111}_{x^0}+\underbrace{11x+1x1+x11}_{x^1}+\underbrace{1xx+x1x+xx1}_{x^2}+\underbrace{xxx}_{x^3}=1+3x+3x^2+x^3$$
+然而,注意到所谓的``在$(1+x)$中取出$1$或$x$'',实质上即在集合$\cbr{1,x}$中取出一个元素,而``在$n$个$(1+x)$中的每个$(1+x)$中取出$1$或$x$'',实质上是在
+$$\cbr{1,x}^n=\underbrace{\cbr{1,x}\times \cbr{1,x}\times\cdots\times\cbr{1,x}}_{n个}=\cbr{(x^{e_1},x^{e_2},\cdots,x^{e_n})|x^{e_i}\in \cbr{1,x}}$$
+中取一个元素$(x^{e_1},x^{e_2},\cdots,x^{e_n})$,此即分量$x^{e_i}$在$\cbr{1,x}$中取的一个长度为$n$的(可重复)排列.而``所有取法''即该集合的所有子集.因此我们可以将上式重写为:
+$$(1+x)^n=\sum_{(x^{e_1},\cdots,x^{e_n})\in \cbr{1,x}^n}x^{e_1}\cdots x^{e_n}=\sum_{k=0}^n \sum_{e_1+\cdots+e_n=k\atop 0\leq e_i\leq 1} x^k$$
+因此通过对系数的比较,我们有:
+$$\sum_{e_1+\cdots+e_n=k\atop 0\leq e_i\leq 1} 1 = \#\cbr{(e_1,\cdots,e_n)|\sum_{k=0}^n e_i=k, e_i=0,1}=\binom{n}{k}$$
+注意到$e_i=0,1$实际就是``是否选择第$i$个对象'',换言之,左端即从$n$元取$k$个的方法数,因此上式从组合角度来看是显然的.
+
+但生成函数的重要意义在于能考虑更广泛的组合问题,哪怕仅考虑多项式的幂次积形式.我们考虑稍微复杂一些的情形.
+
+\begin{example}
+    $f(x)=(1+x+x^2)^4$的展开,其理应对应到一个数列$\cbr{a_k}, f(x)=\sum_{k=0}^\infty a_kx^k$.同上考虑,我们有
+    $$\begin{gathered}
+        (1+x+x^2)^4=\sum_{(x^{e_1},\cdots,x^{e_4})\in \cbr{1,x,x^2}^4}x^{e_1+\cdots+e_4}=\sum_{k=0}^\infty \sum_{e_1+\cdots+e_4=k\atop e_i=0,1,2}x^k\\
+        \#\cbr{(e_1,\cdots,e_4)|\sum_{i=1}^4 e_i=k, e_i=0,1,2}=a_k
+    \end{gathered}$$
+\end{example}
+\begin{remark}
+    下式左端的组合意义是:考虑4个种类的球,每种各2个球,从这些球中拿出$k$个球的方法数.
+\end{remark}
+从而我们可以发现,这个组合问题的解实际上就等价于生成函数$f(x)$的展开式系数.换言之,我们得到了对应关系
+\begin{center}
+    生成函数$\leftrightarrow$数列$\leftrightarrow$组合问题
+\end{center}
+
+当然我们也可以从组合问题推出生成函数.考虑组合问题:我们有$n$个种类的对象,其中第$i$种含有$n_i$个同种类(可视作重复)的对象,要从这全部中取出$r$个对象,问取法有多少.
+
+这个问题实际上等价于,方程$\sum_{k=1}^{n}e_i=r, 0\leq e_i\leq m_i$的整数解$(e_1,\cdots,e_n)$的个数$a_r$.我们考虑生成函数$f(x)=\sum_{r=0}^{\infty}a_rx^r$,则有
+$$f(x)=\sum_{r=0}^{\infty}\#\cbr{(e_1,\cdots,e_n)|\sum_{k=1}^{n}e_i=r, 0\leq e_i\leq m_i}x^r=\sum_{r=0}^{\infty}\sum_{e_1+\cdots+e_n=r\atop e_i=0,1,\cdots,m_i}x^{e_1+\cdots+e_n}$$
+注意到多项式乘法(也即用分配律计算)有:
+$$\br{\sum_{k=0}^{m}a_k x^k}\br{\sum_{\ell=0}^{n}b_\ell x^\ell}=\sum_{t=0}^{m+n} \sum_{i+j=t\atop 0\leq i\leq m, 0\leq j\leq n}a_ib_jx^t$$
+我们有
+$$\sum_{r=0}^{\infty}\sum_{e_1+\cdots+e_n=r\atop e_i=0,1,\cdots,m_i}x^{e_1+\cdots+e_n}=\br{\sum_{e_1=0}^{m_1}x^{e_1}}\cdots\br{\sum_{e_1=0}^{m_n}x^{e_n}}$$
+此即该类组合问题的生成函数.注意到问题中第$i$种对象可以取$e_i=0,1,\cdots,m_i$个对应于生成函数中的$\sum_{e_i=0}^{m_i}$项,而有多种对象即该形式的项相乘.此即生成函数的直观理解.
+
+\subsection{常用的多项式展开}
+$$\begin{gathered}
+    \sum_{k=0}^{m}x^k=\frac{1-x^{m+1}}{1-x},\quad \sum_{k=0}^{\infty}x^k=(1-x)^{-1},\quad (1+x)^n=\sum_{k=0}^{n}\binom{n}{k}x^k,\quad (1-x^m)^{n}=\sum_{k=0}^{n}(-1)^k\binom{n}{k}x^{km},\\
+    (1-x)^{-n}=\sum_{k=0}^\infty (-1)^k\binom{-n}{k}x^k=\sum_{k=0}^{\infty}\binom{n+k-1}{k}x^k\\
+    \br{\sum_{k=0}^{\infty}a_kx^k}\br{\sum_{\ell=0}^{\infty}b_\ell x^\ell}=\sum_{t=0}^{\infty} \sum_{i+j=t}a_ib_j x^t
+\end{gathered}$$
+
+\subsection{分拆}
+将正整数$n$分为若干个$\leq n$的正整数之和(不计次序)的方式即为$n$的分划数$p(n)$.我们考虑$n$可以由$e_i$个正整数$i$累加得到,即$\sum_{i=1}^\infty e_i=n, e_i\geq 0$.通过与上面相同的推理,我们可以得到生成函数
+$$f(x)=\br{\sum_{e_1=0}^\infty x^{e_1}}\br{\sum_{e_2=0}^\infty x^{2e_2}}\cdots=(1-x)^{-1}(1-x^2)^{-1}\cdots=\prod_{k=1}^\infty (1-x^k)^{-1}$$
+遗憾的是,这个函数从各种意义上来说都是不初等的(其与$q$-Pochhammer函数相关),我们没有简单的方法给出分划数.与如果仅考虑以不同正整数之和构造$n$,同上推理我们可以得到生成函数
+$$g(x)=\br{\sum_{e_1=0}^1 x^{e_1}}\br{\sum_{e_2=0}^1 x^{2e_2}}\cdots=(1+x^1)(1+x^2)\cdots=\prod_{k=1}^{\infty}(1+x^k)$$
+这也是非初等的.
+
+如果我们不直接考虑所有正整数$n$,而仅固定一个$n\in \N$考虑其分划数,是比较简单的.因为参与$n$的分划的正整数仅含有$\leq n$的数,因此可以有:
+$$f_n(x)=\br{\sum_{e_1=0}^{n}x^{e_1}}\br{\sum_{e_2=0}^{\floor{n/2}} x^{2e_2}}\cdots \br{\sum_{e_n=0}^1 x^{ne_n}}$$
+其中$x^n$项系数即$n$的分划数$p(n)$.
+
+\section{第六章例题}
+\subsection{Lecture 19}
+\begin{example}
+    计算$(1+x+x^2)^4$中$x^3$的系数.
+\end{example}
+
+可以暴力展开计算,PPT上的过程细致的将展开过程写下来了:从4个集合$\cbr{1,x,x^2}$中各取一个元素相乘并对所有取法累加,因此$x^3$的系数等价于方程$\sum_{i=1}^4 e_i=3, 0\leq e_i\leq 2$的整数解的个数.给出整数解的个数实际上是一个组合问题,我们可以将该题等价于:从4个种类的球,每种各2个球中取出3个球的方法数.
+
+由第五章中可重复选取的组合方法数知,方程$\sum_{i=1}^4 e_i=3$的非负整数解个数为$\binom{3+4-1}{3}$,但该题中不可能取出3个同种类的,因此需要去掉这种可能,即去掉4组解$(e_1,\cdots,e_4)=(3,0,0,0),(0,3,0,0),(0,0,3,0),(0,0,0,3)$,因此最终答案是$\binom{3+4-1}{3}-4$.
+
+\begin{example}
+    从3种对象中选取6个,每种最多能选4个/每种能选无上限个,求方法数和生成函数.
+\end{example}
+
+三种对象中每种最多能选4个,生成函数即
+$$f(x)=(1+x+x^2+x^3+x^4)(1+x+x^2+x^3+x^4)(1+x+x^2+x^3+x^4)=(1+x+x^2+x^3+x^4)^3$$
+同理,三种对象中每种可选无上限个时,生成函数即$g(x)=(1+x+x^2+\cdots)^3=(1-x)^{-3}$.实际上生成函数的$x^k$次项系数即``从中选$k$个的方法数'',如$k=6$时的方法数分别为
+$a_6=\binom{6+3-1}{6}-3-2\binom{3}{2}=19, b_6=\binom{6+3-1}{6}=28$.
+
+\begin{example}
+    将12个便士硬币放在4个(不同)杯子中,每个杯子中至少有一个硬币,求方法数.
+\end{example}
+类似前文,生成函数即$f(x)=\br{\sum_{k=1}^{\infty}x^k}^4=x^4(1-x)^{-4}$,方法数即$a_{12}$.即计算$g(x)=(1-x)^{-4}$中$x^8$的系数$b_8=\binom{8+4-1}{8}$.
+
+\begin{example}
+    $r$个相同对象放在五个不同盒子中,前两个盒子中只能放不超过10的偶数个,后三个盒子只能放3到5个.
+\end{example}
+前两个盒子对应的生成函数是$1+x^2+x^4+x^6+x^8+x^10$,后三个对应的是$x^3+x^4+x^5$,因此总的生成函数是$(1+x^2+x^4+x^6+x^8+x^10)^2(x^3+x^4+x^5)^3$.
+
+\begin{example}
+    用若干个便士(1分),镍币(5分),角币(10分)和25分硬币换1元(100分)零钱的方法数.
+\end{example}
+能取无上限个便士(1分)即对应于生成函数$1+x+x^2+\cdots=(1-x)^{-1}$,同理对其他三种硬币也有$(1-x^5)^{-1},(1-x^{10})^{-1},(1-x^{25})^{-1}$,因此最终的生成函数是$g(x)=(1-x)^{-1}(1-x^5)^{-1}(1-x^{10})^{-1}(1-x^{25})^{-1}$,答案即取其$x^{100}$项系数$a_{100}$.
+
+事实上该问题等价于方程组$e_1+5e_2+10e_3+25e_4=100$的非负整数解数,其中$e_i$是第$i$种硬币选取的数量.如果考虑生成函数,即对方程组$e_1+5e_2+10e_3+25e_4=k$的解数乘上$x^k$再求和,有:
+$$\begin{aligned}
+    \sum_{k=0}^\infty \#\cbr{(e_1,\cdots,e_4)|e_1+5e_2+10e_3+25e_4=k,e_i\in\N} x^k&=\sum_{k=0}^\infty \sum_{e_1+5e_2+10e_3+25e_4=k} x^k\\
+    =\br{\sum_{e_1=0}^\infty x^{e_1}}\br{\sum_{e_2=0}^\infty x^{5e_2}}\br{\sum_{e_3=0}^\infty x^{10e_3}}\br{\sum_{e_4=0}^\infty x^{25e_4}}&=g(x)
+\end{aligned}$$
+此即上述生成函数,因此自然可得结果为$a_{100}$.
+
+\begin{example}
+    $n$个6面骰子结果之和为$r$的可能方法数$a_r$的生成函数.
+\end{example}
+因为每个骰子的可能结果仅有1到6,因此对应于$x+x^2+\cdots+x^6$,从而$n$个即$(x+x^2+\cdots+x^6)^n=x^n(1+x+\cdots+x^5)^n$.
+
+当然我们也可以认为$a_r=\#\cbr{(e_1,\cdots,e_n)|\sum_{k=1}^n e_i=r, 1\leq e_i\leq 6}$,则
+$$\sum_{r=0}^{\infty} a_rx^r=\sum_{r=0}^{\infty}\sum_{e_1+\cdots e_n=r\atop e_i=1,2,3,4,5,6}x^r=\br{\sum_{e_1=1}^{6}x^{e_1}}\cdots\br{\sum_{e_n=1}^{6}x^{e_n}}=\br{\sum_{k=1}^{6}x^k}^n$$
+
+\begin{example}
+    从5个巧克力味,5个草莓味,3个柠檬味,3个樱桃味甜甜圈种取$r$个的方法数$a_r$的生成函数.以及要求所取$r$个中每个味道都有的方法数$b_r$及其生成函数.
+\end{example}
+记第$i$个味道甜甜圈取$e_i$个,则$a_r$即$\sum_{i=1}^4 e_i=r, 0\leq e_1,e_2\leq 5, 0\leq e_3,e_4\leq 3$的整数解数量.因此
+$$\sum_{r=0}^{\infty}a_rx^r=\sum_{r=0}^{\infty}\sum_{e_1+\cdots+e_4=r\atop 0\leq e_1,e_2\leq 5, 0\leq e_3,e_4\leq 3}x^r=\br{\sum_{e_1=0}^5 x^{e_1}}\cdots\br{\sum_{e_4=0}^3 x^{e_4}}=(1+x+\cdots+x^5)^2(1+x+x^2+x^3)^2$$
+此即生成函数.对$b_r$有完全类似的推理.可以注意到生成函数中$\sum_{k=0}^5 x^k$的部分即对应于可以取$0,1,\cdots,5$个甜甜圈的味道,$\sum_{k=0}^3 x^k$即可取三个甜甜圈的味道,将其相乘即可得到生成函数.
+
+\subsection{Lecture 20}
+\begin{example}
+    从3种(plain, pepperoni, or vegetable)披萨中点10个,求点单方法数.要求(1)每种至少有两个;(2)最多2个红肠(pepperoni)披萨;(3)蔬菜披萨有偶数个;(4)有偶数个蔬菜披萨和奇数个红肠披萨.
+\end{example}
+(1)生成函数为$(x^2+x^3+\cdots)^3=x^6(1-x)^{-3}$,$x^{10}$系数即$\binom{4+3-1}{3}$. (2)生成函数为$(1-x)^{-2}(1+x+x^2)$,$x^{10}$系数即$\binom{10+2-1}{10}+\binom{9+2-1}{9}+\binom{8+2-1}{8}=30$. (3)生成函数为$(1-x)^{-2}(1-x^2)^{-1}$,$x^{10}$系数即$\sum_{k=0}^5 \binom{(10-2k)+2-1}{10-2k}=36$. (4)生成函数为$(1-x)^{-1}\cdot(1-x^2)^{-1}\cdot x(1-x^2)^{-1}=x(1-x)^{-1}(1-x^2)^{-2}$,其$x^{10}$系数即$(1-x)^{-1}(1-x^2)^{-2}$中$x^9$系数,注意到$(1-x^2)^{-2}=\sum_{k=0}^{\infty}(k+1)x^{2k}$,故$x^9$系数为$\sum_{i+2j=9}1\cdot(j+1)=\sum_{j=0}^{4}(j+1)=15$.
+
+\subsection{Lecture 21}
+\begin{example}
+    给出5的分划数,以及用不同正整数之和给出5的方法数.
+\end{example}
+如上用生成函数的方法计算:
+$$f_5(x)=\br{1+x+\cdots+x^5}\br{1+x^2+x^4}\br{1+x^3}\br{1+x^4}\br{1+x^5}, g_5(x)=\prod_{k=1}^{5}(1+x^5)$$
+其系数分别为$a_5=7, b_5=3$.实际上这样算和直接手动验算5的分划是本质一样的.
+
+\begin{example}
+    证明任意正整数$n$可以被唯一写成2的不同幂之和.
+\end{example}
+\begin{proof}
+    正整数$n$可以被写成2的不同幂之和的方法数为$a_n$,其生成函数为
+    $$f(x)=(1+x)(1+x^2)\cdots(1+x^{2^k})\cdots$$
+    即证$a_n=1, f(x)=(1-x)^{-1}$.注意到
+    $$(1-x)f(x)=(1-x)(1+x)(1+x^2)\cdots(1+x^{2^k})\cdots=(1-x^2)(1+x^2)\cdots(1+x^{2^k})\cdots=\cdots=(1-x^{2^k})(1+x^{2^k})\cdots=1$$
+    因此得证.
+\end{proof}
+
+\begin{example}
+    (1)将五个相同的硬币分组的方法数(每组至少有一个);(2)将五个相同的硬币放入三个可分/不可分的杯子中.每个杯子中\textbf{至少有一个}硬币.
+\end{example}
+(1)即计算5的分划数,因为这些组是不可分/不计次序的.(2)若杯子可分,则化作上一节的问题.若不可分,则需要考虑Young图.(我不确定会不会要求现场构造.)
+
+\subsection{Lecture 22}
+
+\subsection{Lecture 23}
+
+\subsection{Lecture 24}
+
+\end{document}
+
+\section{第六章讲义}
+\subsection{生成函数模型}
+本节主要讨论生成函数与数列之间的关系及其组合意义,我们从多项式幂的乘积形式的生成函数开始讨论.
+
+\begin{example}
+    考虑从$n$个不同对象中取$k$个对象的方法数$a_k$,这等价于在$[n]=\cbr{1,2,\cdots,n}$中所有$k$元素子集的个数.
+    
+    为了计算子集个数,我们可以首先为每个子集做一个标记:$[n]$的子集$A$可以对应到一个长$n$的$(0,1)$-序列,如果$A$中包含元素$i\in [n]$,则序列的第$i$位取1,否则取0.反之,由任意一个长$n$的$(0,1)$-序列,也可以唯一构造一个$[n]$的子集.
+    $$\begin{gathered}
+    A\subset [n] \longrightarrow (e_1,\cdots,e_n)\in \cbr{0,1}^n, e_i=\begin{cases}
+        1,& i\in A\\ 0,& i\notin A
+    \end{cases}\\
+    (e_1,\cdots,e_n)\in \cbr{0,1}^n\longrightarrow A=\cbr{i\in [n]|e_i=1}
+    \end{gathered}$$
+    这样的对应关系将所有$[n]$的子集与所有长$n$的$(0,1)$-序列一一对应,因此考虑$k$元子集实际上即考虑有$k$个分量为1的序列,即
+    $$A\subset [n], \abs{A}=k \longleftrightarrow (e_1,\cdots,e_n)\in \cbr{0,1}^n, \sum_{k=1}^n e_i=k$$
+    综上所述,$[n]$中$k$元子集的个数即
+    $$\#\cbr{A\subset [n] | \abs{A}=k}=\#\cbr{(e_1,\cdots,e_n) | \sum_{k=1}^n e_i=k, e_i=0,1}$$
+\end{example}
