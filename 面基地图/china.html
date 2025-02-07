@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+    <title>ECharts with D3 Projection</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+<body style="height: 100%; margin: 0">
+    <div id="main" style="height: 100%"></div>
+    <script type="text/javascript">
+        var width = document.getElementById('main').clientWidth;
+        var height = document.getElementById('main').clientHeight;
+
+        // 使用D3.js设置自定义地图投影
+        var projection = d3.geoMercator()
+            .center([104.0, 37.5]) // 设置中心点
+            .scale(850)            // 设置缩放比例
+            .translate([width / 2, height / 2]); // 平移到中心位置
+
+        // 创建一个地理路径生成器，并指定投影
+        var path = d3.geoPath().projection(projection);
+
+        // 加载中国地图数据
+        d3.json('https://raw.githubusercontent.com/apache/echarts/4.8.0/map/json/china.json').then(function (chinaJson) {
+            echarts.registerMap('china', chinaJson);
+            var features = chinaJson.features.map(function (d) {
+                return {
+                    name: d.properties.name,
+                    value: path.centroid(d)
+                };
+            });
+
+            var data = [
+                {name: '北京', value: 5000},
+                {name: '上海', value: 4500},
+                {name: '广州', value: 3000},
+                {name: '深圳', value: 3500}
+            ];
+
+            var geoCoordMap = {
+                "北京": projection([116.40, 39.90]),
+                "上海": projection([121.47, 31.23]),
+                "广州": projection([113.27, 23.13]),
+                "深圳": projection([114.05, 22.55])
+            };
+
+            var convertData = function (data) {
+                var res = [];
+                for (var i = 0; i < data.length; i++) {
+                    var geoCoord = geoCoordMap[data[i].name];
+                    if (geoCoord) {
+                        res.push({
+                            name: data[i].name,
+                            value: geoCoord.concat(data[i].value)
+                        });
+                    }
+                }
+                return res;
+            };
+
+            var option = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function (params) {
+                        return params.name + ' : ' + params.value[2];
+                    }
+                },
+                geo: {
+                    map: 'china',
+                    roam: true,
+                    label: {
+                        emphasis: {
+                            show: false
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            areaColor: 'rgba(128, 128, 128, 0.5)',  // 半透明颜色
+                            borderColor: '#404a59'
+                        },
+                        emphasis: {
+                            areaColor: 'rgba(255, 255, 255, 0.5)'  // 半透明颜色
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: '人数分布',
+                        type: 'scatter',
+                        coordinateSystem: 'geo',
+                        data: convertData(data),
+                        symbolSize: function (val) {
+                            return val[2] / 500;  // 调整点的大小
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: '#ddb926'
+                            }
+                        }
+                    }
+                ],
+                visualMap: {
+                    min: 0,
+                    max: 5000,
+                    left: 'left',
+                    top: 'bottom',
+                    text: ['高', '低'],
+                    calculable: true,
+                    inRange: {
+                        color: ['#50a3ba', '#eac736', '#d94e5d']
+                    }
+                },
+                graphic: {
+                    type: 'image',
+                    id: 'backgroundImage',
+                    left: 0,
+                    top: 0,
+                    z: -10,  // 确保图像在地图之下
+                    style: {
+                        image: 'https://img-blog.csdn.net/20180522144128379',  // 替换为地图图像的实际路径
+                        width: 1100,  // 原始图片宽度
+                        height: 1000,  // 原始图片高度
+                        opacity: 0.5  // 调整透明度
+                    }
+                }
+            };
+
+            var myChart = echarts.init(document.getElementById('main'));
+            myChart.setOption(option);
+
+            // 实现图像与地图的同步缩放和平移
+            myChart.on('georoam', function (params) {
+                var option = myChart.getOption();
+                var zoom = option.geo[0].zoom;
+                var center = option.geo[0].center;
+                myChart.setOption({
+                    graphic: {
+                        id: 'backgroundImage',
+                        style: {
+                            width: 1100 * zoom,  // 同步缩放
+                            height: 1000 * zoom  // 同步缩放
+                        },
+                        position: [center[0] - 550 * zoom, center[1] - 500 * zoom]  // 同步平移，调整使图像中心对齐
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
