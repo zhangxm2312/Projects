@@ -1,18 +1,21 @@
 ## Personal Files Git Ignore
 
-Markdown
-面基地图
-zhangxm2312.github.io
-ObsidianVault/*/*.pdf
-*.zip
+*
 
-# LaTeX Folder
-LaTeX
 !LaTeX/笔记讲义
 !LaTeX/个人重排
 !LaTeX/往年试卷
 !LaTeX/作业
 !LaTeX/preamble.tex
+
+!ObsidianVault
+ObsidianVault/*/*.pdf
+
+!Python
+!Wolfram
+!.vscode
+
+*.zip
 
 ## TeX File Git Ignore
 
