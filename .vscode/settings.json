@@ -1,0 +1,99 @@
+{
+  // vscode窗口默认缩放
+  "window.zoomLevel": 1,
+  // 自动换行
+  "diffEditor.wordWrap": "on",
+  "editor.wordWrap": "on",
+
+  "editor.guides.bracketPairs": true,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "settingsSync.ignoredSettings": [],
+  "markdown-preview-enhanced.mathRenderingOption": "MathJax",
+
+  // git同步设置
+  "git.autofetch": true,
+  "git.confirmSync": true,
+  "git.ignoreMissingGitWarning": true,
+  "git.openRepositoryInParentFolders": "never",
+
+  // latex-workshop编译方式
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "XeLaTeX",
+      "tools": ["xelatexmk"]
+    },
+    {
+      "name": "XeLaTeX -> BibTeX -> XeLaTeX*2",
+      "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
+    },
+    {
+      "name": "PDFLaTeX",
+      "tools": ["pdflatex"]
+    },
+    {
+      "name": "latexmk",
+      "tools": ["latexmk"]
+    },
+    {
+      "name": "latexmk (latexmkrc)",
+      "tools": ["latexmk_rconly"]
+    },
+    {
+      "name": "LuaLaTeX",
+      "tools": ["lualatexmk"]
+    },
+    {
+      "name": "PDFLaTeX -> BiBTeX -> PDFLaTeX*2",
+      "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+    },
+    {
+      "name": "Compile Rnw files",
+      "tools": ["rnw2tex", "latexmk"]
+    },
+    {
+      "name": "Compile Jnw files",
+      "tools": ["jnw2tex", "latexmk"]
+    },
+    {
+      "name": "Compile Pnw files",
+      "tools": ["pnw2tex", "latexmk"]
+    },
+    {
+      "name": "MakeIndex",
+      "tools": ["makeindex"]
+    },
+    {
+      "name": "tectonic",
+      "tools": ["tectonic"]
+    }
+  ],
+  // 鼠标悬停预览公式时支持boldsymbol宏
+  "latex-workshop.hover.preview.mathjax.extensions": ["boldsymbol"],
+  // 编译后的文件输出目录
+  "latex-workshop.latex.outDir": "./tmp",
+  // 默认编译引擎为上次使用的
+  "latex-workshop.latex.recipe.default": "lastUsed",
+  // 预览复杂公式，使用时需要通过 command palette (命令面板) 打开
+  "latex-workshop.mathpreviewpanel.cursor.enabled": true,
+  // 不允许弹窗显示错误信息
+  "latex-workshop.message.error.show": false,
+  // 不允许弹窗显示警告信息
+  "latex-workshop.message.warning.show": false,
+  // 预览 PDF 时，自动检测是否需要反转颜色
+  "latex-workshop.view.pdf.invertMode.enabled": "auto",
+  "latex-workshop.showContextMenu": true,
+  "latex-workshop.intellisense.subsuperscript.enabled": true,
+  "latex-workshop.formatting.latexindent.args": [
+    "-g",
+    "./%OUTDIR%/indent.log",
+    "%TMPFILE%",
+    "-y=defaultIndent: '%INDENT%'"
+  ],
+  // pdf反向同步tex文档使用双击
+  "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+  "dev.containers.executeInWSL": true,
+  "files.associations": {
+    "*.js": "javascript"
+  },
+  "markdown-preview-enhanced.enablePreviewZenMode": true
+}

@@ -1,0 +1,59 @@
+\documentclass{article}
+\title{22-23年第二学期偏微分方程期末考试考纲}
+\input{../newcommand.tex}
+\author{章小明}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{绪论}
+\begin{enumerate}
+    \item 大题:二阶半线性方程的分类与化为标准型
+    \item 基本概念:偏微分方程,偏微分方程的解;拟线性,非线性,半线性;叠加原理(微分形式);三类定解问题(Dirichlet问题,Neumann问题,Robin问题)的写法;适定性的定义
+\end{enumerate}
+\section{一阶拟线性方程}
+\begin{enumerate}
+    \item 大题:解一阶拟线性方程初值问题(习题+例题)
+    \item 基本概念:一阶拟线性方程;特征方向,特征方程组,积分曲面,积分曲线;传输方程,行波解
+    \item 积分曲线上一点在积分曲面上,则全体在其上.
+\end{enumerate}
+\section{波动方程}
+\begin{enumerate}
+    \item 大题:分离变量法解一维波动方程初值问题
+    \item Gauss公式,d'Alembert公式及其物理意义(左右行波叠加)
+    \item 特征线法(平行四边形公式)
+    \item 依赖区域,决定区域,影响区域(章节测验题,用集合语言描述)
+\end{enumerate}
+\section{热传导方程}
+\begin{enumerate}
+    \item 基本解$E(x-y,t)=t^{-\frac{n}{2}}\e^{-\frac{\abs{x-y}^2}{4t}}$,解核$K(x-y,t)=(4\pi)^{-\frac{n}{2}}E(x-y,t)=(4\pi t)^{-\frac{n}{2}}\e^{-\frac{\abs{x-y}^2}{4t}}$.
+    \begin{enumerate}
+        \item $K>0,K\in C^{\infty},\forall x,y\in\R^n,t>0$.
+        \item $(\D_t-\Delta)K=0$.
+        \item $\int_{\R^n}K(x-y,t)\d y=1$.
+        \item $\forall \delta>0:\lim_{t\to 0^+}\int_{\abs{y-x}>\delta}K(x-y,t)\d y=0$.
+    \end{enumerate}
+    \item 解的存在性的四条注记\begin{enumerate}
+        \item 初值函数$\varphi$有界则解函数$u$有界.
+        \item $\varphi$增长越慢则$u$存在范围越大,$\varphi$有界则$u$全局存在.
+        \item $\varphi$仅可测时也有$C^\infty$解,且在连续点$x$附近$t\to 0$时$u(y,t)\to \varphi(x)$.
+        \item $u$依赖$\varphi$在所有点上的取值,即具有无穷传播速度.
+    \end{enumerate}
+    \item 用最大值原理讨论解的唯一性和稳定性(习题,必考)
+    \item 比较原理
+\end{enumerate}
+\section{调和方程}
+\begin{enumerate}
+    \item 基本解$k(x-y)=\begin{cases}
+        \frac{\abs{x-y}^{2-n}}{n(2-n)\omega_n},&n>2\\
+        \frac{\ln\abs{x-y}}{2\pi},&n=2
+    \end{cases}$.(其中$\omega_n=\frac{2\pi^{\frac{n}{2}}}{n\Gamma(n/2)},\omega_2=\pi,\omega_3=\frac{4}{3}\pi$.)
+    \item Green第一第二公式,调和函数基本积分公式,平均值公式(球上,球面上).
+    \item 最大值原理(必考),常值调和函数可在区域内取极值.
+    \item Green函数的性质3,4
+    \item 能量法讨论解的唯一性
+    \item Dirichlet原理(要求会证),调和函数的基本性质,Liouville定理(要求会证)
+    \item Hopf最大值原理(记住结论)
+\end{enumerate}
+\end{document}

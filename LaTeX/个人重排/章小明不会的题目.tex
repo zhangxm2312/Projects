@@ -1,0 +1,1116 @@
+\documentclass{article}
+\input{newcommand.tex}
+\usepackage{bm}
+\newcommand{\T}{\mathsf{T}}
+\newcommand{\matrixtwo}[4]{\begin{pmatrix}#1&#2\\#3&#4 \end{pmatrix}}
+\renewcommand{\i}{\mathrm{i}}
+\newcommand{\Mag}{\mathrm{Mag}}
+\newcommand{\SMag}{\mathrm{SMag}}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{题}[section]
+
+\title{章小明不会的题目}
+\author{章小明}
+\begin{document}
+\maketitle
+\tableofcontents
+% \op 
+
+\section{数学分析}
+\subsection{裴礼文}
+\begin{exercise}
+    $$\lim_{n\to \infty}\left(\sqrt[n+1]{(n+1)!}-\sqrt[n]{n!} \right)=\frac{1}{e}$$
+\end{exercise}
+\begin{proof}
+    先证$$\lim_{n\to \infty}\frac{n!^{1/n}}{n}=\frac{1}{e}\text{或}\lim_{n\to \infty}\frac{n}{n!^{1/n}}=e$$
+    \begin{itemize}
+        \item 用Stirling公式:$n!\sim \sqrt{2\pi n}\left( \dfrac{n}{e} \right)^n$易证.
+        \item 用Stolz公式:即证$\lim\limits_{n\to \infty}\left( \ln n-\dfrac{\ln n!}{n} \right)=1$.有:
+        $$\lim_{n\to \infty}\left( \ln n-\frac{\ln n!}{n} \right)=\lim_{n\to \infty} \frac{1}{n}\left( n\ln n-\sum \ln k \right)\stackrel{Stolz}{=}\lim_{n\to \infty} n\ln\left( 1+\frac{1}{n} \right)=\lim_{n\to \infty}\ln\left( 1+\frac{1}{n} \right)^n=1$$
+        \item 使$a_n=\left( 1+\dfrac{1}{n} \right)^n=\dfrac{(n+1)^n}{n^n}$,有:
+        $$\prod a_n=\frac{2^1}{1^1}\frac{3^2}{2^2}\frac{4^3}{3^3}\cdot\frac{(n+1)^n}{n^n}=\frac{(n+1)^n}{n!}\implies \lim_{n\to \infty} \frac{n+1}{\sqrt[n]{n!}}=\lim_{n\to \infty}\left( \prod a_n \right)^{1/n}=\lim_{n\to \infty} a_n=e$$
+    \end{itemize}
+    最后
+\end{proof}
+
+\begin{exercise}
+    $f$在$\R$上连续有界可微,则$$|f(x)-f'(x)|\leq 1\implies |f(x)|\leq 1$$
+\end{exercise}
+\begin{proof}
+    在$[x,+\infty)$上对$(e^{-x}f(x))'=e^{-x}\left( f(x)-f'(x) \right)$积分,有\[|e^{-x}f(x)|=\Big|\int_x^{+\infty}e^{-t}|f(t)-f'(t)|\d t\Big|\leq \int_x^{+\infty}e^{-t}\d t=e^{-x}\implies |f(x)|\leq 1\]
+\end{proof}
+
+$$\ln\ln n<\!\!<\ln n<\!\!<n^a<\!\!<n^k<\!\!<a^n<\!\!<n!<\!\!<n^n$$
+
+\begin{exercise}
+    $\lim_{n\to \infty}a_n=a,\lim_{n\to \infty}b_n=b\implies \lim_{n\to \infty}\frac{1}{n}\sum_{i=0}^n a_ib_{n-i}=ab$.
+\end{exercise}
+\begin{proof}
+    设\(\alpha_n=a_n-a,\beta_n=b_n-b\),有\[\frac{1}{n}\sum_{i=0}^n a_ib_{n-i}=\frac{1}{n}\sum_{i=0}^n (\alpha_n+a)(\beta_n+b)=ab+a\frac{\sum \beta_i}{n}+b\frac{\sum a_i}{n}+\frac{\sum \alpha_i\beta_i}{n}\to ab\]
+\end{proof}
+
+\begin{exercise}
+    在$\R$上的$f(x)$有(1)介值性:$\forall \mu\in(f(x_1),f(x_2)) \exists \xi$在$x_1$和$x_2$间$: f(\xi)=\mu$; (2)${\forall r\in \Q:\{x|f(x)=r\}}$闭. 求证$f\in C(\R)$.
+\end{exercise}
+\begin{proof}
+    首先,由介值性$f(x)$可以取遍$\left( \inf\limits_{x\in \R} f(x),\sup\limits_{x\in \R} f(x) \right)$,故$\mathrm{Im} f$在$\R$上单连通.其次,由介值性,对任意的\\ $r\in {\Q\cap \mathrm{Im} f}$都存在$x_0$使得$f(x_0)=r$.
+
+    由题,即$\forall r\in \Q:\{x|f(x)\neq r\}$开,故$\forall\mathring{V}_{\R}(x_0): \{x|f(x)\neq r\}\cap \mathring{V}_{\R}(x_0)$有界开.%故对任意$r\in \Q$和任意$x_0\in \{x|f(x)\neq r\}$都存在$x_0$的有界开邻域$V(x_0)$使得$f\left( V(x_0) \right)\cap \{r\}=\emptyset$.
+    
+    因此对任意的$r\in {\Q\cap \mathrm{Im} f}$的去心有界开邻域$\mathring{U}_{\mathrm{Im} f}(r)$,任取$\xi_1\in (\inf U(r),r)$和$\xi_2\in (r,\sup U(r))$,都存在$x_1,x_2$有${\inf U(r)<f(x_1)=\xi_1<r<\xi_2<f(x_2)<\sup U(r)}$.因此存在去心有界开邻域$\mathring{V}_{\R}(x_0)=\\ (x_1,x_2)\setminus\{x_0\}\subset \{x|f(x)\neq r\}$使得$f\left( \mathring{V}_{\R}(x_0) \right)\subset \mathring{U}_{\mathrm{Im} f}(r)$.
+
+    % 由介值性,对$\forall r\in {\Q\cap \mathrm{Im} f} \exists x_0:f(x_0)=r$.%因此$\forall r\in {\Q\cap \mathrm{Im} f}$的去心有界开邻域$\mathring{U}(r) \exists \mathring{V}(x_0):\\ {f\!\left(\! \mathring{V}(x_0) \!\right)\!\subset \mathring{U}(r)}$.
+\end{proof}
+思考:是否能证明$f$在既开又闭的区间上连续?
+
+\begin{exercise}
+    $f\in C^{(2)}[-2,2];\forall x\in[-2,2]:|f(x)|\leq 1;f^2(0)+f'^2(0)=4$.求证$\exists \xi\in[-2,2]:$\[f(\xi)+f''(\xi)=0\]
+\end{exercise}
+\begin{proof}[证明一]
+    取$F(x)=f^2(x)+f'^2(x),F\in C^{(1)}[-2,2]$,故$\exists \xi_1\in(0,2):$
+    \[f'(\xi_1)=\frac{f(2)-f(0)}{2}\implies |f'(\xi_1)|\leq 1\implies F(\xi_1)\leq 2\]
+    由于$F(0)=4$,因此$\exists \eta_1\in(0,\xi_1):F(\eta_1)=3$.\\ 
+    使$\delta_1=\inf\{t|t>0\land F(t)=3\}$,可知$F(\delta_1)=3$,且$\forall x\in[0,\delta_1]:g(x)\geq 3$.
+    
+    同理,在$[-2,0]$上考虑相应的$\xi_2,\eta_2,\delta_2$.易知,$\exists \xi\in[\delta_2,\delta_1]:g'(\xi)=0\implies f'(\xi)\left( f(\xi)+f''(\xi) \right)=0$.\\ 由$F(\xi)=f^2(\xi)+f'^2(\xi)=3>1=f^2(\xi)\implies f'(\xi)\neq 0$可知$f(\xi)+f''(\xi)=0$,得证.
+\end{proof}
+\begin{proof}[证明二]
+    由$F'(x)=\left( f^2(x)+f'^2(x) \right)'=2f'(x)\left( f(x)+f''(x) \right)$,即证$F(x)=f^2(x)+f'^2(x)$不单调\footnote{而且在$f'(x)=0$处同样不单调},否则必在$[-2,0)$或$(0,2]$中有
+\end{proof}
+
+\subsection{于品}
+\begin{exercise}
+    \href{https://chaoli.club/index.php/7253}{一道Putnam竞赛题}
+\end{exercise}
+\begin{proof}
+    
+\end{proof}
+
+\begin{exercise}
+    $f\in C(\R)$满足$\forall \delta>0$有$\lim_{n\to+\infty}f(n\delta)=0$,求证$\lim_{x\to+\infty}f(x)=0$.
+\end{exercise}
+\begin{proof}
+    这是一道关于Baire纲定理的习题.
+
+    固定$\ve>0$,
+    $$E_N=\cbr{x:n\geq N\implies f(nx)\leq \ve}=\bigcap_{n\geq N}\cbr{x:f(nx)\leq \ve}=\bigcap_{n\geq N}\frac{1}{n}f^{-1}\br{(-\infty,\ve]}$$
+    是闭集.另一方面,由于
+    $$\forall x>0:\br{\forall\ve\exists N_x\forall n>N_x:|f(nx)|<\ve}\implies x\in E_{N_x}$$
+    因此$ \R_{>0}=\bigcup_{n\in \N}E_n$.而Baire纲定理指出,至少有一个集合$E_N$含开区间$(a,b)$.因此$\forall n\geq N\forall t\in (na,nb)\subset E_N:f(t)<\ve$.
+
+    取$M\geq \max\cbr{N,\dfrac{a}{b-a}}$,有$ \br{Ma,+\infty}=\bigcup_{n\geq M}(na,nb)$.故$\forall t>Ma:f(t)<\ve$,即$\lim_{t\to+\infty}f(t)=0$.
+\end{proof}
+
+\begin{exercise}
+    $\varphi\in C(\R)$满足(1)$\lim_{x\to+\infty}\varphi(x)-x=+\infty$(2)不动点集$\{x\in \R:\varphi(x)=x\}$非空有限.
+
+    求证:若有$f\in C(\R)$满足$f \circ\varphi=f$,则$f$一定是常值函数.@Unsolved
+\end{exercise}
+\begin{proof}
+    
+\end{proof}
+
+\begin{exercise}
+    $f\in C(\R_{\geq 0})$满足$\lim_{x\to+\infty}\frac{f(x)}{x}=0$.若非负实数数列$\left\{a_n\right\}$满足$\left\{\dfrac{a_n}{n}\right\}$有界,求证$\lim_{n\to+\infty}\frac{f(a_n)}{n}=0$.
+\end{exercise}
+\begin{proof}
+    首先有:(1)$\exists A:\abs{\dfrac{a_n}{n}}<A(\forall n\in \N)$;(2)$\forall \ve\exists B\forall x>B:\abs{\dfrac{f(x)}{x}}<\dfrac{\ve}{A}$.
+
+    又取$ C=\sup_{x\in [0,B]}f(x), N=\ceil{\frac{C}{\ve}}$,则
+    $$\forall \ve\exists N\forall n>N:\abs{\frac{f(a_n)}{n}}=\begin{cases}
+    \dfrac{\abs{f(a_n)}}{n}<\dfrac{C}{n}<\ve&a_n\in (0,B)\\
+    \abs{\dfrac{f(a_n)}{a_n}}\abs{\dfrac{a_n}{n}}<\dfrac{\ve}{A}\cdot A=\ve&a_n\geq B
+    \end{cases}$$
+\end{proof}
+
+\begin{exercise}
+    \href{https://math.stackexchange.com/questions/294224/a-theorem-about-ces%c3%a0ro-mean-related-to-stolz-ces%c3%a0ro-theorem}{A theorem about Ces\`aro mean, related to Stolz-Ces\`aro theorem}
+
+    $\cbr{a_n}_{n\geq 1}\subset \C, \sigma_n=\frac{\sum_{k=1}^n a_k}{n},b_n=a_{n+1}-a_n, \abs{nb_n}\leq M<\infty, \lim_{n\to \infty}\sigma_n=\sigma$,求证$\lim_{n\to \infty}a_n=\sigma$.
+\end{exercise}
+\begin{proof}
+    设$m<n$,注意到$$\sum_{k=m+1}^na_k=\sum_{k=1}^ma_k-\sum^n_{k=1}a_k=n\sigma_n-m\sigma_m.$$
+    因此$$\sum_{k=m+1}^n(a_n-a_k)=(n-m)a_n-\br{n\sigma_n-m\sigma_m}=(n-m)(a_n-\sigma_n)-m(\sigma_n-\sigma_m)$$
+    因此$$a_n-\sigma_n=\frac{m}{n-m}(\sigma_n-\sigma_m)+\frac{1}{n-m}\sum_{k=m+1}^n(a_n-a_k)$$
+    而$$\begin{gathered}
+        \abs{a_n-a_k}=\abs{\sum_{i=k}^{n-1}b_i}\leq \sum_{i=k}^{n-1}\frac{M}{i}\leq M\frac{n-k}{k}<M\frac{n-m-1}{m+1}\\
+        \frac{1}{n-m}\abs{\sum_{k=m+1}^n(a_n-a_k)}< M\frac{n-m-1}{m+1}=M\br{\frac{n}{m+1}-1}
+    \end{gathered}$$
+    固定$\varepsilon$,任取$n$,取$m$满足$m\leq \frac{n}{1+\varepsilon}<m+1$,$$\abs{a_n-\sigma_n}<\frac{m}{n-m}\abs{\sigma_n-\sigma_m}+M\br{\frac{n}{m+1}-1}<\frac{\abs{\sigma_n-\sigma_m}}{\varepsilon}+M\varepsilon$$
+    因此$n\to \infty$时,$\abs{a_n-\sigma_n}\to M\varepsilon$.最后由$\varepsilon$任意性,$\abs{a_n-\sigma_n}\to 0$.由于$\sigma_n\to \sigma$,因此$a_n\to \sigma$.
+\end{proof}
+
+\section{复分析}
+\begin{exercise}
+    $f\in H(B\cup \cbr{1}),f(B)\subset B ,f(1)=1$,证明$f'(1)\geq 0$.
+\end{exercise}
+\begin{proof}
+    对$\theta\in \br{-\frac{\pi}{2},\frac{\pi}{2}}, r\in (0,2\cos \theta)$,有$1-r\e^{\i\theta}\in B$.而$f'(1)=\lim_{r\to 0}\frac{f(1-r\e^{\i\theta})-1}{-r\e^{\i\theta}}$,即$f(1-r\e^{\i\theta})=1-f'(1)r\e^{\i\theta}+o(r)$.而$\abs{f}<1$,故复数$f'(1)\e^{\i\theta}$在虚轴右侧,即$\re(f'(1)\e^{\i\theta})\geq 0$.再设$f'(1)=r\e^{\i t}$,有$\re\e^{\i(t+\theta)}\geq 0, t+\theta\in \br{-\frac{\pi}{2},\frac{\pi}{2}}$,因此$t=0$,即$f'(1)\geq 0$.
+\end{proof}
+
+\begin{exercise}
+    $f\in H(B)$,若有$z_0\in B-\cbr{0}, f(z_0)\neq 0, f'(z_0)\neq 0, \abs{f(z_0)}=\max_{\abs{z}\leq \abs{z_0}}\abs{f(z)}$,则$\frac{z_0f'(z_0)}{f(z_0)}>0$.
+\end{exercise}
+\begin{proof}[geelaw的证明]
+    令$\frac{z_0 f'(z_0)}{f(z_0)}=x+iy,\quad x,y\in\R$.由$f(z_0\e^{\i\theta})=f(z_0)+f'(z_0)z_0(\e^{\i\theta}-1)+o(z_0\e^{\i\theta}-z_0)$,因此
+    $$\frac{f(z_0\e^{\i\theta})}{f(z_0)}=1+\frac{z_0f'(z_0)}{f(z_0)}(\e^{\i\theta}-1)+z_0o(\e^{\i\theta}+1)=1+(x+\i y)\i \theta+o(\theta),$$
+    因此$$1\geq \abs{\frac{f(z_0\e^{\i\theta})}{f(z_0)}}^2=1-2y\theta+(x^2+y^2)\theta^2+o(\theta)=1-2y\theta+o(\theta).$$
+    因此$y\theta\geq 0$,而$\theta$可正可负,因此$y=0$.
+
+    同理考虑$f(z_0(1+\delta)),\delta<0$,有
+    $$\frac{f(z_0(1+\delta))}{f(z_0)}=1+(x+\i y)\delta+o(\delta),\qquad 1\geq \abs{\frac{f(z_0(1+\delta))}{f(z_0)}}^2=1+2x\delta+o(\delta).$$
+    因此$x\geq 0$.最后由于所给限制条件,$x>0$,故得证.
+\end{proof}
+\begin{proof}[陈施毅的证明]
+    注意到$F\in C^1(B)$时$F(x_0,y_0)=\max_{\abs{z}\leq r<1}F(x,y)$有
+    $$\br{x\Dfunc{F}{y}-y\Dfunc{F}{x}}(x_0,y_0)=0,\qquad \br{x\Dfunc{F}{x}+y\Dfunc{F}{y}}(x_0,y_0)\geq 0$$
+
+    对于$f=u+\i v, F(x,y)=u(x,y)^2+v(x,y)^2$.我们有
+    $$\begin{aligned}
+        zf'(z)\overline{f(z)}&=(x+\i y)\br{\Dfunc{u}{x}+\i\Dfunc{v}{x}}\br{u-\i v}=(x+\i y)\br{u\Dfunc{u}{x}+v\Dfunc{v}{y}+\i u\Dfunc{v}{x}-\i v\dfunc{u}{y}}\\
+        &=\frac{1}{2}(x+\i y)\br{\Dfunc{F}{x}-\i\Dfunc{F}{y}}=\frac{1}{2}\br{\br{x\Dfunc{F}{x}+y\Dfunc{F}{y}}+\i\br{y\Dfunc{F}{x}-x\Dfunc{F}{y}}}\geq 0
+    \end{aligned}$$
+    因此得证.
+\end{proof}
+\begin{proof}[严仲谨的证明]
+    注意到在圆周$\gamma:\abs{z}=\abs{z_0}$上$z_0$处的切线的辐角为$\arg z_0\pm\frac{\pi}{2}$,其在$f$作用下$f(\gamma)$上$f(z_0)$处的切线的辐角为$\arg f(z_0)\pm\frac{\pi}{2}$,而两者之差$\br{\arg f(z_0)\pm\frac{\pi}{2}}-\br{\arg z_0\pm\frac{\pi}{2}}=\arg f'(z_0)$,因此$\arg \frac{z_0f'(z_0)}{f(z_0)}=0$或$\pm\pi$.
+    
+    \tbc
+\end{proof}
+
+\begin{exercise}
+    设$D=\cbr{z\in\C:\theta_0<\arg(z-a)<\theta_0+\alpha},f\in C(\overline{D}-\cbrnormal{a})$,有:\\
+    (1)$\lim_{\substack{z\to a\\z\in \overline{D}-\cbrnormal{a}}} (z-a)f(z)=A$,则$\lim_{r\to 0}\int_{\substack{\abs{z-a}=r\\z\in \overline{D}}}f(z)\d z=\i \alpha A$.(2)$\lim_{\substack{z\to \infty\\z\in \overline{D}-\cbrnormal{a}}} (z-a)f(z)=B$,则$\lim_{R\to \infty}\int_{\substack{\abs{z-a}=R\\z\in \overline{D}}}f(z)\d z=\i \alpha B$.
+\end{exercise}
+\begin{proof}
+    (1)$$\begin{aligned}
+        \abs{\int_{\substack{\abs{z-a}=r\\z\in \overline{D}}}f(z)\d z-\i \alpha A}&=\abs{\int_{\substack{\abs{z-a}=r\\z\in \overline{D}}}\br{f(z)-\frac{A}{z-a}}\d z}\leq \int_{\substack{\abs{z-a}=r\\z\in \overline{D}}}\frac{\abs{(z-a)f(z)-A}}{\abs{z-a}}\abs{\d z}\\
+        &\leq \frac{r\alpha}{r}\sup_{\substack{\abs{z-a}=r\\z\in \overline{D}}} \abs{(z-a)f(z)-A}\to 0
+    \end{aligned}$$
+\end{proof}
+
+\begin{exercise}
+    $f\in C^1(D)$,则$f\in H(D)\iff \forall a\in D:\lim_{r\to 0}\frac{1}{\pi r^2}\int_{\abs{z-a}=r}f(z)\d z=0$.
+\end{exercise}
+
+\section{实变函数与泛函分析}
+\begin{exercise}
+    $E$是$[0,1]$的可测子集,若$m(E)>0,m(E^c)>0$,则$\exists p\in [0,1]\forall O(p)\subset [0,1]:m(E\cap O)>0,m(E^c\cap O)>0$.
+\end{exercise}
+\begin{proof}
+    令$S_1=\cbr{x\in [0,1]:\exists O(x)\subset [0,1]:m(E^c\cap O)=0}, S_2=\cbr{x\in [0,1]:\exists O(x)\subset [0,1]:m(E\cap O)=0}$.
+    
+    因此$p\in S_1^c\cap S_2^c=(S_1\cup S_2)^c$.而显然$S_1\cap S_2=\emptyset$,因为若否,则$0=m((O\cap E)\cup (O\cap E^c))=m(O\cap (E\cup E^c))=m(O)$,矛盾.
+
+    下证$S_1$是开集,$S_2$同理.$\forall x\in S_1\exists O(x):m(E^c\cap O)=0$,因此$\forall y\in O(x)\exists O(y)\subset O(x):m(E^c\cap O(y))=0$,因此$y\in S_1, O(x)\subset S_1$,因此$S_1$开.
+
+    最后,若$p$不存在,则$S_1\cup S_2=[0,1]$,但两者为不交开集,而$[0,1]$是连通的,矛盾.因此$p$存在.
+\end{proof}
+
+\begin{exercise}
+    \href{https://chaoli.club/index.php/8065}{请教一道Lebesgue积分的证明}
+    $f\in L^1(\R)$,证明$f\br{x-\frac{1}{x}}\in L^1(\R)$且$\int_{\R}f(x)\d x=\int_{\R}f\br{x-\frac{1}{x}}\d x$.\\
+    HINT:顺序:区间$\to$开集$\to$一般测度有限测集特征函数$\to$简单函数$\to$非负可测函数$\to L^1$函数
+\end{exercise}
+\begin{proof}
+    1.$I=[a,b]\subset \R$,令$I_1\cup I_2=\cbr{x\in \R:x-\frac{1}{x}\in [a,b]}$,其中$$I_1=\bbr{\frac{a+\sqrt{a^2+4}}{2},\frac{b+\sqrt{b^2+4}}{2}},\qquad I_2=\bbr{\frac{a-\sqrt{a^2+4}}{2},\frac{b-\sqrt{b^2+4}}{2}}$$
+    且$m(I)=m(I_1)+m(I_2)=b-a$.因此$f=c1_{[a,b]}$时$$\int_{\R}f(x)\d x=\int_{\R}f\br{x-\frac{1}{x}}\d x=c(b-a)$$
+    因此$f$是有界区间上的阶梯函数时,结论成立.
+
+    2.若$f$是紧支集连续函数,设$\mathrm{supp}(f)\subset [a,b]$.由一致连续性,可作$[a,b]$的分割$T:a=x_0<x_1<\cdots<x_N=b$,\\使$\lambda(T)=\max \abs{\Delta x_i}<\delta, \abs{f(x_k)-f(x_{k+1})}<\varepsilon$.取$c_k\in \bbr{\min_{[x_{k-1},x_k]}f(x), \max_{[x_{k-1},x_k]}f(x)}, \abs{c_k}=\min_{[x_{k-1},x_k]}\abs{f(x)}$,作$$\varphi(x)=\sum_{k=1}^N c_k1_{I_k}(x),\qquad I_k=\babr{x_{k-1},x_k}, I_N=[x_{N-1},x_N]$$
+    有$\forall x\in [a,b]:\abs{\varphi(x)-f(x)}<\varepsilon, \abs{\varphi(x)}\leq \abs{f(x)}$.取$\varepsilon=\frac{1}{n}$,可得阶梯函数列$\cbr{\varphi_n(x)}$,使得$\varphi(x)\nearrow f(x)$.
+    
+    \tbc
+\end{proof}
+
+\begin{exercise}
+    \href{http://eufisky.is-programmer.com/tag/%E4%B8%98%E8%B5%9B}{网页链接}
+    $L^2(\R)$中可测函列$f_n\to f$ a.e.,若$\norm{f_n}_{L^2}\to \norm{f}_{L^2}$,证明$\norm{f_n-f}_{L^2}\to 0.$
+\end{exercise}
+\begin{proof}
+    由$L^2(\R)$是Hilbert空间,且$\norm{f_n}_{L^2}\to \norm{f}_{L^2}$,因此仅需证明$f_n$弱收敛于$f$,即对$$\forall g\in L^2(\R):\lim \int_\R f_ng=\int_{\R}fg$$由此可得到强收敛.
+
+    首先对$g\in L^2(\R)$必然有$\int_{\abs{x}>R}\abs{g}^2<\varepsilon^2$.另外由$\int g$的绝对连续性也有$\int_{E}\abs{g}^2<\varepsilon^2$,其中$m(E)<\delta$.由Егоров定理,可取$E_\delta\subset (-R,R)$且$m((-R,R)-E_\delta)<\delta$,使在其上有$f_n\convergeuni f$.因此对充分大的$n$和任一点$x\in E_\delta$可取$\abs{f_n-f}<\frac{\varepsilon}{\sqrt{2R}}$.
+
+    设$M=\norm{g}_{L^2}+\norm{f}_{L^2}+\sup\norm{f_n}_{L^2}$,则对充分大的$n$有$\int_{E}\abs{f-f_n}^2=\int_E f^2+\int_E f_n^2-2\int_E ff_n<M^2+M^2=2M^2$,
+    $$\begin{aligned}
+    \int_{\R}\abs{f_n-f}\abs{g}&=\br{\int_{E_\delta}+\int_{(-R,R)-E_\delta}+\int_{\abs{x}>R}}\abs{f_n-f}\abs{g}\\
+    &\leq \br{\int_{E_\delta}\abs{f-f_n}^2\int_{E_\delta}\abs{g}^2}^{\frac{1}{2}}+\br{\int_{(-R,R)-E_\delta}\abs{f-f_n}^2\int_{(-R,R)-E_\delta}\abs{g}^2}^{\frac{1}{2}}+\br{\int_{\abs{x}>R}\abs{f-f_n}^2\int_{\abs{x}>R}\abs{g}^2}^{\frac{1}{2}}\\
+    &<\br{\frac{\varepsilon^2}{2R}\cdot 2R\cdot M^2}^{\frac{1}{2}}+\br{2M^2\cdot \varepsilon^2}^{\frac{1}{2}}+\br{2M^2\cdot \varepsilon^2}^{\frac{1}{2}}=(M+2\sqrt{2}M)\varepsilon
+    \end{aligned}$$
+    故得证.
+\end{proof}
+
+\section{线性代数}
+\subsection{矩阵}
+\begin{exercise}
+    $q$元域$\F_q$上的$n$维向量空间$V$中有多少个$k\in [n]$维子空间?
+\end{exercise}
+\begin{proof}
+    这一题其实用的是组合思想,即:$$k\text{维子空间数量}=\text{能张成不同空间的}k\text{维基底的个数}=\frac{n\text{维空间中可选取}k\text{维基底的个数}}{k\text{维空间中可选取}k\text{维基底的个数}}$$
+
+    换个思路,(每个)$k$维空间中可选取$k$维基底的个数$=$多少个$k$维基底对应一个(不同的)$k$维空间.
+
+    在此之前我一直以为$\R^n$中$k$维子空间的数量是$ \binom{n}{k}$个,但实际上应当是无穷多个,因为我一直只在标准正交系中找子空间.
+
+    考虑$n$维空间$V_{\F_q}$中,若首先要选择一个基底,则有$|V-\cbr{0}|=q^n-1$个选择.设选到的为$v_1, V_1=\abr{v_1}$,则第二个基底有$|V-V_1|=q^n-q$个选择.因此类推,第$k\in [n]$个基底有$q^n-q^{k-1}$种选择.因此在$\F^q$上的$n$维空间中可选取$k$维基底的个数是$ \frac{1}{k!}\prod_{i\in [k]}q^n-q^{i-1}$,因此在$k$维空间中可选取的基底的个数为$ \frac{1}{k!}\prod_{i\in [k]}q^k-q^{i-1}$,故(不同)$k$维子空间数量为$$\prod_{i\in [k]}\frac{q^n-q^{i-1}}{q^k-q^{i-1}}=\prod_{i\in [k]}\frac{q^{n-i+1}-1}{q^{k-i+1}-1}$$
+\end{proof}
+
+\begin{exercise}
+    求$\Q$上的$n$阶半幻方$\SMag_n(\Q)$和幻方$\Mag_n(\Q)$的维数,并证明$$\SMag_n(\Q)=\Mag_n(\Q)\oplus \Q I_n\oplus \Q D_n$$其中$D_n$是$a_{i,n+1-i}=1$的$n$阶矩阵.
+\end{exercise}
+\begin{proof}
+    首先考察$\SMag_n(\Q)$的维度,若已知它的行列和$\sigma(A)$,则遮住一行一列的话,剩下$n-1$阶矩阵的数字可以任意选取,即有$(n-1)^2+1=n^2-2n+2$维.
+
+    另一个思路来说,实际上可以认为$n$行$n$列的和都等于同一个数,这就给出了$2n$个线性方程和一个自由变量,但有$n^2$个未知数.实际上这$2n$个线性方程可以从中约去一个,还剩$2n-1$个线性无关的,故最终维数为$n^2-(2n-1)+1=n^2-2n+2$.
+
+    又由等式可知,$\dim \Mag_n(\Q)=n^2-2n$.下证等式.
+
+    首先显然$\Mag_n(\Q)\cap \Q I_n\cap \Q D_n=\cbr{0}$,因此$$\Mag_n(\Q)+ \Q I_n+ \Q D_n=\Mag_n(\Q)\oplus \Q I_n\oplus \Q D_n$$
+
+    其次,设$\forall S\in \SMag_n(\Q)$存在分解$$\exists p,q,r\in \Q, S=pM+qI_n+rD_n$$其中$M\in \Mag_n(\Q)$,则分别计算$S$的行列和$\sigma_1$、主对角线和$\sigma_2=\tr S$和副对角线和$\sigma_3$如下:
+    $$A\b{p}=\begin{pmatrix}
+       \sigma(M)&1&1\\ \sigma(M)&n&\delta\\ \sigma(M)& \delta &n
+    \end{pmatrix}\begin{pmatrix}
+       p\\ q\\ r
+    \end{pmatrix}=\begin{pmatrix}
+       \sigma_1\\ \sigma_2\\ \sigma_3
+    \end{pmatrix}=\bm{\sigma}$$
+    其中$\delta=\mathrm{OddQ}(n)$,当$n$为奇数是$\delta=1$,否则为$0$.
+
+    通过化简可知$\rank A=3$,故$A:\Q^3\to \Q^3$是双射,故
+    $$\dim_\Q \SMag_n(\Q)=\dim_\Q \Mag_n(\Q)+ \dim_\Q \Q I_n + \dim_\Q \Q D_n$$
+    故等式得证.
+
+    另,继续计算可得:
+    $$A\rev\bm{\sigma}=\frac{1}{\det A}\begin{pmatrix}
+       n^2-\delta^2&n-\delta&n-\delta\\ 
+       \sigma(n-\delta)&\sigma(n-1)&\sigma(1-\delta)\\
+       \sigma(n-\delta)&\sigma(1-\delta)&\sigma(n-1)\\
+    \end{pmatrix}\begin{pmatrix}
+       \sigma_1\\ \sigma_2\\ \sigma_3
+    \end{pmatrix}=\begin{pmatrix}
+       p\\ q\\ r
+    \end{pmatrix}=\b{p}$$
+    其中$\det A=\sigma\left((n-1)^2-(1-\delta)^2\right)$.
+    
+    下分别给出$\delta=0$和$\delta=1$时的$A\rev$:
+    $$A\rev_{\delta=0}=\frac{1}{2-n}\begin{pmatrix}
+       \frac{n}{\sigma}&\frac{1}{\sigma}&\frac{1}{\sigma}\\
+       1&\frac{1-n}{n}&\frac{1}{n}\\
+       1&\frac{1}{n}&\frac{1-n}{n}\\
+    \end{pmatrix}\qquad A\rev_{\delta=1}=\frac{1}{1-n}\begin{pmatrix}
+       \frac{1+n}{\sigma}&\frac{1}{\sigma}&\frac{1}{\sigma}\\
+       1&-1&0\\
+       1&0&-1\\
+    \end{pmatrix}$$
+\end{proof}
+
+\begin{exercise}
+    $\cbr{V_i}_{i\in [m]}$是$n$维空间$V$中的一组子空间,若$ \sum_{i\in [m]} \dim V_i>n(m-1)$,求证$\bigcap V_i\neq \cbr{0}$.
+\end{exercise}
+\begin{proof}
+    首先,若公式成立则$V_i\neq \cbr{0}$,因为若有$\dim V_k=0$,则$$\sum \dim V_i=\sum_{i\in [m]-k}V_i+\dim V_k=\sum_{i\in [m]-k}\leq n(m-1)$$
+    $m=1$时公式显然成立,$m=2$时$\dim V_1+\dim V_2>n$可知$\dim V_1\cap V_2>0$,故也成立.
+
+    假设$m=k$时公式成立,则$m=k+1$时,假设$\sum_{i\in [k+1]} \dim V_i>nk$.若$\bigcap V_i=\cbr{0}$,则$[k+1]$中存在$k$元指标集$J$有$\bigcap_{j\in J}V_j=\cbr{0}$,故$\sum_{j\in J}\dim V_j\leq n(k-1)$.设$[k+1]-J=\cbr{k+1}$,则$$ \dim V_{k+1}=\sum_{i\in [k+1]}\dim V_i-\sum_{j\in J}\dim V_j>nk-n(k-1)=n$$矛盾,故$\bigcap V_i\neq \cbr{0}$.
+\end{proof}
+
+\begin{exercise}
+    用平面上$n$条直线集合的几何性质给出$$A=\begin{pmatrix}
+        a_1&a_2&\cdots&a_n\\b_1&b_2&\cdots&b_n
+     \end{pmatrix},\qquad B=\begin{pmatrix}
+        a_1&a_2&\cdots&a_n\\b_1&b_2&\cdots&b_n\\c_1&c_2&\cdots&c_n
+     \end{pmatrix}$$有相等秩的条件.@Unsolved
+\end{exercise}
+\begin{proof}
+    
+\end{proof}
+
+\begin{exercise}[秩的不等式]
+\begin{enumerate}
+    \item Sylvester秩不等式:$\forall A\in \F^{m\times k}, B\in \F^{k\times n}:\rank A+\rank B-k\leq \rank AB$
+    \item Frobenius秩不等式:$\forall A\in \F^{m\times s}, B\in \F^{s\times t}, C\in \F^{t\times n}:\rank AB+\rank BC\leq \rank B+\rank ABC$
+    \item $\forall A,B,C\in M_n(\F)$,若$ABC=O$,则$\rank A+\rank B+\rank C\leq 2n$
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+    (1) 证法1:考虑分块矩阵,有$$\matrixtwo{I_m}{A_{m\times k}}{O_{k\times m}}{I_k} \matrixtwo{A_{m\times k}}{O_{m\times n}}{-I_k}{B_{k\times n}}=\matrixtwo{O_{m\times k}}{AB_{m\times n}}{-I_k}{B_{k\times n}}$$
+    因此$$\rank A+\rank B\leq \rank\matrixtwo{A}{O}{-I}{B}=\rank\matrixtwo{O}{AB}{-I}{B}=\rank AB+k$$
+
+    证法2:由于$A$可被化为等价标准型$A'=I_r\oplus 0$,即$A=PA'Q$,其中$P,Q$为可逆方阵,我们可以化不等式为$$\rank A+\rank B=r+\rank QB\leq \rank PA'QB+k=\rank A'QB+k$$
+    令$B'=QB$,即证明$\rank A'+\rank B'\leq \rank A'B'+k$.
+    $$\begin{aligned}
+       \rank A'+\rank B'&=\rank A'+\rank(A'B'+(I-A')B')\\&\leq \rank A'+\rank (A'B')+\rank((I-A')B')\\&\leq r+\rank (A'B')+(n-r)\\&=\rank A'B'+n
+    \end{aligned}$$
+
+    证法3:即证$\dim \ker AB\leq \dim \ker A+\dim \ker B$.
+
+    由于$\ker B\subseteq \ker AB$,考虑$\bar{B}=B|_{\ker AB}$,显然$\ker B=\ker \bar{B}$,而$\im \bar{B}\subseteq \ker A$,因此$\rank \bar{B}\leq \dim\ker A$,即$$\dim\ker AB=\dim \ker B+\rank \bar{B}\leq \dim \ker B+\dim\ker A$$
+
+    (2) 证法1:考虑$C:\ker(ABC)/\ker(BC)\to \ker(AB)/\ker B$,这是一个映射且是一个单射.
+
+    首先,$x+\ker(BC)\mapsto Cx+C(\ker (BC))$,显然$x\in\ker(ABC)\implies Cx\in \ker(AB)$,$C(\ker(BC))=\ker(B)$(互相包含),因此$$x+\ker(BC)=y+\ker(BC)\implies Cx+\ker(B)=Cy+\ker(B),C(x-y)\in\ker B$$故这是一个映射.而又有$a\in\ker C, ABCa=0$,即$a\in\ker (BC), Ca\in \ker B$,故$C$是单射.
+
+    证法2:运用Sylvester不等式.若$\rank B=r$,则$B$有满秩分解$B_{s\times t}=P_{s\times r}Q_{r\times t}$,使得
+    $$\begin{aligned}
+        \rank(ABC)=\rank(APQC)&\geq \rank(AP)+\rank (QC)-r\\&=\rank(APQ)+\rank(PQC)-r\\&=\rank (AB)+\rank (BC)-\rank B
+    \end{aligned}$$
+
+    证法3:注意到$\im B=\im (AB)\oplus(\im B\cap \ker A)$,因此$$\rank (AB)=\rank B-\dim(\im B\cap \ker A)$$
+    类似也有$$\rank (ABC)=\rank(BC)-\dim(\im(BC)\cap \ker A)$$
+    又有$$\im BC\cap \ker A\subseteq \im B\cap \ker A$$
+    因此$$\begin{aligned}
+        \rank AB+\rank BC&=\rank B+\rank ABC\\&+\dim(\im BC\cap \ker A)-\dim(\im B\cap \ker A)\\ &\leq \rank B+\rank ABC
+    \end{aligned}$$
+
+    (3) 证法1:运用两次Sylvester不等式:$$0=\rank ABC\geq \rank AB+\rank C-n\geq \rank A+\rank B+\rank C-2n$$
+
+    证法2:首先注意到$\im BC\subseteq \ker A$,因此$n=\rank A+\dim \ker A\geq \rank A+\rank BC$.
+    其次,注意到$\im C=\im BC\oplus (\ker B\cap \im C)$,因此有
+    $$\begin{aligned}
+        n&\geq \rank A+\rank BC\\&=\rank A+\rank C-\dim (\ker B\cap \im C)\\&\geq \rank A+\rank C-\dim \ker B\\&=\rank A+\rank C+\rank C-n
+    \end{aligned}$$
+    因此得证.
+\end{proof}
+
+\begin{exercise}
+    对$\forall A\in M_2(\R), \forall k\in \N_+$,若$A^k=O$,则$A^2=O$.@Unsolved
+\end{exercise}
+\begin{proof}
+    
+\end{proof}
+
+\begin{exercise}\label{adjmat1}
+    记$A\adj$为$A\in M_n(\F)$的伴随矩阵,则有
+    $$\rank A\adj=\begin{cases}
+    n&\textif \rank A=n\\
+    1&\textif \rank A=n-1\\
+    0&\textif \rank A<n-1
+    \end{cases}$$
+\end{exercise}
+\begin{proof}
+    $\rank A<n-1$时,$A$的$n-1$阶子式均为0,即$A\adj=O$.
+
+    $\rank A=n-1$时,$A$存在$n-1$阶子式非零,此时运用Sylvester不等式有$\rank A+\rank A\adj\leq \rank (AA\adj)+n=n$, $\rank A\adj\leq 1$.
+    而$A\adj\neq O$,因此$\rank A\adj=1$.
+\end{proof}
+
+\subsection{行列式}
+\begin{exercise}
+    求证任意阶的斜对称矩阵$A$的行列式$\det A\geq 0$.特别的,奇数阶时$\det A=0$.
+\end{exercise}
+\begin{proof}
+    首先对于奇数阶的情况有$$\det A=\det A^\T=\det(-A)=(-1)^n\det A=-\det A\implies \det A=0$$
+
+    对偶数阶的情况:
+
+    证法1:由于$\tr A=0$,因此若$\lambda$是其本征值,则$-\lambda$也是.有进一步的结论$\Re(\lambda)=0$,即$\lambda$是纯虚数.而$\det A=\prod_{\text{本征值}}\lambda_i=\prod \lambda_i^2$,得证.
+
+    证法2:对$n=2k$作归纳证明.首先已知$n=2$时$\det A=a_{12}^2$,情况成立.假设对$n=2k$成立,则只需证$n=2k+2$的情况,此时
+    $$\det A_{2k+2}=\det \begin{pmatrix}
+        0&a_{12}&\cdots\\ -a_{12}&0&\cdots\\\vdots&\vdots& A_{2k}
+    \end{pmatrix}\stackrel{\text{初等变换}}{=}\det \begin{pmatrix}
+        0&a_{12}&O\\ -a_{12}&0&O\\O&O& A'_{2k}
+    \end{pmatrix}=a_{12}^2\det A'_{2k}$$
+    而$\det A'_{2k}$实际上也是$2k$阶斜对称矩阵(因为初等行列变换是对应的,两个变换的结果相互抵消),因此得证.
+\end{proof}
+
+\begin{exercise}
+    对元素$a_{ij}=b^2_i-b^2_j$的$n$阶斜对称矩阵,求证其行列式总为零.
+\end{exercise}
+\begin{proof}
+    可以证明元素形如$a_{ij}=x_i+y_j$的矩阵的秩至多为2,但也可以这样想:这个斜对称矩阵是两个秩1矩阵的差,即$a_{ij}=b^2_i$和$a_{ij}=b^2_j$的两个矩阵,故矩阵的秩至多为2.
+\end{proof}
+
+\begin{exercise}
+    证明$$\Delta_n(k_1,x_1;k_2,x_2;\cdots;k_m,x_m)=\det\begin{pmatrix}
+        M^n_{k_1}(x_1)\\M^n_{k_2}(x_2)\\\vdots\\M^n_{k_m}(x_m)
+    \end{pmatrix}=\prod_{1\leq j< i\leq m}(x_i-x_j)^{k_ik_j}$$
+    其中$M^n_k(x)$是$k\times n$阶矩阵:
+    $$M^n_k(x)=\begin{pmatrix}
+        \binom{0}{0}x^0&\binom{1}{0}x^1&\binom{2}{0}x^2&\cdots&\binom{n-1}{0}x^{n-1}\\
+        0&\binom{1}{1}x^0&\binom{2}{1}x&\cdots&\binom{n-1}{1}x^{n-2}\\
+        0&0&\binom{2}{0}x^{0}&\cdots&\binom{n-1}{2}x^{n-3}\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        0&0&0&\cdots&\binom{n-1}{k-1}x^{n-k}\\
+    \end{pmatrix}$$
+    即$ a_{ij}=\binom{j-1}{i-1}x^{j-i}$,且$ \sum_{i\in [m]}k_i=n$.
+    
+    特别的,$k_i=1$,即$m=n$时化为Vandermonde行列式.
+\end{exercise}
+\begin{proof}
+    一篇1983年的国内论文\href{https://ishare.iask.sina.com.cn/f/19082819.html}{Vandermonde行列式推广及其在控制理论中的应用}专门讨论了这个行列式,摘录如下.
+
+    只需证明$$\Delta_n(k_1,x_1;k_2,x_2;\cdots;k_m,x_m)=\Delta_n(k_1-1,x_1;k_2,x_2;\cdots;k_m,x_m)\prod_{i=2}^m(x_i-x_1)^{k_i}$$
+    这是因为
+    $$\begin{aligned}
+        \lhs&=\Delta_n(k_1-1,x_1;k_2,x_2;\cdots;k_m,x_m)\prod_{i=2}^m(x_i-x_1)^{k_i}=\Delta_n(k_2,x_2;\cdots;k_m,x_m)\prod_{i=2}^m(x_i-x_1)^{k_1k_i}\\
+        &=\prod_{j=1}^m\br{\prod_{i=j+1}^m(x_i-x_j)^{k_i}}^{k_j}=\rhs
+    \end{aligned}$$
+
+    第一步:仿照Vandermonde行列式的求法,将第$i\in [m-1]$列乘上$-x_1$加到第$i+1$列上,得到
+    $$\lhs=\begin{vmatrix}
+        1&0&0&\cdots&0\\
+        0&1&\binom{2}{1}x_1-x_1&\cdots&\binom{n-1}{1}x^{n-2}_1-\binom{n-2}{1}x^{n-2}_1\\
+        0&0&1&\cdots&\binom{n-1}{2}x^{n-3}_1-\binom{n-2}{2}x^{n-3}_1\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        0&0&0&\cdots&\binom{n-1}{k_1-1}x^{n-k_1}_1-\binom{n-2}{k_1-1}x^{n-k_1}_1\\
+        1&x_2-x_1&x^2_2-x_2x_1&\cdots&x^{n-1}_2-x^{n-2}_2x_1\\
+        0&1&\binom{2}{1}x_2-x_1&\cdots&\binom{n-1}{1}x^{n-2}_2-\binom{n-2}{1}x^{n-3}_2x_1\\
+        0&0&1&\cdots&\binom{n-1}{2}x^{n-3}_2-\binom{n-2}{2}x^{n-4}_2x_1\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        0&0&0&\cdots&\binom{n-1}{k_2-1}x^{n-k_2}_2-\binom{n-2}{k_2-1}x^{n-k_2-1}_2x_1\\
+        \vdots&\vdots&\vdots&\vdots&\vdots\\
+    \end{vmatrix}=\rhs_1$$
+
+    第二步:对第一行展开,再运用组合恒等式$ \binom{n+1}{k+1}=\binom{n}{k+1}+\binom{n}{k}$化简前$k_1-1$行,并对第$k_1$行提取公因式$(x_2-x_1)$,最终得到:
+    $$\rhs_1=(x_2-x_1)\begin{vmatrix}
+        1&x_1&\cdots&x^{n-2}_1\\
+        0&1&\cdots&\binom{n-2}{1}x^{n-3}_1\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&\binom{n-2}{k_1-2}x^{n-k_1}_1\\
+        1&x_2&\cdots&x^{n-2}_2\\
+        1&\binom{2}{1}x_2-x_1&\cdots&\binom{n-1}{1}x^{n-2}_2-\binom{n-2}{1}x^{n-3}_2x_1\\
+        0&1&\cdots&\binom{n-1}{2}x^{n-3}_2-\binom{n-2}{2}x^{n-4}_2x_1\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&\binom{n-1}{k_2-1}x^{n-k_2}_2-\binom{n-2}{k_2-1}x^{n-k_2-1}_2x_1\\
+        \vdots&\vdots&\vdots&\vdots\\
+    \end{vmatrix}=(x_2-x_1)\rhs_2$$
+
+    第三步:对于$\rhs_2$,将第$k_1+1$行减去第$k_1$行,则第$k_1+1$行变为
+    $$\begin{aligned}
+        (\rhs_2)_{(k_1+1)}&=\br{0,x_2-x_1,\binom{2}{1}x_2(x_2-x_1),\cdots,\binom{n-2}{1}x^{n-3}_2(x_2-x_1)}\\
+        &=(x_2-x_1)\br{0,1,\binom{2}{1}x_2,\cdots,\binom{n-2}{1}x_2^{n-3}}
+    \end{aligned}$$
+    再依次将第$k_1+i$行减去第$k_1+i-1$行$(i=2,3,\cdots,k_2-1)$,最终得到:
+    $$\rhs_2=(x_2-x_1)^{k_2-1}\begin{vmatrix}
+        1&x_1&\cdots&x^{n-2}_1\\
+        0&1&\cdots&\binom{n-2}{1}x^{n-3}_1\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&\binom{n-2}{k_1-2}x^{n-k_1}_1\\
+        1&x_2&\cdots&x^{n-2}_2\\
+        0&1&\cdots&\binom{n-2}{1}x^{n-3}_2\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&\binom{n-2}{k_2-1}x^{n-k_2-1}_2\\
+        1&\binom{2}{1}x_3-x_1&\cdots&\binom{n-1}{1}x_3^{n-2}-\binom{n-2}{2}x_3^{n-3}x_1\\
+        \vdots&\vdots&\vdots&\vdots\\
+    \end{vmatrix}=(x_2-x_1)^{k_2-1}\rhs_3$$
+    即$\rhs_1=(x_2-x_1)^{k_2}\rhs_3$.
+
+    第四步:将上面对第$k_1$行到第$k_1+k_2-1$行所做的依次施加直到最后一行,得到
+    $$\lhs=\rhs_1=\rhs_4\prod_{i=2}^m(x_i-x_1)^{k_i}=\rhs$$
+    因此得证.
+\end{proof}
+
+\begin{exercise}
+    证明$$\det B_n(s,t)=\prod_{k\in [t]}\frac{\binom{n+s-k}{n}}{\binom{n+t-k}{n}}=\prod_{k\in [t]}\frac{(n+s-k)!}{(s-k)!}\frac{(t-k)!}{(n+t-k)!}$$
+
+    其中
+    $$ B_n(s,t)=\begin{pmatrix}
+    \binom{s}{t}&\binom{s}{t+1}&\cdots &\binom{s}{t+n-1}\\
+    \binom{s+1}{t}&\binom{s+1}{t+1}&\cdots&\binom{s+1}{t+n-1}\\
+    \vdots&\vdots&\ddots&\vdots\\
+    \binom{s+n-1}{t}&\binom{s+n-1}{t+1}&\cdots&\binom{s+n-1}{t+n-1}
+    \end{pmatrix}\in M_n(\Z),\quad a_{ij}=\binom{s+i-1}{t+j-1}$$
+\end{exercise}
+\begin{proof}
+    讨论$s$和$t$的大小关系:若$s<t$,则$B_n(s,t)$至少有一行全为零,故$\det B_n(s,t)=0=\rhs$,等式成立.
+
+    若$s=t$,则$B_n(s,s)$右上角全为0,主对角线全为1,故$\lhs=1=\rhs$,等式成立.
+
+    若$s>t$,则对行列式做$t$步变换.在第$k$步时,对第$i$行提取$s+i-k$,再从第$j$列提取$(t+j-k)\rev$,此时矩阵的元素变为$ a^{(k+1)}_{ij}=\binom{s+i-1-k}{t+j-1-k}$,提取得到
+    $$\prod_{i\in [n]}\frac{s+i-k}{t+i-k}=\frac{(s+n-k)!}{(s-k)!}\frac{(t-k)!}{(n+t-k)!}$$
+    最终得到$$B^{(t+1)}_n(s,t)=C^m_n=\begin{pmatrix}
+        1&\binom{m}{1}&\cdots &\binom{m}{n-1}\\
+        1&\binom{m+1}{1}&\cdots&\binom{m+1}{n-1}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        1&\binom{m+n-1}{1}&\cdots&\binom{m+n-1}{n-1}
+    \end{pmatrix}, m=s-t, c_{ij}=\binom{m+i-1}{j-1}$$
+
+    对$\det C_n^m$将第$i$行减去第$i-1$行,得到
+    $$\det C^m_n=\begin{vmatrix}
+        1&\binom{m}{1}&\cdots &\binom{m}{n-1}\\
+        0&\binom{m}{0}&\cdots&\binom{m}{n-2}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&\binom{m+n-2}{0}&\cdots&\binom{m+n-2}{n-2}
+    \end{vmatrix}=\begin{vmatrix}
+        1&\binom{m}{1}&\cdots &\binom{m}{n-2}\\
+        1&\binom{m+1}{1}&\cdots&\binom{m+1}{n-2}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        1&\binom{m+n-2}{1}&\cdots&\binom{m+n-2}{n-2}
+    \end{vmatrix}=\det C^m_{n-1}$$
+
+    而$\det C^m_1=\det C^m_2=1$,因此$\det C^m_n=1$.结合所求系数,有
+    $$\lhs=\prod_{k\in [t]}\frac{(n+s-k)!}{(s-k)!}\frac{(t-k)!}{(n+t-k)!} \det C^m_n=\rhs$$
+\end{proof}
+
+\begin{exercise}
+    $X\in \F^{n\times k}, Y\in \F^{k\times n}$,则$\det(I_n+XY)=\det (I_n+YX)$
+\end{exercise}
+\begin{proof}
+    由$$\matrixtwo{I_k+YX}{O}{X}{I_n}\matrixtwo{I_k}{Y}{O}{I_n}=\matrixtwo{I_k}{Y}{O}{I_n}\matrixtwo{I_k}{O}{X}{I_n+XY}$$
+    即马上得证.
+\end{proof}
+
+\begin{exercise}
+    对$A\in M_n(\R)$有$\forall i\neq j: (n-1)|a_{ij}|<|a_{ii}|$,则$\det A\neq 0$.
+\end{exercise}
+\begin{proof}
+    若$\det A=0$,则$AX=0$有非零解$X^0=(x^0_1,\cdots,x^0_n)^\T$,其中$x_k^0$的模最大,因此
+    $$A_{(k)}X^0=\sum_{i\in [n]}a_{ki}x^0_i=a_{kk}x^0_k+\sum_{i\neq k}a_{ki}x^0_i=0$$
+    故$$(n-1)\abs{a_{kk}}\abs{x^0_k}=(n-1)\abs{\sum_{i\neq k}a_{ki}a^0_i}<(n-1)\abs{a_{kk}}\abs{x^0_k}$$
+    得到矛盾.
+\end{proof}
+
+\begin{exercise}
+    $A,B\in M_n(\R)$,证明(1)$\overline{\det (A+\i B)}=\det (A-\i B)$；(2)$\det \matrixtwo{A}{B}{-B}{A}=|\det(A+\i B)|^2$
+\end{exercise}
+\begin{proof}
+    (1)$$\overline{\det (A+\i B)}=\sum_{\pi\in S_n}\varepsilon_\pi \prod_{i\in [n]}\overline{(a_{i,\pi(i)}+\i b_{i,\pi(i)})}=\sum_{\pi\in S_n}\varepsilon_\pi \prod_{i\in [n]}(a_{i,\pi(i)}-\i b_{i,\pi(i)})=\det (A-\i B)$$
+
+
+    (2)$$\begin{aligned}
+    \det\matrixtwo{A}{B}{-B}{A}&=\det\matrixtwo{A-\i B}{\i A+B}{-B}{A}=\det\matrixtwo{A-\i B}{O}{-B}{A+\i B}\\
+    &=\det(A-\i B)\det(A+\i B)=|\det(A+\i B)|^2
+    \end{aligned}$$
+\end{proof}
+
+\begin{exercise}
+    证明$$\det A=\begin{vmatrix}
+        a_1&a_2&a_3&\cdots&a_n\\
+        a_n&a_1&a_2&\cdots&a_{n-1}\\
+        a_{n-1}&a_n&a_1&\cdots&a_{n-2}\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        a_2&a_3&a_4&\cdots&a_1
+    \end{vmatrix}=\prod_{k=1}^{n}\sum_{i=1}^{n}\varepsilon_{n}^{k(i-1)}a_i$$
+    其中$\varepsilon_n=\e^{\frac{2\pi\i}{n}}=\cos \frac{2\pi}{n}+\i\sin\frac{2\pi}{n}$.
+\end{exercise}
+\begin{proof}
+    构造$$B=\begin{pmatrix}
+        1&1&\cdots&1\\
+        \varepsilon_n&\varepsilon_n^2&\cdots&\varepsilon_n^n\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \varepsilon_n^{n-1}&\varepsilon_n^{2(n-1)}&\cdots&\varepsilon_n^{n(n-1)}\\
+    \end{pmatrix},\qquad \det B\neq 0$$
+    令$f(x)=\sum_{i=1}^n a_ix^{i-1}$,有:$$\begin{aligned}
+        f(\varepsilon_n^k)&=a_1+a_2\varepsilon_n^k+\cdots+a_n\varepsilon_n^{k(n-1)}\\
+        \varepsilon_n^{k} f(\varepsilon_n^k)&=a_n+a_1\varepsilon_n^k+\cdots+a_{n-1}\varepsilon_n^{k(n-1)}\\
+        \varepsilon_n^{2k} f(\varepsilon_n^k)&=a_{n-1}+a_n\varepsilon_n^k+\cdots+a_{n-2}\varepsilon_n^{k(n-1)}\\
+        \cdots&\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\\
+        \varepsilon_n^{(n-1)k} f(\varepsilon_n^k)&=a_2+a_3\varepsilon_n^k+\cdots+a_1\varepsilon_n^{k(n-1)}\\
+    \end{aligned}$$
+    因此$$\begin{aligned}
+        (\det A)(\det B)&=\det(AB)=\det \begin{pmatrix}
+        a_1&a_2&\cdots&a_n\\
+        a_n&a_1&\cdots&a_{n-1}\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        a_2&a_3&\cdots&a_1
+    \end{pmatrix}\begin{pmatrix}
+        1&1&\cdots&1\\
+        \varepsilon_n&\varepsilon_n^2&\cdots&\varepsilon_n^n\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \varepsilon_n^{n-1}&\varepsilon_n^{2(n-1)}&\cdots&\varepsilon_n^{n(n-1)}\\
+    \end{pmatrix}\\
+    &=\begin{vmatrix}
+        f(\varepsilon_n)&f(\varepsilon_n^2)&\cdots&f(\varepsilon_n^n)\\
+        \varepsilon_nf(\varepsilon_n)&\varepsilon_n^2f(\varepsilon_n^2)&\cdots&\varepsilon_n^nf(\varepsilon_n^n)\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \varepsilon_n^{n-1}f(\varepsilon_n)&\varepsilon_n^{2(n-1)}f(\varepsilon_n^2)&\cdots&\varepsilon_n^{n(n-1)}f(\varepsilon_n^n)\\
+    \end{vmatrix}=(\det B)\prod_{i=1}^n f(\varepsilon_n^i)
+    \end{aligned}$$
+    代入$f(\varepsilon_n^k)=\sum_{i=1}^n a_i\varepsilon_n^{k(i-1)}$,有$\det A=\prod_{k=1}^n\sum_{i=1}^n a_i\varepsilon_n^{k(i-1)}$.
+\end{proof}
+
+\begin{exercise}[\href{https://chaoli.club/index.php/6920}{一个行列式的计算}]
+    求证
+    $$\begin{vmatrix}
+    1 & 0 & 0 & \cdots & 0 & 1 & 0 & 0 & \cdots & 0 \\
+    x & x & x & \cdots & x & y & y & y & \cdots & y \\
+    x^{2} & 2 x^{2} & 2^{2} x^{2} & \cdots & 2^{m-1} x^{2} & y^{2} & 2 y^{2} & 2^{2} y^{2} & \cdots & 2^{m-1} y^{2} \\
+    x^{3} & 3 x^{3} & 3^{2} x^{3} & \cdots & 3^{m-1} x^{3} & y^{3} & 3 y^{3} & 3^{2} y^{3} & \cdots & 3^{m-1} y^{3} \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+    x^{n} & n x^{n} & n^{2} x^{n} & \cdots & n^{m-1} x^{n} & y^{n} & n y^{n} & n^{2} y^{n} & \cdots & n^{m-1} y^{n}
+    \end{vmatrix}
+    =(x-y)^{m^{2}}(x y)^{\frac{m^{2}-m}{2}}\br{\prod_{i=0}^{m-1} i !}^{2}$$
+    其中$n=2m-1$.@Unsolved
+\end{exercise}
+\begin{proof}
+    
+\end{proof}
+\subsubsection{结论}
+\begin{enumerate}
+    \item 对$$C_n=\begin{pmatrix}
+            a_1&b_1&0&\cdots&0&0\\
+            c_1&a_2&b_2&\cdots&0&0\\
+            0&c_2&a_3&\cdots&0&0\\
+            \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+            0&0&0&\cdots&c_{n-1}&a_n
+    \end{pmatrix}$$有$\det C_n=a_n \det C_{n-1}-b_{n-1}c_{n-1}\det C_{n-2}$.
+    \begin{itemize}
+        \item $a_i=b_i=1, c_i=-1$时有$\det C_n=\det C_{n-1}+\det C_{n-2}$,这是$a_1=a_2=1$的Fibonacci数列,即$$\det C_n=\frac{\varphi^n-(-\varphi)^{-n}}{\sqrt{5}}, \varphi=\frac{1+\sqrt{5}}{2}$$
+        \item $a_i=2, b_i=c_i=\pm 1$时$\det C_n=n+1$.
+    \end{itemize}
+    \item 对$A_n=D_n+\mathrm{diag}(0,1,2,\cdots,n-1)$,其中$D_{n}$是全1的$n$阶方阵,有$\det A_n=(n-1)!$.
+    \item $\det \matrixtwo{A}{B}{B}{A}=\det (A+B)\det (A-B)$,由$$\det \matrixtwo{A}{B}{B}{A}=\det \matrixtwo{A+B}{A+B}{B}{A}=\det \matrixtwo{A+B}{O}{B}{A-B}$$马上得到.
+    \item 若$A\in M_n(\R),B\in M_m(\R)$可逆,$C\in \R^{n\times m}$则(列方程解)$$\matrixtwo{A}{C}{O}{B}\rev=\matrixtwo{A\rev}{-A\rev CB\rev}{O}{B\rev}$$
+    \item $$\begin{aligned}
+        \det \matrixtwo{A}{B}{C}{D}&=
+        \begin{cases}
+            (\det A)\det (D-CA\rev B)=\det (AD-ACA\rev B)& \textif \det A\neq 0\\
+            (\det D)\det (A-CD\rev B)=\det (DA-DCD\rev B)& \textif \det D\neq 0
+        \end{cases}\\ 
+    &=\begin{cases}
+        \det (AD-CB)& \textif AC=CA\\
+        \det (DA-CB)& \textif AB=BA
+\end{cases}
+\end{aligned}$$
+    \item 记$A\adj$为$A\in M_n(\F)$的伴随矩阵,则有\begin{enumerate}
+        \item 题\ref{adjmat1}
+        \item $AA\adj=A\adj A=(\det A)I_n$,因此$\det A\adj=(\det A)^{n-1}$.$\det A\neq 0$时$A\rev=\dfrac{A\adj}{\det A}$.
+        \item $(AB)\adj=B\adj A\adj, (A^\T)\adj=(A\adj)^\T, (\lambda A)\adj=\lambda^{n-1}A\adj, (A\adj)\adj=(\det A)^{n-2}A$\\
+        最后一式分类讨论:$\det A=0$时$\rhs=O$,而$\rank A\adj< n-1$,因此$\rank (A\adj)\adj=0, \lhs=O$.\\
+        $\det A\neq 0$时,有$(A\adj)\adj A\adj=A\adj(A\adj)\adj=(\det A\adj)I_n$,因此$$(A\adj)\adj=\br{\dfrac{A\adj}{\det A\adj}}\rev=(\det A\adj)(A\adj)\rev=(\det A\adj)\dfrac{A}{\det A}=(\det A)^{n-2}A$$
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{多项式}
+\begin{exercise}
+    $\zeta=\dfrac{2+\i}{2-\i}$不是1的$n$次根.
+\end{exercise}
+\begin{proof}[证明一(by Kostrikin)]
+    若$\zeta^n=1$,则有$ (2-\i)^n=(2+\i)^n=(2-\i+2\i)^n=(2-\i)^n+\sum_{k=1}^{n-1}(2-\i)^k(2\i)^{n-k}+(2\i)^n$.化简并提取公因式$2-\i$,则$(2\i)^n$可以被表示为$(2-\i)(a+b\i)$,其中$a,b\in \Z$.两式取模,得到$5(a^2+b^2)=2^{2n}, 5|2^{2n}$,矛盾.
+\end{proof}
+\begin{proof}[证明二(by 江弘毅)]
+    考虑整数数列$a_{n+1}=6a_n-25a_{n-1}$,在$n\geq 1$时所有$a_n$模5同余,解得$a_n=C_1 (3+4\i)^n+C_2 (3-4\i)^n$.注意到$a_n=(3+4\i)^n+(3-4\i)^n$是数列的一个解,此时$a_n\bmod 5=1$,因此$a_n\neq 2\cdot 5^n$,即$\zeta^n\neq 1$.
+
+    思路:因为本来就是为了考察$\e^{\i nx}$是不是1,于是想到归纳法,于是想到数列递推关系.就是考虑$\cos(nx)$的通项公式$a_{n+1}-2\cos x a_n+a_{n-1}=0$(解得$a_n=C_1\e^{\i nx}+C_2\e^{-\i nx}$),然后假设$\cos x\in \Q$时可以写成$p^n a_n=b_n\in \Z$,接下来考察$b_n\bmod p$就能判断$a_n$能不能再次取到1.
+\end{proof}
+\begin{proof}[证明三(by 瓶子)]
+    由下题立得.
+\end{proof}
+
+\begin{exercise}[Niven定理]
+    $(a\in \Q\land \cos(a\pi)\in\Q) \iff \cos(a\pi)=0,\pm\dfrac{1}{2},\pm 1\iff a=2k\pm(0,\dfrac{1}{3},\dfrac{1}{2},\dfrac{2}{3},1) ,k\in\Z$.
+\end{exercise}
+\begin{proof}[证明一]
+    由$$ \cos nx=\sum_{k=0}^{\lfloor n/2 \rfloor}(-1)^k\binom{n}{2k}\cos^{n-2k}x\sin^{2k}x=\sum_{k=0}^{\lfloor n/2 \rfloor}\binom{n}{2k}\cos^{n-2k}x(\cos^2 x-1)^k$$
+
+    令$x=a\pi=\dfrac{m\pi}{n} (m\perp n), t=\cos\dfrac{m\pi}{n}$,即有方程$$ \cos(m\pi)=\sum_{k=0}^{\lfloor n/2 \rfloor}\binom{n}{2k}t^{n-2k}\br{t^2-1}^k$$
+    这是一个在$\Q$上的多项式,其$\lhs=\pm 1$依赖$m$的奇偶性.
+
+    若其有有理根$t=\dfrac{q}{p} (p\perp q, 0<p\geq q)$,则$p|a_n,q|a_0$,其中$ a_n=\sum_{k=0}^{\lfloor n/2 \rfloor}\binom{n}{2k}=2^{n-1}$,故$p=2^s (s\in [n-1]^*)$.
+
+    考虑$x$的二倍角$t_2=\cos 2x=\cos\dfrac{2m\pi}{n}$,无论$t=\dfrac{q}{2^s}$是方程在$\lhs=\pm 1$时的解,$t_2, t_{2^2}, \cdots $都是方程在$\lhs=\cos(2m\pi)=1$时的解.由于方程$n$次项不变,故仍有形式$$t_2=\dfrac{q_2}{2^{s_2}},\quad t_4=2t^2_2-1=\dfrac{q^2_2-2^{2s_2-1}}{2^{2s_2-1}}=\dfrac{q_4}{2^{s_4}},\quad (q_2,q_4\in \Z, s_2,s_4\in [n-1]^*)$$
+    又由于$q_2\perp 2^{s_2}$,则有$s_4=2s_2-1$.
+
+    若$s_2>1$,则$1<s_2<2s_2-1=s_4, s_{2^k}=2^{k-1}(s_2-1)+1$.因此必然有$k<n$使得$s_{2^k}\geq n-1$,而这与$s_{2^k}\in [n-1]^*$矛盾.因此$s_2=1$,即$s=1, p=2$.
+
+    此时$t=\dfrac{q}{p}$仅有可能$0,\pm \dfrac{1}{2},\pm 1$,容易验证此时的$a\in \Q$为题上数值.
+\end{proof}
+\begin{proof}[证明二]
+    \href{https://proofwiki.org/wiki/Niven's_Theorem}{Niven定理的证明}
+\end{proof}
+\begin{proof}[证明三(by 江弘毅)]
+    若$\cos \theta=q/p, p\perp q$,考察$a_n=\cos(nx)$,有$a_{n+1}-2\cos x a_n+a_{n-1}=0$.
+
+    (1)若$p>1$是奇数,令$b_n=p^n a_n, b_0=1, b_1=q$,则$b_{n+1}=2qb_n-p^2b_{n-1}\equiv_p 2qb_n\equiv_p 2^nq^{n+1}$.由于$2\perp p\perp q$,因此$2^{n-1}q^n\perp p, b_n=sp+2^{n-1}q^n\perp p$,故$b_n/p^n\notin\Z, a_n\neq 1$.
+
+    (2)若$p=2k,k>1$,则$k\perp q$.取$b_n=2k^na_n, b_1=q, b_{n+1}=qb_n-k^2b_{n-1}\equiv_k q^{n+1}$,由于$k\perp q$,因此$b_n\perp k, b^n/k^n\notin \Z, a_n=\dfrac{b_n}{2k^n}\notin \Z$.
+
+    (3)因此,$p=1\lor p=2$,即$\cos \theta=0,\pm 1/2, \pm 1$时存在$\cos(n\theta)=1$.
+\end{proof}
+
+\begin{exercise}
+    $\F$是域,环$\F[X]$的使$\varphi(\F)=\F$的自同构$\varphi\in \aut(\F)$构成的群同构于变换群$X\mapsto aX+b, a,b\in \F, a\neq 0$.@Unsolved
+\end{exercise}
+\begin{proof}
+    
+\end{proof}
+
+\begin{exercise}
+    $f,g\in \Z[X]$是首一多项式,证明存在$u,v\in \Z[X]$且$\deg u<\deg g, \deg v<\deg f$使得$\gcd(f,g)=fu+gv$.
+\end{exercise}
+\begin{proof}
+    若有$u,v\in \Z[X]$使得$\gcd(f,g)=fu+gv$,则由$f,g$是首一的,有$$\deg fu=\deg f+\deg u=\deg gv=\deg g+\deg v\geq \deg \gcd(f,g)$$
+
+    若有$\deg u\geq \deg g$或$\deg v\geq \deg f$,上式取$>$.此时考察首项系数有$$f_{\deg f}u_{\deg u}+g_{\deg g}v_{\deg v}=u_{\deg u}+v_{\deg v}=0$$
+
+    由于$u'=u+kg, v'=v-kf$时$\gcd (f,g)=fu'+gv'$仍成立,其中$k\in \Z[X]$且
+    $$\begin{aligned}
+        \deg u&=\deg kg=\deg k+\deg g\\
+        \deg v&=\deg f+\deg u-\deg g=\deg f+\deg k
+    \end{aligned}$$
+    可以选取$k$使得首项系数有
+    $$\begin{aligned}
+        u'_{\deg u}=u_{\deg u}+ k_{\deg k}g_{\deg g}=u_{\deg u}+ k_{\deg k}=0\\
+        v'_{\deg v}=v_{\deg v}- k_{\deg k}f_{\deg f}=v_{\deg v}- k_{\deg k}=0
+    \end{aligned}$$
+    这样就得到$u',v'\in \Z[X]$使得$\deg u'<\deg u, \deg v'<\deg v$.反复操作,可以得到$u,v$使$\deg u<\deg g, \deg v<\deg f$满足.
+\end{proof}
+
+\section{抽象代数}
+\begin{exercise}
+    对二元运算$\oplus$若有$\forall x,y\in X: (x\oplus y)\oplus y=x, x\oplus (x\oplus y)=y$,则$\oplus$交换.
+\end{exercise}
+\begin{proof}
+    记$z=x\oplus y$,则$y\oplus (x\oplus y)=y\oplus z=(x\oplus z)\oplus z=x$.同理$(x\oplus y)\oplus x=y$.因此$x\oplus y=(y\oplus (y\oplus x))\oplus y=y\oplus x$.
+\end{proof}
+
+\subsection{群}
+本文档中所有置换乘法均与函数复合相同,属于从右到左的运算.
+
+\begin{exercise}
+    有限群$G$有一个2阶自同构$\varphi(\varphi^2=1)$,其没有非平凡不动点$(\varphi(a)=a\iff a=e)$,则$G$交换,且$|G|$是奇数.
+\end{exercise}
+\begin{proof}
+    考虑$f:a\mapsto \varphi(a)a\rev$,有$$\varphi(a)a\rev=\varphi(b)b\rev\implies \varphi(b)\rev \varphi(a)=b\rev a\implies b\rev a=e\implies b=a$$
+
+    因此$f$是单射,又由于$G$有限,因此$f$是双射,即$\forall g\in G\exists a\in G: g=\varphi(a)a\rev$.但
+    $$\varphi(g)=\varphi(\varphi(a)a\rev)=\varphi^2(a)\varphi(a)\rev=a\varphi(a)\rev=g\rev$$
+    因此$\varphi:g\mapsto g\rev$.
+
+    因此(1)$ab=\varphi(a\rev)\varphi(b\rev)=\varphi(a\rev b\rev)=ba$,(2)由于$g=g\rev\iff g=e$,因此$G=\cbr{e;g_1,g_1\rev;g_2,g_2\rev;\cdots}$,即$|G|$是奇数.
+\end{proof}
+
+\begin{exercise}
+    若$S\subset G=\abr{S}:=\bigcap_{G_i\subset S\text{是群}}G_i$,则$\forall g\in G: g=t_1t_2\cdots t_n$,其中$t_i\in S$或$t_i\rev\in S$.
+\end{exercise}
+\begin{proof}
+    即证明$G'=\abr{t_1t_2\cdots t_n|t_i\in S\lor t_i\rev\in S}=\abr{S}$,因为$g\in G'\implies g=t_1\cdots t_n$.
+
+    首先显然有$S\subset \cbr{t_1t_2\cdots t_n|t_i\in S\lor t_i\rev\in S}$,因此$\abr{S}< G'$.其次,对含$S$的群$G_i$一定有$t_i\in S\lor t_i\rev\in S\implies t_i\in G_i$,因此$t_i\in \bigcap_{G_i\subset S\text{是群}}G_i$,即
+    $$\forall g'\in G': g'=t_1t_2\cdots t_n\in  \bigcap_{G_i\subset S\text{是群}}G_i\implies G'<\abr{S}$$
+    因此得证.
+\end{proof}
+
+\begin{exercise}
+    $S$张成的幺半群$M=\abr{S}_{\mathrm{monoid}}:=\bigcap_{M_i\subset S\text{是幺半群}}M_i$中$s\in S$在$M$中可逆,则$M$是群.
+\end{exercise}
+\begin{proof}
+    易知$M$中所有可逆元成群$\inv(M)$且$S\subset \inv(M)\subset M$,而$\inv(M)$也是一个幺半群,故$M\subset \inv(M)$,因此$M=\inv(M)$是一个群.
+\end{proof}
+
+\begin{exercise}
+    若对幺半群$G, \forall a,b\in G: ax=b, ya=b$均有唯一解,则$G$为群.
+\end{exercise}
+\begin{proof}
+    取$b=e$,则记$ax=e, ya=e$的解为$a_1\rev, a_2\rev$,显然两者相等,即$a\rev$.由于$a$的任意性,因此任意元素均有逆,即得证.
+\end{proof}
+
+\begin{exercise}
+    交换群$G$中$|a|=s,|b|=t$,则$|ab|=\gcd(s,t)$.若群不交换则$|ab|$可能无限.
+\end{exercise}
+\begin{proof}
+    $(ab)^k=a^kb^k=e\implies s|k\land t|k$,故$k\in \cbr{ns+mt|n,m\in \Z}$,而$\gcd(s,t)=\min \cbr{ns+mt|n,m\in \Z}\cap \N_+=|ab|$,得证.
+
+    群不交换时考虑$\sl_2(\Z)$中$A=\matrixtwo{0}{1}{-1}{0}, B=\matrixtwo{0}{1}{-1}{-1}$,则$AB=\matrixtwo{-1}{-1}{0}{-1}, BA=\matrixtwo{-1}{0}{1}{-1}, (AB)^n=(-1)^n\matrixtwo{1}{n}{0}{1}, (BA)^n=(-1)^n\matrixtwo{1}{0}{-n}{1}$,因此$\abr{AB}$和$\abr{BA}$都是无限循环群.
+\end{proof}
+
+\begin{exercise}
+    $S_n=\abr{(12),(13),\cdots,(1n)}=\abr{(12),(12\cdots n)}$
+\end{exercise}
+\begin{proof}
+    首先,已知任意置换$\pi$可以写成对换的乘积$\pi=\prod \tau_i$,而$(ij)=(1i)(1j)(1i)$,故置换可以写成形如$(1k)$形式对换的乘积.
+
+    其次,$(i,i+1)=(12\cdots n)^{i-1}(12)(12\cdots n)^{1-i}, (12\cdots n)=(1n)(1,n-1)\cdots (12)$,即两者之间可互相表出,得证.
+\end{proof}
+
+\begin{exercise}
+    $A_n=\abr{(123),(124),\cdots,(12n)}$(若$n\geq 3$)
+\end{exercise}
+\begin{proof}
+    由于3-轮换是偶置换,因此其生成的置换也是偶置换,故$\lhs \supset \rhs$,即只需要证明任意偶置换可以被形如$(12k)$的轮换表出.又由于偶置换可以分解为偶数个对换的积,由结合性可知只需讨论任意两对换的积可以被这样表出.
+
+
+    两对换的积$(st)(mn)$($s\neq t\land m\neq n$)有如下分类讨论:
+    \begin{enumerate}
+        \item $s,t$中有2个数与$m,n$相同:则$(st)(mn)=(1)$
+        
+        \item $s,t$中仅有1个数与$m,n$相同:$(st)(mn)$可记作$(st)(sm)$.分类讨论$s,t,m$的大小关系,有
+        $$\begin{aligned}
+        (st)(sm)&=(ij)(ik)\lor (ik)(ij)\lor (ji)(jk)\lor (jk)(ji)\lor (ki)(kj)\lor (kj)(ki)\\
+        &=(ikj)\lor (ijk)\lor (jki)\lor (jik)\lor (kji)\lor (kij)\\
+        &=(ijk)\lor (ijk)\rev
+        \end{aligned}$$
+        其中$i<j<k$,故$(st)(sm)$可被$(ijk)$表示.
+
+        \begin{enumerate}
+            \item 若$i=1,j=2$,则$(ijk)=(12k)$
+            \item 若$i=1,j>2$,则$j,k>2$,$(ijk)=(1jk)=(1k)(1j)=[(1k)(12)][(12)(1j)]=(12k)(12j)\rev$
+            \item 若$i=2$,则$j,k>2$,$(ijk)=(2jk)=(2k)(2j)=(12k)\rev (12j)$
+            \item 若$i>2$,则$i,j,k>2$,$(ijk)=(ik)(ij)=(1ki)(1ij)=(12i)(12k)\rev (12j)(12i)\rev $
+        \end{enumerate}
+
+        \item $s,t$与$m,n$完全不相同:分类讨论四者的大小关系,有$(st)(mn)=(ij)(kl)\lor (ik)(jl)$,其中$i<j<\min\cbr{k,l}$.
+        \begin{enumerate}
+            \item 若$i=1,j=2$,则$k,l>2$
+            \begin{enumerate}
+                \item $(ij)(kl)=(12)(kl)=(12k)\rev (1kl)=(12k)\rev (12l)(12k)\rev$
+                \item $(ik)(jl)=(1k)(2l)=(12k)(12l)$
+            \end{enumerate}
+            \item 若$i=1,j>2$,则$j,k,l>2$,$(ij)(kl)=(1j)(kl)=(12j)(12)(kl)=(12j)(12k)\rev (12l)(12k)\rev$,$(ik)(jl)$同理
+            \item 若$i=2$,则$j,k,l>2$,$(ij)(kl)=(2j)(kl)=(12j)\rev (12k)\rev (12l)(12k)\rev $,$(ik)(jl)$同理
+            \item 若$i>2$,则$i,j,k,l>2$,$(ij)(kl)=(12)(ij)(12)(kl)=(12i)\rev (12j)(12i)\rev (12k)\rev (12l)(12k)\rev$
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    对$\pi=(12\cdots n)\in S_n$,$\pi^k$是$d=\gcd(n,k)$个不交循环的积,且每个循环长度均为$q=n/d$.
+\end{exercise}
+\begin{proof}
+    由于$\pi^k:i\mapsto k+i, i\in [n], k\in [n]^*$在有限集上,因此必然有$s\in \N_+$使得$(\pi^k)^s=e$,而$|\pi|=n$,因此$n|ks$,$\abs{\pi^k}=\min\cbr{s\in \N_+:n|ks}=\min\cbr{ks\in \N_+:n|ks,k|ks}/k=\lcm(n,k)/k=q$.
+
+    对$\forall i\in [n]$,其所属循环即$i\mapsto k+i\mapsto\cdots\mapsto lk+i\equiv_n i$,即$n|lk$,而循环的长度$\min\cbr{l:n|lk}=q$.由任意性可知共有$n/q=d=\gcd(n,k)$个循环.
+\end{proof}
+
+\begin{exercise}
+    $\pi\in S_n$有循环分解$\pi=\prod \pi_k$,则$|\pi|=\lcm\cbr{|\pi_k|:k\in [d]}$.
+\end{exercise}
+\begin{proof}
+    有$\pi^{|\pi|}=\br{\prod \pi_k}^{|\pi|}=\prod \pi_k^{|\pi|}=e$,因此$\forall k\in [d]: |\pi_k|\big| |\pi|$,即$|\pi|\in \varPi=\cbr{p\in \N_+: \forall k\in [d], |\pi_k|\big| p}$,只需证$|\pi|=\min \cbr{p:p\in \varPi}=\lcm\cbr{|\pi_k|:k\in [d]}$.若$\exists p\in \varPi:p<|\pi|$,则$\pi^p=\prod \pi_k^p=e\implies |\pi|\leq p$,矛盾.
+\end{proof}
+
+\begin{exercise}
+    举出例子:$A,B\in M_n(\R), \exists m\in \Z: (AB)^m=I_n\neq (BA)^m$.@Unsolved
+\end{exercise}
+\begin{proof}
+    
+\end{proof}
+
+\begin{exercise}
+    4阶群均交换,且同构意义上仅有$V_4$和$\Z_4$.
+\end{exercise}
+\begin{proof}
+    记群为$G$,可知$\forall g\in G:g^4=e$,故$|x|\big| 4$.
+
+    若群中有元素$x$的阶为4,则$G=\cbr{e,x,x^2,x^3}\cong \Z_4$,这是一个交换群.
+
+    若群中没有元素的阶为4,即$\forall a\in G: a^2=e$(因为不可能$a^1=e$或$a^3=e$),则有
+    $$abab=e\implies ab=b\rev a\rev=b(b\rev)^2(a\rev)^2=beea=ba$$
+    因此这也是交换群,这就是$V_4$.
+\end{proof}
+
+\subsubsection{结论}
+\begin{enumerate}
+    \item 偶数阶群必有2阶元
+    \item $\abr{\P}=\br{\Q_+,\cdot}$且没有有限生成集生成后者
+    \item 有限群可以(通过Caylay定理)嵌入(即存在单同态)仅有两个生成元的有限群
+\end{enumerate}
+
+\subsection{环}
+\begin{exercise}
+    证明$(2^X,\bigtriangleup,\cap)$是一个含幺交换环,并求幺.
+\end{exercise}
+\begin{proof}
+    $A\bigtriangleup B=(A+B)(A^c+B^c)=AB^c+BA^c$,因此
+$$\begin{aligned}
+    A\bigtriangleup (B\bigtriangleup C)
+    &=(A(B\bigtriangleup C)^c)+((B\bigtriangleup C)A^c)=(A[(BC^c)+(CB^c)]^c)+([(BC^c)+(CB^c)]A^c)\\
+    &=(A(BC^c)^c(CB^c)^c)+(BC^c A^c)+(CB^c A^c)=(A(C+B^c) (B+C^c))+(BC^c A^c)+(CB^c A^c)\\
+    &=ABC+AB^c C^c+A^c BC^c+A^c B^c C\\
+    (A\bigtriangleup B)\bigtriangleup C&=(A\bigtriangleup B)C^c+C(A\bigtriangleup B)^c=(AB^c+BA^c)C^c+C(AB^c+BA^c)^c\\
+    &=AB^c C^c+A^c BC^c+C(AB+A^c B^c)=ABC+AB^c C^c+A^c BC^c+A^c B^c C
+\end{aligned}$$
+
+    而交的结合和交换显然,对称差的交换显然.由$A\bigtriangleup \emptyset=\emptyset\bigtriangleup A=AX=A$可知$\emptyset$是$(2^X,\bigtriangleup)$的幺元,而$X$是$(2^X,\cap)$的幺元.
+\end{proof}
+
+\begin{exercise}
+    若$\forall x\in R: x^2=x$,求证环$R$交换,并讨论$x^3=x$时的情况.
+\end{exercise}
+\begin{proof}
+    (1)$x+y=(x+y)^2=x^2+y^2+xy+yx=x+y+xy+yx\implies xy+yx=0$.而$xy=xyxy=-xxyy=-xy\implies yx=-xy=xy$.
+
+    (2)$x^3=x$时$(x+y)^3=x+y\implies xy^2+x^2y+xyx+yx^2+y^2x+yxy=0$,$(x-y)^3=x-y\implies xy^2+y^2x+yxy=x^2y+yx^2+xyx$,@Unsolved
+\end{proof}
+
+\begin{exercise}
+    证明或证伪$\Q(\sqrt{2})\cong \Q(\sqrt{5})$.
+\end{exercise}
+\begin{proof}
+    若存在一个同构$f:\Q(\sqrt{2})\implies \Q(\sqrt{5})$,则$f(n\cdot a)=nf(a)=f(n)f(a)\implies n=f(n)$.而$2=f(2)=f(\sqrt{2})^2$,设$f(\sqrt{2})=a+b\sqrt{5}, a,b\in \Q$,则有$a^2+5b^2+2\sqrt{5}ab=2$,即$ab=0$且$a^2+5b^2=2$.由于$\Q$是域,故$ab=0\implies a=0\lor b=0\implies a^2=2\lor b^2=2/5$,最终归结为是否$\exists a\in \Q: a^2=2$.若存在则设$a=m/n$其中$m,n\in \N_+$互素,有$m^2=2n^2$,故$m^2$是偶数,$m$也是,则$2\nmid n$,但$2^2|m^2$,故矛盾,即不存在这样的有理数$a$,即不存在这样的同构.
+\end{proof}
+
+\begin{exercise}
+    证明有限整环是域.
+\end{exercise}
+\begin{proof}
+    对$\forall x\in R^*-\cbr{1}$考察$\abr{x}\subset R^*$,由$R^*$有限故一定有$x^m=x^n(m>n>0)$,则$x^{m-n}(x^n-1)=0$,$x^{m-n}=0\lor x^n=1$.而$\abr{x}\subset R^*$,故仅可能$x^n=1, x\rev=x^{n-1}$,则$x$可逆,即得证.
+\end{proof}
+
+\begin{exercise}
+    含幺交换环$R$中有$\forall x\in R: p\cdot x=0$,证明$(x+y)^q=x^q+y^q$,其中$q=p^m, m\in \N_+$.
+\end{exercise}
+\begin{proof}
+    即证明对$ m\in \N_+, i\in [p^{m}-1], p\Bigg|\binom{p^m}{i}$.而$ \binom{p^m}{i}=\frac{p^m}{i}\binom{p^m-1}{i-1}$,其中后者是整数,而$i\in [p^m-1]$的$p$次项($p$的重数)必然$<m$,因此$p\Bigg|\frac{p^m}{i}\binom{p^m-1}{i-1}=\binom{p^m}{i}$,得证.
+\end{proof}
+
+\begin{exercise}
+    5元环在同构意义下仅有$\Z_5$和零乘法环两个.
+\end{exercise}
+\begin{proof}
+    考虑环$R$的交换加法群$(R,+,0)$,由其势为5,故其群同构于$\Z_5$,记为$\cbr{0,a,2a,3a,4a}$.因此有$ma+na=(m+n \bmod 5)a, ma\cdot na=(mn\bmod 5)a^2$.
+
+    若$R$含幺$ka=1$,则$k^2\bmod 5=k, a^2=a$,在$[4]$中仅有$k=1$符合条件,$a=1, R=\cbr{0,1,2,3,4}$,且乘法与$\Z_5$的相同,故$R\cong\Z_5$.
+若$R$不含幺,则有$(ka)^2=(k^2\bmod 5)a^2=0$,即$a^2=0$,故任意元素的积为零,即零乘法环.
+\end{proof}
+
+\begin{exercise}
+    (1)含幺环$R$中$x$幂零,则$1-x$可逆；(2)$\Z_m$中有幂零元$\iff \exists a\in \N_+-\cbr{1}, a^2|m$.
+\end{exercise}
+\begin{proof}
+    (1)$(1-x)\rev=1+x+\cdots+x^{n-1}$,容易验证.
+
+    (2)$\Longleftarrow: $若$m=a^2s, s\in \N_+$,则取$as\in \Z_m, (as)^2=a^2s^2=ms=0$.
+
+    $\implies: $若有幂零元$x^n=0\land a=x^{n-1}\neq 0$,其中$n\geq 2$,有$a^2=x^{2n-2}=x^nx^{n-2}=0$,即$a^2|m$.
+\end{proof}
+
+\begin{exercise}
+    无限含幺环$R$中非零不可逆元有无限多个.
+\end{exercise}
+\begin{proof}
+    反证,若仅有有限多个,设其全体为$N=\cbr{a_1,\cdots,a_n}$,取全体可逆元$X=R-N-\cbr{0}$有$\forall x\in X, \rho_x:N\implies N, a_i\mapsto xa_i$.首先$xa_i=xa_j\iff x\rev xa_i=x\rev xa_j=a_i=a_j$,$\forall a_i\in N \exists a_j=x\rev a_i\in N: \rho_x(a_j)=a_i$,故$\rho_x$是在$N$上的双射,即$\cbr{\rho_x: x\in X}$到$S_n$有一个嵌入.而前者是一个无限集,故有无限多对不同的$x_i,x_j\in X$使得$\rho_{x_i}=\rho_{x_j}, \rho_{x_i-x_j}=0$,矛盾,故$x_i-x_j\in N$.固定一个$x$任取$y$使得$x-y\in N$,$y$在一个无穷集内取,故$N$无限,矛盾.
+\end{proof}
+
+\begin{exercise}
+    含幺环$R$中若有$1-ab$可逆则$1-ba$可逆,且$(1-ba)\rev=1+b(1-ab)\rev a$,$(1-ab)\rev=1+a(1-ba)\rev b$.
+\end{exercise}
+\begin{proof}
+    注意到$a(1-ba)=(1-ab)a$,因此考虑$(1-ab)\rev a(1-ba)=a$,即$b(1-ab)\rev a(1-ba)=ba=1-(1-ba)$,移项得到$(1-b(1-ab)\rev a)(1-ba)=1$.直接验证:
+$$\begin{aligned}
+    (1-ba)(1-ba)\rev &=(1-ba)(1+b(1-ab)\rev a)\\
+    &=1+b(1-ab)\rev a-bab(1-ab)\rev a-ba\\
+    &=1-ba+b(1-ab)(1-ab)\rev a=1
+\end{aligned}$$
+调换$a,b$即得另一式.
+\end{proof}
+
+\begin{exercise}
+    证明$\gl(3^3)=\cbr{a+b\i:a,b\in \Z_3}$构成9元域,且$\gl(3^3)^*$是8阶循环群.
+\end{exercise}
+\begin{proof}
+    由于$(\gl(3^3),+,0)\cong \Z_3\oplus \Z_3$,故交换加法群得证.可以验证$a=1+\i$生成的循环群$\abr{a}=\cbr{1+\i,2\i,1+2\i,2,2+2\i,\i,2+\i,1}=\gl(3^3)^*$.分配性易证.下给出$\gl(3^3)^*$关于加法和乘法的Caylay表(由于0的运算是平凡的).
+
+    另外应该注意到,$a+b\i$到$\matrixtwo{a}{b}{-b}{a}$有一个同构关系,因此也可以写成$M_2(\Z_3)$上的域.
+
+    实际上$\gl(9)$描述的是$x^9=x$的根之间的关系,更换写法变成:
+$$\begin{aligned}
+    \cbr{0,\varepsilon_8,\varepsilon_8^2,\cdots,\varepsilon_8^8=1}&=\cbr{0,\frac{1+\i}{\sqrt{2}},\i,-\frac{1-\i}{\sqrt{2}},-1,-\frac{1+\i}{\sqrt{2}},-\i,\frac{1-\i}{\sqrt{2}},1}\\
+    &\cong\cbr{0,1+\i,2\i,1+2\i,2,2+2\i,\i,2+\i,1}
+\end{aligned}$$
+其中的加法和乘法也应当是原本在$\C$上的形式.
+\end{proof}
+
+\section{概率论}
+\begin{exercise}
+已知若独立变量$\xi,\eta\sim N(0,1)$,则$\rho=\sqrt{\xi^2+\eta^2}$服从Rayleigh Distribution (分布函数为$R(r)=I_{[0,+\infty)}(r)r\mathrm{e}^{-\frac{r^2}{2}}$), $\phi\sim U[0,2\pi]$.
+\end{exercise}
+\begin{proof}
+    
+\end{proof}
+
+\begin{exercise}[Box-Muller变换]
+    若有独立同分布$U_1,U_2\sim U[0,1]$,求证$$\xi=\frac{\cos(2\pi U_2)}{\sqrt{-2\ln U_1}}\sim N(0,1)\qquad \eta=\frac{\sin(2\pi U_2)}{\sqrt{-2\ln U_1}}\sim N(0,1)$$且相互独立,并说明$\xi$和$\eta$是如何构造的.
+\end{exercise}
+\begin{proof}
+    这是\textbf{Box-Muller变换},主要思路是将两个独立的正态分布在二维平面上作极坐标变换$X=R\cos\theta, Y=R\sin\theta$,即$R^2=X^2+Y^2, \theta=\arctan\dfrac{Y}{X}$,本质公式即为
+    $$\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\frac{1}{2\pi}\exp\left(-\frac{X^2+Y^2}{2}\right)\d X\d Y=\int_{0}^{2\pi}\frac{1}{2\pi}\d\theta \int_{0}^{+\infty}\e^{-R^2/2}R\d R=1$$
+
+    因此有分布函数 $\Pr\{R<r\}=\int_0^r \e^{-R^2/2}R\d R=1-\e^{-r^2/2}, \Pr\{\theta<\phi\}=\frac{\phi}{2\pi}$,其中$r\in[0,+\infty),\theta\in[0,2\pi]$.因此可以取$F_R(r)=1-\e^{-r^2/2},F_\theta(t)=\dfrac{t}{2\pi}$.
+
+    已知:若随机变量$\xi\sim F(x)$,则对$C^1$函数$g(\cdot) $,在定义域内$g(\xi)\sim F\circ g^{-1}(x)$.
+
+    由于$R\sim F_R(x)$,故$U_0=F_R(R)=1-\e^{-R^2/2}\sim U[0,1]$,$R=\sqrt{-2\ln(1-U_0)}$,再取$U_1=1-U_0$即有$R=\sqrt{-2\ln U_1}$.再取$U_2=\dfrac{\theta}{2\pi}$,代入变换即可.
+\end{proof}
+
+\begin{exercise}
+    求证$\sum_{i=0}^N \binom{N+k}{k}2^{-k}=2^N$.
+\end{exercise}
+\begin{proof}
+    首先$N=1$时$\binom{1}{0}2^{0}+\binom{2}{1}2^{-1}=2^1$,等式成立.再设等式在$N=n$时成立,求证$N=n+1$时是否成立.
+    $$\begin{aligned}
+       \sum_{k=0}^{n+1} \binom{n+1+k}{k} 2^{-k}&=1+\sum_{k=1}^{n+1} \left(\binom{n+k}{k}+\binom{n+k}{k-1}\right)2^{-k}\\
+       &=1+\sum_{k=0}^n\binom{n+k}{k} 2^{-k}-1+\binom{2n+1}{n+1}2^{-n-1}+\sum_{k=1}^{n+1}\binom{n+k}{k-1} 2^{-k}
+    \end{aligned}$$
+
+    应用假设条件$\sum_{k=0}^n\binom{n+k}{k} 2^{-k}=2^n$,有
+    $$\sum_{k=0}^{n+1} \binom{n+1+k}{k} 2^{-k}=2^n+\binom{2n+1}{n+1}2^{-n-1}+\sum_{i=0}^{n}\binom{n+k+1}{k}2^{-k-1}$$
+    注意到$\binom{n+k+1}{k}2^{-k-1}=\frac{1}{2}\binom{n+1+k}{k}2^{-k}$,以及
+    $$\sum_{k=0}^{n+1}\binom{n+1+k}{k}2^{-k}=\sum_{k=0}^{n}\binom{n+1+k}{k}2^{-k}+\binom{2n+2}{n+1}2^{-n-1}=\sum_{k=0}^{n}\binom{n+1+k}{k}2^{-k}+\frac{1}{2}\binom{2n+1}{n+1}2^{-n-1}$$
+
+    则最终得到$\frac{1}{2}\sum_{k=0}^{n+1}\binom{n+1+k}{k}2^{-k}=2^{n}$,即$\sum_{k=0}^{n+1}\binom{n+1+k}{k}2^{-k}=2^{n+1}$,得证,因此对$\forall N\in \N^*$等式均成立.
+\end{proof}
+
+\begin{exercise}
+    若某系统中每个元件正常工作概率为$p\in [0,1]$,有半数元件正常则系统可工作,求$p$在什么范围时$2k+1$个元件的系统比$2k-1$个的好.@Unsolved
+\end{exercise}
+\begin{proof}
+    
+\end{proof}
+
+\begin{exercise}[赌徒问题]
+    若甲乙各剩$n,m$局赢得赌局,则应以$p_{\text{甲}}:1-p_{\text{甲}}$的比例分赌注,其中$p_{\text{甲}}$为甲赢得赌局的概率.设$p$为甲每局胜的概率,记$q=1-p$,有:
+    \begin{enumerate}
+        \item 因甲最早在$n$局后赢,最晚在$n+m-1$局后赢,因此只需计算甲在$n+k$局下赢$n$局的概率之和,即$$\sum_{k=0}^{m-1}f(n+k;n,p)=\sum_{k=0}^{m-1}\binom{n+k-1}{k}p^n q^k$$
+        \item 由于$p_{\text{甲}}+p_{\text{乙}}=1$,因此同理可得$1-\sum_{k=0}^{n-1}f(m+k;m,q)=\sum_{k=n}^\infty \binom{m+k-1}{k}p^kq^m$
+        \item 由于后面$n+m-1$局一定可以决定胜负,即只需在后$n+m-1$局中至少赢$n$局,即$$\sum_{k=n}^{n+m-1}f(n+m-1;k,p)=\sum_{k=n}^{n+m-1}\binom{n+m-1}{k}p^kq^{n+m-1-k}$$
+    \end{enumerate}
+    
+    求证上面三式相等.其中$f(k;r,p)=\binom{k-1}{r-1}p^{r-1}q^{k-r}$表示Pascal分布,即Bernoulli试验中第$r$个成功发生在第$k$次试验时的概率.@Unsolved
+\end{exercise}
+\begin{proof}
+    
+\end{proof}
+\subsubsection{结论}
+\begin{enumerate}
+    \item 随机变量$\xi\sim\chi^2_m,\eta\sim\chi^2_n$相互独立,求证$\alpha=\xi+\eta\sim\chi^2_{m+n},\beta=\frac{\xi/m}{\eta/n}\sim F(m,n)$且相互独立.
+    \item 若$\xi=(\xi_1,\xi_2)^\T$的密度函数为$p(x_1,x_2)$,而$(\eta_1,\eta_2)^\T=\eta=A\xi, A=\begin{pmatrix}a&b\\c&d\\ \end{pmatrix}$,则$\eta$的密度函数$q(y_1,y_2)$为:
+    $$q(y_1,y_2)=\frac{p\br{\dfrac{dy_1-by_2}{\det A},\dfrac{-cy_1+ay_2}{\det A}}}{\abs{\det A}}$$
+    \item 若$\xi=(\xi_1,\xi_2)^\T\sim N_2(\mu,\Sigma)$,其中$\mu=(0,0)^\T,\Sigma=\begin{pmatrix}\sigma_1^2&\rho\sigma_1\sigma_2\\\rho\sigma_1\sigma_2&\sigma_2^2\\ \end{pmatrix}, |\Sigma|=\sigma_1^2\sigma_2^2(1-\rho^2)$,其密度函数为
+    $$p(x_1,x_2)=\frac{1}{2\pi\sqrt{|\Sigma|}}\exp\left(-\frac{x\Sigma^{-1}x^\T}{2|\Sigma|}\right)=\frac{1}{2\pi\sqrt{|\Sigma|}}\exp\left(-\frac{\sigma_2^2 x_1^2+\sigma_1^2 x_2^2-2\rho\sigma_1 \sigma_2 x_1 x_2}{2|\Sigma|}\right)$$
+    现有旋转矩阵$A_\alpha=\begin{pmatrix}\cos\alpha&\sin\alpha\\-\sin\alpha&\cos\alpha\\ \end{pmatrix}$使$(\eta_1,\eta_2)^\T=\eta=A_\alpha \xi$,则使用上条结论,$\eta$的密度函数为
+    $$q(y_1,y_2)=p(y_1\cos\alpha-y_2\sin\alpha,y_1\sin\alpha+y_2\cos\alpha)=\frac{1}{2\pi \sqrt{|\Sigma|}}\exp\left(-\frac{Ay_1^2-2By_1y_2+Cy_2^2}{2|\Sigma|}\right)$$
+    其中$$\begin{aligned}
+        A&=\sigma_2^2\cos^2\alpha-2\rho\sigma_1\sigma_2\cos\alpha\sin\alpha+\sigma_1^2\sin^2\alpha\\
+        B&=\sigma_2^2\cos\alpha\sin\alpha-\rho\sigma_1\sigma_2(\sin^2\alpha-\cos^2\alpha)-\sigma^2_1\cos\alpha\sin\alpha\\
+        C&=\sigma_2^2\sin^2\alpha+2\rho\sigma_1\sigma_2\cos\alpha\sin\alpha+\sigma_1^2\cos^2\alpha
+    \end{aligned}$$
+    进一步,若选取$\alpha$使得$\tan(2\alpha)=\dfrac{2\rho\sigma_1\sigma_2}{\sigma_1^2-\sigma_2^2}$,则$B=0$,即$\eta_1,\eta_2$独立.
+\end{enumerate}
+
+\section{组合数学}
+\begin{exercise}[Bernoulli信封匹配问题]
+    $n$阶对称群$S_n$中,对$\forall k\in [n]$都没有$k\mapsto k$的置换有多少个?
+\end{exercise}
+\begin{proof}
+    这其实是\textbf{Bernoulli信封匹配问题},即将$n$只信封和$n$封信匹配.
+
+    我们记$A_i$为事件第$i$封信送对(从$S_n$中所选置换$\pi:i\mapsto i$),以$N\br{\cdot}$记方案数,则
+    $$N_1=N\br{A_i}=(n-1)!,\quad N_2=N(A_iA_j)=(n-2)!,\quad N_n=N(\bigcap_{i\in [n]}A_i)=1.$$
+    而事件“$\forall k\in [n]$都没有$k\mapsto k$的置换”即$ \overline{\bigcup_{i\in [n]}A_i}$,因此有
+    $$\begin{aligned}
+        N\br{\overline{\bigcup_{i\in [n]}A_i}}&=n!-N\br{\bigcup_{i\in [n]}A_i}=n!-\sum_{i\in [n]}(-1)^{i+1}\binom{n}{i}N_i=n!\br{1+\sum_{i\in [n]}\frac{(-1)^i}{i!}}=n!\sum_{i=0}^n\frac{(-1)^i}{i!}\\
+        &=\mathrm{Round}\br{\frac{n!}{\e}}
+    \end{aligned}$$
+\end{proof}
+
+\section{数论}
+
+\begin{exercise}
+    $x$是数码互异的三位非零正整数,$D(x),I(x)$分别是将$x$的数码降序和升序排列得到的整数,求$y=D(x)-I(x)=:F(x)$的不动点.
+        \begin{itemize}
+            \item 在$n$位时?
+            \item 求$x$的迭代次数?
+        \end{itemize}
+\end{exercise}
+\begin{proof}[证明一]
+    先取$9\geq a>b>c\geq 0$,有$(100a+10b+c)-(100c+10b+a)=99(a-c)=x$,因此$99|x$,其十位必为9,$a=9$.由于$x=100(a-c)-(a-c)=100(a-c-1)+90+(10-(a-c))$,因此其百位$a-c-1=8-c=c$,个位$10-(a-c)=1+c=b$,解得$c=4,b=5$,带入得$x=495$.
+\end{proof}
+\begin{proof}[证明二]
+        设数字的数码为$abc$,其中位数为$d$.由于只有三位,因此所得$F(x)$的中间一位被抵消了(如上,不含$b$),因此$b=0(a\geq c)$或$9(a<c)$,而前者不存在,因此$b=9$.其他证明同上,或者也可以直接验算.
+\end{proof}
+\end{document}

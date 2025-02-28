@@ -1,0 +1,246 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7764,        236]
+NotebookOptionsPosition[      7270,        218]
+NotebookOutlinePosition[      7683,        235]
+CellTagsIndexPosition[      7640,        232]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"cyc", "=", 
+   RowBox[{
+    RowBox[{"Total", "[", 
+     RowBox[{"#", "/.", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"a", "->", "b"}], ",", 
+          RowBox[{"b", "->", "c"}], ",", 
+          RowBox[{"c", "->", "a"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"a", "->", "c"}], ",", 
+          RowBox[{"b", "->", "a"}], ",", 
+          RowBox[{"c", "->", "b"}]}], "}"}]}], "}"}]}], "]"}], "&"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"sym", "=", 
+   RowBox[{
+    RowBox[{"Total", "[", 
+     RowBox[{"#", "/.", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"b", "->", "c"}], ",", 
+          RowBox[{"c", "->", "b"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"a", "->", "b"}], ",", 
+          RowBox[{"b", "->", "c"}], ",", 
+          RowBox[{"c", "->", "a"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"a", "->", "b"}], ",", 
+          RowBox[{"b", "->", "a"}], ",", 
+          RowBox[{"c", "->", "c"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"a", "->", "c"}], ",", 
+          RowBox[{"b", "->", "a"}], ",", 
+          RowBox[{"c", "->", "b"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"a", "->", "c"}], ",", 
+          RowBox[{"b", "->", "b"}], ",", 
+          RowBox[{"c", "->", "a"}]}], "}"}]}], "}"}]}], "]"}], "&"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"cycQ", "=", 
+   RowBox[{
+    RowBox[{"#", "===", 
+     RowBox[{"(", 
+      RowBox[{"#", "/.", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"a", "->", "b"}], ",", 
+         RowBox[{"b", "->", "c"}], ",", 
+         RowBox[{"c", "->", "a"}]}], "}"}]}], ")"}], "===", 
+     RowBox[{"(", 
+      RowBox[{"#", "/.", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"a", "->", "c"}], ",", 
+         RowBox[{"b", "->", "a"}], ",", 
+         RowBox[{"c", "->", "b"}]}], "}"}]}], ")"}]}], "&"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"symQ", "=", 
+   RowBox[{
+    RowBox[{"#", "===", 
+     RowBox[{"(", 
+      RowBox[{"#", "/.", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"a", "->", "b"}], ",", 
+         RowBox[{"b", "->", "a"}]}], "}"}]}], ")"}], "===", 
+     RowBox[{"(", 
+      RowBox[{"#", "/.", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"a", "->", "c"}], ",", 
+         RowBox[{"c", "->", "a"}]}], "}"}]}], ")"}]}], "&"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"invcyc", "=", 
+   RowBox[{"Function", "[", 
+    RowBox[{"f", ",", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"g", "=", "0"}], ",", 
+         RowBox[{"f1", "=", 
+          RowBox[{"Expand", "[", "f", "]"}]}], ",", "first"}], "}"}], ",", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"PolynomialQ", "[", 
+          RowBox[{"f", ",", 
+           RowBox[{"{", 
+            RowBox[{"a", ",", "b", ",", "c"}], "}"}]}], "]"}], ",", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"cycQ", "[", "f", "]"}], ",", 
+           RowBox[{
+            RowBox[{"While", "[", 
+             RowBox[{
+              RowBox[{"!", 
+               RowBox[{"f1", "===", "0"}]}], ",", 
+              RowBox[{
+               RowBox[{"first", "=", 
+                RowBox[{"First", "[", "f1", "]"}]}], ";", 
+               RowBox[{"g", "=", 
+                RowBox[{"g", "+", "first"}]}], ";", "\[IndentingNewLine]", 
+               RowBox[{"f1", "=", 
+                RowBox[{"f1", "-", 
+                 RowBox[{"cyc", "[", "first", "]"}]}]}]}]}], "]"}], ";", 
+            "g"}], ",", "\"\<Not cyclic\>\""}], "]"}], ",", 
+         "\"\<Not a polynomial of a,b,c\>\""}], "]"}]}], "]"}]}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{"invsym", "=", 
+  RowBox[{"Function", "[", 
+   RowBox[{"f", ",", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"g", "=", "0"}], ",", 
+        RowBox[{"f1", "=", 
+         RowBox[{"Expand", "[", "f", "]"}]}], ",", "l", ",", "m", ",", "n", 
+        ",", "first"}], "}"}], ",", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"PolynomialQ", "[", 
+         RowBox[{"f", ",", 
+          RowBox[{"{", 
+           RowBox[{"a", ",", "b", ",", "c"}], "}"}]}], "]"}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"symQ", "[", "f", "]"}], ",", 
+          RowBox[{
+           RowBox[{"While", "[", 
+            RowBox[{
+             RowBox[{"!", 
+              RowBox[{"f1", "===", "0"}]}], ",", 
+             RowBox[{
+              RowBox[{"first", "=", 
+               RowBox[{"First", "[", "f1", "]"}]}], ";", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"l", ",", "m", ",", "n"}], "}"}], "=", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Exponent", "[", 
+                  RowBox[{"first", ",", "#"}], "]"}], "&"}], "/@", 
+                RowBox[{"{", 
+                 RowBox[{"a", ",", "b", ",", "c"}], "}"}]}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"l", "==", "m", "==", "n"}], ",", 
+                RowBox[{"first", "=", 
+                 RowBox[{"first", "/", "6"}]}], ",", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"l", "==", "m"}], "||", 
+                   RowBox[{"l", "==", "n"}], "||", 
+                   RowBox[{"m", "==", "n"}]}], ",", 
+                  RowBox[{"first", "=", 
+                   RowBox[{"first", "/", "2"}]}]}], "]"}]}], "]"}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"g", "=", 
+               RowBox[{"g", "+", "first"}]}], ";", 
+              RowBox[{"f1", "=", 
+               RowBox[{"f1", "-", 
+                RowBox[{"sym", "[", "first", "]"}]}]}]}]}], "]"}], ";", "g"}],
+           ",", "\"\<Not symmetric\>\""}], "]"}], ",", 
+        "\"\<Not a polynomial of a,b,c\>\""}], "]"}]}], "]"}]}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{
+  3.908692350242952*^9},ExpressionUUID->"cbef3f96-6ccf-488c-af3a-\
+e773b2f5271d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "\"http://kuing.infinityfreeapp.com/forum.php?mod=viewthread&tid=6880&i=1\"\
+", "http://kuing.infinityfreeapp.com/forum.php?mod=viewthread&tid=6880&i=1"},
+  "HyperlinkURL"]], "Output",
+ CellChangeTimes->{3.908692421739047*^9},
+ CellLabel->"Out[56]=",ExpressionUUID->"084887d2-5346-4fe9-bb40-cc3c01d803f5"]
+}, Open  ]]
+},
+WindowSize->{571, 598},
+WindowMargins->{{349, Automatic}, {11, Automatic}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (2022\:5e746\:670816\
+\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"161854e2-df23-4b1e-9675-37cd52e496d4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 6335, 185, 665, "Input",ExpressionUUID->"cbef3f96-6ccf-488c-af3a-e773b2f5271d"],
+Cell[6918, 209, 336, 6, 54, "Output",ExpressionUUID->"084887d2-5346-4fe9-bb40-cc3c01d803f5"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

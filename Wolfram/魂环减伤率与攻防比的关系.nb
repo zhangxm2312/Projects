@@ -1,0 +1,167 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5310,        157]
+NotebookOptionsPosition[      4719,        138]
+NotebookOutlinePosition[      5134,        155]
+CellTagsIndexPosition[      5091,        152]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"DMG", "[", 
+   RowBox[{"ATK_", ",", "DEF_"}], "]"}], ":=", 
+  RowBox[{"Piecewise", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0.1", "ATK"}], ",", 
+       RowBox[{"DEF", ">", 
+        RowBox[{"8", "ATK"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           FractionBox["19.2", "49"], 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{
+              FractionBox["ATK", "DEF"], "-", "0.125"}], ")"}], "2"]}], "+", 
+          "0.1"}], ")"}], "ATK"}], ",", 
+       RowBox[{"DEF", ">", "ATK"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["0.4", "3"]}], 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{
+              FractionBox["ATK", "DEF"], "-", "2.5"}], ")"}], "2"]}], "+", 
+          "0.7"}], ")"}], "ATK"}], ",", 
+       RowBox[{"DEF", ">", 
+        RowBox[{"0.4", "ATK"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["0.8", "121"]}], 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{
+              FractionBox["ATK", "DEF"], "-", "8"}], ")"}], "2"]}], "+", 
+          "0.9"}], ")"}], "ATK"}], ",", 
+       RowBox[{
+        RowBox[{"8", "DEF"}], ">", "ATK"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0.9", "ATK"}], ",", 
+       RowBox[{
+        RowBox[{"8", "DEF"}], "<", "ATK"}]}], "}"}]}], "}"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.8839751900179453`*^9, 3.8839754400539374`*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"63aad52e-2cb9-4867-8c54-dca3e1bda4bd"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"DMG", "[", 
+      RowBox[{"ATK", ",", "DEF"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"ATK", ",", "0", ",", "1000"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"DEF", ",", "0", ",", "300"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.8839754454346476`*^9, 3.883975508194768*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"969dcb25-4a49-45bb-8c8d-d4b5b1a10a39"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`DEF$$ = 251.5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"\:65e0\:6807\:9898\"", Typeset`specs$$ = {{
+      Hold[$CellContext`DEF$$], 0, 300}}, Typeset`size$$ = {
+    360., {106., 110.00466390094493`}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`DEF$$ = 0}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[
+        $CellContext`DMG[$CellContext`ATK, $CellContext`DEF$$], \
+{$CellContext`ATK, 0, 1000}], 
+      "Specifications" :> {{$CellContext`DEF$$, 0, 300}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{408., {150.134033203125, 155.865966796875}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.883975448122056*^9, {3.8839754827511578`*^9, 3.8839755088667817`*^9}},
+ CellLabel->"Out[7]=",ExpressionUUID->"cb865671-87fb-4185-9238-f919d790bb4e"]
+}, Open  ]]
+},
+WindowSize->{571, 598},
+WindowMargins->{{Automatic, 307.5}, {19, Automatic}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (2022\:5e746\:670816\
+\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"fde9f878-cad2-4ed2-b2dc-428cf06c280a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1896, 62, 214, "Input",ExpressionUUID->"63aad52e-2cb9-4867-8c54-dca3e1bda4bd"],
+Cell[CellGroupData[{
+Cell[2479, 86, 484, 12, 43, "Input",ExpressionUUID->"969dcb25-4a49-45bb-8c8d-d4b5b1a10a39"],
+Cell[2966, 100, 1737, 35, 347, "Output",ExpressionUUID->"cb865671-87fb-4185-9238-f919d790bb4e"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

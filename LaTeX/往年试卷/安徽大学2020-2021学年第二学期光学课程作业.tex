@@ -1,0 +1,169 @@
+\documentclass[UTF8]{article}
+\usepackage{ctex,geometry,enumitem}
+\usepackage[compact]{titlesec}
+\everymath{\displaystyle}
+\geometry{a4paper,left=1cm,right=1cm,top=0.5cm,bottom=1.5cm}
+% \pgfplotsset{width=10cm,compat=1.16}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=10pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+\titleformat{\section}{\large\bfseries\rmfamily}{\large 第\thesection 章 }{0em}{}
+\renewcommand{\thesubsection}{\bfseries \arabic{section}-\arabic{subsection} }
+\titleformat{\subsection}{\rmfamily}{\thesubsection }{0em}{}
+\newcommand{\m}{\mathrm{m}}
+\newcommand{\cm}{\mathrm{cm}}
+\newcommand{\mm}{\mathrm{mm}}
+\newcommand{\nm}{\mathrm{nm}}
+\newcommand{\lipsum}{Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}
+
+\title{安徽大学2020-2021学年第二学期光学课程作业}
+\author{授课老师:杨群}
+\date{}
+\begin{document}
+    \maketitle
+
+    \section{光与光的传播}
+    \setcounter{subsection}{9}
+    \subsection{} % 10
+    % \paragraph{解: }\lipsum
+
+    \addtocounter{subsection}{2}
+    \subsection{} % 13
+    % \paragraph{解: }\lipsum
+
+    \addtocounter{subsection}{1}
+    \subsection{} % 15
+    % \paragraph{解: }\lipsum
+
+    \section{几何光学成像}
+    \setcounter{subsection}{4}
+    \subsection{} % 5
+    % \paragraph{解: }\lipsum
+
+    \setcounter{subsection}{9}
+    \subsection{} % 10
+    % \paragraph{解: }\lipsum
+
+    \setcounter{subsection}{14}
+    \subsection{} % 15
+    % \paragraph{解: }\lipsum
+
+    \setcounter{subsection}{23}
+    \subsection{} % 24
+    % \paragraph{解: }\lipsum
+
+    \setcounter{subsection}{39}
+    \subsection{某人对2.5m以外的物看不清,需配多少度的眼镜?另一人对1m以内的物看不清,需配怎样的眼镜?} % 40
+    \paragraph{解: }$P_1=\frac{1}{\infty}+\frac{1}{-2.5\m}=-0.4\mathrm{D},P_2=\frac{1}{0.25\cm}+\frac{1}{-1\m}=3\mathrm{D}.$即一个远视40度,一个近视300度.
+
+    \subsection{2-41.计算$M=$2,3,5,10倍放大镜或目镜的焦深$\Delta x$.} % 41
+    \paragraph{解: }$\Delta x=\frac{f^2}{x}=-\frac{f^2}{s_0+f}=-\frac{s_0}{s^2_0/f^2+s_0/f}=-\frac{s_0}{M(M+1)},\Delta x=\frac{s_0}{M(M+1)}=\left\{ \begin{array}{c@{\cm ,M=}l}
+        4.17&2\\2.08&3\\ 0.83&5\\0.23&10\\
+    \end{array} \right.$
+
+    \addtocounter{subsection}{1}
+    \subsection{一架显微镜的物镜和目镜相距$\Delta=$20.0 cm,物镜焦距$f_O=$7.0mm,目镜焦距$f_E=$5.0mm,把物镜和目镜都看成是薄透镜.求:(1)被观测物到物镜的距离$s_O$;(2)物镜的横向放大率$V_O$;(3)显微镜的总放大率$M$;(4)焦深$\Delta x$.} % 43
+    \paragraph{解: }(1)由物对物镜成像应在目镜第一焦点处左右,故$s_O'=\Delta-f_E=193\mm. \frac{1}{f_O}=\frac{1}{s'_O}+\frac{1}{s_O}\Rightarrow s_O=7.3\mm$.\\ (2)$V_O=-\frac{s'_O}{s_O}=-26.7$. (3)$M_E=\frac{s_0}{f_E}=50,M=V_O M_E=-1335$.\\ (4)$\Delta x_E=\frac{s_0}{M_E(M_E+1)}=0.1\mm, \Delta x_O'=\frac{f^2_O}{x'^2_O}\Delta x_O=\frac{f^2_O}{x'^2_O}\Delta x_E=0.0001\mm$.
+
+    \section{干涉}
+    \setcounter{subsection}{6}
+    \subsection{设Lloyd镜的镜长$B=$5.0cm,幕与镜边缘的距离$C=$3.0m,缝光源离镜面高度$a=$0.5 mm,水平距离$A=$2.0 cm,光波长$\lambda=$589.3nm, 求幕上条纹的间距. 幕上能出现几根干涉条纹?} % 7
+    \paragraph{解: }双光源间距$d=2a=1.0\mm$,与镜距$D=A+B+C=307\cm$,故$\Delta x=\frac{\lambda d}{D}=1.8\mm.$\\ 交叠区域线度$\Delta l=D\left( \frac{a}{A}-\frac{a}{A+B} \right)=\frac{DaB}{A(A+B)}=5.48\cm,N=\frac{\Delta l}{\Delta x}=30$(条).
+
+    \addtocounter{subsection}{1}
+    \subsection{} % 9
+    \paragraph{解: }\lipsum
+
+    \addtocounter{subsection}{1}
+    \subsection{用Na光灯($\lambda=$589.3nm)做Young双缝干涉实验,光源宽度$b=$2mm,带双缝的屏离缝光源$R=$2.5m.为了在幕上获得可见的干涉条纹,双缝间隔不能大于多少?} % 11
+    \paragraph{解: }由光场空间相干范围孔径角$\Delta \theta_0$与光源宽度$b$间的反比关系$b\Delta \theta_0=\lambda$,干涉孔径角$\Delta \theta$必须小于$\Delta \theta_0$,即双缝间隔$d=R\Delta \theta<R\Delta \theta_0=\frac{R\lambda}{b}=0.74\mm$.
+
+    \subsection{一个直径$b=$1cm的发光面元(波长$\lambda=$550nm),如果用干涉孔径角量度的话,其空间相干性是多少弧度?如果用相干面积量度,问$R=$1m远的相干面积为多大?$R=$10m远的相干面积为多大?
+    } % 12
+    \paragraph{解: }$\Delta \theta=\frac{\lambda}{b}=5.5\times 10^{-3}\mathrm{rad},\Delta S=\pi\left( \frac{R\Delta \theta}{2} \right)^2=\left\{ \begin{array}{ll}
+        2.4\times 10^{-3} \mm^2&R=1\m,\\ 2.4\times 10^{-1} \mm^2&R=10\m.\\
+    \end{array} \right.$
+
+    \subsection{把直径$D$的细丝夹在两块平玻璃砖的一边,形成尖劈形空气层.在Na黄光($\lambda=$589.3nm)的垂直照射下形成$N=8$根干涉条纹,试问D为多少?
+    } % 13
+    \paragraph{解: }$D=8\cdot\frac{\lambda}{2}=4\lambda=2.36\mu \m$.
+
+    \setcounter{subsection}{16}
+    \subsection{测得Newton环某环和其外第10环的半径分别为0.70mm和1.7mm,求透镜的曲率半径$R$,设光波长为$\lambda=630\nm$.
+    } % 17
+    \paragraph{解: }$R=\frac{r^2_{k+10}-r^2_k}{10\lambda}=381\mm$.
+
+    \setcounter{subsection}{22}
+    \subsection{用Na光($\lambda=$589.3nm)观察Michelson干涉条纹,先看到干涉场中有12个亮环,且中心是亮的.移动平面镜M$_1$后,看到中心吞(吐)了10环,而此时干涉场中还剩有5个亮环.求(1)M$_1$移动的距离;(2)开始时中心亮斑的干涉级;(3)M$_1$移动后从中心向外数第5个亮环的干涉级.} % 23
+    \paragraph{解: }(1)$\Delta h=10\frac{\lambda}{2}=2.947\mu\m$.\\ 
+    (2)联立$\left\{ \begin{array}{c@{=}c}
+        2h&k\lambda\\ 2h\cos \theta&(k-12)\lambda\\ 2(h-\Delta h)\cos \theta & (k-15)\lambda
+    \end{array} \right.$,有$k=\frac{120}{7}\approx 17$. (3)$k-15\approx 2$级.
+
+    \subsection{Michelson干涉仪中反射镜移动$\Delta h=$0.33mm,测得条纹变动$N=$192次,求光的波长$\lambda$.} % 24
+    \paragraph{解: }$\Delta h=N\frac{\lambda}{2}\Rightarrow \lambda=\frac{2\Delta h}{N}=3.438\mu \m.$
+
+    \subsection{Na光灯发射的黄线包含两条相近的谱线,平均波长为$\bar{\lambda}=$589.3nm.在钠光下调节Michelson干涉仪,人们发现干涉场的衬比度随镜面移动而周期性地变化.实测的结果由条纹最清晰到最模糊,视场中吞(吐)490圈条纹,求钠双线的两个波长.} % 25
+    \paragraph{解: }$\Delta L=\frac{\bar{\lambda}^2}{2\Delta \lambda}=\Delta N\bar{\lambda}\Rightarrow \Delta \lambda=\frac{\bar{\lambda}}{2\Delta N}=0.6\nm$,故两个波长分别为$\bar{\lambda}\pm \frac{\Delta \lambda}{2}=589.0\nm,589.6\nm$.
+
+    \section{衍射}
+    \subsection{在Fresnel圆孔衍射实验中,圆孔半径$\rho=$2.0mm,光源离圆孔$R=$2.0m,波长$\lambda=$500nm.当接收屏幕由很远的地方向圆孔靠近时,求(1)前三次出现中心亮斑(强度极大)的位置; (2)前三次出现中心暗斑(强度极小)的位置.} % 1
+    \paragraph{解: }\hspace{-10pt}第$\!k\!$个半波带半径$\!\rho_k=\rho\!$表示圆孔中露出$\!k\!$个半波带.即给定$\!\rho$,改变接受屏到圆孔距离$\!b$,圆孔中半波带数量$\!k\!$变化.
+    \par 有关系$\frac{1}{R}+\frac{1}{b}=\frac{k\lambda}{\rho^2}$,$b=\infty$时$k_\infty=\frac{\rho^2}{R\lambda}=4$. $k$随$b$减小而增大,$b=\frac{k_\infty R}{k-k_\infty}$.
+    \par 因此(1)前三次出现中心亮斑时$k=5,7,9$,$b=8.0\m,2.67\m,1.6\m$;
+    \par (2)前三次出现中心亮斑时$k=6,8,10,b=4.0\m,2.0\m,1.33\m$.
+
+    \subsection{在$\!\!$Fresnel$\!\!$圆孔衍射实验中,光源距离圆孔$\!R\!=$1.5m,波长$\!\lambda\!=$630nm,接收屏幕与圆孔距离$\!b\!=$6.0m,圆孔半径从$\rho=$0.5mm开始逐渐扩大.求:(1)$\!\!$最先的两次出现中心亮斑时圆孔的半径;(2)$\!\!$最先的两次出现中心暗斑时圆孔的半径.} % 2
+    \paragraph{解: }由$\rho_k=\sqrt{\frac{Rb}{R+b}k\lambda},\rho_1=0.87\mm>0.5\mm=\rho$,因此圆孔逐渐扩大到$\rho_1=0.87\mm,\rho_3=1.5\mm$时出现中心亮斑,$\rho_2=1.2\mm,\rho_4=1.7\mm$时出现中心暗斑.
+
+    \setcounter{subsection}{8}
+    \subsection{菲涅耳波带片第一个半波带的半径$\rho_1$=5.0mm,(1)用波长$\lambda=$1060nm的单色平行光照明,求主焦距$f$;(2)若要求主焦距$f=$25cm,需将此波带片缩小多少倍?} % 9
+    \paragraph{解: }(1)$f=\frac{\rho^2_1}{\lambda}=23.6\m$;(2)$\frac{\rho'_1}{\rho_1}=\sqrt{\frac{f'\lambda}{f\lambda}}=\sqrt{\frac{f'}{f}}=0.10$.
+
+    \setcounter{subsection}{13}
+    \subsection{衍射细丝测径仪是把单缝Fraunhofer衍射装置中的单缝用细丝代替.今测得零级衍射斑宽度(两个一级暗纹间的距离)为1cm,求细丝的直径.已知光波波长$\lambda=$630nm,透镜焦距$f=$50cm.} % 14
+    \paragraph{解: }由Babinet定理,细丝Fraunhofer衍射强度分布与其互补的单缝强度分布,在像点外处处相同.故0级斑的半角宽度$\Delta \theta=\frac{\lambda}{a}=\frac{\Delta x}{2f}$,故有$a=\frac{2f\lambda}{\Delta x}=63\mu \m$.
+
+    \subsection{一对双星的角间隔$\Delta \theta=0.05''$. (1)需要多大口径的望远镜才能分辨它们?\\ (2)此望远镜的角放大率应设计为多少才比较合理?} % 15
+    \paragraph{解: }(1)取光波长$\lambda=550\nm$,望远镜最小分辨角公式为$\Delta \theta=1.22\frac{\lambda}{D}$.代入记得$D=\frac{1.22\lambda}{\Delta \theta}=2.8\m$.\\ (2)需要将仪器分辨的角间隔放大到人眼可分辨的最小角$\Delta \theta_e=1'$.因此,与本台望远镜的分辨本领相匹配的视角放大率应为$M_e=\frac{\Delta \theta_e}{\Delta \theta}=1200$.
+
+    \setcounter{subsection}{18}
+    \subsection{已知地月距离$l=3.8\times 10^5$km,用口径为1m的天文望远镜能分辨月球表面两点的最小距离是多少?
+    } % 19
+    \paragraph{解: }取光波长$\lambda=550\nm$,有$\delta \theta_{\mathrm{min}}=\frac{1.22\lambda}{D}=6.71\times 10^{-7}\mathrm{rad},\delta y_{\mathrm{min}}=l\; \delta \theta_{\mathrm{min}}=255\m$.
+
+    \setcounter{subsection}{25}
+    \subsection{导出不等宽双缝的Fraunhofer衍射强度分布公式,缝宽分别为$a$和$2a$,缝距$d=3a$.} % 26
+    \paragraph{解: }将其中宽缝分为两宽为$a$的狭缝,问题转化为等宽不等距的多缝Fraunhofer衍射.\\ 下设$\alpha=\frac{\pi a}{\lambda}\sin \theta$,则单缝衍射因子$a_\theta=a_0\frac{\sin \alpha}{\alpha}$,缝距分别为$a+\left( d-\frac{a}{2}-a \right)=\frac{5}{2}a$和$a$,故光程差分别为$5\alpha$和$2\alpha$.\\ 
+    矢量叠加三缝的振幅,有$A_x=a_\theta \big( 1+\cos 5\alpha+\cos (5\alpha+2\alpha) \big),A_y=a_\theta \big( \sin 5\alpha+\sin (5\alpha+2\alpha) \big)$,\\ $I=A^2_x+A^2_y=a_\theta^2\left( \left( 1+\cos 5\alpha+\cos 7\alpha \right)^2+\left( \sin 5\alpha+\sin 7\alpha \right)^2 \right)=I_0\left( \frac{\sin \alpha}{\alpha} \right)^2\left( 3+2\left( \cos 2\alpha+\cos 5\alpha+\cos 7\alpha \right) \right).$
+
+    \addtocounter{subsection}{1}
+    \subsection{波长$\lambda=$650.0nm的红光谱线,经观测发现它是双线.如果在$9\times 10^5$条刻线光栅的第3级光谱中刚好能分辨此双线,求其波长差$\delta \lambda$.} % 28
+    \paragraph{解: }$\delta \lambda=\frac{\lambda}{R}=\frac{\lambda}{kN}=2.41\times 10^{-4} \nm$.
+
+    \addtocounter{subsection}{1}
+    \subsection{波长$\lambda=$500.0nm的绿光正入射在光栅常数$d=2.5\times 10^{-4}\cm$,宽度为3cm的光栅上,聚光镜的焦距为$f=$50cm. (1)求第1级光谱的线色散$D_l$;(2)求第1级光谱中能分辨的最小波长差$\delta\lambda$;(3)该光栅最多能看到第几级光谱?} % 30
+    \paragraph{解: }(1)$D_l=\frac{fk}{d\cos\theta_k}=\frac{fk}{d\sqrt{1-\sin^2 \theta_k}}=\frac{fk}{d\sqrt{1-(\lambda/d)^2}}=\frac{fk}{\sqrt{d^2-\lambda^2}}=0.2\mm/\nm.$\\ 
+    (2)$\delta\lambda_{\mathrm{min}}=\frac{\lambda}{kN}=\frac{\lambda d}{kL}=4.17\times 10^{-2}\nm$; (3)$k_{\mathrm{max}}<\frac{d}{\lambda}=5$,故最多能看到4级光谱.
+
+    \addtocounter{section}{1}
+    \section{偏振}
+    \subsection{自然光投射到互相重叠的两个偏振片上.如果透射光的强度为(1)透射光束最大强度的$\frac{1}{3}$;(2)入射光束强度的$\frac{1}{3}$,则这两个偏振片的透振方向之间夹角是多大? 假定偏振片是理想的,它把自然光的强度严格减少一半.} % 1
+    \paragraph{解: }设入射光强为$I_0$,透射光强为$I$.(1)$\frac{I}{I_0/2}=\frac{1}{3}$,且$I=\frac{I_0}{2}\cos^2\theta$,得$\theta=\arccos \frac{1}{\sqrt{3}}$.(2)$\frac{I}{I_0}=\frac{1}{3}$,同理$\theta=\arccos\sqrt{\frac{2}{3}}$.
+
+    \subsection{一束自然光入射到由四块偏振片组成的偏振片组上,每片的透振方向相对前一片沿顺时针方向转过30$^\circ$角.问入射光中有多大一部分透过了这组偏振片?} % 2
+    \paragraph{解: }$I=\frac{I_0}{2}\cos^6 \frac{\pi}{6}=\frac{27}{128}I_0$.
+
+    \setcounter{subsection}{32}
+    \subsection{单色线偏振光垂直射入方解石晶体,其振动方向与主截面成30$^\circ$角.两折射光再经过置于方解石后的Nicol棱镜，其主截面与原入射光的振动方向成50$^\circ$角.求两条光线的相对强度.} % 33
+    \paragraph{解: }设线偏振光的振幅为$A_0$,其振动方向与晶体主截面的夹角为$\alpha$,与Nicol棱镜主截面的夹角为$\beta$.线偏振光经方解石后分解为e振动和o振动,分别通过Nicol棱镜后的振幅为$A_1=A_e\cos(\alpha+\beta)=A_0\cos(\alpha+\beta)\cos\alpha,\\ A_2=A_o\sin(\alpha+\beta)=A_0\sin(\alpha+\beta)\sin\alpha$.代入$\alpha=30^\circ,\beta=50^\circ$,得$\frac{I_1}{I_2}=\tan^2(\alpha+\beta)\tan^2\alpha=\tan^2 80^\circ \tan^2 30^\circ=10.72$.
+
+
+    \subsection{经$\!\!$Nicol$\!\!$棱镜观察部分偏振光,当$\!\!$Nicol$\!\!$棱镜由对应于极大强度的位置转过$\!\!60^\circ\!\!$时,光强减为一半,求光束的偏振度$P$.} % 34
+    \paragraph{解: }由$I(\alpha)=I_{\mathrm{max}}\cos^2\alpha+I_{\mathrm{min}}\sin^2\alpha$,代入$\alpha=\frac{\pi}{3}$有$I(\frac{\pi}{3})=\frac{I_{\mathrm{max}}}{4}+\frac{3I_{\mathrm{min}}}{4}=\frac{I_{\mathrm{max}}}{2}$,得$I_{\mathrm{max}}=3I_{\mathrm{min}},\\ P=\frac{I_{\mathrm{max}}-I_{\mathrm{min}}}{I_{\mathrm{max}}+I_{\mathrm{min}}}=\frac{1}{2}$.
+
+    \setcounter{subsection}{37}
+    \subsection{强度为$I_0$的单色平行光通过正交Nicol棱镜.现在两Nicol棱镜之间插入一$\frac{\lambda}{4}$波片,其主截面与第一Nicol棱镜的主截面成60$^\circ$角,求出射光的强度(忽略反射.吸收等损失).} % 38
+    \paragraph{解: }设通过第一个Nicol棱镜的偏振光振幅为$A_1$,有$A_1^2=\frac{I_0}{2}$.通过第二个Nicol棱镜的两折射光振幅为\\$A_e=A_1\cos\alpha\cos\beta,A_o=A_1\sin\alpha\sin\beta$,其中$\alpha=\frac{\pi}{3},\beta=\frac{\pi}{2}-\alpha=\frac{\pi}{6}$.最后$\delta=\delta_{in}+\Delta+\delta'=2\cdot\frac{\pi}{2}\pm\frac{\pi}{2}+0=\pi\pm\frac{\pi}{2}$.代入$I=A_e^2+A_o^2+2A_eA_o\cos \delta=\frac{3}{16}A_1^2+\frac{3}{16}A_1^2+0=\frac{3}{8}A_1^2=\frac{3}{16}I_0$.
+\end{document}

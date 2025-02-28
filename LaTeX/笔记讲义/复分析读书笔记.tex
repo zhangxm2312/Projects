@@ -1,0 +1,879 @@
+\documentclass{article}
+\input{../newcommand.tex}
+\usepackage{nameref}
+\setenumerate[1]{label=\textbf{\arabic*.},ref=\arabic*}
+\newcommand{\exerfunc}[1]{剩下请查阅史济怀\textcolor{red}{习题#1}.}
+\title{复分析读书笔记}
+\author{章小明}
+% \newcommand*{\dayhruletrue}{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+本笔记蓝本为史济怀《复变函数》,参考Ahlfors, Complex Analysis (3rd).
+
+\section{复变函数和全纯函数}
+本章有太多学过的内容,因此本人只会选一些不太记得的东西记录.需要注意的是,$\Arg z=\arg z+2k\pi$.
+
+\subsection{复数的几何和积分}
+\begin{enumerate}
+    \item Euler公式和de Moivre公式.
+    \item 直线:$a,b\in \C, \im \frac{z-a}{b}=0\iff b_1y-b_2x-a_2b_1+a_1b_2=0\iff y=\frac{b_2}{b_1}(x-a_1)+a_2$.
+    \item 圆周:$a,d\in \R,\beta\in \C, az\bar{z}+\bar{\beta} z+\beta\bar{z}+d=0\iff \br{x+\frac{\beta_1}{a}}^2+\br{y+\frac{\beta_2}{a}}^2=\frac{\abs{\beta}^2-d}{a}\iff \abs{z-\frac{\beta}{a}}=\sqrt{\frac{\abs{\beta}^2-d}{a}}$.
+    \item 平面上四点$z_1,z_2,z_3,z_4$的交比$(z_1,z_2,z_3,z_4)=\frac{z_1-z_3}{z_1-z_4}\bigg/\frac{z_2-z_3}{z_2-z_4}$为实数,即$\im (z_1,z_2,z_3,z_4)=0$.
+    \item $\sum_{k=0}^n\cos k\theta=\frac{\sin\frac{\theta}{2}+\sin(n+\frac{1}{2})\theta}{2\sin\frac{\theta}{2}},\sum_{k=0}^n\sin k\theta=\frac{\cos\frac{\theta}{2}-\cos(n+\frac{1}{2})\theta}{2\sin\frac{\theta}{2}}$.
+    \item $(2n-1)!!(2n)!!=(2n)!, (2n)!!=n!2^n.$
+    \item $\int_0^{2\pi}\sin^{2n}\theta\d\theta=\int_0^{2\pi}\cos^{2n}\theta\d\theta=2\pi\frac{(2n-1)!!}{(2n)!!}=2\pi\cdot 2^{-2n}\binom{2n}{n}.$其中次数为奇数时结果为0.\\
+    但由Wallis公式可知:$\int_0^{\pi/2}\sin^{2k+1}\theta\d\theta=\int_0^{\pi/2}\cos^{2k+1}\theta\d\theta=\frac{(2k)!!}{(2k+1)!!}$.
+    \item $\sum_{n\geq 1}\frac{\cos n\theta}{n}=-\log 2\sin\frac{\theta}{2}, \sum_{n\geq 1}\frac{\sin n\theta}{n}=\frac{\pi-\theta}{2}$.\hint{$\sum\frac{\e^{\i n\theta}}{n}=-\log(1-\e^{\i\theta})$.}\\
+    分别代入$\theta=\pi$和$\theta=\frac{\pi}{2}$,得到$\sum_{n\geq 1}\frac{(-1)^{n-1}}{n}=\log 2$和$\sum_{k\geq 0}\frac{(-1)^k}{2k+1}=\frac{\pi}{4}.$
+    \item $0<p<m\in\N^*,\int_0^\infty\frac{x^{p-1}}{(1+x)^m}\d x=\frac{\pi}{\sin p\pi}\frac{(1-p)\cdots(m-1-p)}{(m-1)!}.$
+    \item $\int_0^\infty\frac{\log x}{(1+x^2)^2}\d x=-\frac{\pi}{4}$.
+\end{enumerate}
+\exerfunc{1.2}
+
+\subsection{全纯函数}
+\paragraph{Cauchy-Riemann方程}复变函数$f=u+\i v$在某点全纯当且仅当$f$在该点实可微(即$u,v$均可微)且满足如下等价条件:
+\begin{itemize}
+    \item 满足方程组$\partial_x u=\partial_y v,\partial_y u+\partial_x v=0$.(此即Cauchy-Riemann方程)
+    \item 记$\partial_z=\frac{\partial_x-\i \partial_y}{2},\partial_{\bar{z}}=\frac{\partial_x+\i \partial_y}{2}$,有$\partial_{\bar{z}}f=0$.此时$f'=\partial_zf$.
+\end{itemize}
+也可记作$\partial_x f+\i \partial_y f=0$或$\partial_z\bar{f}=0$.另外,可以得到$f'(z)=\partial_x u+\i \partial_x v=-\i\partial_y u+\partial_y v$.
+
+可以认为,$u,v\in C^1(\Omega,\R)$且满足CR方程$\iff f=u+\i v\in H(\Omega)$.
+
+全纯函数有如下性质\begin{enumerate}
+    \item $\abs{\D_z f}^2-\abs{\D_{\bar{z}}f}^2=\frac{\partial(u,v)}{\partial(x,y)}$.特别的,$f$全纯时$\frac{\partial(u,v)}{\partial(x,y)}=\abs{f'}^2$.
+    \item 全纯函数$f$为常数等价于$\re f, \im f, \abs{f}, \arg f$之一为常数,或$\re f=(\im f)^2$.
+\end{enumerate}
+
+\paragraph{全纯函数与调和函数}我们定义Laplace算子$\Delta=\frac{\D^2}{\D x^2}+\frac{\D^2}{\D y^2}$.调和函数$u\in C^2(\Omega)$即$\Delta u=0$的函数.
+
+注意到$\Delta u=4\frac{\D^2 u}{\D z\D \bar{z}}$,因此可知
+\begin{enumerate}[resume]
+    \item $f\in H(\Omega)$是调和函数.
+\end{enumerate}
+
+若调和函数$u,v$满足Cauchy-Riemann方程,则称$v$为$u$的共轭调和函数.显然有
+\begin{enumerate}[resume]
+    \item $v$是$u$的共轭调和函数$\iff u$是$-v$的共轭调和函数.
+    \item $\re f$和$\im f$都是调和函数,且$\im f$是$\re f$的共轭调和函数.
+    \item 对单连通域$\Omega$上的调和函数$u$,其有共轭调和函数$v$,使$u+\i v\in H(\Omega)$.\hint{考虑$v$为全微分$-\D_y u\d x+\D_x u\d y$的积分.}\label{Chap1.1}
+    \item $f(z)$和$\bar{f}(\bar{z})$同时调和;$u(z)$和$u(\bar{z})$同时调和.
+\end{enumerate}
+
+% 对于第\ref{Chap1.1}条性质,有简便方法如下:首先,由$\partial_z \bar{f}=0$,记为$\bar{f}(\bar{z})$,有$u(x,y)=\frac{f(x+\i y)+\bar{f}(x-\i y)}{2}$.其对$x,y\in\C$也成立\why,因此代入$(0,0)$和$\br{\frac{z}{2},\frac{\i z}{2}}$可得$f(z)=2u\br{\frac{z}{2},\frac{\i z}{2}}-u(0,0)$.
+
+\exerfunc{2.2}
+
+\paragraph{全纯函数导数的几何意义}
+全纯函数$f$在$f'\neq 0$处是$E^2\to E^2$的保角变换,即在变换$f$作用下,两曲线交点处夹角不变.另外,若$f'(z_0)\neq 0$,曲线在$z_0$处切线的角度在作用下(逆时针)旋转$\Arg f'(z_0)$,且$z_0$附近像点之间距离与原像之间距离的$\abs{f'(z_0)}$倍.
+
+可以考虑微分几何的运算,我们可以考虑$(x,y)\mapsto (x,y,0)\stackrel{f}{\mapsto}(u(x,y),v(x,y),0)$,计算可知$\tilde{\mathrm{I}}=\br{\br{\D_xu}^2+\br{\D_yu}^2}\mathrm{I}$,因此的确是一个保角映射,且注意到此系数即$\abs{f'(z_0)}^2$.
+
+\subsection{初等全纯函数}
+\paragraph{指数函数}对$z=x+\i y$定义$\e^z=\e^{x}(\cos y+\i\sin y)$.事实上这也对$x,y\in \C$成立.我们称之为Euler公式.
+
+指数函数有性质(1)非负且在$\C$上全纯;(2)满足$\e^{z_1}\e^{z_2}=\e^{z_1+z_2}$;(3)$(\e^z)'=\e^z$;(4)以$2\pi\i$为周期.
+
+若$f:\Omega\to\C$在$D\subset\Omega$上是单射,则我们称$D$是$f$的\textbf{单叶性域},$f$在$D$上是单叶的.
+
+$\e^z$的单叶性域如条状区域$\R\times(2k\pi,2(k+1)\pi)(k\in \Z)$,宽$2\pi$.其被映到$\C-\R_{\geq 0}$.其中$\im z=2k\pi$映到正实轴的上岸,$\im z=2(k+1)\pi$映到正实轴的下岸.$\R\times (2k\pi,(2k+1)\pi)$映到上半平面,$\R\times((2k+1)\pi,2(k+1)\pi)$映到下半平面.实际上对于$[a,b]\times[\alpha,\beta](\beta-\alpha<2\pi)$,其映到一个扇环形面,内外半径为$[\e^a,\e^b]$,辐角范围$\arg z\in [\alpha,\beta]$.直观上来说,$\e^z$将一个条状区域映为一个扇形区域,条越窄则扇角越小.
+
+\paragraph{对数函数}对数函数是指数函数的反函数,定义其为$\Log z=\log\abs{z}+\i\Arg z=\log\abs{z}+\i\arg z+2k\pi\i$.
+
+对数函数是一个多值函数,因此我们可以选取其单值连续分支$\Log_{(k)}z=\log \abs{z}+\i\arg z+2k\pi\i$,在$D$上单值全纯,且有$\e^{\Log_{(k)}z}=z$.其中$D$是不含0和$\infty$的单连通域.并且对每个$\Log_{(k)}z$有$\Log_{(k)}'z=\frac{1}{z}$.\hint{验证$\log r$和$\i \theta$满足极坐标下的Cauchy-Riemann方程,并可算出结果.}
+
+之所以不含0和$\infty$,是因为若取含0的简单闭曲线,$z$逆时针绕其一圈后辐角增加$2\pi$,因此$\Log_{(k)} z$连续变动成$\Log_{(k+1)}z$.因此,$D$不再是单值的.
+
+我们定义多值函数$f$的\textbf{支点}为,若$z$在其足够小邻域内的简单闭曲线上连续绕一圈,$f(z)$的值从一支变为另一支.显然,$\Log$的支点为0和$\infty$.我们一般取$k=0$时的$\Log_{(0)}$为$\Log$的主支.
+
+我们可以定义$\Log$的单叶性域在$\C-\R_{\leq 0}$或$\C-\R_{\geq 0}$上,前者映到$\R\times(-\pi,\pi)$上,后者映到$\R\times(0,2\pi)$上.考虑到$\Log$是$\exp$的反函数,这是显然的,上述情形也反过来可以运用到$\Log$上.
+
+\paragraph{幂函数}我们讨论$z^\mu$中$\mu$的范围.
+\subparagraph{$\mu=n\in\N$}此时$z^n$是一个\textbf{整函数}($H(\C)$中函数),且$(z^n)'=nz^{n-1}$.此时$z^n$在除原点外均为保角变换.
+
+$z^n$的单叶性域为辐角差小于$\frac{2\pi}{n}$的扇形区域,如$\cbr{z\in\C:\Arg z\in \br{\frac{2k\pi}{n},\frac{2(k+1)\pi}{n}}}$,其被映到$\C$上.直观上来说,$z^n$将一个扇形的辐角增大$n$倍.
+
+\subparagraph{$\mu=\frac{1}{n},n\in \N$}此时$z^{\frac{1}{n}}$是$z^n$的反函数,因此也是个多值函数.0和$\infty$是其支点.在$\C-\R_{\geq 0}$上我们可以划分$n$个单值连续分支:
+$$z=\abs{z}\e^{\i\theta},\qquad (z^{\frac{1}{n}})_{(k)}=\sqrt[n]{\abs{z}}\br{\cos\frac{\theta+2k\pi}{n}+\i\sin\frac{\theta+2k\theta}{n}},k=0,1,\cdots,n-1.$$
+实际上这便是将$\C-\R_{\geq 0}$映为上述第$k$个单叶性域.
+
+\subparagraph{$\mu=a+b\i\in \C$}$z^\mu=\e^{\mu\Log z}=\e^{\br{a\log\abs{z}-b\Arg z}+\br{b\log\abs{z}+a\Arg z}\i}$,主值即为$\e^{\mu\Log_{(0)} z}$.
+\begin{itemize}
+    \item $b=0,a=n$时,$z^n$为单值函数.
+    \item $b=0,a=\frac{p}{q}$时,$z^{\frac{p}{q}}$为多值函数,有$q$个分支.实际上即为$(z^p)^\frac{1}{q}$.
+    \item $b=0,a$是无理数或$b\neq 0$时,$z^\mu$为无穷值函数.
+\end{itemize}
+
+\paragraph{三角函数}定义$\cos z=\frac{\e^{\i z}+\e^{-\i z}}{2},\sin z=\frac{\e^{\i z}-\e^{-\i z}}{2\i}$.其满足Euler公式,且将Euler公式推广到$x,y\in \C$.
+
+可以验证此时的三角函数满足原先在$\R$上的所有函数性质和运算法则,但$\C$上的三角函数是无界的.
+
+\paragraph{多值函数$\sqrt[n]{\prod_{k=1}^{m}(z-a_k)^{\beta_k}}$}其中$n,m\in \N^*, \beta_k\in \Z,a_k\in \C$.
+
+我们有如下结论:$n\nmid\beta_k$时$a_k$是其支点,$n\nmid\sum_{k=1}^m\beta_k$时$\infty$是其支点.因此我们有:若在区域$D$中没有支点或区域中支点对应的$\sum_{j\in J}\beta_j$是$n$的倍数,则$D$中可以分出$\sqrt[n]{\prod_{k=1}^{m}(z-a_k)^{\beta_k}}$的单值全纯分支.
+
+\subsection{分式线性变换与交比}分式线性变换或M\"{o}bius变换指的是形如$T(z)=\frac{az+b}{cz+d}$的变换,其中所有系数为复常数,且$ad-bc\neq 0$.由于$T'(z)=\frac{ad-bc}{(cz+d)^2}\neq 0$,因此其也是在$z\neq -d/c$处的保角变换.而$c=0$时$T(z)=Az+B$,称之为整线性变换,因其为整函数.
+
+分式线性变换的反函数$z=T\rev(w)=\frac{-dw+b}{cw+a}$也是分式线性变换,因此$T$在$\C$上是单叶的.我们规定$c\neq 0$时$T(-d/c)=\infty,T(\infty)=a/c;c=0$时$T(\infty)=\infty$,因此给出了单叶映射$T:\C_\infty\to \C_\infty$.
+
+我们给出分式线性变换的一些特殊性质:
+\begin{enumerate}
+    \item 分式线性变换把圆周$\abs{z-z_0}=r$变为圆周$\abs{z-\alpha}=\beta, \alpha=\frac{a-c\frac{c\cdot\overline{d-z_0}}{\abs{d-z_0}^2-\abs{r}^2}}{bc-ad},\beta=\frac{c}{bc-ad}\frac{\abs{d-z_0}^2-\abs{c}^2}{\abs{d-z_0}^2-\abs{r}^2}$.
+    \item 有唯一分式线性变换将$\C_\infty$上三不同点映为事先给定的$\C_\infty$上的三点.\\
+    \hint{考虑分式变换交比函数$L=(\cdot,z_2,z_3,z_4)$在$z=z_i$时有三不同值,给定点的交比函数$S$也是,因此所求变换$M=S\rev\circ L$.唯一性需注意分式变换最多仅有二不动点,除非为恒等变换.}
+    \item 交比是分式线性变换的不变量.\hint{前证明中$L=S\circ M$.}
+    \item 分式变换下的不变量一定是交比的函数.\hint{$f(z_1,z_2,z_3,z_4)=f((z_1,z_2,z_3,z_4),1,0,\infty)$.}
+\end{enumerate}
+
+接下来我们定义圆周的所谓内部和外部:$\C_\infty$上圆周$\gamma$分平面为两个区域$g_1,g_2$,$\gamma$上有$z_1,z_2,z_3$.若依次走过三点,而$g_1,g_2$分别在我们左边和右边,则称$g_1,g_2$分别是$\gamma$关于走向$z_1,z_2,z_3$的左边和右边.因此我们有
+
+\begin{enumerate}[resume]
+    \item $\gamma$关于走向$z_1,z_2,z_3$的左边中的点$z$满足$\im(z,z_1,z_2,z_3)<0$.相应右边的点满足$\im(z,z_1,z_2,z_3)>0$.\hint{画图计算.}
+    \item 分式变换$T$将$\gamma$关于走向$z_1,z_2,z_3$的左右边分别变换为$T(\gamma)$关于走向$T(z_1),T(z_2),T(z_3)$的左右边.
+\end{enumerate}
+
+我们定义$z,z^*$是一对关于圆周$\gamma:\abs{z-a}=R$的对称点,若两点在$a$所射射线上,且满足$\abs{z-a}\abs{z^*-a}=R^2$.若$\gamma$是直线,则定义为两点连线的垂直平分线等于$\gamma$.实际上,$z^*=a+\frac{R^2}{\bar{z}-\bar{a}}$.
+
+我们最后得到如下性质:
+\begin{enumerate}[resume]
+    \item $\gamma$的对称点$z,z^*$满足,对$\gamma$上任三点有$(z^*,z_2,z_3,z_4)=\overline{(z,z_2,z_3,z_4)}$.\hint{直接计算.}
+    \item 若$z,z^*$是关于$\gamma$的对称点,则$T(z),T(z^*)$是关于$T(\gamma)$的对称点.\hint{直接由不变性.}
+\end{enumerate}
+
+上述讨论给出许多例子,在此不一一举出.其中比较重要的有:
+
+\begin{itemize}
+    \item 若一个变换将$a$映成$0$,则$a^*$映成$\infty$,可以直接设变换为$\lambda\frac{z-a}{z-a^*}$.
+    \item 单位圆$B$上的全纯自同构有(且仅有)分式变换$T(z)=\e^{\i \theta}\frac{z-a}{1-\bar{a}z}$一类.
+\end{itemize}
+
+\section{全纯函数的积分表示}
+\subsection{复变函数的积分}
+复变函数的积分定义在可求长曲线$\gamma\subset\C$上,即为其上Riemann和的极限$\int_\gamma f\d z=\lim\sum f(\zeta_k)(z_k-z_{k-1})$.若$f=u+\i v$在$\gamma$上连续,则$\int_\gamma f\d z=\int_\gamma (u\d x-v\d y)+\i\int_\gamma (v\d x+u\d y)$.若此时$\gamma$光滑,则$\int_\gamma f\d z=\int_{a}^{b}f(\gamma(t))\gamma'(t)\d t$.
+
+由定义马上可以得到性质(1)积分线性;(2)积分关于曲线可加;(3)曲线反向则积分变号;以及
+\begin{enumerate}[start=4]
+    \item 有长大不等式$\abs{\int_\gamma f\d z}\leq \sup_{z\in \gamma}\abs{f(z)}L$,其中$L$是$\gamma$长度.
+\end{enumerate}
+
+我们给出一些实用的例子:\begin{enumerate}[resume]
+    \item $\gamma$在参数$t\in [a,b]$起终点有$\gamma(a)=\alpha,\gamma(b)=\beta$,则有$\int_\gamma z^n\d z=\frac{\beta^{n+1}-\alpha^{n+1}}{n+1}(n\geq 0).$
+    \item $\int_{\abs{z-a}=R}\frac{\d z}{(z-a)^n}=\begin{cases}0,&n\neq 1\\ 2\pi \i,&n=1\end{cases}$.实际上,$\int_{\abs{z-a}=R}\frac{\d z}{z-b}=\begin{cases}2\pi\i,&\abs{a-b}<R\\\text{不定,PV}=\pi\i,&\abs{a-b}=R\\0,&\abs{a-b}>R\end{cases}$.
+    \item 正向可求长简单闭曲线$\gamma$的内部面积为$\frac{1}{2\i}\int_\gamma \bar{z}\d z$.\\
+    若单叶全纯映射$f$将可求长简单闭曲线$\gamma$映为正向简单闭曲线$\Gamma$,则$\Gamma$内部面积为$\frac{1}{2\i}\int_{\Gamma} \overline{f(z)}f'(z)\d z$.
+    \item $\gamma$以$\alpha,\beta$为起终点,$f\in C^1(D)$,则$\int_\gamma\br{\Dfunc{f(z)}{z}\d z+\Dfunc{f(z)}{\bar{z}}\d\bar{z}}=f(\beta)-f(\alpha)$.
+\end{enumerate}
+
+\dayhrule
+\subsection{Cauchy积分定理与原函数}
+我们首先给出定理内容
+\begin{enumerate}
+    \item (Cauchy积分定理)对$\C$中单连通域$D,f\in H(D)$,则对$D$中任意可求长闭曲线$\gamma$有$\int_\gamma f(z)\d z=0$.\hint{$f'$连续则用Green公式.}
+\end{enumerate}
+
+若$f'$不连续,则我们如下给出Goursat(1900)的证明.
+\begin{proof}
+    首先存在$D$中顶点在$\gamma$上的折线$P$,$f$在$\gamma$和$P$上的积分差能任意小.这需要用$f$在$D$中一个紧集上一致连续来估计每段积分差,使和足够小.注意到可以取每段弧线长足够小的顶点.
+
+    若$\gamma$是三角形的,对其作无穷划分,每次划分将每个三角形分为四个全等的小三角形,并使其上积分方向不变,以使小三角形边界上的积分抵消.设$M=\abs{\int_\gamma f(z)\d z}\leq \sum_{\gamma^n_{(k)}}\abs{\int_{\gamma^n_{(k)}}f(z)\d z}$.
+
+    取一列递减的小三角形,其中有点$z_0$,考虑$B(z_0,\delta)$满足$\abs{f(z)-f(z_0)-f'(z_0)(z-z_0)}<\varepsilon\abs{z-z_0}$.此邻域中含一$n$次分划后的三角形$\gamma^n$,周长为$2^{-n}L$,因此$\rhs<2^{-n}L\varepsilon$.
+
+    对$f(z)-f(z_0)-f'(z_0)(z-z_0)$在小三角形上积分,注意到$\gamma^n$闭合,得到仅$\int_{\gamma^n}f(z)\d z$一项.最后考虑长大不等式,$\abs{\int_{\gamma^n}f(z)\d z}\leq \int_{\gamma^n}\lhs\d z<2^{-2n}L^2\varepsilon$.最后累加$\gamma^n$,得到$M\leq L^2\varepsilon\to 0$.
+
+    若$\gamma$是多边形的边界,则可分其为多个三角形,因此得到0.若$\gamma$是一般可求长闭曲线,则由上有$\int_\gamma f(z)\d z=0$.
+\end{proof}
+注意到,对非单连通域此结论不一定成立,因为``洞''中可能有极点,使得所画的曲线积出非0.
+
+更进一步地,我们有\begin{enumerate}
+    \item[1*.] 可求长简单闭曲线$\gamma$内部为$D, f\in H(D)\cap C(\overline{D})$,则$\int_\gamma f(z)\d z=0$.
+\end{enumerate}
+
+证明这个定理需要一些其他知识.我们暂且可以认为曲线逐段光滑且能写成$z=z_0+\lambda(t)$,这是为了能控制$\lambda$,并能将积分写成$\R$上积分的显式.在$D$内考虑曲线,且使曲线上点与$\gamma$上点有$\abs{f(z_0+\lambda(t))-f(z_0+\rho\lambda(t))}<\varepsilon$,细微估计略去.因此我们最终可以估计得到$\gamma$上积分为$M\varepsilon$,得证.
+
+若对多连通域,有如下定理:
+\begin{enumerate}[start=2]
+    \item 可求长简单闭曲线$\gamma_0$的内部含有不交的多条可求长简单闭曲线$\gamma_1,\cdots,\gamma_n$,且每条都在其他$n-1$条外部,这$n+1$条曲线围成区域$D$. $f\in H(D)\cap C(\overline{D})$.$f$在大闭曲线上的积分等于内部多条闭曲线的积分.\hint{用辅助线割多连通域为多个单连通域即可.}
+\end{enumerate}
+
+\paragraph{全纯函数的原函数}$F$是$f$的原函数,若$F\in H(D),F'=f$在$D$上成立.注意到原函数一定是全纯的.另一方面,哪怕$f$是全纯的,若$D$不是单连通的,则$D$上曲线可能包含$f$的极点,也没有相应的$F$满足条件.我们给出条件更弱下的更强结论.
+
+\begin{enumerate}[resume]
+    \item $f\in C(D)$,且在$D$中可求长闭曲线$\gamma$上的积分总为0,则$F(z)=\int_{z_0}^{z}f(\zeta)\d\zeta$是$f$在$D$中的原函数.\\
+    \hint{仅需说明$F'(a)=f(a)$.在$a$附近邻域有$\abs{\frac{F(z)-F(a)}{z-a}-f(a)}=\frac{1}{\abs{z-a}}\abs{\int_a^z(f(\zeta)-f(a))\d \zeta}<\varepsilon$即得证.}
+\end{enumerate}
+
+因此这也说明了\begin{enumerate}
+    \item[3*.] 单连通域中的全纯函数有原函数.
+\end{enumerate}
+
+最后我们给出$\C$上类似于Newton-Leibniz公式的结论:
+\begin{enumerate}[start=4]
+    \item 单连通域上的全纯函数$f$有原函数$F$,则$\int_{z_0}^{z}f(\zeta)\d\zeta=F(z)-F(z_0)$.\\
+    \hint{由导数为0,原函数减原函数总为常数,再考虑$\int_{z_0}^{z}f(\zeta)\d\zeta$.}
+\end{enumerate}
+
+至于多连通域上的全纯函数,$F(z)=\int_{z_0}^{z}f(\zeta)\d\zeta$的值随曲线不同而不同,即为多值函数.考虑$z\rev$从$1$到$z$积分,若曲线不绕原点,则积分总为$1\to\abs{z}\to z$的积分,而后者$=\log \abs{z}+\i\arg z=\log z$.若绕原点逆时针$k$全,则可分解曲线,最终得到的积分为$\log z+2k\pi\i$.
+
+\subsection{Cauchy积分公式及其应用}
+Cauchy积分公式是Cauchy积分定理最重要的推论之一,我们首先给出定理内容.
+\begin{enumerate}
+    \item (Cauchy积分公式)可求长简单闭曲线$\gamma$围成的域$D$上有$f\in H(D)\cap C(\overline{D})$,则$\forall z\in D:f(z)=\frac{1}{2\pi\i}\int_\gamma\frac{f(\zeta)}{\zeta-z}\d\zeta$.\\
+    \hint{取$z$附近的小圆周积分,然后用长大不等式估计.注意到使$f(z)-f(\zeta)$很小.}
+\end{enumerate}
+这说明全纯函数在域中的值由其在边界上的值完全确定.
+
+实际上由这种形式的积分定义的函数都有很好的性质.取可求长曲线(不一定闭)$\gamma$上的连续函数$g$,定义$\C-\gamma$上函数$G(z)=\frac{1}{2\pi\i}\int_\gamma\frac{g(\zeta)}{\zeta-z}\d\zeta$为Cauchy型积分.我们可以得到:
+\begin{enumerate}[resume]
+    \item Cauchy型积分定义的函数在$\C-\gamma$上有任意阶导数,且$G^{(n)}(z)=\frac{n!}{2\pi\i}\int_\gamma\frac{g(\zeta)}{(\zeta-z)^{n+1}}\d\zeta$.
+\end{enumerate}
+
+\begin{proof}
+    我们用数学归纳法来证明,首先考虑$n=1$.取$z$附近适当的$z_0$有$\frac{1}{\zeta-z}=\frac{1}{\zeta-z_0}\br{1+\frac{z-z_0}{\zeta-z_0}+h(z,\zeta)}$.代入可得$\frac{G(z)-G(z_0)}{z-z_0}-\frac{1}{2\pi\i}\int_\gamma\frac{g(\zeta)}{(\zeta-z_0)^2}\d\zeta=\frac{1}{2\pi\i(z-z_0)}\int_\gamma\frac{g(\zeta)h(z,\zeta)}{\zeta-z_0}\d\zeta$,再估计右端的模可知是$o(1)$,因此得证.
+
+    然后假设$n$成立需证$n+1$.同上有$\frac{1}{(\zeta-z)^{n+1}}=\frac{1}{(\zeta-z_0)^{n+1}}\br{1+(n+1)\frac{z-z_0}{\zeta-z_0}+H(z,\zeta)}$,其中$H(z,\zeta)=o(z-z_0)$.同上估计即可.
+\end{proof}
+
+因此我们可知:
+\begin{enumerate}
+    \item[2*.] 区域上的全纯函数有任意阶导数.
+\end{enumerate}
+
+另外,区域并不限制是单连通还是多连通.对于大闭曲线包含不交的多个小闭曲线的情形,两者所夹的区域中仍然成立上述定理,在此不再赘叙.
+
+\exerfunc{3.4}
+
+接下来我们给出Cauchy积分公式的一些重要推论.
+\begin{enumerate}[start=3]
+    \item (Cauchy不等式)$f\in H(B(a,R))$且在其中$\abs{f(z)}\leq M$,则$\abs{f^{(n)}(a)}\leq\frac{n!M}{R^n}$.\hint{$f$在$\overline{B(a,r)}$中全纯,用长大不等式.}
+    \item (Liouville定理)有界整函数为常数.\hint{$f'$的界任意小.}
+    \item (代数学基本定理)复系数多项式$P(z)=\sum_{k=0}^n a_kz^k$必在$\C$中有零点.\\
+    \hint{反证,考虑$1/P(z)$是整函数则远处趋于0且近处有界,因此为常数.}
+    \item (Morera定理)$f\in C(D)$且在$D$中任意可求长闭曲线上积分为0,则$f\in H(D)$.\hint{有原函数$F$全纯,故$f$全纯.}
+\end{enumerate}
+
+\paragraph{非齐次Cauchy积分公式(Pompeiu公式)}
+考虑$\C$上的外微分,其定义和运算性质不再赘叙.定义$$\D f=\Dfunc{f}{z}\d z,\bar{\D}f=\Dfunc{f}{\bar{z}}\d \bar{z},\d=\D+\bar{\D},\D \omega=\d z\wedge\omega,\bar{\D}\omega=\d\bar{z}\wedge\omega.$$
+因此对于$\omega=f_1\d z+f_2\d\bar{z}$, $$\D\omega=\Dfunc{f_2}{z}\d z\wedge\d\bar{z}, \bar{\D}\omega=-\Dfunc{f_1}{\bar{z}}\d z\wedge\d\bar{z}.$$
+
+注意到$\omega\in C^2$时$\d^2\omega=0$.当然$\omega$是一二次微分形式时也为0.因此$\d^2=0$.同样可以证明$\D^2=\bar{\D}^2=\bar{\D}\D+\D\bar{\D}=0$.
+
+\begin{enumerate}[resume]
+    \item (Green公式)$\omega=f_1\d z+f_2\d \bar{z},f_1,f_2\in C^1(\overline{D})$,则$\int_{\D D}\omega=\int_D \d\omega$.
+\end{enumerate}
+
+\begin{proof}
+    首先用$f=u+\i v,z=x+\i y$展开$\omega$,然后运用$\R^2$中的Green公式.其次展开$\d\omega=\br{\Dfunc{f_2}{z}-\Dfunc{f_1}{\bar{z}}}\d z\wedge\d\bar{z}$,注意到$\d z\wedge\d\bar{z}=-2\i\d A$.两展开式相等,得证.
+\end{proof}
+
+最后我们给出非齐次Cauchy积分公式及其证明,这是Cauchy积分公式在$C^1$上的推广.
+
+\begin{enumerate}[resume]
+    \item (Pompeiu公式)可求长简单闭曲线$\gamma_0$的内部含有不交的多条可求长简单闭曲线$\gamma_1,\cdots,\gamma_n$,且每条都在其他$n-1$条外部,这$n+1$条曲线围成区域$D$.若$f\in C^1(\overline{D})$,则对$z\in D$有$$f(z)=\frac{1}{2\pi\i}\int_{\D D}\frac{f(\zeta)}{\zeta-z}\d\zeta+\frac{1}{2\pi\i}\int_D \Dfunc{f(\zeta)}{\bar{\zeta}}\frac{\d\zeta\wedge\d\bar{\zeta}}{\zeta-z}.$$
+\end{enumerate}
+
+\begin{proof}
+    固定$z$,考虑其附近充分小开邻域$O$,使其在$D$内且满足一致连续条件.取$G=D-O$,在其上考虑对$\omega=\frac{f(\zeta)}{\zeta-z}\d\zeta$使用Green公式.注意到$\D\omega=0$且$\frac{1}{\zeta-z}$全纯于$G$,计算得到$\d\omega=-\Dfunc{f(\zeta)}{\bar{\zeta}}\frac{\d\zeta\wedge\d\bar{\zeta}}{\zeta-z}$.注意到
+    $$\int_{\D D}\omega=\int_{\D O}\omega+\int_G \d\omega=\int_{\D O}\omega+\int_D \d\omega-\int_O \d\omega$$
+
+    首先,我们可以拆$\int_{\D O}\omega=\int_{\D O}\frac{f(\zeta)-f(z)}{\zeta-z}\d\zeta+f(z)\int_{\D O}\frac{\d\zeta}{\zeta-z}$.其中后项为$2\pi\i f(z)$,而前项可以做估计任意小.
+
+    其次,$\int_O\d\omega$也可以估计,需注意到$\abs{\Dfunc{f}{\bar{\zeta}}}$在$\overline{O}$上有界,最终得到关于邻域半径的无穷小.
+
+    综合上述内容,代入上等式,将两个无穷小趋于0可得到等式,定理得证.
+\end{proof}
+
+\dayhrule
+\paragraph{一维$\bar{\D}$问题的解}\label{para:一维dbar问题的解}
+一维$\bar{\D}$问题即指给定$f$求$u$满足$\Dfunc{u}{\bar{z}}=f$.
+
+\hypertarget{dbar-func}{我们首先构造}$h_1(z)=\begin{cases}
+    \exp\br{\frac{1}{\abs{z-a}^2-R_1^2}},&z\in B(a,R_1)\\0&z\notin B(a,R_1)
+\end{cases}$和$h_2(z)=\begin{cases}
+    0&z\in \overline{B(a,r)}\\\exp\br{\frac{1}{r^2-\abs{z-a}^2}}&z\notin \overline{B(a,r)}
+\end{cases}$,其中$a\in\C,0<r<R_1<R$.再构造$\varphi(z)=\frac{h_1(z)}{h_1(z)+h_2(z)}$,其满足(1)$\varphi\in C^\infty(\C)$;(2)$\supp\varphi\subset B(a,R)$;(3)$\varphi(\overline{B(a,r)})=1$;(4)$0\leq \varphi\leq 1$.
+
+接下来我们说明一维$\bar{\D}$问题的解不仅存在,而且可以写出显式.
+\begin{enumerate}[resume]
+    \item $f\in C^1(D),u(z)=\frac{1}{2\pi\i}\int_D \frac{f(\zeta)}{\zeta-z}\d\zeta\wedge\d\bar{\zeta},z\in D$满足(1)$u\in C^1(D)$;(2)$\Dfunc{u}{\bar{z}}=f$.
+\end{enumerate}
+
+\begin{proof}
+    (1)扩展$f$定义到$\C$上,$\C-D$上取0值.此时$u(z)=\frac{1}{2\pi\i}\int_\C\frac{f(z+\eta)}{\eta}\d\eta\wedge\d\bar{\eta}$,由$f\in C^1(D)$,取导数定义有$u\in C^1(D)$.
+
+    (2)固定$a\in D$,下证$\Dfunc{u(a)}{\bar{z}}=f(a)$.取不大的$r$并任取$\varepsilon<r$,下面我们认为$z\in B(a,\varepsilon)$.考虑所构造的函数$\varphi$,其在$B(a,\varepsilon)$上取1而在$B(a,r)$外取0.然后我们定义
+    $$u_1(z)=\frac{1}{2\pi\i}\int_\C\frac{\varphi(\zeta)f(\zeta)}{\zeta-z}\d\zeta\wedge\d\bar{\zeta},\qquad u_2(z)=\frac{1}{2\pi\i}\int_\C \frac{(1-\varphi(\zeta))f(\zeta)}{\zeta-z}\d\zeta\wedge\d\bar{\zeta}.$$
+    显然$u=u_1+u_2$.注意到$(1-\varphi)f$在$\zeta\in B(a,\varepsilon)$时为0,故$u_2$仅需在$\C-B(a,\varepsilon)$上积分,因此对于$z\in B(a,\varepsilon)$,$u_2$全纯,因此$\Dfunc{u}{\bar{z}}(z)=\Dfunc{u_1}{\bar{z}}(z)$.对后者求导积分换序,并注意到$\Dfunc{\zeta}{\bar{z}}=0,\Dfunc{\bar{\zeta}}{\bar{z}}=1$,最后注意到在$\C-B(a,r)$上$\varphi(\zeta)=0$,化简得到$\Dfunc{u}{\bar{z}}=\frac{1}{2\pi\i}\int_{B(a,r)}\Dfunc{(\varphi f)}{\bar{\zeta}}\frac{\d\zeta\wedge\d\bar{\zeta}}{\zeta-z}$.
+
+    再对$B(a,r)$上的$\varphi f$运用Pompeiu公式,由于$\D B(a,r)$上$\varphi(\zeta)=0$,也得到$\varphi(z)f(z)=\frac{1}{2\pi\i}\int_{B(a,r)}\Dfunc{(\varphi f)}{\bar{\zeta}}\frac{\d\zeta\wedge\d\bar{\zeta}}{\zeta-z}$.
+
+    最后由$B(a,\varepsilon)$上$\varphi(z)=1$,并比较上述二式,得到$z\in B(a,\varepsilon)$有$\Dfunc{u(z)}{\bar{z}}=f(z)$.由于$a,\varepsilon$任取,定理得证.
+\end{proof}
+
+\section{全纯函数的Taylor展开及其应用}
+\subsection{复数项级数与Weierstrass定理}
+复数项级数几乎同于$\R$上情形,因此不做过多介绍.
+
+我们定义函数列的一致收敛为$\forall \varepsilon\exists N\forall n\geq N:\sup_{z\in E}\abs{\sum_{k=1}^nf_k(z)-f(z)}<\varepsilon$.
+
+\begin{enumerate}
+    \item (数项级数的Cauchy收敛准则)$\sum_{k=1}^\infty z_k$收敛$\iff \forall \varepsilon\exists N\forall n\geq N\forall p\in \N:\abs{\sum_{k=n+1}^{n+p}z_k}<\varepsilon$.
+    \item (函数列的Cauchy收敛准则)$\sum_{k=1}^\infty f_k(z)$一致收敛$\iff\forall \varepsilon\exists N\forall n\geq N\forall p\in \N:\sup_{z\in E}\abs{\sum_{k=n+1}^{n+p}f_k(z)}<\varepsilon$.
+    \item (Weierstrass一致收敛判别法)$\abs{f_n(z)}\leq a_n$,且$\sum a_n$收敛,则$\sum f_n(z)$一致收敛.\hint{用Cauchy收敛准则.}
+    \item $\sum f_n\convergeuni f$,若$f_n$均连续则$f$连续.
+    \item 若在可求长曲线$\gamma$上连续函列$\sum f_n\convergeuni f$,则$\int_\gamma f\d z=\sum_{k=1}^\infty \int_\gamma f_n(z)\d z$.这说明积分和求和换序需要一致收敛.
+    \item (Dirichlet判别法和Abel判别法的推广)若部分和$\sum_{k=1}^n a_k$有界,$b_n\to 0$且$\sum_{k\geq 1}\abs{b_n-b_{n+1}}<\infty$,则$\sum_{n\geq 1}a_nb_n$收敛.
+    \item (Raabe判别法)$z_n\neq 0$,且$\abs{\frac{z_{n+1}}{z_n}}\to 1$.若$\varlimsup n\br{\abs{\frac{z_{n+1}}{z_n}}-1}<-1$,则$\sum_{n\geq 1}z_n$绝对收敛.
+\end{enumerate}
+
+我们定义$\sum_{n=1}^\infty f_n(z)$内闭一致收敛于$D$,若级数在$D$的任意紧(即闭)子集上一致收敛.我们有:一致收敛$\implies$内闭一致收敛$\implies$逐点收敛.例子就是$f_n(z)=z^n-z^{n-1}$在$B$上.
+
+另外,我们记$G\subset D$相对于$G$紧为$G\prec D$,意为$\overline{G}\subset D$紧.
+
+最后我们来给出Weierstrass定理.\begin{enumerate}[resume]
+    \item (Weierstrass定理)区域$D$上有$f_n\in H(D)$且$\sum_{k=1}^\infty f_k(z)$内闭一致收敛于$D$中,则(1)$f\in H(D)$且(2)$\sum_{k=1}^\infty f_k^{(n)}(z)$内闭一致收敛到$f^{(n)}(z)$.
+\end{enumerate}
+\begin{proof}
+    首先我们给出引理:$K$紧且$K\subset G\prec D$,则$f\in H(D)$有$\sup_{z\in K}\abs{f^{(n)}(z)}\leq C\sup_{z\in G}\abs{f(z)}$.
+    
+    使$K$中任意点$a$为圆心的圆盘始终在$G$中,即令半径为$\rho=d(K,\D G)>0$(由紧性).对$B(a,\rho)$用Cauchy不等式(紧性保证有界),取$\sup_{z\in G}$和$\sup_{a\in K}$,得证.
+
+    (1)仅需证对任一点的某邻域$f$全纯.取点的邻域在$D$中,且在邻域中取可求长曲线,得到$$\int_\gamma f(z)\d z=\sum\int_\gamma f_n(z)\d z=0.$$由Morera定理,$f$在邻域中全纯.
+
+    (2)首先任取$D$中紧集$K$,类似引理证明取$K$中点的邻域且始终含于$D$,其可有限覆盖$K$,取有限并为$G$,故$G\prec D$.由内闭一致收敛,可以控制部分和和$f$的差$\sup_{z\in\overline{G}}\abs{S_n(z)-f(z)}$为任意小.最后用引理可以再控制$S_n^{(p)}-f^{(p)}$为任意小,故在$K$上部分和的导数一致收敛.而$K$任意,故内闭一致收敛.
+\end{proof}
+Weierstrass定理实际上指出了比连续性更强而比一致收敛更弱的结论:全纯函数构成的函数列仅需内闭一致收敛,那么其和就一定全纯.
+
+\exerfunc{4.1}
+
+\subsection{幂级数}
+首先对幂级数$\sum_{n\geq 0}a_nz^n$有\begin{enumerate}
+    \item 幂级数的收敛半径$R$有$\varlimsup_{n\to \infty}\abs{a_n}^{\frac{1}{n}}=\frac{1}{R}$.
+\end{enumerate}
+简略叙述证明思路如下:$R=0$时,则充分大的$n$有$\abs{a_n}^{\frac{1}{n}}>\frac{1}{\abs{z}}$,因此$\abs{a_nz^n}>1$.$R=\infty$时,充分大的$n$有$\abs{a_n}^{\frac{1}{n}}<\frac{1}{2\abs{z}}$,因此$\abs{a_nz^n}<2^{-n}$.对$R\in (0,\infty)$时,取$\abs{z}<r<R$,因此对充分大的$n$有$\abs{a_n}^{\frac{1}{n}}<\frac{1}{r}$,因此$\abs{a_nz^n}<(\abs{z}/r)^n$.对$R<\rho<\abs{z}$,有$\abs{a_n}^{\frac{1}{n}}>\frac{1}{r}$,同理.
+
+\begin{enumerate}[resume]
+    \item (Abel定理)若幂级数$\sum_{n\geq 0}a_nz^n$在$z_0\neq 0$处收敛,则在$\abs{z_0}B$中内闭绝对一致收敛.\\
+    \hint{对$\abs{z}\leq r<\abs{z_0}$有$\abs{a_nz^n}\leq(\sup\abs{a_nz_0^n})\br{\frac{r}{\abs{z_0}}}^n$,故绝对一致收敛于$r\overline{B}$.}
+    \item 幂级数在收敛圆内确定一个全纯函数.\hint{Weierstrass定理.}
+\end{enumerate}
+
+幂级数在收敛圆周上的收敛情况不定,我们对此讨论.我们记$S_\alpha(\e^{\i\theta})(\alpha<\pi/2)$为这样的两个三角形之并,三角形是以0和$\e^{\i\theta}$的连线为斜边,且点$\e^{\i\theta}$处的角为$\alpha$构成的直角三角形.若$z$在$S_\alpha(\e^{\i\theta})$中趋于$\e^{\i\theta}$,定义在$B$上的函数$g$有极限$l$,则称$g$在$\e^{\i\theta}$处有非切向极限$l$.对此我们有:
+
+\begin{enumerate}[resume]
+    \item (Abel第二定理)幂级数$f(z)=\sum_{n\geq 0}a_nz^n$的收敛半径$R=1$,且在$z=1$处收敛于$S$,则$f$在$z=1$有非切向极限$S$,即$\lim_{\substack{z\to 1\\z\in S_\alpha(1)}}f(z)=S$.
+\end{enumerate}
+\dayhrule
+\begin{proof}
+    仅需证明$f$在$z=1$附近小邻域交$S_\alpha(1)$的闭包$S$上一致收敛,故在其上连续.而用$\abs{\sigma_{n,p}}=\abs{\sum_{k=n+1}^{n+p}a_k}<\varepsilon$估计,对$\sum_{k=n+1}^{n+p}a_kz^k$作Abel变换,得到$\abs{\sum_{k=n+1}^{n+p}a_kz^k}<\varepsilon\br{\frac{\abs{1-z}}{1-\abs{z}}+1}$.注意到$z\in S$时$\abs{z}$和$\abs{1-z}$的三角关系,对$\frac{\abs{1-z}}{1-\abs{z}}$适当控制得到$\frac{2}{2\cos\theta-\abs{1-z}}$.其中$\theta$是边$\abs{1-z}$和边$1$的夹角,$\theta\leq\alpha$.再稍微控制可得到$\frac{2}{\cos\alpha}$,代入即可.最终其满足Cauchy收敛准则,得到$S$上幂级数一致收敛.
+\end{proof}
+
+\subsection{全纯函数的Taylor展开}
+$f\in H(B(z_0,R))$的Taylor级数指$f(z)=\sum_{n\geq 0}\frac{f^{(n)}(z_0)}{n!}(z-z_0)^n, z\in B(z_0,R)$.
+
+之所以函数与级数相等,可以如下证明:考虑Cauchy积分公式并展开$\frac{1}{\zeta-z}$为$\frac{z-z_0}{\zeta-z_0}$的级数(前文有例子).代入,并用Weierstrass判别法得到级数一致收敛.最后代入积分即得上式.级数也是关于函数唯一的,证明略去.
+
+由于幂级数确定一个全纯函数,全纯函数又可以展开成一个Taylor级数,因此我们有
+\begin{enumerate}
+    \item $f$在$z_0$处全纯$\iff f$在$z_0$邻域中可展开成Taylor级数.
+\end{enumerate}
+
+若$f$在$z_0$处全纯且不恒为0,且$f^{(k)}(z_0)=0, k=0,\cdots,m-1, f^{(m)}(z_0)\neq 0$,我们定义$z_0$是$f$的$m$阶零点.其有等价定义:$f$在$z_0$邻域中可表为$f(z)=(z-z_0)^m g(z)$,其中$g$在$z_0$处全纯,且$g(z_0)\neq 0$.
+
+我们有一系列结论.
+\begin{enumerate}[resume]
+    \item $f\in H(D)$且$B(z_0,\varepsilon)\in D$,若$f(B(z_0,\varepsilon))=0$,则$f(D)=0$.\\\hint{$f$在$z_0$邻域内Taylor级数系数为0,故邻域内点为圆心的圆盘的Taylor级数系数也为0.不断延伸圆盘到$D$中每一点,得证.}
+    \item $f\in H(D)$不恒为0,则其零点是孤立点.\hint{不恒为0则零点是有限阶的,由有限阶零点定义可证.}
+    \item (唯一性定理)$f_1,f_2\in D$,若有$D$中点列使$f_1(z_n)=f_2(z_n)$,且$\lim z_n=a\in D$,则$D$中有$f_1=f_2$.\\\hint{由上,$f_1-f_2$的零点不是孤立点,故$g$恒为0.}
+\end{enumerate}
+
+\subsection{辐角定理和Rouch\'e定理}
+由唯一性定理,不恒为0的全纯函数在区域内仅有有限个零点,我们试图计算其数量.我们限制区域在一可求长曲线内部.
+
+\begin{enumerate}
+    \item $f\in H(D)$且$D$上有可求长简单闭曲线$\gamma$,$f$在$\gamma$上非0.若$f$在$\gamma$内部有零点$\cbr{a_k}$,则所有零点阶的和$\sum_{k=1}^n\alpha_k=\frac{1}{2\pi\i}\int_\gamma\frac{f'(z)}{f(z)}\d z$.
+\end{enumerate}
+证明仅需注意到对$\gamma$内部的零点$a_k$的邻域,其外$f'/f$全纯,因此积分仅需在邻域附近圆周上积.而其内$\frac{f'(z)}{f(z)}=\frac{\alpha_k}{z-a_k}+\frac{g'_k(z)}{g_k(z)}$,后者全纯,因此积分得到$2\pi\i$,故得证.
+
+从几何意义上来说,$\sum_{k=1}^n \alpha_k$是$f$在$\gamma$内的零点个数总和,而$\frac{1}{2\pi\i}\int_\gamma\frac{f'(z)}{f(z)}\d z=\frac{1}{2\pi\i}\int_\gamma\frac{\d w}{w}\d z$是$\Gamma=f(\gamma)$绕原点的圈数,称之为$\Gamma$关于原点的环绕指数.
+
+因此我们得到:
+\begin{enumerate}[resume]
+    \item (辐角定理)$f\in H(D)$且$\gamma$是$D$中可求长简单闭曲线,$f$在$\gamma$上非0.$z$绕$\gamma$正方向转动一圈时,$f(z)$在$f(\gamma)$转动的总圈数等于$f$在$\gamma$内的零点个数.
+    \item (Rouch\'e定理)$f,g\in H(D)$且$\gamma$是$D$中可求长简单闭曲线.若$z\in \gamma$时有$\abs{f(z)-g(z)}<\abs{f(z)}$,则$f$和$g$在$\gamma$内部零点个数相同.\\
+    \hint{该不等式即说明$f$和$g$在$\gamma$上都没有零点.令$w=g/f$,可知$w\in B(1,1)$中,因此$w$的环绕指数为0,换言之$f$和$g$的环绕指数相同.}
+\end{enumerate}
+辐角定理即说明此积分可以直接得到某范围内函数的零点个数.Rouch\'e定理即说明,若在曲线上函数的差能被其中一个函数控制,则两者在曲线内零点个数相同.更进一步的,一个函数的一部分能被另一部分控制,则其零点个数为其中一部分在此区域上的零点个数.
+
+Rouch\'e定理有一系列重要的应用.
+\begin{enumerate}[resume]
+    \item $f\in H(D),z_0\in D, w_0=f(z_0)$.若$z_0$是$f-w_0$的$m$阶零点,则对充分小的$\rho$有$\delta$使得对$a\in B(w_0,\delta)$,$f(z)-a$在$B(z_0,\rho)$中有$m$个零点.\label{散开定理}
+\end{enumerate}
+这个定理不是很好理解.我们可以认为,若$f(z_0)=w_0$是一个$m$阶零点,那么在$w_0$附近取值,即$f\rev(w_0)$附近的纤维中,总仍有$m$个零点.换言之,$f(z)=w_0$的切片(即纤维)上有一个$m$阶零点,但将切片上下移动一个很小的距离,在$z$平面中一个充分小的范围内,$z_0$这个$m$阶零点散开成了$m$个零点.
+
+证明思路:$f-w_0$在一个小邻域中没有其他零点,由此可取充分小的$\rho$.取$\delta$为$\abs{f(z)-w_0}$在$\abs{z-z_0}=\rho$上的最小值.取$a\in B(w_0,\delta)$,故$\delta>\abs{w_0-a}$,因此$f-w_0$控制了$w_0-a$,由Rouch\'e定理$f-a$和$f-w_0$在小邻域上零点个数相同.
+
+定理\ref{散开定理}也说明了
+\begin{enumerate}[resume]
+    \item (开映射定理)$f\in H(D),z_0\in D,w_0=f(z_0),\forall \rho>0\exists \delta>0:B(w_0,\delta)\subset f(B(z_0,\rho))$.\hint{由上显然.}
+    \item 非常数$f\in H(D)$使$f(D)$也是$\C$中区域.\\\hint{$f(D)$的开性由前者显然.$f(D)$的连通性仅需考虑$f(\gamma)$是连通的.\why}
+    \item $f$是$D$中单叶全纯函数,则$f'$在$D$中总不为0.\\\hint{若有$z_0$处导数为0,则其为$f(z)-f(z_0)$的$m$阶零点.运用定理\ref{散开定理},对$f(z_0)$附近的$a$,$f(z)-a$有至少两个零点,这与单叶性矛盾.}
+    \item $f\in H(D)$,若$\exists z_0\in D:f'(z_0)\neq 0$,则$f$在$z_0$邻域中是单叶的.\\
+    \hint{$z_0$是$f(z)-f(z_0)$的一阶零点,故在$z_0$附近$f(z)-a$仅有一个零点.换言之,在$f\rev(O(f(z_0)))\cap O(z_0)$上$f$是单叶的,而后者开.}
+    \item $D$上单叶全纯函数$f$的反函数是$f(D)$上的全纯函数,且$(f\rev)'(w)f'(z)=1$.\\
+    \hint{由开映射定理,$f\rev$连续.由于单叶全纯函数的导数非0,故导数关系式合理,易证之.}
+\end{enumerate}
+由最后一条,单叶全纯函数也被称为双全纯函数.
+
+最后我们来看Hurwitz定理.
+\begin{enumerate}[resume]
+    \item (Hurwitz定理)$D$中一列全纯函数$f_n$在其中内闭一致收敛到不恒为0的函数$f$.$\gamma$是$D$中可求长简单闭曲线,且$f$在其上非0.则对充分大的$n$, $f_n$和$f$在$\gamma$内部零点个数相同.\\
+    \hint{由于$\abs{f_n-f}$可以足够小,且$f$全纯,取$\min_{z\in \gamma}\abs{f(z)}$,考虑Rouch\'e定理控制,得证.}
+    \item $D$上一列单叶全纯函数$f_n$在$D$上内闭一致收敛到$f$.若$f$不是常数,则也是$D$上的单叶全纯函数.\\
+    \hint{$f$全纯,若非单叶则考虑$F(z)=f(z)-f(z_1), F(z_2)=0$.$F_n(z)=f_n(z)-f(z_1)$内闭一致收敛到$F$,由上,$F_n$在$z_1,z_2$邻域中各有一零点,矛盾于$f_n$单叶.}
+\end{enumerate}
+
+Rouch\'e定理可以确定某些函数在一定范围内的零点个数,例子略去.\exerfunc{4.4}
+
+\dayhrule
+
+\subsection{最大模原理和Schwarz引理}
+\begin{enumerate}
+    \item (最大模原理)$f\in H(D)$非常值,则$\abs{f}$在$D$中取不到最大值.\hint{开集$f(D)$中每点都有邻域,其中必有模比其大的点.}
+    \item 有界区域$D$中有$f\in H(D)\cap C(\overline{D})$,则$f$的最大模在且仅在$\D D$上取到.\hint{$\overline{D}$紧.}
+    \item (Schwarz引理)$f\in H(B)$且$\abs{f(B)}\leq 1, f(0)=0$,则$\forall z\in B:\abs{f(z)}\leq \abs{z}$,且$\abs{f'(0)}\leq 1$.\\
+    另外,若$\exists z_0\in B-\cbr{0}:\abs{f(z_0)}=\abs{z_0}$或$\abs{f'(0)}=1$,则$f(z)=\e^{\i\theta}z$.\\
+    \hint{展开$f$为幂级数,得到$g=f/z,g(0)=f'(0)$.取$r\in (0,1)$,在$\D (rB)$上$\abs{g(z)}\leq\frac{1}{r}$.由最大模原理,$rB$中也如此.$r\to 1$,前二结论得证.若附加条件成立,则在内点取到最大模1,故$g(z)=\e^{\i\theta}$.}
+\end{enumerate}
+
+我们首先给出Schwarz引理的一个应用,即$B$上的全纯自同构群$\aut(B)$中仅有分式线性变换一族.更详细的即\begin{enumerate}[resume]
+    \item $f\in \aut(B),a\stackrel{f}{\to}0$,则$f(z)=\e^{\i\theta}\frac{a-z}{1-\bar{a}z}$.
+\end{enumerate}
+
+首先记$\varphi_a(z)=\frac{a-z}{1-\bar{a}z}$,并注意到$\varphi_a=\varphi_a\rev$.令$g=f\circ\varphi_a, g(0)=0$且$g\rev(0)=\varphi_a(a)=0$,故对$g,g\rev$用Schwarz引理,有$\abs{g'(0)}\leq 1,\abs{(g\rev)'(0)}\leq 1$,故$\abs{g'(0)}=1,g(z)=\e^{\i\theta}z$,得证.
+
+Schwarz引理还可以推广为:
+\begin{enumerate}[resume]
+    \item (Schwarz-Pick引理)$f\in H(B_\C,B_\C)$.若对$a\in B$有$f(a)=b$,则有(1)$\forall z\in B:\abs{\varphi_b(f(z))}\leq\abs{\varphi_a(z)}$;\\
+    (2)$\abs{f'(a)}\leq\frac{1-\abs{b}^2}{1-\abs{a}^2}$;(3)若存在$z_0\in B-\cbr{a}$使$\abs{\varphi_b(f(z_0))}=\abs{\varphi_a(z_0)}$,或$\abs{f'(a)}=\frac{1-\abs{b}^2}{1-\abs{a}^2}$,则$f\in \aut(B)$.
+\end{enumerate}
+\begin{proof}
+    令$g=\varphi_b\circ f\circ\varphi_a$,其满足Schwarz引理条件.对其使用之,得到$\abs{g(\zeta)}\leq\abs{\zeta},\abs{g'(0)}\leq 1$.令$z=\varphi_a(\zeta)$,得到(1).
+
+    注意到$\varphi_a'(0)=-(1-\abs{a}^2),\varphi_b'(b)=-\frac{1}{1-\abs{b}^2}$.对$g'(0)$链式法则分解,可以得到(2).
+
+    最后,若存在符合条件的$z_0$,则$\zeta_0=\varphi_a\rev(z_0)\neq 0$,运用Schwarz引理$g\in \aut(B)$,故$f$也是.另一情况同理.
+\end{proof}
+
+\exerfunc{4.5}
+
+\section{全纯函数的Laurent展开及其应用}
+称$\sum_{n\in\Z}a_n(z-z_0)^n$为Laurent级数,其$n\in\N$部分为幂级数,称为全纯部分,$n\in\Z_{<0}$部分为负幂项级数,称为主要部分.若两部分都收敛则称此级数收敛.
+
+\dayhrule
+
+Laurent级数的收敛域为圆环$r<\abs{z-z_0}<R$,其中全纯部分的收敛半径为$R$,主要部分的收敛半径为$\frac{1}{r}$.且在圆环中绝对内闭一致收敛,在圆环内全纯.\hint{由Abel定理和Weierstrass定理.}
+
+反过来我们也有\begin{enumerate}
+    \item 设$D=\cbr{z:r<\abs{z-z_0}<R}$.若$f\in H(D)$,则$f$在$D$上可展为Laurent级数$f(z)=\sum_{n\in \Z}a_n(z-z_0)^n, a_n=\frac{1}{2\pi\i}\int_{\gamma_\rho}\frac{f(\zeta)}{(\zeta-z_0)^{n+1}}\d\zeta$,其中$\gamma_\rho=\cbr{\zeta:\abs{\zeta-z_0}=\rho\in(r,R)}$.展开式是唯一的.
+\end{enumerate}
+\begin{proof}
+    先取$z\in D$,取两同$z_0$心圆周,其中一包住$z$,另一不包住.注意到多连通域上$f(z)$的值为外圆周积分减内圆周积分,积分项为$\frac{1}{2\pi\i}\frac{f(\zeta)}{\zeta-z}$.在内圆周上将$\frac{1}{\zeta-z}$展开为$\frac{\zeta-z_0}{z-z_0}$的级数,估计其一致收敛,再积分求和换序,最终得到$$\frac{1}{2\pi\i}\int_{\gamma_1}\frac{f(\zeta)}{\zeta-z}\d\zeta=-\sum_{n\geq 1}\br{\frac{1}{2\pi\i}\int_{\gamma_1}\frac{f(\zeta)}{(\zeta-z_0)^{1-n}}\d\zeta}(z-z_0)^{-n}=-\sum_{n\leq -1}\br{\frac{1}{2\pi\i}\int_{\gamma_1}\frac{f(\zeta)}{(\zeta-z_0)^{n+1}}\d\zeta}(z-z_0)^{n}.$$
+    在外圆周上同理,仅需注意需要展开为$\frac{z-z_0}{\zeta-z_0}$的级数.得到积分式类似,$n\geq 0$.
+
+    最后可以发现被积项与$z$无关,因此可以将半径合并为同一值.稍微代换,得证.
+
+    唯一性:若另有展开式,考虑$a_m=\frac{1}{2\pi\i}\int_{\gamma_\rho}\frac{f(\zeta)}{(\zeta-z_0)^{m+1}}\d\zeta$.若将其用另一展开式展开$f(\zeta)$,仍得到$a'_m$.
+\end{proof}
+
+\exerfunc{5.1}
+
+\subsection{孤立奇点和亚纯函数}
+若$f$在无心圆盘$\cbr{z:0<\abs{z-z_0}<R}$中全纯,则称$z_0\in\C$是$f$的孤立奇点.此时有:
+\begin{itemize}
+    \item $\lim_{z\to z_0}f(z)=a\in\C$:$z_0$是$f$的可去奇点.
+    \item $\lim_{z\to z_0}f(z)=\infty$:$z_0$是$f$的极点.
+    \item $\lim_{z\to z_0}f(z)$不存在:$z_0$是$f$的本性奇点.
+\end{itemize}
+
+我们分别讨论之.首先对于可去奇点有:
+\begin{enumerate}[resume]
+    \item (Riemann可去奇点定理)$z_0$是$f$的可去奇点$\iff f$在$z_0$附近有界.\\\hint{$\implies$显然.$\impliedby:$估计Laurent展开式中负幂次项系数,由有界性,半径趋于0时系数为0.因此这是幂级数,故有有限极限.}
+\end{enumerate}
+由此可看出,在可去奇点附近的无心圆盘中,函数的Laurent展开式为幂级数,仅需适当定义常数项即可令其在中心处也全纯.其次,对于极点有:
+\begin{enumerate}[resume]
+    \item $z_0$是$f$极点$\iff z_0$是$1/f$零点.\hint{显然.}
+\end{enumerate}
+
+我们定义$z_0$是$f$的$m$阶极点,若$z_0$为$1/f$的$m$阶零点.因此我们有:
+\begin{enumerate}[resume]
+    \item $z_0$是$f$的$m$阶极点$\iff f(z)=\sum_{n\geq -m}a_n(z-z_0)^n$.\\\hint{$1/f=(z-z_0)^mg$,而$1/g$在$z_0$处全纯,故$1/g$有Taylor展开式,代入即可.反之仅需注意到$\frac{1}{(z-z_0)^mf}$在$z_0$处全纯,代换得证.}
+\end{enumerate}
+
+最后我们讨论本性奇点.上面已经说明,可去奇点附近的Laurent展开式没有主要部分,极点附近的仅有有限项主要部分,因此可以看出实际上本性奇点附近的Laurent展开式有无穷项.实际上我们有更深刻的结论:
+\begin{enumerate}[resume]
+    \item (Casorati-Weierstrass定理)$z_0$是$f$的本性奇点,则对任意的$A\in \C_\infty$都有趋于$z_0$的点列$z_n$,使$f(z_n)\to A$.换言之,对于$z_0$的邻域$U$,$f(U-\cbr{z_0})$稠密于$\C_\infty$.
+\end{enumerate}
+\begin{proof}
+    若$A=\infty$,则由于本性奇点附近$f$无界,可取点列.
+
+    若$A\in\C$,考虑$\varphi(z)=\frac{1}{f(z)-A}$,即证其在$z_0$附近无界.若否,则$z_0$是$\varphi$可去奇点,故可重定义$\varphi(z_0)$(即$f(z_0)$)使$\varphi$在$z_0$附近全纯.若$\varphi(z_0)\neq 0$,则$f(z)=\frac{1}{\varphi(z)}+A$在$z_0$附近全纯;若$\varphi(z_0)=0$,则$z_0$是$f$极点,均矛盾,故$\varphi$在$z_0$附近无界,故可取到点列.
+\end{proof}
+
+我们还有Picard大小定理,但证明略去.
+\begin{enumerate}[resume]
+    \item (Picard小定理)$f$是非常数整函数,则$f(\C)$为$\C$或$\C$去掉一个点.
+    \item (Picard大定理)$z_0$为$f$的本性奇点,则$z_0$邻域中$f$无穷次取得$\C$中值,最多仅有一个例外(即$\C$去掉一个点).
+\end{enumerate}
+
+我们已经讨论了孤立奇点在$\C$中的情形,接下来讨论$\infty$处为孤立奇点的情况:我们定义$\infty$是$f$的孤立奇点,若$f$在$B(\infty,R)=\cbr{z\in\C:R<\abs{z}<\infty}$中全纯.换言之,0是$g(\zeta)=f(1/\zeta)$的孤立奇点.相应地,若$\zeta=0$是$g$的可去奇点,$m$阶极点或本性奇点,则称$\infty$是$f$的可去奇点,$m$阶极点或本性奇点.
+
+考虑在无穷远点的邻域全纯的$f$,其有Laurent展开式$f(z)=\sum_{n\in\Z}a_nz^n$,则$g(z)=f(1/z)=\sum_{n\in\Z}a_nz^{-n}=\sum_{n\in\Z}a_{-n}z^n$.对照定义,若$\infty$是$f$的可去奇点,则$f$的Laurent展开式仅有主要部分加上一个常数.若为$m$阶极点,则全纯部分仅有$m$阶项.若为本性奇点,则全纯部分有无穷项.
+
+若$f$是在无穷远点全纯的整函数,那么其Laurent展开式没有主要部分(即没有负幂次项),而在无穷点处全纯
+\footnote{($\infty$是$f$的可去奇点)$\impliedby$($f$在$\infty$处全纯)$\iff$($f(1/z)$在0处全纯)$\implies$($f(1/z)$在0的空心邻域全纯)$\iff$($\infty$的邻域全纯)$\iff$($\infty$是$f$的孤立奇点)}
+即$f(1/z)$在0处全纯,即0为$f(1/z)$可去奇点,故$f$的Laurent展开式仅有主要部分加上一个常数.综上得到
+\begin{enumerate}[resume]
+    \item 在无穷远点全纯的整函数是常数.
+    \item 若$\infty$是整函数$f$的$m$阶极点,则$f$是$m$次多项式.
+\end{enumerate}
+不是常数和多项式的整函数称为超越整函数,$\infty$一定是超越整函数的本性奇点.
+
+若$f$在$\C$上除了极点没有其他奇点(即孤立奇点均为极点),则称$f$为亚纯函数.整函数和有理函数都是亚纯函数.关于有理函数还有一个结论:
+\begin{enumerate}[resume]
+    \item $\infty$是亚纯函数$f$的可去奇点或极点$\iff f$是有理函数.
+\end{enumerate}
+\begin{proof}
+    $\impliedby:\lim_{z\to \infty}\frac{P_n(z)}{Q_m(z)}=\begin{cases}
+        a_n/b_m,&n=m;\\\infty,&n>m;\\0,&n<m.
+    \end{cases}$
+
+    $\implies:f$在$\infty$邻域全纯,而在该邻域外(即$\abs{z}\leq R$)有有限个极点(否则子列极限不是孤立奇点),对每个极点$z_i$有阶$m_i$,在其附近$f$的Laurent展开式为的主要部分$h_i(z)=\sum_{k=1}^{m_i}\frac{c^{(i)}_{-k}}{(z-z_i)^k}$.而$f$在$\infty$附近的Laurent展开式的主要部分$g$是0或一个多项式.令$F=f-\sum h_i-g$,其在极点和$\infty$处消去了所有主要部分($h_j$是全纯的),在其他部分也是全纯的,因此是整函数,故是常数.变换,因此$f$是有理函数.
+\end{proof}
+
+由上定理,我们可以讨论$\C$的全纯自同构群和$\C_\infty$的亚纯自同构群.
+\begin{enumerate}[resume]
+    \item $\aut(\C)$由所有一次多项式组成.\\
+    \hint{一次多项式显然属于$\aut(\C)$.对任意$\aut(\C)$中元素(整函数),若$\infty$是可去奇点则是常数,若是本性奇点则对$f\rev(f(z_n))=z_n$在$z_n\to\infty$时有$f\rev(A)=\infty$,故$A$是$f\rev$极点,矛盾.因此$\infty$是$f$极点,故$f$是多项式.由单叶性,$f$是一次的.}
+    \item $\aut(\C_\infty)$由所有分式线性变换组成.\\
+    \hint{\tbc}
+\end{enumerate}
+
+\subsection{留数定理}
+对于$f(z)=\sum_{n\in\Z}c_n(z-a)^n$,有$c_{-1}=\frac{1}{2\pi\i}\int_\gamma f(\zeta)\d\zeta$.另一方面,$\int_\gamma f(\zeta)\d\zeta$.若$a$是$f$的一个孤立奇点,则称$c_{-1}$是$f$在$a$点的留数,记为$\Res(f,a)=c_{-1}$.我们定义$\Res(f,\infty)=-\frac{1}{2\pi\i}\int_\gamma f(\zeta)\d\zeta=-\Res(f,0)$.
+
+我们首先给出计算方法:
+\begin{enumerate}
+    \item $a$是$f$的$m$阶极点,则$\Res(f,a)=\frac{1}{(m-1)!}\lim_{z\to a}\br{(z-a)^mf(z)}^{(m-1)}$.特别的,$m=1$时$\Res(f,a)=\lim_{z\to a}(z-a)f(z)$.\\
+    \hint{$g=(z-a)^mf,g(a)\neq 0$且$g$在$a$处全纯.取$g$在$a$处的Taylor展开得到$f$的Laurent展开式.取$-1$次项系数即可.}
+    \item $f=g/h$,$g,h$在$a$处全纯,且$g(a)\neq 0,h(a)=0,g'(a)\neq 0$,则$\Res(f,a)=\frac{g(a)}{h'(a)}$.\hint{由上由定义.}
+\end{enumerate}
+
+接着我们给出关于留数最重要的定理:
+\begin{enumerate}[resume]
+    \item (留数定理)有界区域$D\subset \C$的边界$\gamma$由若干条简单闭曲线组成.$S$表示$f$在$D$中所有孤立奇点,$f\in H(D-S)\cap C(\overline{D}-S)$,则$\int_\gamma f(z)\d z=2\pi\i\sum_{z_i\in S}\Res(f,z_i)$.
+    \item $f$在$\C$上除$z_1,\cdots,z_n$均全纯,则$\sum_{k=1}^n \Res(f,z_k)+\Res(f,\infty)=0$.
+\end{enumerate}
+留数定理的主要贡献是把积分计算归结为留数的计算,而计算留数是一个微分运算.因此从实质上来说,留数定理把积分运算变成了微分运算.
+
+\dayhrule
+
+最后我们给出留数定理计算实变定积分的各种技巧与方法.
+
+\paragraph{$\int_{-\infty}^{\infty}f(x)\d x$型积分}下设$f$在上半平面$D$上的奇点$z_1,\cdots,z_n$全集为$S$.
+\begin{enumerate}
+    \item $f\in H(D-S)\cap C(\overline{D}-S)$.若$\lim_{z\to\infty}zf(z)=0$,则$\int_{-\infty}^{\infty}f(x)\d x=2\pi\i\sum_{k=1}^n\Res(f,z_k)$.\\
+    \hint{取曲线$-R\stackrel{\text{实轴}}{\to}R\stackrel{\text{上半圆周}}{\to}-R$,令$R\to\infty$,给定限制可估出上半圆周的积分趋于0.}
+    \item $P,Q$为既约多项式,$Q$没有实零点,且$\deg Q-\deg P\geq 2$,则$\int_{-\infty}^{\infty}\frac{P(x)}{Q(x)}\d x=2\pi\i\sum \Res\br{\frac{P(z)}{Q(z)},z_k}$.
+    \item (Jordan引理)$f$在$\cbr{z:R\leq\abs{z}<\infty,\im z\geq 0}$上连续,且$\lim_{\substack{z\to \infty\\\im z\geq 0}}f(z)=0$,则$\lim_{R\to\infty}\int_{\gamma_R}\e^{\i\alpha z}f(z)\d z=0$,其中$\gamma_R$是充分大的上半圆周.\hint{直接用长大不等式估计,其中$\e^{\i\alpha z}$的实部需要$\sin\theta\geq\frac{2\theta}{\pi}$.}
+    \item $f\in H(D-S)\cap C(\overline{D}-S)$.若$\lim_{z\to\infty}f(z)=0$,则对$\alpha>0$有$\int_{-\infty}^{\infty}\e^{\i\alpha x}f(x)\d x=2\pi\i\sum\Res(\e^{\i\alpha z}f(z),z_k)$.\\
+    因此我们有$\int_{-\infty}^{\infty}f(x)\cos \alpha x\d x=\re\cbr{2\pi\i\sum\Res(\e^{\i\alpha z}f(z),z_k)},\int_{-\infty}^{\infty}f(x)\sin \alpha x\d x=\im\cbr{2\pi\i\sum\Res(\e^{\i\alpha z}f(z),z_k)}$.
+\end{enumerate}
+
+若$f$在实轴上有奇点,则需要如下引理.
+\begin{enumerate}[resume]
+    \item $G=\cbr{a+\rho\e^{\i\theta}:0<\rho\leq \rho_0,\theta\in[\theta_0,\theta_0+\alpha]},f\in C(G),\lim_{z\to a}(z-a)f(z)=A$,则$\lim_{\rho\to 0}\int_{\gamma_\rho}f(z)\d z=\i\alpha A$.其中$\gamma_\rho$是$G$中以$a$为心,$\rho$为半径的圆弧.\\
+    \hint{令$g(z)=(z-a)f(z)-A,\int f(z)\d z=\int\frac{A\d z}{z-a}+\int\frac{g(z)\d z}{z-a}$.前项为$\i\alpha A$.注意到$g(z)\to 0$,故$\rho\to 0$时上界趋于0,直接估计得到后项为0.}
+\end{enumerate}
+
+若需要积分$\int_0^\infty$,一般都是取锁眼型闭曲线,即$\rho\to R\stackrel{\text{优弧}}{\to}R\to\rho\stackrel{\text{优弧}}{\to}\rho$,或半圆环形曲线$\rho\to R\stackrel{\text{半圆周}}{\to}-R\to -\rho\stackrel{\text{半圆周}}{\to}\rho$.
+
+\paragraph{$\int_{0}^{2\pi}R(\sin\theta,\cos\theta)\d\theta$型积分}$R(\cdot,\cdot)$是有理函数.注意到三角函数万能公式:作代换$t=\tan\frac{\theta}{2}$,有
+$$\sin\theta=\frac{2t}{1+t^2},\cos\theta=\frac{1-t^2}{1+t^2},\tan\theta=\frac{2t}{1-t^2},\d\theta=\frac{2\d t}{1+t^2}.$$
+因此$\int_{0}^{2\pi}R(\sin\theta,\cos\theta)\d\theta=2\int_{-\infty}^{\infty}R\br{\frac{2t}{1+t^2},\frac{1-t^2}{1+t^2}}\frac{\d t}{1+t^2}$.
+
+另一种方法是考虑单位圆周上$z=\e^{\i\theta}$,有
+$$\cos\theta=\frac{z+1/z}{2},\sin\theta=\frac{z-1/z}{2\i},\tan\theta=\i\frac{1-z^2}{1+z^2},\d\theta=\frac{\d z}{\i z}$$
+因此$\int_{0}^{2\pi}R(\sin\theta,\cos\theta)\d\theta=\int_{\abs{z}=1}R\br{\frac{z-1/z}{2},\frac{z+1/z}{2}}\frac{\d z}{\i z}$.
+
+类似可以计算$\int_{0}^{2\pi}R(\sin n\theta,\cos n\theta)\d\theta$.
+
+\paragraph{$\int_a^b (x-a)^r(b-x)^s f(x)\d x$型积分}其中$r+s=-1,0$或1,且$-1<r,s<1$.我们有:
+\begin{enumerate}[resume]
+    \item $a_1,\cdots,a_n$不在区间$[a,b]$上,且$f$在$\C$上除这些点全纯.$r,s\in (-1,1),s\neq 0,r+s$为整数.\\
+    设$F(z)=(z-a)^r(b-z)^s f(z)$,若$\lim_{z\to\infty}z^{r+s+1}f(z)=A\neq \infty$,则
+    $$\int_a^b F(x)\d x=-\frac{A\pi}{\sin s\pi}+\frac{\pi}{\e^{-s\pi\i}\sin s\pi}\sum_{k=1}^n\Res(F,a_k).$$
+\end{enumerate}
+\begin{proof}
+    \tbc
+\end{proof}
+
+\paragraph{Fresnel积分}即$\int_{0}^{\infty}\cos x^n\d x$和$\int_{0}^{\infty}\sin x^n\d x$.
+
+构造围道$0\to R\stackrel{\text{劣弧}}{\to}R\e^{\i\frac{\pi}{2n}}\to 0$,对$\e^{\i z^n}$积分.若令$R\to \infty$,第一段积分即为我们所求,第二段圆弧可以估计出此时其趋于0,第三段曲线上$z=r\e^{\i\frac{\pi}{2n}}$,故$-\int \e^{\i z^n}\d z=\e^{\i\frac{\pi}{2n}}\int_0^R \e^{-r^n}\d r\to \e^{\i\frac{\pi}{2n}}\int_0^\infty \e^{-r^n}\d r=\Gamma\br{1+\frac{1}{n}}$.综上,
+$$\int_{0}^{\infty}\cos x^n\d x=\cos\frac{\pi}{2n}\Gamma\br{1+\frac{1}{n}},\int_{0}^{\infty}\sin x^n\d x=\sin\frac{\pi}{2n}\Gamma\br{1+\frac{1}{n}}.$$
+
+\paragraph{Poisson积分}即$\int_0^\infty \e^{-ax^2}\cos bx \d x(a>0)$.
+
+取围道$-R\to R\to R+\frac{b}{2a}\i\to -R+\frac{b}{2a}\i\to -R$,对$\e^{-az^2}$积分.其中$R\to \infty$时第二段和第四段积分可以估计为趋于0,而第三段积分变换为$-\e^{\frac{b^2}{4a}}\int_{-\infty}^{\infty}\e^{-ax^2}\cos bx\d x$.最终通过变换得到
+$$\int_{0}^{\infty}\e^{-ax^2}\cos bx\d x=\frac{\e^{-\frac{b^2}{4a}}}{2}\int_{-\infty}^{\infty}\e^{-ax^2}\d x=\frac{\e^{-\frac{b^2}{4a}}}{2}\sqrt{\frac{\pi}{a}}.$$
+
+\exerfunc{5.5}\hint{共31题,同书附最终答案.}
+
+\subsection{Mittag-Leffler定理, Weierstrass因式分解定理和Blaschke乘积}
+我们首先给出一些无穷乘积的性质.我们一般将无穷乘积写成$\prod_{n\geq 1}(1+a_n)$的形式,因为收敛时其中$a_n\to 0$.
+
+我们有\begin{enumerate}
+    \item $\prod_{n\geq 1}(1+a_n)$和$\sum_{n\geq 1}\log(1+a_n)$同敛散.
+    \item $\prod_{n\geq 1}(1+a_n)$绝对收敛等价于$\sum_{n\geq 1}a_n$绝对收敛.
+\end{enumerate}
+
+我们扩展亚纯函数的定义:区域$D$上的\textbf{亚纯函数}指除了极点在$D$上均全纯的函数.上文所定义的亚纯函数是指在$\C$上亚纯的函数.
+
+下三定理中均认为区域$D$上有互不相同且在$D$内部无极限点的点列$S=\cbr{a_n}$.
+\begin{enumerate}[resume]
+    \item (Mittag-Leffler定理)给定一列有理函数$\psi_n(z)=\sum_{i=1}^{k_n}\frac{c_{n,i}}{(z-a_n)^i}$,则存在$D$上的亚纯函数$f$仅以$\cbr{a_n}$为极点,且在每个$a_n$处的Laurent展开式的主要部分为$\psi_n$.
+\end{enumerate}
+\begin{proof}
+    这个定理的证明依赖于前文提到的\nameref{para:一维dbar问题的解}.
+    
+    对每个点取不交圆盘,在圆盘上取\hyperlink{dbar-func}{此处}所构造的函数$\varphi_n$,在圆盘外均取0且在点附近更小圆盘$B(a_n,\varepsilon)$中取1.再取$u=\sum\varphi_n\psi_n\in C^\infty(D-S)$,且在每个$B(a_n,\varepsilon)-a_n$中$u=\psi_n$.构造$h(z)=\begin{cases}
+        \Dfunc{u(z)}{\bar{z}},&z\in D-S;\\0,&z\in S,
+    \end{cases}$
+    显然$h\in C^\infty(D)$,因此$\Dfunc{v}{\bar{z}}=h$有解$v\in C^\infty(D)$.
+
+    令$f=u-v$,则在$D-S$上$f$全纯(由$\Dfunc{f}{\bar{z}}=0$),而在$a_n$处$f(z)=\varepsilon_n(z)-o(1),z\to a_n$,因此$f$满足条件.
+\end{proof}
+
+因此我们有:
+\begin{enumerate}[resume]
+    \item (弱化的Weierstrass因式分解定理)$D$单连通,$\cbr{k_n}\subset\N^*$,则存在$f\in H(D)$使得$f$以$\cbr{a_n}$为零点,且在$a_n$处的零点阶数为$k_n$.
+\end{enumerate}
+\begin{proof}
+    对$S$运用Mittag-Leffler定理,每个点处的主要部分为$\frac{k_n}{z-a_n}$,可以得到亚纯函数$g$.对于$a\in D-S$可以取$F(z)=\int_a^z g(\zeta)\d\zeta,z\in D-S$.注意到$g$可以分为主要部分(负一次项)和全纯部分,因此原函数尽管多值(亚纯,随路径变化),但分支之差为$2\pi\i$的整数倍,因此有单值全纯函数$f=\e^F$.在每个$a_n$对$f$附近代入$g$,符合条件,得证.
+\end{proof}
+
+\begin{enumerate}[resume]
+    \item (Weierstrass因式分解定理)任意整函数$f$可以被写成无穷乘积
+    $$f(z)=z^m\e^{g(z)}\prod_{n\geq 1}\br{1-\frac{z}{a_n}}^{k_n}\exp\br{k_n\sum_{k=1}^{p_n} \frac{1}{k}\br{\frac{z}{a_n}}^k}=z^m\e^{g(z)}\prod_{n\geq 1}E_{p_n}\br{\frac{z}{a_n}}^{k_n}.$$
+    其中$g$是另一整函数,$a_n$是$f$的$k_n$阶零点,$m\geq 0$是$f$在0处的零点阶数.
+\end{enumerate}
+定理中,$E_{p_n}(z)=(1-z)\exp\br{\sum_{k=1}^{p_n}\frac{z^k}{k}}$被称为基本因子,其乘积被称为典范乘积.
+\begin{proof}\footnote{此处我们的证明来源于RCA.}
+    实际上我们可以认为$a_n$重复出现$k_n$次,因此不需考虑$k_n$次幂,转而对每个零点考虑.另一方面,仅需考虑$f(0)\neq 0$的情形,这样可以对$\frac{f(z)}{z^m}$运用得到上式.
+
+    首先给出,在$\overline{B}$上有$\abs{1-E_p(x)}\leq\abs{z}^{p+1}$.计算$E'_p(z)$得到其在0处有$p$阶零点,故其原函数$1-E_p(z)$有$p+1$阶零点,因此仅需估计$\overline{B}$中的$\frac{1-E_p(z)}{z^{p+1}}$.由其Taylor展开式系数均为正实数,故其$\leq \frac{1-E_p(1)}{1}=1$.
+
+    其次我们给出一个引理:对模趋于无穷的复数列$\cbr{a_n}$,若有$\cbr{p_n}\subset\N$满足$\sum_{n\geq 1}\br{\frac{a}{\abs{a_n}}}^{1+p_n}<\infty,a>0$,则无穷乘积$P(z)=\prod_{n\geq 1}E_{p_n}\br{\frac{z}{a_n}}$是整函数,且仅在$a_n$处是零点.更准确的,$a_n$在序列中出现多少次,则是$P$的多少阶零点.
+
+    由于$a_n$几乎都在$2a$之外,$a/\abs{a_n}$被限制,再取$1+p_n=n$,上述级数和小于一个几何级数,故得到满足条件的$p_n$.另一方面,在有界圆盘上运用首先得到的不等式,得到$\sum_{n\geq 1}\abs{1-E_{p_n}\br{\frac{z}{a_n}}}$内闭一致收敛,由无穷乘积性质,引理得证.
+
+    最后设$f$的零点构成上述的$P$,故在$f/P$只有可去奇点,可扩展为整函数,且其没有零点,故在单连通区域上有整函数$g$使得$f/P=\e^g$.
+\end{proof}
+
+注意到$\sum_{n\geq 1}\abs{1-E_{p_n}\br{\frac{z}{a_n}}}$收敛相当于$\sum_{n\geq 1}\abs{\log E_{p_n}\br{\frac{z}{a_n}}}$收敛,即余项$r_n(z)=-\sum_{k\geq p_n+1}\frac{1}{k}\br{\frac{z}{a_n}}^k$的无穷加和收敛,而对充分大的$z\in B(\infty,R)$,$\abs{r_n(z)}\leq \br{1-\frac{R}{\abs{a_n}}}\rev\frac{1}{p_n+1}\br{\frac{R}{\abs{a_n}}}^{p_n+1}$.变换之,因此若有$\sum_{n\geq 1}\frac{1}{\abs{a_n}^{h+1}}$收敛,则所有的$p_n\leq h$.满足条件的最小$h$被称为$f$的亏格.若$g$是多项式,则称其为有限亏格函数.$f$的亏格为$\max\cbr{\deg g,h}$.
+
+再由Weierstrass因子分解定理我们得到
+\begin{enumerate}[resume]
+    \item $\C$上亚纯函数是两个整函数之商.\\
+    \hint{取亚纯函数极点为整函数零点,乘积为整函数.}
+\end{enumerate}
+
+\begin{enumerate}[resume]
+    \item (插值定理)$D$单连通,$P_n(z)=\sum_{i=0}^{k_n}b_{n,i}(z-a_n)^i$是给定的一列多项式,则存在$f\in H(D)$在$a_n$处的Taylor级数的前$k_n+1$项恰为$P_n$.
+\end{enumerate}
+\begin{proof}
+    对$S$和$\cbr{k_n+1}$运用Weierstrass因式分解定理得到全纯函数$g$.再对每点取不交大圆盘$B(a_n,3\varepsilon)$,其上取\hyperlink{dbar-func}{此处}所构造函数$\varphi_n$,在小圆盘$B(a_n,\varepsilon)$上取1.设大圆盘之并为$A$,令$u$仅在每个去心大圆盘上取$\frac{\varphi_n P_n}{g}$,其他处(含$S$)取0.可以发现$u\in C^\infty(D-S)$且在每个去心小圆盘上$u=P_n/g$.
+    
+    \dayhrule
+
+    考虑$h=\begin{cases}
+        \Dfunc{u}{\bar{z}},&z\in D-S;\\0,&z\in S,
+    \end{cases}$而其在去心小圆盘上和大圆盘外取0,因此$h\in C^\infty(D)$.再令$\Dfunc{v}{\bar{z}}=h$,令$f=g(u-v)$,则$f\in H(D-S)$(考虑$\bar{z}$偏导).而在每点附近$f=P_n-gv$,其全纯.注意到$a_n$是$gv$至少$k_n+1$阶零点,则$f$在$a_n$处Taylor级数的前$k_n+1$项为$P_n$.
+\end{proof}
+
+上述定理的证明都依赖于\nameref*{para:一维dbar问题的解}的构造与结论,基本思路都是取不交圆盘应用函数,使得在点附近保持函数原样,但在外部都取到0,最后构造函数满足题目所给条件.
+
+接着我们考虑特殊域上的情形.我们定义一列可求长简单闭曲线$\cbr{\gamma_n}$是正则曲线列,并给定$l_n$为其长度,$d_n=d(0,\gamma_n)$是其到原点的最短距离,若(1)$\gamma_n$在$\gamma_{n+1}$内部,且原点在$\gamma_1$内部;(2)$d_n\to\infty$;(3)$\cbr{l_n/d_n}$有界.
+
+\begin{enumerate}[resume]
+    \item (特殊域上的Mittag-Leffler定理)$\cbr{\gamma_n}$是正则曲线列,$f$是$\C$上的亚纯函数.若\\
+    (1)$f$全部互不相同极点$S=\cbr{a_n}$是$f$的一阶极点,$c_n=\Res(f,a_n)$;(2)原点不是$f$极点;(3)$f$在$\bigcup_{n\geq 1}\gamma_n$上有界,\\
+    则$f(z)=f(0)+\sum_{n\geq 1}c_n\br{\frac{1}{z-a_n}+\frac{1}{a_n}}$,且$\rhs$在$\C-S$上内闭一致收敛.\label{特殊域上的ML定理}
+\end{enumerate}
+\begin{proof}
+    记$D_m$为$\gamma_m$围成的单连通域,在其内考虑$I_m=\frac{1}{2\pi\i}\int_{\gamma_m}\frac{f(\zeta)}{\zeta(\zeta-z)}\d\zeta$.考虑其中极点$0,z,a_n\in D_m$分别有留数$-\frac{f(0)}{z},\frac{f(z)}{z},\frac{c_n}{a_n(a_n-z)}$,得到$f(z)=f(0)+\sum_{a_n\in D_m}c_n\br{\frac{1}{z-a_n}+\frac{1}{a_n}}+zI_m$在$D_m$中圆盘去掉所有极点上成立.最后估计$\abs{zI_m}$,注意限制$z$在$D_m$中的圆盘里(有界),运用题设可估计出其趋于0.注意到定义总在有界圆盘上,因此最后得到的式子是内闭一致收敛的,得证.
+\end{proof}
+
+\begin{enumerate}[resume]
+    \item (特殊域上的Weierstrass因式分解定理)$\cbr{\gamma_n}$是正则曲线列,$f$是整函数.若\\
+    (1)$f$全部互不相同零点$S=\cbr{a_n}$的阶数为$\cbr{k_n}$;(2)$f(0)\neq 0$;(3)$f'/f$在$\bigcup_{n\geq 1}\gamma_n$上有界,\\
+    则$f(z)=f(0)\e^{\frac{f'(0)}{f(0)}z}\prod_{n\geq 1}\br{1-\frac{z}{a_n}}^{k_n}\e^{\frac{k_n}{a_n}z}$,且$\rhs$在$\C-S$上内闭一致收敛.\label{特殊域上的WFac定理}
+\end{enumerate}
+\begin{proof}
+    对$f'/f$运用上定理,并注意到$\Res\br{f'/f,a_n}=k_n$,于是$\frac{f'(z)}{f(z)}=\frac{f'(0)}{f(0)}+\sum_{n\geq 1}\br{\frac{k_n}{z-a_n}+\frac{k_n}{a_n}}$内闭一致收敛.考虑$\Log\frac{f(z)}{f(0)}=\int_{0}^{z}\frac{f'(\zeta)}{f(\zeta)}\d\zeta=\frac{f'(0)}{f(0)}z+\sum_{n\geq 1}k_n\br{\log\br{1-\frac{z}{a_n}}+\frac{k_n}{a_n}z}$,即得上式.
+\end{proof}
+
+\begin{enumerate}[resume]
+    \item (Blaschke定理)$S=\cbr{a_n}$是$RB-0$中互不相同点列,$\cbr{k_n}\subset\N$.若$\sum_{n\geq 1}k_n(R-\abs{a_n})<\infty$,则$\prod_{i=1}^n\br{\frac{R(a_i-z)}{R^2-\bar{a}_iz}}^{k_i}\br{\frac{\abs{a_i}}{a_i}}^{k_i}$在$RB$上内闭一致收敛于一个全纯映射$f:RB\to B$,使其恰以$S$为零点集,$a_n$处的零点阶数为$k_n$.
+\end{enumerate}
+\begin{proof}
+    首先由$k_n\to \infty, R-\abs{a_n}\to 0$,故$a_n$不在$RB$中收敛, $RB-S$是域.\tbc
+\end{proof}
+
+我们给出一些例子:\begin{itemize}
+    \item $\cot z-\frac{1}{z}$在极点$\pm n\pi$处的Laurent级数主要部分.\\
+    注意到其全部极点$\pm n\pi$都是一阶的,且$\Res(f,\pm n\pi)=1,f(0)=0$.之所以去掉$\frac{1}{z}$是为了满足原点处不是极点的条件,以可运用定理\ref{特殊域上的ML定理}.考虑边长$\br{2n-1}\pi$且以原点为中心,平行于坐标轴的正方形折线,这是一族正则曲线列,且在上可估计出$\abs{\cot(z)}$有界,因此可运用定理\ref{特殊域上的ML定理}.我们有
+    $$\cot z-\frac{1}{z}=\sum_{n\geq 1}\br{\frac{1}{z-n\pi}+\frac{1}{n\pi}+\frac{1}{z+n\pi}-\frac{1}{n\pi}}=\sum_{n\geq 1}\frac{2z}{z^2-n^2\pi^2}$$
+    或$$\pi\cot \pi z=\frac{1}{z}+\sum_{n\geq 1}\frac{2z}{z^2-n^2}$$
+    \item $\sin z$的因子分解.\\
+    注意到对$f(z)=\frac{\sin z}{z}$有$\frac{f'(z)}{f(z)}=\cot z-\frac{1}{z}$,由定理\ref{特殊域上的WFac定理}得到
+    $$\frac{\sin z}{z}=1\cdot \e^{0}\prod_{n\geq 1}\br{\br{1-\frac{z}{n\pi}}\e^{\frac{z}{n\pi}}\br{1+\frac{z}{n\pi}}\e^{-\frac{z}{n\pi}}}=\prod_{n\geq 1}\br{1-\frac{z^2}{n^2\pi^2}}$$
+    \item $f(z)=\frac{\pi^2}{\sin^2 \pi z}$的另一种因式分解.\\
+    注意到其在$n$处是二阶极点,且在原点处的主要部分为$\frac{1}{z^2}$.类似给出极点处的,可知$f$的主要部分为$\sum_{n\in\Z}\frac{1}{(z-n)^2}$,下证全纯部分$g=0$.由于$f$及其主要部分有周期为1,故$g$也是.而$\abs{\im z}\to\infty$时$f\to 0, \sum_{n\in\Z}\frac{1}{(z-n)^2}\to 0$.因此这可以给出$\abs{g}$在$\re z\in[0,1]$上有界且无穷远处极限为0,故$g=0$.因此$\frac{\pi^2}{\sin^2 \pi z}=\sum_{n\in\Z}\frac{1}{(z-n)^2}$.
+\end{itemize}
+
+\subsection{$\Gamma$函数和Riemann $\zeta$函数}
+\paragraph{$\Gamma$函数}
+我们首先介绍一种仅以负整数为零点的最简单函数$G(z)=\prod_{n\geq 1}\br{1+\frac{z}{n}}\e^{-\frac{z}{n}}$.我们可以得到:
+\begin{itemize}
+    \item $zG(z)G(-z)=\frac{\sin \pi z}{\pi}$.
+    \item $G(z-1)=z\e^\gamma G(z)$.\\
+    \hint{注意到$G(z-1)$的零点仅比$G(z)$的多了一个原点,故有$G(z-1)=z\e^{\gamma(z)}G(z)$.取对数导数并相消,得到$\gamma'(z)=0$,可以直接计算$G(0)=\e^\gamma G(1)$可知$\gamma=\lim H_n-\log n$是Euler常数.}
+\end{itemize}
+令$H(z)=\e^{\gamma z}G(z),\Gamma(z)=\frac{1}{zH(z)}$,有
+
+\begin{enumerate}
+    \item $\Gamma(z+1)=z\Gamma(z),\Gamma(1)=1$,因此$\Gamma(n+1)=n!$.
+    \item $\Gamma(z)=\frac{\e^{-\gamma z}}{z}\prod_{n\geq 1}\br{1+\frac{z}{n}}\rev\e^{\frac{z}{n}}$.
+    \item $\Gamma(z)\Gamma(1-z)=\frac{\pi}{\sin \pi z}$.
+    \item $\Gamma(z)$的极点为非正整数,但没有零点.
+\end{enumerate}
+
+注意到$(\log \Gamma(z))''=\sum_{n\geq 0}\frac{1}{(z+n)^2}$,可以写出$(\log \Gamma(z)+\log\Gamma(z+1/2))''=2(\log(2z))''$,积分两次并代入$\Gamma(1/2)=\sqrt{\pi},\Gamma(1)=1$,我们可以得到
+\begin{enumerate}[resume]
+    \item (Legendre加倍公式)$\sqrt{\pi}\Gamma(2z)=2^{2z-1}\Gamma(z)\Gamma\br{z+\frac{1}{2}}$.
+\end{enumerate}
+同理有
+\begin{enumerate}[resume]
+    \item (Gauss公式)$(2\pi)^{\frac{n-1}{2}}\Gamma(z)=n^{z-\frac{1}{2}}\prod_{n=0}^{n-1}\Gamma\br{\frac{z+k}{n}}$.
+\end{enumerate}
+
+\paragraph{Stirling公式}本节我们用留数来证明Stirling公式.Ahlfors上的证明十分冗长且不易懂,在此直接引用他人对证明的解释:\href{https://michaelcweiss.files.wordpress.com/2019/07/stirling-ahlfors.pdf}{Stirling's Formula: Ahlfors' Derivation}.
+
+\paragraph{Riemann $\zeta$函数}$\zeta(s)=\sum_{n\geq 1}n^{-s}, \re s>1$.
+
+首先我们有
+\begin{enumerate}
+    \item $\frac{1}{\zeta(s)}=\prod_{p\in\P}(1-p^{-s})$.
+\end{enumerate}
+展开$\zeta(s)\prod_{n=1}^N(1-p_n)^{-s}=\sum_{m\in\N}m^{-s}$,$m$是不被$2,3,\cdots,p_n$整除的整数,因此$N\to\infty$时为1.
+
+其次我们希望扩张$\zeta(s)$到$\C$上.我们有:
+\begin{enumerate}[resume]
+    \item $\zeta(s)=-\frac{\Gamma(1-s)}{2\pi\i}\int_C\frac{(-z)^{s-1}}{\e^z-1}\d z$,其中$C$是不包含$2k\pi\i$且包含正实轴的路径,$(-z)^{s-1}$定义在$\C-\R_{\geq 0}$上.\\
+    因此,$\zeta$函数可以扩张为$\C$中的亚纯函数,仅有极点1,留数为1.
+\end{enumerate}
+\begin{proof}
+    考虑$\Gamma(z)$的积分定义式,代换$x$为$nx$并对$n$求和,得到$\zeta(s)\Gamma(s)=\int_0^\infty\frac{x^{s-1}}{\e^x-1}\d x$.此处由于绝对收敛,积分和求和可以换序.
+
+    将$\rhs$拆为上岸和下岸上的实变积分之和,注意到$(-z)^{s-1}=x^{s-1}\e^{\pm(s-1)\pi\i}$,因此$\rhs=2\i\sin(s-1)\pi\zeta(s)\Gamma(s)$.稍微代换可得上式.
+
+    $\zeta$在右半平面总解析,故抹去所有$\Gamma(1-s)$的零点,仅剩1.留数为1仅需注意到递推公式.
+\end{proof}
+
+另一方面,注意到$\frac{1}{\e^z-1}=\frac{1}{z}-\frac{1}{2}+\sum_{n\geq 1}(-1)^{k-1}\frac{B_k}{(2k)!}z^{2k-1}$,\hint{\tbc}代入定理所得式,我们可以得到如下数值:$\zeta(0)=-\frac{1}{2},\zeta(-2m)=0,\zeta(1-2m)=(-1)^m\frac{B_m}{2m}$.$z=-2m$被称为平凡零点.
+
+最后我们给出$\zeta$函数的函数方程.
+\begin{enumerate}[resume]
+    \item $\zeta(s)=2^s\pi^{s-1}\sin\frac{\pi s}{2}\Gamma(1-s)\zeta(1-s)$,或$\zeta(1-s)=2^{1-s}\pi_{-s}\cos\frac{\pi s}{2}\Gamma(s)\zeta(s)$.
+\end{enumerate}
+\begin{proof}
+    我们考虑正方形$C_n$,中心在原点,平行于坐标轴,边长为$(4n+2)\pi$,再将正方形去掉正实轴部分,得到曲线$C_n-C$.注意到这个曲线环绕$\pm 2m\pi\i$一圈,而在这些点上$\frac{(-z)^{s-1}}{\e^z-1}$有一阶极点,其留数为$(\mp 2m\pi\i)^{s-1}$.$\frac{1}{2\pi\i}\int_{C_n-C}\frac{(-z)^{s-1}}{\e^z-1}\d z$由留数定理,变形得到$2\sum_{m=1}^n(2m\pi)^{s-1}\sin\frac{\pi s}{2}\to 2^s\pi^{s-1}\sin\frac{\pi s}{2}\zeta(1-s)$.
+
+    另一方面,$C_n$上的线积分在$n$足够大时趋于0,因此仅有$-C$上的积分作贡献.由上定理,积分趋于$\frac{\zeta(s)}{\Gamma(1-s)}$.
+\end{proof}
+我们也可以表述定理为如下形式:
+\begin{enumerate}[resume]
+    \item $\xi(s)=\frac{s(1-s)}{2}\pi^{-\frac{s}{2}}\Gamma\br{\frac{s}{2}}\zeta(s)$是整函数,且满足$\xi(s)=\xi(1-s)$.\\
+    \hint{整函数仅需注意到每个函数的一阶极点被其他的零点抵消,后者需要变换后使用Legendre加倍公式.}
+\end{enumerate}
+
+$\xi(s)$的阶由$\zeta$和$\Gamma$函数界定,由Stirling公式我们可以估计后者,下面来估计$\zeta$函数.
+
+注意到$\int_{N}^{\infty}\floor{x}x^{-s-1}\d x=s\rev\br{N^{1-s}+\sum_{N+1}^{\infty}n^{-s}}$,因此$\zeta(s)=\sum_{n=1}^{N}n^{-s}+\frac{N^{1-s}}{s-1}-s\int_{N}^{\infty}(x-\floor{x})x^{-s-1}\d x$,因此对足够大的$s$,$\abs{\zeta(s)}\leq N+A\abs{N}^{-\frac{1}{2}}\abs{s}$.
+
+\subsection{Jensen公式和Hadamard定理}
+\begin{enumerate}
+    \item (Jensen公式)\footnote{Jensen公式的证明来自RCA.}$f\in H(RB),f(0)\neq 0$.在$r\overline{B}$内$f$有零点$a_1,\cdots,a_N$,出现次数为零点的阶数.有
+    $$\abs{f(0)}\prod_{n=1}^{N}\frac{r}{\abs{a_n}}=\exp\br{\frac{1}{2\pi}\int_{-\pi}^{\pi}\log\abs{f(r\e^{\i\theta})}\d\theta}.$$
+\end{enumerate}
+\begin{proof}
+    我们记$\abs{z}=r$上的所有零点为$a_{m+1},\cdots,a_N$,构造$g(z)=f(z)\prod_{n=1}^m\frac{r^2-\abs{a_n}z}{r(a_n-z)}\prod_{n=m+1}^N\frac{a_n}{a_n-z}$.注意到$g$在$(r+\varepsilon)B$上调和且没有零点,因此由均值性质$\log\abs{g(0)}=\frac{1}{2\pi}\int_{-\pi}^{\pi}\log\abs{g(r\e^{\i\theta})}\d\theta.$代入$g$定义,$\abs{g(0)}=\abs{f(0)}\prod_{n=1}^m\frac{r}{\abs{a(n)}}$.
+
+    对于$\abs{z}=r$,注意到$\abs{\frac{r^2-\bar{a}_nz}{r(a_n-z)}}=1$,因此$\log\abs{g(r\e^{\i\theta})}-\log\abs{f(r\e^{\i\theta})}=\sum_{n=m+1}^N\log\abs{1-\e^{\i(\theta-\theta_0)}}$.代入积分式,有$\int\rhs\d\theta=0$,因此定理得证.
+    
+    下证$I=\int_{-\pi}^{\pi}\log\abs{1-\e^{\theta}}\d\theta=0$.注意到$\int_0^{\pi}\log\sin x\d x=-\pi\log 2$ \footnotemark,因此$$\begin{aligned}
+        I=&\int_{0}^{2\pi}\log\abs{1-\e^{\theta}}\d\theta=\int_{0}^{2\pi}\br{\log\abs{\frac{\e^{\i\theta}-1}{2}}+\log 2}\d\theta=\int_{0}^{2\pi}\log\abs{\frac{\e^{\i\frac{\theta}{2}}-\e^{-\i\frac{\theta}{2}}}{2\i}}\d\theta+2\pi\log 2\\
+        =&\int_{0}^{2\pi}\log\sin\frac{\theta}{2}\d\theta+2\pi\log 2=2\int_0^{\pi}\log\sin x\d x+2\pi\log 2=0
+    \end{aligned}$$
+\end{proof}
+\footnotetext{注意到$\sin x=\sin (\pi-x)$,因此原式$=2I_1=2\int_0^{\frac{\pi}{2}}\log\sin x\d x$.考虑区间反演公式,$I_1=\int_0^{\frac{\pi}{2}}\log\sin\br{\frac{\pi}{2}-x}\d x=\int_0^{\frac{\pi}{2}}\log\cos x\d x$.因此$2I_1=\int_0^{\frac{\pi}{2}}\log(\sin x\cos x)\d x=\int_0^{\frac{\pi}{2}}\log\sin 2x\d x-\int_0^{\frac{\pi}{2}}\log 2\d x=I_2-\frac{\pi}{2}\log 2$.注意到$I_2=\frac{1}{2}\int_0^{\pi}\log\sin t\d t=I_1$,因此$I_1=-\frac{\pi}{2}\log 2,2I_1=-\pi\log 2$.}
+
+这个公式也可以写成$$\log\abs{f(0)}=-\sum_{n=1}^N\log\frac{r}{\abs{a_n}}+\frac{1}{2\pi}\int_{0}^{2\pi}\log\abs{f(r\e^{\i\theta})}\d\theta.$$
+表明了圆上的模$\abs{f(z)}$与其各零点的模之间的关系.
+
+接着我们来看Hadamard定理.在此之前我们定义整函数的阶$\lambda=\varlimsup_{r\to\infty}\frac{\log\log M(r)}{r}$,其中$M(r)=\sup_{\abs{z}=r}\abs{f(z)}$.
+
+我们给出:
+\begin{enumerate}[resume]
+    \item (Hadamard定理)整函数的亏格$h$和阶$\lambda$满足$h\leq \lambda\leq h+1$.
+\end{enumerate}
+\tbc
+
+\subsection{正规族}
+我们定义一个函数族$\mathcal{F}$在$\Omega$上是正规的,若其中任意序列都有在$\Omega$中任意紧集上一致收敛的子列.换言之, $\mathcal{F}$在任意$S^K$中列紧.我们构造紧集$K_k=\cbr{x\in\Omega:d(x,\F^n-\Omega)\geq\frac{1}{k}}\cap k\overline{B},\Omega=\bigcup K_k$,则我们在$S^\Omega$中定义度量$\rho(f,g)=\sum_{k\geq 1}2^{-k}\sup_{x\in K_k}\frac{d(f(z),g(z))}{1+d(f(z),g(z))}$.注意到这实际上是将紧集上函数的距离拓展到开集上.
+
+\begin{enumerate}
+    \item $\mathcal{F}$正规$\iff \mathcal{F}$在$\rho$下相对紧.\\\hint{注意到$\mathcal{F}$正规,则其中序列在度量$\rho$下总有收敛子列,即列紧,即相对紧.推理反向亦然.}
+\end{enumerate}
+由此,Arzela-Ascoli定理可以将条件改为$\mathcal{F}$正规,这是另一种叙述.定理本身在此不赘叙.
+我们还有:
+\begin{enumerate}[resume]
+    \item (Montel定理)全纯函数族$\mathcal{F}$关于$\C$正规$\iff \mathcal{F}$在每个紧集上一致有界,即局部有界.\hint{证明见泛函分析读书笔记.}
+\end{enumerate}
+因此我们可以称关于$\C$正规为局部有界.
+\begin{enumerate}[resume]
+    \item 局部有界全纯函数族具有局部有界导数.\hint{同上证明的估计.}
+\end{enumerate}
+
+函数族$\mathcal{F}$关于区域$\Omega$正规的经典定义为,每个序列都有子列在每个$\Omega$中紧集上或一致收敛或一致趋于$\infty$.这个定义实际上是在复球面上作考察,并将亚纯函数族也囊括到上述讨论中.我们有
+\begin{enumerate}[resume]
+    \item 全纯(亚纯)函数族在任意紧集上按球面距离一致收敛,则极限函数是全纯(亚纯)的或恒为$\infty$的.\\
+    \hint{若$f(z_0)\neq \infty$,则其邻域中$f_n$均非$\infty$,故由Weierstrass定理,$f$在邻域中全纯.若$=\infty$,则$1/f$在其附近解析,故$f$亚纯.}
+    \item 全纯或亚纯函数族在经典意义下正规$\iff \rho(f)=\frac{2\abs{f'(z)}}{1+\abs{f(z)}^2}$局部有界.
+\end{enumerate}
+
+\end{document}
+% \subsection{多项式与有理函数}
+% \begin{itemize}
+%     \item (Lucas定理)若多项式的根在半平面(某直线的一侧),则其导数的根也在此区域.\\
+%     \hint{考虑半平面$\im \frac{z-a}{b}<0$,根在半平面内,若$z$不在,则$\im \frac{z-\alpha_k}{b}=\frac{z-a}{b}-\frac{\alpha_k-a}{b}>0$.由于$\frac{P'(z)}{P(z)}=\sum_{k=1}^n\frac{1}{z-\alpha_k}$,则$\im \frac{bP'}{P}=\sum\im\frac{b}{z-\alpha_k}<0$(因为取倒数后$\im$会变号).因此$P'$的根不在这半平面.}\\
+%     由此可知,多项式的根的凸包包含所有多项式导数的根.
+% \end{itemize}
+
+感觉越往后写东西越复杂是其次,写得越冗长是最麻烦的.冗长意味着不简洁明了,看好久才能看懂我的意思.我觉得最重要的问题不是详细,或是给我足够的细节让我能够推出,而是给出一个大的框架让我能够想到这个点子到底是什么意思.
+换句话说,我需要叙述定理到底做了什么,但是不应该直接写一个一个式子,那样的话反而不利于直接理解.我可以写估计出,但不要写$\varepsilon\to 0$时什么小于什么.

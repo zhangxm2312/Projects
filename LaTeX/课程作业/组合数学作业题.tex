@@ -1,0 +1,184 @@
+\documentclass{article}
+\input{../preamble.tex}
+
+\begin{document}
+\section{第三章}
+\paragraph{3.15}(1)$X$为$n=2k$元集合,其因子(factor)是将$X$分为$k$个大小为2的集合的分划,证明$X$的因子有$(2k-1)!!$个.\\
+(2)证明: $X$上的置换$\sigma$可以互换某些$k$-子集及其补集$\iff\sigma$的所有轮换长度为偶数.证明满足条件的置换有$((2k-1)!!)^2$个.\\%。提示：任意一对因子定义了$X$的一个不相交循环分解，反之亦然。此对应关系不是一一对应，但非单射性正好平衡。
+(3)证明从$S_n$中随机取出的置换互换某个$n/2$-子集及其补集的概率为$O(1/\sqrt{n})$.%提示：你可能需要两个分析事实：1.对于正的$x$，有$1-x<e^{-x}$；2.$\sum_{i=1}^n(1/i)=\log n+O(1)$。
+\begin{proof}
+    (1)在$X$中按顺序取出$k$个大小为2的集合,有$\binom{n}{2,\cdots,2}=\frac{n!}{2!\cdots 2!}=2^{-k}n!$种方式,从而无序取,即分划$X$为$k$个大小为2的集合的方式有$\frac{1}{k!}\binom{n}{2,\cdots,2}=\frac{n!}{2^k k!}=\frac{(2k)!}{(2k)!!}=(2k-1)!!$种.
+
+    (2)$\implies:$由于$A,B$中元素在置换下互换,从而在偶数次置换作用下才能返回自身,从而置换中所有轮换长度为偶数.$\impliedby:$在置换的每个轮换中将元素交替的染为红色和蓝色,则红蓝元素各有$k$个,且在置换作用下互换.
+
+    \textbf{证明}:记满足条件的置换集合为$A\subset S_n$.再以$X$为顶点集,以$\sigma\in A$构造无向图:$\forall x\in X$连接$\cbr{x,x\sigma},\cbr{x,x\sigma\rev}$,得到的无向图全集为$B$.再记所有$X$中因子的有序对构成的集合为$C$.显然$\abs{C}=(2k-1)!!^2$.
+
+    先考虑映射$f:A\to B,\forall \sigma\in A, f(\sigma)$即为所构造的无向图.注意到$\sigma$的$c(\sigma)$个轮换对应到无向图$G=f(\sigma)$的$c(G)$个圈分支,而轮换取逆对应于圈的定向取反,因此$\abs{f\rev(G)}=2^{c(G)}, \abs{A}=\sum_{G\in B}\abs{f\rev(G)}=\sum_{G\in B}2^{c(G)}$.再考虑映射$g:C\to B$,对于因子对$(f_1,f_2)\in C, G=g(f_1,f_2)$是以$X$为顶点集,$f_1\cup f_2$作为边集构造的无向图.可以认为$(f_1,f_2)$相当于将$E(G)\cap f_1$染红,$E(G)\cap f_2$染蓝,即对应于$E(G)$的一个边2-染色.而$G$为$c(G)$个偶长度圈的并,因此其有$2^{c(G)}$种边2-染色方式,因此$\abs{g\rev(G)}=2^{c(G)}$.综上所述,
+    $$\abs{A}=\sum_{G\in B}\abs{f\rev(G)}=\sum_{G\in B}2^{c(G)}=\sum_{G\in B}\abs{g\rev(G)}=\abs{C}=(2k-1)!!^2$$
+
+    % \begin{quotation}
+    %     从一个仅含偶长度循环的排列出发，我们可以构造出一对 1-因子如下：对于任意一个长度为 2 的循环，它同时被分配给这两个 1-因子；对于一个长度更长的循环，我们将其中相邻成对的元素交替分配给这两个 1-因子。由于起点的位置并未固定，这个过程并非唯一的。实际上，一个排列会产生 $2^d$个有序的 1-因子对，其中$d$表示长度大于 2 的循环的个数。
+        
+    %     反过来，假设给定了一对 1-因子，它们的并集构成一个所有顶点的度都为 2 的图，因此是若干个不相交的回路的并集。这些回路的长度都是偶数（因为在回路中两个 1-因子所形成的边交替出现）。我们将这些回路视为一个排列的循环。事实上，对于一个长度大于 2 的回路，我们在决定遍历方向时有两个选择。所以由该对 1-因子所得到的排列个数为$2^d$，这里的$d$与上文所指相同。
+    % \end{quotation}
+
+    (3)由计算立得:
+    $$\frac{(2k-1)!!^2}{(2k)!}=\frac{(2k-1)!!}{(2k)!!}=\prod_{i=1}^k \frac{2i-1}{2i}=\prod_{i=1}^k \br{1-\frac{1}{2i}}\leq \prod_{i=1}^{k}\e^{-\frac{1}{2i}}=\e^{-\sum_{i=1}^k \frac{1}{2i}}=\e^{-\frac{\log k}{2}+O(1)}=O(k^{-1/2})$$
+\end{proof}
+
+\section{第四章}
+\paragraph{4.1}(1)有$n$个座位排成一排,证明在这些座位中选择一个子集,使得任意两个所选座位不相邻的方式数为$F_{n+1}$.\\
+(2)如果这$n$个座位围成一个圆,证明选择方式的数量为$F_n+F_{n-2} (n\geq 2)$.
+\begin{proof}
+    (1)记方式数为$a_n$.对于$n\geq 3$时的选取方式,若第$n$个座位被选取,则第$n-1$个座位不能被选取,从而前$n-2$个座位有$a_{n-2}$种选取方式;若第$n$个座位不被选取,则前$n-1$个座位有$a_{n-1}$种选取方式,即$a_n=a_{n-1}+a_{n-2}(n\geq 3)$.再注意到$a_1=2=F_2, a_2=3=F_3$,从而可知$a_n=F_{n+1}$.
+
+    (2)记方式数为$b_n$.对于$n\geq 3$时的选取方式,若第$n$个座位被选取,则第$n-1$个和第1个座位不能被选取,从而第2到第$n-2$个座位有$a_{n-3}=F_{n-2}$种选取方式;若第$n$个座位不被选取,则前$n-1$个座位有$a_{n-1}=F_n$种选取方式,从而$b_n=F_n+F_{n-2}$.另外$b_2=3=F_2+F_0$,从而得证.
+\end{proof}
+
+\paragraph{4.10}$f(n)$满足
+$$f(1)=1,\qquad f(n+1)=\begin{cases} 
+    2f(n), & n \text{ odd}, \\ 
+    2f(n)+1, & n \text{ even}.
+\end{cases}$$
+证明$f(n+2)=f(n+1)+2f(n)+1$,由此给出$f(n)$的通项公式.
+\begin{proof}
+    若$n$为奇数,则$f(n+2)=2f(n+1)+1=f(n+1)+2f(n)+1$;若$n$为偶数,则$f(n+2)=2f(n+1)=f(n+1)+2f(n)+1$.由于递推公式的齐次形式$f(n+2)-f(n+1)-2f(n)=0$的特征方程为$x^2-x-2=0$,解为2与$-1$,且注意到递推公式有特解$f(n)\equiv -\frac{1}{2}$,从而通解为$f(n)=c_1 2^n+c_2 (-1)^n-\frac{1}{2}$.带入$f(1)=1,f(2)=2$可得$f(n)=\frac{2^{n+1}}{3}-\frac{(-1)^n}{6}-\frac{1}{2}=\frac{2^{n+2}+(-1)^{n+1}-3}{6}$.
+\end{proof}
+
+\paragraph{4.13}称$[n]$上的置换$\pi\in S_n$为连通的,若$\forall 1<k<n, \pi([k])\neq [k]$.令$c_n$为连通置换的数量,证明$\sum_{i=1}^n c_i(n-i)!=n!$.并由此证明:$F(t)=\sum_{n\geq 1}n! t^n,G(t)=\sum_{n\geq 1}c_n t^n$是序列$(n!)$和$(c_n)$的生成函数,则有$1-G(t)=(1+F(t))^{-1}$.
+\begin{proof}
+    对于$k\in [n]$,$S_k$中的连通置换可通过添加$\cbr{k+1,\cdots,n}$上的置换得到$S_n$中的置换,而有$(n-k)!$种添加方式,从而$S_n$中有$c_k(n-k)!$个置换满足$\min\cbr{k\in [n]|\pi([k])=[k]}$.而按照$k$对$S_n$作划分,可得$n!=\sum_{k=1}^{n}c_k(n-k)!$.故有
+    $$G(t)(1+F(t))=\br{\sum_{k=1}^{\infty}c_k t^k}\br{\sum_{n=0}^{\infty}n! t^n}=\sum_{n=1}^{\infty}\sum_{k=1}^{n}c_k(n-k)!=F(t)$$
+    从而$G(1+F)=F, 1-G=1-\frac{F}{1+F}=(1+F)\rev$.
+\end{proof}
+
+\section{第五章}
+\paragraph{5.1}一项民意调查显示,选民对A,B,C三位总统候选人满意的比例分别为 65\%,57\%,58\%.此外, 28\%的人接受A或B, 30\%的人接受A或C, 27\%的人接受B或C, 12\%的人对三者均满意.你的结论是什么?
+\begin{proof}
+    记$A,B,C$为支持候选人A,B,C的选民集合,$X$是全集,由容斥定理知
+    $$\abs{(A\cup B\cup C)^c}=\abs{X}-(\abs{A}+\abs{B}+\abs{C})+(\abs{A\cap B}+\abs{A\cap C}+\abs{B\cap C})$$
+    从而对所有候选人都不满意的选民比例为$1-(0.65+0.57+0.58)+(0.28+0.30+0.27)=0.05=5\%$.
+\end{proof}
+
+\paragraph{5.3}证明$S(n,1)=1, S(n,2)=2^{n-1}-1, S(n,n-1)=\binom{n}{2}$,并给出$S(n,n-2)$的表达式.
+\begin{proof}
+    $S(n,k)$的定义为分$[n]$为$k$部分的分划数.$k=1$时显然仅有一种分划,$S(n,1)=1$;$k=2$时,注意到从$[n]$中取非空非全集的子集及其补集形成一种分划,而取该子集与其补集形成的分划相同,从而$2S(n,2)=2^n-2, S(n,2)=2^{n-1}-1$. $k=n-1$时每种分划对应于在$[n]$中取2个元素作为1个子集,其他$n-2$个元素分别作为$n-2$个子集,从而$S(n,n-1)=\binom{n}{2}$.
+
+    若$k=n-2$,即有两种可能:(1)将$[n]$分为1个大小为3的子集与$n-3$个大小为1的子集,即有$\binom{n}{3}$种分划;(2)分$[n]$为2个大小为2的子集与$n-4$个大小为1的子集,从而有$\frac{1}{2!}\binom{n}{2,2}=\frac{n!}{2^3(n-4)!}=3\binom{n}{4}$种分划.综上知$S(n,n-2)=\binom{n}{3}+3\binom{n}{4}$.
+\end{proof}
+
+\paragraph{5.4}用递推关系证明$\abs{s(n,1)}=(n-1)!$,并由此证明$n$元集上的循环置换个数为$(n-1)!$.
+\begin{proof}
+    $\abs{s(n,k)}$有递推关系$\abs{s(n,k)}=(n-1)\abs{s(n-1,k)}+\abs{s(n,k-1)}$,从而有$\abs{s(n,1)}=(n-1)\abs{s(n-1,1)}+\abs{s(n,0)}$,而$s(n,0)=0$,故
+    $$\abs{s(n,1)}=(n-1)\abs{s(n-1,1)}=(n-1)(n-2)\abs{s(n-2,1)}=\cdots=(n-1)!\abs{s(1,1)}=(n-1)!$$
+    而由定义知$\abs{s(n,1)}$即$S_n$中仅含1个轮换(即循环置换)的置换个数,从而$S_n$中有$(n-1)!$个循环置换.
+\end{proof}
+
+\section{第六章}
+\paragraph{6.1}(1)证明$n=1,2,3,4$时$n$阶拉丁方的个数为1,2,12,576.\\
+(2)通过对拉丁方中行,列或符号的置换,证明1,2,3阶拉丁方唯一,而4阶拉丁方有两个.\\
+(3)对于两个类型的4阶拉丁方,其中一个有正交伴侣,而另一个没有.
+\begin{proof}
+    (1)$n=1$时显然;$n=2$时,若取首行为$(1,2)$,则末行仅能为$(2,1)$,可再对方阵符号$\cbr{1,2}=[2]$作变换,有$2!$种变换,从而有2种2阶拉丁方.$n=3$时,若取首行为$(1,2,3)$,则次行可能为$(2,3,1)$或$(3,1,2)$,从而末行被前两行唯一确定,故此时有2种可能,再考虑方阵符号$[3]$的变换有$3!$种,故总共有$2\cdot 3!=12$种可能.
+
+    $n=4$时,首先取首行为$(1,2,3,4)$,则次行与$S_4$中的错排$\sigma$一一对应,错排由6个4-轮换与3个型为$[2,2]$的置换构成.而第三行中的任意数$a_{3i}\neq i, i\sigma$,故仅有2种可能.构造第三行第$i$个数可选取数的集合为$A_i=[4]-\cbr{i,i\sigma}$.
+    \begin{itemize}
+        \item 若$\sigma$为4-轮换则$\abs{A_i\cap A_{i\sigma}}=\abs{A_i\cap A_{i\sigma\rev}}=1$,从而确定了$a_{3i}$即可唯一确定$a_{3,i\sigma}$或$a_{3,i\sigma\rev}$,以此类推从而唯一确定第三行.所以该情形有2种可能.
+        \item 若$\sigma$是型为$[2,2]$的置换,则由$i=i\sigma^2$知$A_i=A_{i\sigma}$,因此确定了$a_{3i}$仅能迫使$a_{3,i\sigma}\in A_{i\sigma}-a_{3i}$被唯一确定,其余两个数同样有2种可能.从而此情形有$2\cdot 2=4$种可能.
+    \end{itemize}
+    而末行被前三行唯一确定,因此首行为$(1,2,3,4)$时有$6\cdot 2+3\cdot 4=24$种可能.再考虑对方阵的符号$[4]$变换有$4!$种可能,故共有$24\cdot 4!=576$种可能.
+
+    (2)对于全体$L(n)$个$n$阶拉丁方,可首先通过列变换将首行变为$(1,2,\cdots,n)$,再通过对剩下$(n-1)$行的行变换使首列为$(1,2,\cdots,n)\T$.而列变换有$n!$个,行变换有$(n-1)!$个,故能得到至多$\frac{L(n)}{n!(n-1)!}$个拉丁方的等价类,带入$n=1,2,3,4$即分别为$1,1,1,4$,从而仅需证明$n=4$的情形.由上讨论知首行首列均为$(1,2,3,4)$的4阶拉丁方仅有4个,分别为:
+    $$(A)\quad\begin{matrix}
+        1 & 2 & 3 & 4 \\
+        2 & 3 & 4 & 1 \\
+        3 & 4 & 1 & 2 \\
+        4 & 1 & 2 & 3 \\
+    \end{matrix}\qquad (B)\quad\begin{matrix}
+        1 & 2 & 3 & 4 \\
+        2 & 4 & 1 & 3 \\
+        3 & 1 & 4 & 2 \\
+        4 & 3 & 2 & 1 \\
+    \end{matrix}\qquad (C)\quad\begin{matrix}
+        1 & 2 & 3 & 4 \\
+        2 & 1 & 4 & 3 \\
+        3 & 4 & 1 & 2 \\
+        4 & 3 & 2 & 1 \\
+    \end{matrix}\qquad (D)\quad\begin{matrix}
+        1 & 2 & 3 & 4 \\
+        2 & 1 & 4 & 3 \\
+        3 & 4 & 2 & 1 \\
+        4 & 3 & 1 & 2 \\
+    \end{matrix}$$
+    注意到对(D)中符号作置换$(1234)$,将末行移至首行,再将第二列移至末列,即得到(B);对(D)中符号作置换$(13)(24)$,将前两行移至后两行即得到(C).从而可得两种4阶拉丁方(A)和(C).
+
+    (3)首先注意到
+    $$\begin{matrix}
+        1 & 2 & 3 & 4 \\
+        3 & 4 & 1 & 2 \\
+        4 & 3 & 2 & 1 \\
+        2 & 1 & 4 & 3 \\
+    \end{matrix}$$
+    与(C)相互正交.对于(A),若有拉丁方$B=(b_{ij})$与其正交,则取数对$(k,1), \forall k\in [4]$,则有唯一的4个位置$(i_k,j_k)$使得$a_{i_k,j_k}=k, b_{i_k,j_k}=1$,显然这些位置必须在不同的行列中.考虑置换$\sigma:k\mapsto i_k, \tau:k\mapsto j_k$,则$a_{k\sigma,k\tau}$取遍$[4]$,从而
+    $$\sum_{k=1}^{4}a_{k\sigma,k\tau}=\frac{4(4+1)}{2}\equiv 2\bmod 4$$
+    注意到$a_{ij}=i+j-1\bmod 4$,从而
+    $$\sum_{k=1}^{4}a_{k\sigma,k\tau}=\sum_{k=1}^{4}(k\sigma+k\tau-1)\equiv 0\bmod 4$$
+    从而矛盾.
+\end{proof}
+
+\paragraph{6.5}令$(A_1,\cdots,A_n)$是$[n]$的一个子集族,若子集族的关联矩阵可逆,证明该子集族有SDR.
+\begin{proof}
+    关联矩阵$M=(m_{ij}), m_{ij}=[i\in A_j]$可逆即$\det M\neq 0$.而$\det M=\sum_{\sigma\in S_n}(-1)^{\sgn(\sigma)}\prod_{i=1}^{n}m_{i,i\sigma}$,故$\exists \sigma\in S_n\forall i\in [n], m_{i,i\sigma}\neq 0$,即$i\in A_{i\sigma}$,从而$(1\sigma\rev,2\sigma\rev,\cdots,n\sigma\rev)$是子集族的一个SDR.
+\end{proof}
+
+\paragraph{6.7}证明Hall定理的推广:集合$X$有子集族$(A_1,\cdots,A_n)$,其满足$\abs{A(J)}\geq\abs{J}-r, \forall J\subset [n]$,则子集族中有大小为$n-r$的子族有SDR.%[HINT: add r 'dummy' elements which belong to all the sets.]
+\begin{proof}
+    考虑与$X$不交的$r$元集$Y=\cbr{y_1,\cdots,y_r}\cap X=\varnothing$,可构造子集族$A_i'=A_i\cup Y$,则$\abs{A'(J)}=\abs{A(J)}+\abs{Y}\geq \abs{J}-r+r=\abs{J}$,从而$A'$有SDR,删去其中的$Y$中元素,剩下$\geq n-r$个元素为原先子集族$A$中大小$\geq n-r$的子族的SDR.
+\end{proof}
+
+\section{第八章}
+Steiner四元系(Steiner quadruple system, SQS)是集合对$(X,\mathcal{B})$,$X$是一个集合,$\mathcal{B}$是$X$中一些4-子集构成的子集族,称这些4-子集为四元组, $X$中任意3点均含于唯一四元组中.称$n=\abs{X}$为该四元系的阶.
+
+\paragraph{8.7}若存在$n$阶SQS$(n>2)$,则$n\equiv \pm 2 \bmod 6$.
+
+\paragraph{8.8}$n$阶SQS$(X,\mathcal{B})$有$\abs{\mathcal{B}}=\frac{n(n-1)(n-2)}{24}$.
+\begin{proof}
+    固定$x\in X$,对集合$\cbr{(\cbr{y,z},B)|y,z\in X, y\neq z, x\notin \cbr{y,z}, B\in \mathcal{B}, \cbr{x,y,z}\subset B}$计数.首先$\cbr{y,z}$有$\binom{n-1}{2}$种取法,而每种取法对应唯一的$B\in \mathcal{B}$,故集合有$\binom{n}{2}$个元素.再考虑$x$属于$r$个四元组中,每个四元组中可取$\binom{3}{2}=3$种二元子集,从而集合元素个数为$3r=\binom{n-1}{2}, r=\frac{(n-1)(n-2)}{6}$.
+
+    再对集合$\cbr{(x,B)|x\in X, B\in \mathcal{B}, x\in B}$计数.由于每个点在$r=(n-1)(n-2)/6$个四元组中,故集合有$n(n-1)(n-2)/6$个元素;又由于所有$b$个四元组中每个含4个点,故$4b=n(n-1)(n-2)/6, b=n(n-1)(n-2)/24$.
+
+    最后,由于$r,b\in\N$,故$6|(n-1)(n-2), 24|n(n-1)(n-2)$,也从而$4|n$.而$(n-1)(n-2)\equiv 0\bmod 6$仅在$n\equiv\pm 1,\pm 2\bmod 6$时成立,故得到$n\equiv \pm 2\bmod 6$.
+\end{proof}
+
+\paragraph{8.9}$X$是$\Z/2$-向量空间,$\mathcal{B}=\cbr{\cbr{x,y,z,w}\subset X|x+y+z+w=0}$,证明$(X,\mathcal{B})$是SQS.
+\begin{proof}
+    注意到$\forall x,y,z\in X\exists! w=x+y+z\in X$,从而$x,y,z$互相不等时$w$与$x,y,z$均不等:设$w=x$则$y+z=0,y=z$,矛盾.从而有唯一四元组$\cbr{x,y,z,w}\in \mathcal{B}$包含$x,y,z$,从而得证.
+\end{proof}
+
+\paragraph{8.11}$(X,\mathcal{B})$是$n$阶STS,$Y$是其$m$阶子系($m<n$),证明$n\geq 2m+1$,且取等当且仅当$\mathcal{B}$中每个三元组均仅含$Y$中1或3个点.
+\begin{proof}
+    固定$x\in X-Y$,对$\cbr{B\in \mathcal{B}|\exists y\in Y, x,y\in B}$计数.由于$x\notin B$,故$B$中$Y$的元素仅有$y$,否则$B\subset Y$.从而对$\forall y\in Y\exists! B\in \mathcal{B}, x,y\in B$,故该集合的元素个数等于$Y$的元素个数$m$.又由于$x$在$\frac{n-1}{2}$个三元组上,故$m\leq\frac{n-1}{2}, n\geq 2m+1$.
+
+    若取等,即$n=2m+1$,则任意含$x\in X-Y$的三元组$B$都含$Y$中元素,故由上可知$\abs{B\cap Y}=1$,由$x$任意性可知,任意三元组$B\not\subset$则$\abs{B\cap Y}=1$.反之由上讨论,$x$所在的三元组都含$Y$中元素,故$m=(n-1)/2$,从而得证.
+\end{proof}
+
+\section{第十章}
+\paragraph{10.2}证明任意有限(简单)图中有两个顶点$u,v, d(u)=d(v)$.
+\begin{proof}
+    由$d(v)\leq n-1$知$D=\cbr{d(v)|v\in V}\subset \cbr{0,1,\cdots,n-1}$.若有顶点$v_0$度数为$n-1$,则其余点都被其连接,$D\subset [n-1]$.若不存在,则$D\subset \cbr{0,1,\cdots,n-2}$.从而总有$\abs{D}\leq n-1<n=\abs{V}$,由鸽巢原理得证.
+\end{proof}
+
+\paragraph{10.6}考虑$X=\Z/17$上的完备图,对$\forall x,y\in \Z/17$,若$x-y\equiv \pm 1, \pm 2, \pm 4,\pm 8$则将边$\cbr{x,y}$染红,剩下的边染蓝.证明没有单染色4-集.%[HINT: By symmetry, we may assume that the 4-set contains 0 and 1; this greatly reduces the number of cases to be considered!]
+\begin{proof}
+    注意到$\pm 1, \pm 2, \pm 4,\pm 8$为$\Z/17$的所有二次剩余($1^2\equiv 1, 2^2\equiv 4, 3^2\equiv -8, 4^2\equiv -1, 5^2\equiv 8, 6^2\equiv 2, 7^2\equiv -2, 8^2\equiv -4$,后续一致),而$a,b$是二次剩余则$a\rev,ab$也是.因此若存在单染色4-集$A, a\in A$,将$A$中元素同减去$a$,由于加减不改变同余关系,故得到单染色4-集$A', 0\in A'$且有非零元$b\in A'$,由同余关系知$b$也是二次剩余.将$A'$元素同乘以二次剩余$b\rev$,元素之差仍为二次剩余,从而可得单染色4-集$A''=\cbr{0,1,c,d}$.由与0,1的同余关系知$c,d$仅可以在2,9,16中,但2,9,16之差不是二次剩余,从而与单染色矛盾.
+\end{proof}
+
+\paragraph{10.7}(1)证明Schur定理:存在函数$f:\N\to\N$使得,若$[f(n)]$被分为$n$部分,则$\exists x,y\in [f(n)]$使得$x,y,x+y$在同一部分中.(2)陈述并证明无限版本的Schur定理.%[HINT: Colour the 2-subsets of {1,2,... , iV + 1} with n colours, according to the rule that {#, y} has the zth colour if \x — y\ belongs to the ith class (where N is some suitable, sufficiently large, integer).]
+\begin{proof}
+    (1)取$N=R(n,2,3)-1$,若$[N]$被分为$n$部分$C_1,\cdots,C_n$,则给$[N+1]$中的2-子集染$n$种色$c_1,\cdots,c_n$:对于$\cbr{a,b}\subset[N+1],a<b$,若$b-a\in C_i$,则染色$c_i$.由于$N+1=R(n,2,3)$,因此存在单染色三元组$\cbr{a,b,c},a<b<c$,取$x=c-b,y=b-a\in C_i$,则$x+y=c-a\in C_i$.因此取$f(n)=R(n,2,3)-1$即可满足条件.
+
+    (2)若$\N$被分为$n<\infty$个子集,则$\exists x,y\in \N$使得$x,y,x+y$在同一子集中.
+
+    \textbf{证明}:若分$\N$为$n$个子集$C_1,\cdots,C_n$,则为$\N$的2-子集染色:$\cbr{a,b}\subset \N, a<b$被染为$c_i$色,若$b-a\in C_i$.由无限Ramsey定理知有单染色三元组$\cbr{a,b,c}$,从而取$x=c-b,y=b-a\in C_i$,则$x+y=c-a\in C_i$.
+\end{proof}
+\end{document}

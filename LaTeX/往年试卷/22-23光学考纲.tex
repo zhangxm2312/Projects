@@ -1,0 +1,100 @@
+\documentclass{article}
+\title{22-23年第二学期光学期末考试考纲}
+\input{../newcommand.tex}
+\author{章小明}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{光与光的传播}
+\begin{enumerate}
+    \item Huygens原理:介质中波动传播到的各点都可以看作是发射子波的波源,而在其后的任意时刻,这些子波的包络就是新的波前.
+    \item Fermat原理:两点间的实际路径就是光程(或所需传播时间)取\textbf{平稳}的路径.
+    \item 棱镜的最小偏向角$\delta_m$满足$\frac{\sin\frac{\alpha+\delta_m}{2}}{\sin\frac{\alpha}{2}}=n$
+\end{enumerate}
+作业题:1-10,13,15.
+\section{几何光学成像}
+\begin{enumerate}
+    \item 单折射球面成像公式$\frac{n}{s}+\frac{n'}{s'}=\frac{n'-n}{r}$,反射球面成像公式$\frac{1}{s}+\frac{1}{s'}=-\frac{2}{r}$.焦距$f$是$s'=\infty$时的$s$,$f'$同理.
+    \item 折射球面成像放大率$V=-\frac{ns'}{n's}$,反射球面成像放大率$V=-\frac{s'}{s}$.\\
+    $\abs{V}>(<)1$则为放大(缩小)像;$V>(<)0$则为正立(倒立)像;$s'>(<)0$则为实(虚)像.
+    \item 薄透镜($n=n'$):$\frac{1}{s}+\frac{1}{s'}=\frac{1}{f}$,成像放大率$V=-\frac{s'}{s}$.磨镜者公式:$f=f'=\bbr{\br{\frac{n_L}{n}-1}\br{\frac{1}{r_1}-\frac{1}{r_2}}}\rev$.
+    \item 光焦度$P=\frac{1}{f}=\frac{1}{f_1}+\frac{1}{f_2}$,单位为屈光度$\text{D=m}\rev$.
+    \item 作图基本方法:三条特殊光线作图法,一般光线作图法(主副光轴).
+    \item 光学仪器(待补充)
+\end{enumerate}
+作业题:2-5,10,15,24,40,41,43.
+\section{干涉}
+\begin{enumerate}
+    \item 分波型干涉装置(以Young双缝干涉为代表):计算条纹及其间隔\\
+    记$R$为光源到双缝距离,$D$为双缝到屏幕距离,$d$为缝距,则在$x=k\frac{\lambda D}{d}$处相干极大,$x=\br{k+\frac{1}{2}}\frac{\lambda D}{d}$处相干极小,条纹间距为$\Delta x=\frac{\lambda D}{d}$.\\
+    条纹位移$\delta x$与点光源位移$\delta s$关系为$\delta x=-\frac{D}{R}\delta s$.\\
+    类Young双镜装置:Fresnel双镜,$\Delta x=\frac{(B+C)\lambda}{2\alpha B}$,其中$\alpha$是双镜所夹锐角,$B$是双缝到双镜连接处距离,$C$是双镜连接处到屏幕距离;Fresnel双棱镜,$\Delta x=\frac{\lambda(B+C)}{2(n-1)\alpha B}$,其中$\alpha$是棱镜角,$B$是光源到棱镜距离,$C$是棱镜到屏幕距离;Lloyd镜,$\Delta x=\frac{D \lambda}{2a}$,其中$a$是光源到镜的垂直距离,$D$是光源(缝)到屏幕距离.
+    \item 干涉相干条件,干涉叠加\\
+    干涉条纹衬比度$\gamma=\frac{I_{\max}-I_{\min}}{I_{\max}+I_{\min}}\in [0,1]$.光源宽度的极限$b=\frac{R}{d}\lambda$.\\
+    光场的空间相干性:给定宽度$b$后,在多大范围取出的两个次波源还是相干的,称为两次波源的空间相干性.相干线宽$d$,相干面积$d^2$,相干孔径角$\Delta\theta_0=\frac{d}{R}$.空间相干性反比公式$b\Delta\theta_0=\lambda$.
+    \item 分振幅干涉装置(薄膜干涉)
+    \begin{enumerate}
+        \item 等厚干涉:明纹暗纹,劈尖干涉,等等\\
+        $\Delta L=2nh\cos i=k\lambda$或$\br{k+\frac{1}{2}}\lambda$时取到相干极大或极小,$\Delta h=\frac{\lambda}{2n}$.折射角$i$充分小时$\Delta L\approx 2nh$.注意:$n_1<n>n_2$或$n_1>n<n_2$时会有半波损失.\\
+        对于劈尖,条纹间隔为$\Delta x=\frac{\lambda}{2n\alpha}$.对于楔形薄膜,可测量楔角$\theta=\frac{\lambda}{2nb},b$为条纹间隔,也可以测量其厚度$e=N\frac{\lambda}{2n},N$为条纹出现的次数,$n$为薄膜折射率.\\
+        Newton环:明环半径$r_k=\sqrt{\br{k+\frac{1}{2}}\frac{R\lambda}{n}}$,暗环半径$r_k=\sqrt{k\frac{R\lambda}{n}},k\geq 0$.由此可以测量透镜曲率半径$R=n\frac{r_{k+m}^2-r_k^2}{m\lambda}$.注意,$n_1<n_2<n_3$时有半波损失,此时相干极大极小(即明暗纹)颠倒.
+        \item 等倾干涉:搞懂书上例题(PPT P$_{165}$例1,P$_{171}$例2)\\
+        定义:具有同一倾角的反射光线汇聚于同一级次上的干涉条纹.\\
+        光程差公式与相干极大位置同等厚干涉,条纹间距$\Delta r=r_{k+1}-r_k\propto i_{k+1}-i_k=-\frac{\lambda}{2nh\sin i_k}$.注意:$n_1<n>n_2$或$n_1>n<n_2$时会有半波损失.\\
+        薄膜厚度增加则条纹变密,条纹外扩(中心吐条纹),反之变稀,中心吞条纹.吞吐一根条纹$\Delta h=\frac{\lambda}{2n}$.
+        \item Michelson干涉仪\\
+        衬比度变换的空间频率$\nu=\frac{1}{2N_1\lambda_1}\approx\frac{\Delta \lambda}{\lambda^2}$.其中$N_1\approx\frac{\lambda}{2\Delta\lambda}$.
+    \end{enumerate}
+\end{enumerate}
+作业题:3-2,7,9,11,12,13,17,23.
+\section{衍射}
+\begin{enumerate}
+    \item 衍射的基本概念:光波在传播过程遇到障碍物时光束偏离直线传播,强度发生重新分布的现象.\\
+    与干涉的联系:干涉是有限个离散波的相干叠加,衍射是无限个连续波的相干叠加.\\
+    Fresnel衍射(Fraunhofer衍射):光源和接受屏距离衍射屏幕有限(无限)远.
+    \item Huygens-Fresnel原理:波前$\Sigma$上每个面元$\d \Sigma$都可以看成是新的振动中心,它们发出次波.在空间某一点$P$的振动是所有这些次波在该点的相干叠加.\\
+    Babinet原理:两个互补的屏在像平面上产生的衍射图样完全一样(像点除外).
+    \item Fresnel圆孔/圆屏衍射:半波带法+矢量图法(习题+例题,书P$_{176}$例3,P$_{177}$例4)\\
+    半波带法:$A(P_0)=\frac{A_1+(-1)^{n+1}A_n}{2}$,其中$A_k\propto f(\theta_k)\frac{\pi R\lambda}{R+b}$.自由传播时波前在$P_0$处振幅$A_0=\frac{A_1}{2}$,即为第一个半波带的一半;圆孔衍射中,随着圆孔增大,中心强度明暗交替变化;圆屏衍射中,中心场点总是亮的.半波带法只适合圆孔/圆屏能整分半波带的情况.\\
+    矢量图法:将半波带分为$m$个更窄的小环带(在一个半圆上),写出每个小环带的复振幅,画出矢量图再得到其和.\\
+    Fresnel波带片:半波带半径$\rho_k=\sqrt{\frac{Rb}{R+b}k\lambda}$,$k$奇亮偶暗.成像公式$\frac{1}{R}+\frac{1}{b}=\frac{k\lambda}{\rho_k^2}=\frac{1}{f}$,其有一系列焦点$\pm\frac{f}{2k+1},k\geq 0$.
+    \item Fraunhofer单缝衍射+光栅衍射(必考):计算主次极大位置,缺级现象,计算级次,缝宽,光栅常数,明纹暗纹位置,半角宽度.\\
+    单缝衍射因子$I_\theta=I_0\br{\frac{\sin\alpha}{\alpha}}^2$,其中$\alpha=\frac{\pi a}{\lambda}\sin \theta$.矩孔衍射的强度公式$I(P)=I_0\br{\frac{\sin \alpha}{\alpha}}^2\br{\frac{\sin\beta}{\beta}}^2$.\\
+    次极大位置在$\frac{\d}{\d \alpha}\frac{\sin \alpha}{\alpha}=0$处,即$\tan \alpha=\alpha$的解,而暗斑则在$\sin \alpha=0$处,即$\alpha=\pm k\pi$处.\\
+    半角宽$\Delta\theta=\frac{\lambda}{a}$是衍射效应强弱的标志.线宽$\Delta l=2f\Delta\theta$.\\
+    Airy斑(第一暗环的半角宽)$\Delta\theta=1.22\frac{\lambda}{D}$(书P$_{190}$例6,7)\\
+    光栅常数$d=a+b$,$N$缝Fraunhofer衍射的光强分布$I=I_0\br{\frac{\sin\alpha}{\alpha}}^2\br{\frac{\sin N\beta}{\beta}}^2, \alpha=\frac{\pi a}{\lambda},\beta=\frac{\pi d}{\lambda}\sin\theta$.\\
+    主极大位置$\beta=k\pi$,大小$I_{\max}=N^2I_{\text{单缝}}$,最大级$k=\frac{d\sin\theta}{\lambda}<\frac{d}{\lambda}$.零点位置$\beta=\br{k+\frac{m}{N}}\pi,m\in [N-1]$.相邻主极大间有$N-1$条暗线,有$N-2$个次极大.普遍半角宽度$\Delta\theta_k=\frac{\lambda}{Nd\cos\theta_k}$.\\
+    缺级现象$k=m\frac{d}{a},m=\Z-0$.
+    \item 圆孔衍射:计算最小分辨角和半角宽度
+    \item 望远镜物镜的最小分辨角$\delta\theta_{\min}=1.22\frac{\lambda}{D}$和视角放大率$M=\frac{\delta\theta_{\text{e}}}{\delta\theta_{\min}}=\frac{2.9\times10^{-4}\text{rad}}{1.22}\frac{D}{\lambda}$.光学仪器分辨率$R=\frac{1}{\delta\theta_{\min}}$.
+    \item 光栅光谱仪:色分辨本领(书P$_{207}$例12,P$_{208}$例13)和色散本领(PPT P$_{275}$例11)\\
+    光栅方程$d\sin\theta=k\lambda$.\\
+    两条谱线中心的波长间隔$\delta\lambda$与被分开的角距离$\delta\theta$或在屏幕上被分开的线距离$\delta l$之比分别称为角色散本领$D_\theta$和线色散本领$D_l$.光栅的角色散本领$D_\theta=\frac{k}{d\cos\theta_k}$,线色散本领$D_l=\frac{kf}{d\cos\theta_k}$.\\
+    光栅的色分辨本领$R=\frac{\lambda}{\delta\lambda}=kN$.
+\end{enumerate}
+作业题:4-1,2,9,14,15,29,30.
+\addtocounter{section}{1}
+\section{偏振}
+\begin{enumerate}
+    \item Malus定律$I=I_0\cos^2\theta$(线偏振光),偏振度$P=\frac{I_{\max}-I_{\min}}{I_{\max}+I_{\min}}$.
+    \item Brewster角的计算$i_B=\arctan\frac{n_2}{n_1}$.
+    \item 五种偏振光的区分:先旋转检偏器,若光强不变则为圆偏振光或自然光,若有消光则为线偏振光,否则为椭圆偏振光或部分偏振光.将前者依次通过$\frac{\lambda}{4}$波晶片和偏振片并旋转偏振片,若有消光则为圆偏振光,否则为自然光.将后者通过偏振片并将偏振片旋至光强最强位置,再在其后放置$\frac{\lambda}{4}$波晶片,将光轴旋至与偏振片透振方向平行.将偏振片移前并旋转一周,若有消光则为椭圆偏振光,否则为部分偏振光.
+    \item 双折射的概念与原因:双折射是光束入射到各向异性晶体中, 被分解为两束光而沿不同方向折射的现象.形成原因是两束折射光在晶体内的传播速度不同.\\
+    o光服从折射定律,e光不服从;o光和e光仅在光轴上不分开;$n_{\text{o}}v_{\text{o}}=c$.
+    \item 偏振光的Huygens作图法
+    \item 圆偏振光的获得(用偏振片+波晶片)与检验(用$\frac{\lambda}{4}$波晶片+偏振片).\\
+    $\delta_{出}=\delta_{入}+\delta=\pm\pi+\frac{2\pi}{\lambda}(n_{\text{o}}-n_{\text{e}})d, A_{\text{e}}=A\cos\alpha, A_{\text{o}}=A\sin\alpha$.\\
+    圆偏振光:$\alpha=\frac{\pi}{4},\delta=\pm\frac{\pi}{2}$.椭圆偏振光:$\delta=\pm\frac{\pi}{2},\alpha\neq 0,\frac{\pi}{4},\frac{\pi}{2}$.
+    \item 通过$\frac{\lambda}{4}$波晶片后光束偏振态的变化:    线偏振:若e轴或o轴与偏振方向一致,则得到线偏振光;若e轴或o轴与偏振方向成$\frac{\pi}{4}$角,得到圆偏振光,除此之外得到椭圆偏振光.圆偏振通过后得到线偏振.椭圆偏振的主轴若与e轴或o轴一致则得到线偏振,否则得到椭圆偏振.
+    \item 偏振光的干涉(必考,例题+作业).\\
+    自然光$\overset{偏振片P_1}{\to}$线偏振光$\overset{波晶片上}{\to}$相位差为$\delta_{\text{入}}=0$或$\pi$,且$A_{\text{e}}=A_1\cos \alpha, A_{\text{o}}=A_1\sin\alpha$的偏振光$\overset{波晶片出射后}{\to}$相位差为$\delta_{\text{入}}+\frac{d}{2\pi}(n_{\text{o}}-n_{\text{e}})\overset{偏振片P_2}{\to}$相位差为$\delta=\delta_{\text{入}}+\Delta+\delta',\delta'=0$或$\pi$,且$A_{\text{e}2}=A_1\cos\alpha\cos\beta, A_{\text{o}2}=A_1\sin\alpha\sin\beta, I_2=A_2^2=A_{\text{e}2}^2+A_{\text{o}2}^2+2A_{\text{e}2}A_{\text{o}2}\cos\delta$.其中$\delta'$是坐标轴投影相位差,即e轴和o轴正方向向$P_2$透振方向投影,若同向则取0,否则取$\pi$.\\
+    若$P_1\perp P_2$则$I_2=\frac{A_1^2}{2}(1-\cos\Delta)$,$P_1\parallel P_2$则$I_2=\frac{A_1^2}{2}(1+\cos\Delta)$.当$\Delta=2k\pi$或$(2k+1)\pi$时,偏振片透振方向垂直或平行会使得透射光消光.\\
+    干涉条纹成像于屏幕上,设$P_1\perp P_2$,在$d=\frac{k\lambda}{n_{\text{o}}-n_{\text{e}}}$处$I_\perp=0$.干涉条纹的间距$\Delta x=\frac{\lambda}{(n_{\text{o}}-n_{\text{e}})\alpha}$,其中$\alpha$是波晶片晶楔夹角.
+    \item 旋光的概念:线偏振光在石英晶体内沿光轴传播时,偏振面被旋转了一个角度$\psi=\alpha d,\alpha$被称为旋光率.在量糖术中$\psi=[\alpha]Nl,[\alpha]$被称为比旋光率.
+\end{enumerate}
+作业题:6-1,2,20,33,34,38.
+\end{document}

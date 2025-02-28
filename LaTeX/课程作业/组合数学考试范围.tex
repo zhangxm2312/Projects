@@ -1,0 +1,53 @@
+\documentclass{article}
+\input{../newcommand.tex}
+\begin{document}
+\begin{center}
+    {\Large\textbf{组合数学考试范围}}
+\end{center}
+
+\paragraph{1.多重组合数}从多重集中选取子集.
+\begin{example}
+    生产$n$种面包,其中取$m$个面包放入一盒,每盒有$\binom{n+m-1}{m}$种组合.
+\end{example}
+\begin{example}
+    $\sum_{i=1}^n x_i=r$有$\binom{n+r-1}{r}$个非负整数解.这相当于多重集$\cbr{\infty\cdot x_1,\cdots,\infty\cdot x_n}$中选取$r$子集的方案数.
+\end{example}
+\paragraph{2.特征方程求解递推关系}$h_n=a_1h_{n-1}+\cdots+a_kh_{n-k}$给出特征方程$x^k=a_1x^{k-1}+\cdots+a_k$,给出根$\cbr{q_i}_{i=1}^t$,其重数分别为$\cbr{s_i}_{i=1}^t$.我们得到通解$h_n=\sum_{i=1}^tP_i(n)q_i^n$,其中$P_i$是待定多项式,$\deg P_i\leq s_i-1$.
+\begin{example}
+    $h_n=4h_{n-1}-3h_{n-2}$,得到特征方程$x^2=4x-3,q_1=1,q_2=3,h_n=C_1+C_23^n$.
+
+    $h_n=4h_{n-1}-4h_{n-2}$,得到特征方程$x^2=4x-4,q_1=2,s_1=2,h_n=(C_1n+C_2)2^n$.
+\end{example}
+\paragraph{3.普通型生成函数求解递推关系}
+\begin{example}
+    $a_{n+2}=a_{n+1}+2a_n,n\geq 0$.我们得到$\cbr{a_n}_{n\geq 0}$的普通型生成函数$f(x)$的递推式$\frac{f(x)-a_0-a_1x}{x^2}=\frac{f(x)-a_0}{x}+2f(x)$,解得$f(x)=\frac{a_0+(a_1-a_0)x}{1-x-2x^2}=\frac{a_0+a_1}{3}\frac{1}{1-2x}+\frac{2a_0-a_1}{3}\frac{1}{1+x}$,因此$a_n=\frac{a_0+a_1}{3}2^n+\frac{2a_0-a_1}{3}(-1)^n$.
+\end{example}
+\paragraph{4.容斥定理}对$S$上的性质$\cbr{P_i}_{i=1}^m$定义$X_i=\cbr{x\in S:x\text{满足}P_i}$.设$X_I=\bigcap_{i\in I}X_i$,我们有
+$$\abs{\bigcap_{i=1}^m X_i^c}=\sum_{I\subset [m]}(-1)^{\abs{I}}\abs{X_I}=\abs{S}-\sum_{i}\abs{X_i}+\sum_{i<j}\abs{X_i\cap X_j}-\cdots+(-1)^m\abs{X_1\cap X_2\cap\cdots\cap X_m}.$$
+\begin{example}
+    $\cbr{1\cdot a,2\cdot b,3\cdot c}$中的5-组合数,即选取5-子集的方案数.我们在$S=\cbr{\infty\cdot a,\infty\cdot b,\infty\cdot c}$中考虑性质$P_1$:5-子集中$a$的个数$\geq 2$;$P_2$:5-子集中$b$的个数$\geq 3$;$P_3$:5-子集中$c$的个数$\geq 4$.即求
+    $$\begin{aligned}
+        \abs{X_1^c\cap X_2^c\cap X_3^c}=&\abs{S}-\br{\abs{X_1}+\abs{X_2}+\abs{X_3}}+\br{\abs{X_1\cap X_2}+\abs{X_1\cap X_3}+\abs{X_2\cap X_3}}-\abs{X_1\cap X_2\cap X_3}\\
+        =&\binom{3+5-1}{5}-\binom{3+3-1}{3}-\binom{3+2-1}{2}-\binom{3+1-1}{1}+\br{1+0+0}-0=3.
+    \end{aligned}$$
+\end{example}
+\paragraph{5.P\'olya计数}对$\abs{A}\!=\!n,\abs{C}\!=\!m$, $G$是在$A$上的置换群,对$f,g\in C^A$考虑等价关系$f\!\sim\! g\!\!\iff\!\! f=g\circ \pi\rev, \pi\!\in\! G$, $\mathcal{F}=C^A/\sim$.P\'olya计数原理即$\abs{\mathcal{F}}=P_G(m,\cdots,m)$.其中对于群$G$,其轮换对称式$P_G(x_1,\cdots,x_n)=\frac{1}{\abs{G}}\sum_{\sigma\in G}\prod_{i=1}^nx_i^{l_i(\sigma)}$.
+\begin{example}
+    给四个格子\begin{tabular}{|c|c|}\hline
+        1&2\\\hline
+        4&3\\\hline
+    \end{tabular}上色,视上色方案旋转后不变,我们有$A=[4],C=\cbr{\text{R,B}},G=\abr{(1234)}\\=\cbr{(1234),(13)(24),(1432)}$,因此$P_G(x_1,x_2,x_3,x_4)=\frac{x_1^4+x_2^2+2x_4}{4}$,$P_G(2,2,2,2)=6$.
+\end{example}
+
+\paragraph{6.相异代表系(SDR)和Hall定理}一族集合$\cbr{S_i}_{i=1}^m$的相异代表系(SDR)为$(x_1,\cdots,x_m)\in \prod_{i=1}^{m}S_i$,其中$x_i\in S_i, x_i\neq x_j$.对指标集$J\subset [m]$定义$S(J)=\bigcup_{j\in J}S_j$.
+
+Hall定理:有限集族存在相异代表系$\iff$对任意$J\subset [m]$有$\abs{S(J)}\geq \abs{J}$.
+
+\paragraph{7.组合设计}$t$-$(v,k,\lambda)$设计$(X,\mathcal{B}),\mathcal{B}\subset \PowSet{X}$.其中$v=\abs{X},b=\abs{\mathcal{B}},\abs{B}\equiv k$,任意$t$-子集均恰在$\lambda$个区块中.
+
+组合设计的关联矩阵$\bm{N}_{v\times b}=(N_{x,B}),N_{x,B}=\begin{cases}
+    1&x\in B\\0&x\notin B
+\end{cases}=[x\in B]$.
+
+$t=2$时称该设计为平衡不完全区组设计(BIBD),$b=v$时为对称设计,$\lambda=1$的对称BIBD被称为射影平面,2-$(n^2+n+1,n+1,1)$设计被称为$n$阶射影平面,2-$(n^2,n,1)$设计被称为$n$阶仿射平面.当$n$是素数幂时,$n$阶射影平面均存在. 2-(3,2,1)设计为三角形,2-(7,3,1)设计被称为Fano平面.
+\end{document}

@@ -1,0 +1,493 @@
+\documentclass{article}
+\input{../preamble.tex}
+\usepackage{chemarrow}
+\newcommand{\mcLfunc}[1]{\mathcal{L}(#1)}
+\newcommand{\mcBfunc}[1]{\mathcal{B}(#1)}
+\title{泛函分析读书笔记}
+\author{章小明}
+
+\begin{document}
+\maketitle
+\tableofcontents
+本笔记蓝本为许全华《泛函分析讲义》.
+
+% 本人打算将其改为实变函数与泛函分析读书笔记,将前置知识的thesection改为0,在其与泛函分析之间插入实变函数内容.前置知识中加入点集拓扑预备内容,或将前置知识相应内容移至点集拓扑读书笔记.
+% 西里尔字母:абвгдеёжзийклмнопрстуфхцчшщъыьэюя
+
+\section{前置知识}
+% 拓扑预备和完备度量空间
+\paragraph{注3.1.12}(p43) 范数等价性与有限维向量空间.
+
+\subsection{收敛序列和连续映射}
+
+\subsection{乘积拓扑}
+一族集合$\cbr{E_i}_{i\in I}$的Descartes积$\prod_{i\in I}E_i$指的是,元素$x:I\mapsto \bigcup_{i\in I}E_i, i\mapsto x_i\in E_i$的一族空间,$x(i)=x_i$为其坐标.
+
+一族拓扑空间$\cbr{E_i}_{i\in I}$的积$E=\prod_{i\in I}E_i$的拓扑由基础开集生成,基础开集即形如$O=\prod_{j\in J}O_j\times \prod_{i\in I-J}E_i$的集合,其中$J\subset I$有限且$O_j$为$E_j$中开集.然而相反的,$\prod_{i\in I} F_i$是$E$中闭集,其中$F_i$是$O_i$中闭集.
+
+\begin{enumerate}
+    \item 乘积拓扑是使所有正规投影$\pi_i:E\to E_i, x\mapsto x_i$连续的最弱拓扑,且每个$\pi_i$都是开映射.\\\hint{若有使得正规投影连续的拓扑,则$\pi_i\rev(U_i)=U_i\times \prod E_j$是开集,因此其开集也由基础开集生成,故乘积拓扑是最弱的.另一方面,开集$O$作为基础开集的并,$x\in U\subset O$则$x_i\in U_i\subset \pi_i(O)$,因此$\pi_i(O)$开,即$\pi_i$是开映射.}
+    \item 在$E$中$x^n\to x$等价于在每个$E_i$中$x^n_i\to x_i$.\\\tbc
+    \item $f:F\to E$连续等价于$\pi_i\circ f$都是连续的.
+\end{enumerate}
+
+\begin{enumerate}[resume]
+    \item 若每个$E_i$都是$T_2$的,则$E$也是.
+    \item (Тихонов定理)若每个$E_i$都是紧的,则$E$也是.
+    \item 若每个$E_i$都是可度量的,则$E$也是.
+\end{enumerate}
+\subsection{度量空间和Cauchy列}
+
+\subsection{一致连续性及Banach不动点定理}
+
+\subsection{度量空间的完备化}
+
+\subsection{紧性}
+空间中的紧性有如下等价定义:
+\begin{itemize}
+    \item 任意开覆盖可取出有限子覆盖.
+    \item 若一族闭集中任意有限个的交非空,则该族的交也非空.
+    \item 若一族闭集的交为空,则其中有有限个闭集的交为空.
+\end{itemize}
+子空间的紧性类似定义.
+
+紧性是一个非常强且实用的性质,下面我们给出一些性质.
+
+\begin{enumerate}
+    \item $T_2$ $E, F\subset E$:$F$紧$\autorightleftharpoons{}{$E$紧} F$闭.\\\hint{$\implies$:对每个$y\in F$用$T_2$分离其与$x\in F^c$,得到一系列$O(x)$和$O(y)$.可取有限个$y$的邻域覆盖$F$,因此$F$外的点总有邻域(取对应有限个$O(y)$的$O(x)$的交)不交$F$,故$F$闭.
+    $\impliedby$:用闭集的有限交性质.}
+\end{enumerate}
+
+局部紧空间指的是每点有一个紧邻域的空间,这是一个比紧弱的条件,即紧$\implies$局部紧.
+
+\begin{enumerate}[resume]
+    \item $T_2$局部紧空间中每点有紧邻域基.\\
+    \hint{取点的一个开邻域$U$和所有闭邻域$V$,$V-U$的交为空,用有限闭性质可知有限个闭邻域的交在$U$中,其交上该点的紧邻域,可得到一个紧邻域基.}
+    \item 连续映射保紧性.(即紧集在连续映射下的像紧.)\hint{考虑紧的定义,$f(E)\subset \bigcup U_i$.}
+    \item 紧空间$E$到$T_2$空间的连续单射$f$可得到$f:E\to f(E)$是同胚.\hint{仅需证逆连续.考虑紧集的像(即逆的原像)紧.}
+    \item 紧空间到$\R$的连续函数在$\R$上有界,且可取到$\sup$和$\inf$.
+\end{enumerate}
+
+接下来证明十分重要的延拓定理:\begin{enumerate}[resume]
+    \item (Урысон引理)局部紧$T_2$空间$E$中有不交非空闭集$A,B$,且其中一个是紧的.则有连续函数$f:E\to [0,1]$在$A$上取0而在$B$上取1.
+\end{enumerate}
+
+所有具有此定理性质的空间被称为正规空间.当$E$可度量(不必紧)时可以直接考虑$f(x)=\frac{d(x,A)}{d(x,A)+d(x,B)}$.
+
+首先考虑引理:\begin{enumerate}[resume]
+    \item 局部紧$T_2$空间中的紧集$K$和开集$O$有$K\subset O$,则有开集$U$满足$K\subset U\subset \overline{U}\subset O$, 且$\overline{U}$紧.\\
+    \hint{首先在$K$中每个点的紧邻域中可取开邻域,每个的闭包紧.其可有限覆盖$K$,故取$V$为其有限并,而由选取条件$\overline{V}$紧.\\
+    接着证明$\overline{V}\subset O$.对$y\in O^c$取其不交$K$的紧邻域的补$W_y\supset K$,因此有$\bigcap_{y\in O^c}(O^c\cap \overline{V}\cap \overline{W_y})=\emptyset$.用紧集的有限交性质,变形得到$\bigcap(\overline{V}\cap \overline{W_i})\subset O$.令$U=V\cap\bigcap W_i$即可.}
+\end{enumerate}
+
+我们定义紧集$A=A_0$和开集$A_1=B^c$.反复运用此引理,记得到的集合有$A_{m}\subset A_{\frac{m+n}{2}}\subset \overline{A_{\frac{m+n}{2}}}\subset A_n$.因此可得\\$D=\cbr{k\cdot 2^{-n}\in [0,1]:k,n\in \N}$,有开集族$\cbr{A_t}_{t\in D}$,其中每个开集的闭包紧,且$\overline{A_s}\subset A_t$若$s<t$.
+
+然后我们定义$\alpha(x)=\begin{cases}
+    \sup_{x\notin \overline{A_s}}s&x\notin A\\ 0&x\in A
+\end{cases}, \beta(x)=\begin{cases}
+    \inf_{x\in A_t}t& x\notin B\\ 1&x\in B
+\end{cases}$.首先,$x\in A_t-\overline{A_s}$仅可能$t\geq s$.另一方面,若$\alpha(x)<s<t<\beta(x)$,则$x\in \overline{A_s}-A_t$,矛盾于集族性质.因此我们可以定义$\!f(x)=\alpha(x)=\beta(x)$.\!其符合条件,\!下证其连续.
+
+首先,$\lambda\in D, x\in f\rev((-\infty,\lambda))\iff x\in \bigcup_{t<\lambda}A_t$,而$f\rev(-\infty,\lambda)=\bigcup_{\lambda<\mu\in D} f\rev(-\infty,\mu)$.同理,$f\rev((\lambda,+\infty))=\bigcup \overline{A_t}^c$.因此$f$连续.
+
+\tbc
+
+\begin{tikzcd}
+    \text{可分} & \text{预紧} \arrow[l] \arrow[dd, "E\text{完备}"', bend right] & \text{完备} \arrow[rd] \arrow[l, "E\text{紧}"'] & \\
+    && \text{完备且预紧} \arrow[u] \arrow[lu] \arrow[d, leftrightarrow]& \text{闭} \arrow[lu, "E\text{完备}"', bend right] \arrow[ld, "E\text{紧}", bend left] \\
+    & \text{相对紧} \arrow[d,leftrightarrow] \arrow[uu]& \text{紧} \arrow[d, leftrightarrow] \arrow[l] \arrow[ru] &\\
+    & \text{列紧}& \text{自列紧} \arrow[l]&
+\end{tikzcd}
+
+\section{赋范空间和连续线性映射}
+范数指的是$\F$-VS $E$上的$p:E\to \R_{\geq 0}$满足\textcircled{1}正定性$p(x)=0\iff x=0$;\textcircled{2}正齐性$p(\lambda x)=\abs{\lambda}p(x),\lambda\in \F$;\textcircled{3}次可加性(三角不等式)$p(x+y)\leq p(x)+p(y)$.
+满足上述条件的VS被称为赋范空间,用$d(x,y)=p(x-y)$作为度量来诱导拓扑.度量平移不变,其上收敛默认为依范数收敛.
+
+等价范数指的是同空间上两范数有$C_1\norm{x}_1\leq \norm{x}_2\leq C_2\norm{x}_2$.
+
+下面默认记$\F^n (n\leq \infty)$上的范数$\norm{x}_p=\br{\sum_{k=1}^n x_k^p}^{1/p}, \norm{x}_\infty=\max_{1\leq k\leq n}\abs{x_k}$.而$C[a,b]$上同样也有范数\\ $\norm{f}_p=\br{\int_a^b\abs{f(x)}^p\d x}^{1/p}, \norm{f}_\infty=\max_{x\in [a,b]}\abs{f(x)}$.
+
+实际上我们还有对矩阵$A\in M_n(\F)$的范数$\norm{A}=\sup_{x\in \F^n,\norm{x}\leq 1}\norm{Ax}$,此处$\norm{\cdot}$不固定.
+
+\subsection{Banach空间}
+Banach空间指的是具有完备范数的赋范空间,完备范数即范数诱导的距离完备.
+
+\begin{enumerate}
+    \item 赋范空间完备$\iff$绝对收敛则收敛.\\\hint{$\implies$:级数部分和是Cauchy列;$\impliedby$:Cauchy列子列两项差足够小,得到绝对收敛级数,因此子列收敛.}
+    \item 等价的范数分别导出的拓扑下,空间(拓扑)的完备性等价,子集的紧性也等价.\\\hint{因为$\id_E:(E,p)\to (E,q)$是Lipschitz映射,一致连续.而Cauchy列在其作用下仍Cauchy列,且连续保紧.}
+    \item 有限维$\F$-VS的所有范数等价.\\\hint{由三角不等式$\norm{x}\leq \br{\sum \norm{e_k}}\norm{x}_\infty$.另一方面,$\varPhi:(x_1,\cdots,x_n)\mapsto\norm{\sum x_ke_k}$扩展到$\F^n$上,在其$\norm{\cdot}_\infty$范数的单位球面上有极小值$C_1$(由紧\why),因此$x=\norm{x}_\infty\norm{\frac{x}{\norm{x}}_\infty}\geq C_1\norm{x}_\infty$.}
+    \item 有限维赋范空间都完备,且其上有界闭必紧.\hint{$\F^n$完备,$\varPhi$线性等距(故一致连续),因此$E$完备.有界闭集的原像紧,故紧.}
+    \item (Riesz)赋范空间是有限维的$\iff$闭单位球紧.\\\hint{首先证明引理:赋范空间$E$,闭VS $F\subsetneq E$, $\forall \varepsilon\exists e\in E:\norm{e}=1,d(e,F)\geq 1-\varepsilon$.即证任一点$f\in F:\norm{e-f}\geq 1-\varepsilon$.\\考虑$x\notin F, d=(x,F), y\in F, \norm{x-y}\in \bbr{d,\frac{d}{1-\varepsilon}}$.令$e=\frac{x-y}{\norm{x-y}}$,$\norm{e-f}\geq \frac{1-\varepsilon}{d}\cdot d$.\\
+    最后,由4立得$\implies$.$\impliedby$:若否,考虑序列$\cbr{x_n}, \norm{x_n}=1, d(x_n,\Span(x_1,\cdots,x_{n-1}))\geq 1-\varepsilon$.其在闭球上且点点之间距离有下界,这是不可能紧的.}
+\end{enumerate}
+
+\subsection{连续线性映射}
+线性映射即$\F$-VS $E,F$上满足$u(\lambda x+\mu y)=\lambda u(x)+\mu u(y), \lambda,\mu\in \F, x,y\in E$的映射$u$,全体记作$\mcLfunc{E,F}$.
+
+首先我们给出最基础也是最重要的内容:
+\begin{enumerate}[resume]
+    \item $\F$-赋范空间 $E,F$,$u\in \mcLfunc{E,F}$,则$u$(一致)连续$\iff \frac{\norm{u(x)}}{\norm{x}}$有界$\iff \norm{u(x)}$在闭单位球或闭单位球面上有界.\\\hint{仅证第一个$\iff$.$\implies: u$在原点连续则在$r\overline{B}_E$上$\norm{u(x)}\leq 1$,因此$u\br{r\frac{x}{\norm{x}}}\leq 1, x\in E, \frac{\norm{u(x)}}{\norm{x}}\leq \frac{1}{r}.\impliedby:$由$u$是Lipschitz映射.}
+\end{enumerate}
+
+因此我们定义$\norm{u}=\sup_{x\in E-\cbr{0}}\frac{\norm{u(x)}}{\norm{x}}=\sup_{0<\norm{x}\leq 1}\frac{\norm{u(x)}}{\norm{x}}=\sup_{\norm{x}=1}\frac{\norm{u(x)}}{\norm{x}}$,以及线性映射的有界性和连续性等价.因此我们也定义全体连续线性函数(或有界线性函数)为$\mcBfunc{E,F}$.实际上所谓的``有界''指的是其在闭单位球上有界,而不是全空间.
+
+我们定义$E$的对偶空间$E^*=\mcBfunc{E,\F}$,且:
+\begin{enumerate}[resume]
+    \item 赋范$E,F$且$F$完备则$\mcBfunc{E,F}$是Banach空间.
+\end{enumerate}
+因此对偶空间是Banach空间.
+
+\begin{enumerate}[resume]
+    \item 有限维赋范空间$E$到赋范空间$F$的线性映射均连续,即$\mcLfunc{E,F}=\mcBfunc{E,F}$.\hint{每个$u(x)$的范数$\leq C\norm{x}$}
+    \item $\norm{v\circ u}\leq \norm{v}\norm{u}$
+    \item Banach空间$E,F$,其中$\overline{G}=E$,则$u\in\mcBfunc{G,F}$可唯一保范连续延拓为$\widetilde{u}\in\mcBfunc{E,F}$.
+    \item $E$是Banach空间,对$u\in B_{\mcBfunc{E}}$,有$\id_E-u$可逆.\hint{用绝对收敛.}
+\end{enumerate}
+
+\subsection{$L^p$空间}
+首先规定泛函$f$本性有界即$\exists M:\abs{f}\;\text{a.e.}<M$,则其本性上确界$\norm{f}_\infty=\inf_{\abs{f}\; \text{a.e.}\leq M}M$.
+
+我们给出一系列不等式:\begin{description}
+    \item[Young不等式] $x,y\in \babr{0,\infty},\alpha,\beta\in (0,1), \alpha+\beta=1$,则$xy\leq \alpha x^{1/\alpha}+\beta y^{1/\beta}$.\hint{换元,对$\e^x$用Jensen不等式.}
+    \item[H\"older不等式] $p,q\in \abbr{0,\infty}, \frac{1}{r}=\frac{1}{p}+\frac{1}{q}. f\in L^p(\Omega), g\in L^q(\Omega)$,则$fg\in L^r(\Omega)$且$\norm{fg}_r\leq \norm{f}_p\norm{g}_q$.\\\hint{$pq=\infty$易证.$pq<\infty$则先对$\norm{fg}_r^r$用Young不等式,再证$f$和$g$范数$\leq 1$的情形,最后对一般函数规范化代入.}
+    \item[Minkowski不等式] $p\in\abbr{0,\infty}, f,g\in L^p(\Omega)$,有$\begin{cases}
+        \norm{f+g}_p\leq \norm{f}_p+\norm{g}_p,&p\in \bbr{1,\infty}\\
+        \norm{f+g}_p^p\leq \norm{f}_p^p+\norm{g}_p^p,&p\in (0,1)
+    \end{cases}$\\\hint{先分别估计出$\abs{f+g}^p\leq C(\abs{f}^p+\abs{g}^p)$得到后者,再考虑前者情况,$\norm{f+g}_p^p$分拆一项再用H\"older不等式($r=1$),最后两端消去.}
+\end{description}
+
+接着我们给出一个重要的内容:\begin{enumerate}[resume]
+    \item $p\in \abbr{0,\infty}$时$L^p(\Omega)$完备.\\\hint{大致思路:对Cauchy列取子列控制其项差$f_{n_{k+1}}-f_{n_k}$为绝对收敛级数,再证项差级数收敛.\\
+    由于$L^p(\Omega)$中元素可以相差一个零测集,而$p=\infty$时所有子列中函数的本性上确界无法控制的区域之并也是零测的,故没有关系.\\
+    对于$p\neq \infty$,首先,项差级数的$\norm{\cdot}_p$($p\in (0,1)$则为$\norm{\cdot}_p^p$)有限,故项差级数的绝对值和a.e.有限(即a.e.绝对收敛).\\
+    然后定义$f$为项差级数的和(零测的无限部分取0),其$p$范数由上有限,且$f-f_{n_k}$的范数可由绝对收敛级数控制为0,因此收敛于$L^p(\Omega)$中.}
+\end{enumerate}
+
+我们也可以定义离散情形下的$L^p$空间.范数同理定义,测度可在离散情况下适当取.如都为1则为计数测度,记为$\ell^p$.显然有一个线性等距同构,从$\ell^p$到任意离散的$L^p$空间,\hint{除上测度的$\frac{1}{p}$次幂.}而离散集合有限时,$\ell^p_n=\F^n$.
+
+另外可以定义\textbf{可分空间}:有可数\hint{$\mathrm{card}=\aleph_0$}的稠密子集的空间.实际上$\ell^p$和$L^p(a,b)$在$p\in \abbr{1,\infty}$时是可分的,而$p=\infty$不可分.\tbc \\[1pt]
+
+最后我们证明关于$L^p$空间重要的结论:\begin{enumerate}[resume]
+    \item $p\in (0,\infty)$时可积($L^1$)简单函数族稠密于$L^p(\Omega)$.\\\hint{每个$L^p$函数拆成(实/复的)正/负部,}
+\end{enumerate}
+
+\section{Hilbert空间}
+%基本概念
+
+\subsection{投影算子}
+
+\subsection{对偶和共轭}
+
+\subsection{正交基}
+
+\section{连续函数空间}
+\subsection{等度连续和Ascoli定理}
+我们考虑$C(K,E)$的子集$\mathcal{H}$,其中$K$是拓扑空间而$(E,d)$是度量空间.我们定义$\mathcal{H}$在$x_0$处等度连续,若有$K$中$x_0$的邻域,使得其中所有$\mathcal{H}$的元素$f$,其与$f(x_0)$的距离充分小.换言之即$$\forall \varepsilon\exists O(x_0)\forall x\in O(x_0)\forall f\in \mathcal{H}:d(f(x),f(x_0))<\varepsilon.$$
+
+若$K$也是度量空间,我们定义$\mathcal{H}$在$K$上一致等度连续,若$\forall \varepsilon\exists \delta\forall f\in\mathcal{H}:d_K(x,y)<\delta\implies d_E(f(x),f(y))<\varepsilon$.
+
+我们有如下性质:
+\begin{enumerate}
+    \item $\mathcal{H}=\cbr{f}$是单点集时$\mathcal{H}$(一致)等度连续$\iff f$(一致)连续.
+    \item $C(K,E)$中有限子集均等度连续.换言之,等度连续集加上或去掉一个$C(K,E)$中的有限子集仍等度连续.
+    \item 一致等度连续$\implies$等度连续.
+    \item 以常数为阶的H\"older函数族等度连续.特别的,Lipschitz函数族等度连续.
+    \item $\mathcal{H}=\cbr{f_n}$是$C(K,E)$中一列函数,若其一致收敛于$C(K,E)$中,则$\mathcal{H}$等度连续.\\\hint{由$f$连续性和一致收敛定义,对充分大的$f_n$,$d(f_n(x),f_n(x_0))<3\varepsilon$.}
+\end{enumerate}
+我们有如下定理:
+\begin{enumerate}[resume]
+    \item 紧度量空间$K$和度量空间$E$,$\mathcal{H}\subset C(K,E)$,则$\mathcal{H}$一致等度连续和等度连续等价.\\这是紧集上一致连续和连续等价的推广.\hint{等度连续时可取$K$上有限个小邻域控制$E$上像的距离.}
+    \item 紧Hausdorff空间$K$和度量空间$E$,$\cbr{f_n}\subset C(K,E)$等度连续.$f_n$逐点收敛于$f$,则$f$连续,且$f_n$一致收敛于$f$.\\这表明了等度连续集的强大,能说明逐点收敛的函数一定是连续的,而且一致收敛.\\\hint{可以用等度连续和逐点收敛控制$f$像点距离充分小,故连续.再用等度连续中的小邻域有限覆盖$K$,可以在每处控制$f_n$和$f$像点距离充分小,故一致收敛.}
+    \item 紧Hausdorff空间$K$和度量空间$E$,定义$C(K,E)$上的距离$d_\infty(f,g)=\sup_{x\in K}d(f(x),g(x))$.\\
+    (1)依距离收敛$\iff$一致收敛;(2)$E$完备$\implies C(K,E)$完备;(3)$d$由$\norm{\cdot}$诱导,则$d_\infty$由$\sup_{x\in K}\norm{f(x)}$诱导.\\
+    \hint{(1)和(3)显然.对于(2),对Cauchy列函数可以取逐点极限,然后对$d(f_n(x),f_m(x))<\varepsilon$取极限,得到一致收敛,故也连续,故$C(K,E)$完备.$K$不紧时$d_\infty$可能不有界.}
+    \item (Arzela-Ascoli定理)紧Hausdorff空间$K$和度量空间$(E,d)$,$\mathcal{H}\subset C(K,E)$,则$\mathcal{H}$在$C(K,E)$中相对紧等价于\\(1)$\mathcal{H}$等度连续;(2)$\forall x\in K:\mathcal{H}(x)=\cbr{f(x):f\in\mathcal{H}}\subset E$相对紧.
+\end{enumerate}
+\begin{proof}
+    $\implies$(1):首先由度量空间的紧性,可以取$\varepsilon$-球有限覆盖$\overline{\mathcal{H}}$.对球心$f_k$和$f\in \mathcal{H}$可以考虑$f(x)\sim f_k(x)\sim f_k(y)\sim f(y)$中每个距离$<\varepsilon$,得到$\mathcal{H}$等度连续.
+
+    $\implies$(2):$\Phi_x:f\mapsto f(x)$连续,故$\Phi_x(\overline{\mathcal{H}})$紧.另一方面,取$a\in\overline{\Phi_x(\mathcal{H})}$可用一列$\Phi_x(\mathcal{H})$中元素逼近,而此列相应的函列在$\mathcal{H}$中,其一致收敛于$\overline{\mathcal{H}}$中,因此$a\in\Phi_x(\overline{\mathcal{H}})$,$\overline{\mathcal{H}(x)}=\overline{\Phi_x(\mathcal{H})}\subset \Phi_x(\overline{\mathcal{H}})$紧.
+
+    $\impliedby$:(1)$(\overline{\mathcal{H}},d_\infty)$完备且(2)$\mathcal{H}$预紧$\implies\mathcal{H}$相对紧.
+
+    $\impliedby$(1):取Cauchy列,每个元素$f_n$取足够近的$\mathcal{H}$中元素$g_n$,后者也成Cauchy列.由$\mathcal{H}(x)$相对紧,可对两者取逐点收敛极限函数.而$g_n$等度连续,故极限函数连续,在$\overline{\mathcal{H}}$中,而这也是$f_n$的极限.
+
+    $\impliedby$(2):用$\mathcal{H}$等度连续中的所有$K$中邻域有限覆盖$K$,记邻域中心为$\cbr{x_i}_{i=1}^n$.再用$\varepsilon$-球有限覆盖$\bigcup\mathcal{H}(x_i)$,记球心之并为$Y=\cbr{y_i}_{i=1}^m\subset E$.对$z\in Y^n$定义$B_z=\cbr{f\in C(K,E):\sup_{\substack{i\in [n]\\x\in O_i}}d(f(x),z_i)<2\varepsilon}$,这样的球仅有有限个.在同一个球中的元素距离$<4\varepsilon$,故球直径也是.下仅需证$B_z$覆盖$\mathcal{H}$即可说明预紧性.\\
+    注意到对$f\in\mathcal{H}$,$f(x_i)$在一个$z_i$中心的$\varepsilon$-球中,故$f(x)\sim f(x_i)\sim z_i$.由$i$和$x$任意性,$f\in B_z$,因此得证.
+\end{proof}
+
+\begin{enumerate}[resume]
+    \item $K$是局部紧Hausdorff空间,$\mathcal{H}\subset C(K,\F^n)$.则$\mathcal{H}$在$C(K,\F^n)$中相对紧$\iff \mathcal{H}$等度连续且一致有界.
+    \item $\Omega$是$\F^n$中开集,$\cbr{f_n}\subset C(\Omega,\F^n)$.若$\cbr{f_n}$在$\Omega$中任意紧集上等度连续且$\cbr{f_n}$一致有界,则$\cbr{f_n}$有子列在$\Omega$中任意紧集上一致收敛.\\
+    \hint{取紧集$K_p=\cbr{x\in\Omega:d(x,\F^n-\Omega)\geq\frac{1}{p}}\cap p\overline{B},\Omega=\bigcup K_p$.由题设和Ascoli定理,$\cbr{f_n}$在$C(K_p,\F^n)$上相对紧(即列紧),故有子列$f^p_n$(一致)收敛.我们取$f_n^n$在每个紧集上都一致收敛.}
+    \item (Montel定理)$\Omega\subset\C$开,$\cbr{f_n}\subset H(\Omega)$.若在$\Omega$中任意紧集上$\cbr{f_n}$一致有界,则$\cbr{f_n}$有子列在$\Omega$中任意紧集上收敛到全纯函数.\\
+    \hint{对$f_n(z)-f_n(z_0)$作Cauchy积分公式展开,在半径$r$的圆盘边界积分,并估模,限制$z,z_0$在同心半径$r/2$圆盘内,得到\\$\abs{\frac{f_n(z)-f_n(z_0)}{z-z_0}}\leq\frac{4}{r}\sup_{\substack{n\geq 1\\z\in B(z',r)}}\abs{f(z)}$,因此说明这是一个Lipschitz函列,故等度连续.由Ascoli定理得证.}
+\end{enumerate}
+
+\subsection{Stone-Weierstrass定理}
+紧Hausdorff空间$K$,$\mathcal{A}\subset C(K,\F)$.我们有:
+\begin{itemize}
+    \item 称$\mathcal{A}$是$C(K,\F)$的子代数
+\end{itemize}
+
+\section{Baire定理及其应用}
+
+\subsection{Baire空间}
+
+\subsection{Banach-Steinhaus定理}
+
+\subsection{开映射和闭图像定理}
+
+\section{拓扑向量空间}
+%定义和基本性质
+\subsection{半赋范空间}
+
+\subsection{局部凸空间}
+%及其例子
+
+\section{Hahn-Banach定理,弱拓扑与弱*拓扑}
+
+感觉实际上那种看书看一半然后一个一个整理定理的行为是相当容易滑落为抄书的,因此我觉得我需要好好想想怎么把书读薄而不是继续抄书.我现在想看完一节之后不去补全定理,而是去叙述这一节作者干了什么.说实在的,应当训练自己对本质的刻画.
+
+看完这一章后我依然有问题:Hahn-Banach定理有两种形式并分别作为两个定理来证明的,那么是什么使得它们成为一个定理——被联系起来?
+\subsection{Hahn-Banach定理:分析形式}
+这一节即Hahn-Banach延拓定理及其推论.延拓定理就是说,如果有子空间的连续线性泛函,其$\leq$一个次线性泛函/半范数,那么它就能延拓到全空间.大致思路是:$$\text{延拓到多一个维度的空间}\to \text{延拓到全空间}(\R)\to \text{替换次线性泛函为半范数}\to \text{延拓到全空间}(\C)$$
+第二个$\to$需要Zorn引理,最后一个$\to$需要建立$\C$线性和$\R$线性泛函的对应关系.
+
+接着有一系列推论.由于一开始讨论的空间都是单纯的VS,没有涉及拓扑性质(尤其是连续性).接下来会在TVS和LCS上进行讨论,默认是TVS.推论大致有
+\begin{enumerate}
+    \item 子空间中$\leq$\textbf{连续}半范数的线性泛函可以\textbf{连续}延拓
+    \item LCS上连续线性泛函都可以连续延拓\hint{(取LCS中的$C \max p_i$过渡)}
+    \item 能取一个连续线性泛函$\leq$某一半范数且在给定点相等.
+    \item LCS的对偶空间可分点.\hint{用上性质,半范数族可分点(在某点非零)\why,对应点相等的也非零.}
+    \item VS中连续泛函可保范连续延拓.\hint{比较范数大小,注意到$\norm{f}\norm{x}$是半范数}
+    \item 可以联系起范数与连续线性泛函的范数,即$\norm{x}=\sup_{\norm{f}\leq 1}\abs{f(x)}$且可取到相应$f$.\hint{由上.}
+    \item 对某点$x$,可以取范数1的连续线性泛函,使在该点的取值为$\norm{x}$.
+    \item 对某点$x$,可以取范数1且在闭VS上取0的连续线性泛函,在该点取值$d(x,F)$.
+\end{enumerate}
+
+\subsection{Hahn-Banach定理:几何形式}
+本节的中心即Hahn-Banach(严格)隔离定理,即TVS中凸集在某$f\in E^*, \re f$下的像是区间,且对两不交凸集有
+\begin{itemize}
+    \item 隔离定理:若其中一个开,则有$\re f(a)<\alpha\leq \re f(b)$的关系.也就是说,两者的像不交,但闭包可能交.
+    \item 严格隔离定理:若其中一个紧而另一个闭,则有$\re f(a)<\alpha<\beta<\re f(b)$的关系.也就是说,两者的像不交,闭包也不.
+\end{itemize}
+另外其顺便说明了TVS中非零线性泛函都是开映射.
+
+这一定理实际上说明了在什么条件下,集合的像集能被足够分离.换个思路来说,在原空间(此TVS)中,两集合被$(\re f)\rev (\alpha)$\\``分开''的条件.至少说明了在某些条件下一定有可以分开两者的超平面$(\codim (\re f)\rev (\alpha)=1)$.
+
+书上证明的思路其实并不相同:\begin{itemize}
+    \item 隔离定理:首先证明$\re f(a)\leq \re f(b)$.考虑$A-B+(b-a)$的Minkowski泛函,得到使得$p(b-a)\geq 1>p(0)$的半范数.然后取$\leq p$的连续线性泛函$f$,最终可以得证.由于像集凸,其都是区间.最后可以证明$\re f(A)$开.考虑$\R$上性质即可.
+    \item 严格隔离定理:$A$紧$B$闭,对$A$中点取其符合条件的足够小邻域,用有限个覆盖$A$,再取这些邻域(中心移动到0)的交$U$.可以证明$A+U$在条件$x+U+U$不交$B$时也不交$B$.最后由上隔离$A+U$和$B$,再由区间性质得证.
+\end{itemize}
+\textcolor{red}{思路太长了,需要改.}
+
+它们也有一系列推论,下默认空间是$T_2$ LCS.
+\begin{enumerate}[resume]
+    \item 可以隔离平衡闭凸集与其外一点,且可以控制凸集像的模$\leq 1$,但$f(x_0)\in \R$且$>1$.\\\hint{得到不等式后不断操作所给函数来控制,注意到$|z|=\lambda z$.}
+    \item 使某VS取0的连续线性泛函都在某点取0,则该点属于此VS的闭包,\hint{由上.}反之显然.换言之,$\overline{F}=\bigcap_{f\in E^*\atop F\subset \ker f}\ker f$.\\
+    \hint{$x_0\in\overline{F}\iff \br{\forall f\in E^*:f|_F=0\implies f(x_0)=0}.$}\\
+    因此,若使某VS取值为0的连续线性泛函都是0,则该VS稠密.\hint{$E=\overline{F}\iff \forall f\in E^*:f|_F=0\iff f=0$.}\\
+    也可以由此证明推论8.1.4.
+    \item (Mazur定理)两个$T_2$ LCS拓扑上线性泛函的连续性若等价,则两拓扑中凸集的闭性等价.\hint{隔离$x\in \overline{A}^{\tau_2}-\overline{A}^{\tau_1}$和$\overline{A}^{\tau_1}$.}\\但需要注意的是,一个拓扑中的凸开集不一定是另一个中的开集.
+\end{enumerate}
+
+\subsection{二次对偶空间,弱拓扑与弱*拓扑}
+可以作$E$到其二次对偶空间$E^{**}$的等距嵌入:$x\mapsto (B:(x,f)\mapsto f(x))$.由推论8.1.7.易证这是等距的.
+
+取符合条件的$A\subset E^*, F=\Span(A)$,有可分点半范数族$|f|:f\in F$.由上[哪里?],记$\sigma(E,F)$是与$E$的TVS结构相容,且使$F$连续的最弱拓扑.首先有
+\begin{enumerate}[resume]
+    \item $(E,\sigma(E,F))^*=F$.\\
+    \hint{首先证明引理:对给定有限个线性泛函,(1)某线性泛函$f$是其线性组合$f=\sum \alpha_kf_k$等价于(2)$\abs{f}\leq C\max \abs{f_k}$,而这需要借助\\(3)$\bigcap\ker f_k\subset \ker f$.显然$(1)\implies (2)\implies (3)$,而$(3)\implies (1)$可以考虑$(f_1,\cdots,f_n)(x)\mapsto f(x), x\in E$.(3)保证了这是一个映射,且线性.$f$可以延拓到$\F^n$上作为线性加和,因此最终$f(x)$是$f_k(x)$的线性组合.\\
+    接下来,由于$\sigma(E,F)$保证$F$连续,因此$F\subset (E,\sigma(E,F))^*$.而后者中的泛函一定有半范数$\cbr{f_k}$控制,即$\abs{f}\leq C\max \abs{f_k}$(见半范数章节),故$f=\sum \alpha_kf_k\in F$,得证.}
+\end{enumerate}
+
+我们定义:
+\begin{itemize}
+    \item $E$上弱拓扑即$\sigma(E,E^*)$,记为$w$-.
+    \item 记$\hat{E}=\cbr{\hat{x}:f\mapsto f(x):x\in E}$,$E^*$上的弱*拓扑即$\sigma(E^*,\hat{E})=\sigma(E^*,E)$,这是因为$x\mapsto \hat{x}$是线性同构.其记为$w$*-.
+    \item $E$赋范时Banach空间$E^*$上有强拓扑(即范数拓扑)$(\norm{\cdot})$,其强于强拓扑,再强于弱*拓扑.即$\norm{\cdot}\geq w$-$\geq w$*-.
+\end{itemize}
+
+其有一定性质:\begin{enumerate}[resume]
+    \item $(E,\sigma(E,E^*))^*=E^*, (E^*,\sigma(E^*,E))^*=E$.
+    \item 对凸集,闭性等价于$w$-闭,即$\overline{A}=\overline{A}^w$.\hint{由Mazur定理.}
+\end{enumerate}
+
+\subsection{双极定理}
+最后我们来证明双极定理.对$\begin{array}{l}A\subset E\\B\subset E^*\end{array}$记极集$\mathrm{pol}\br{\begin{array}{l}A\\B\end{array}}=\cbr{\begin{array}{l}f\in E^*\\x\in E\end{array}:\abs{f(x)}\leq 1,\begin{array}{l}\forall x\in A\\\forall f\in B\end{array}}$.
+
+书上以列举性质的形式表明了双极定理的实际证明思路,下列举之,以$A\subset E$为例但相应的对$B\subset E^*$也成立.
+\begin{enumerate}
+    \item 极集是凸平衡的,且是$w$(*)-闭的.
+    \item $\mathrm{pol}(\cdot)$是单调递减的.
+    \item $A$的凸平衡包$\mathrm{convba}(A)=\cbr{\sum_{k=1}^n \lambda_kx_k:x_k\in A,\lambda_k\in \F, \sum\abs{\lambda_k}\leq 1}$,闭凸平衡包$\mathrm{ccb}(A)=\overline{\mathrm{convba}(A)}$.\\有$\mathrm{pol}(A)=\mathrm{(\mathrm{ccb}(A))}$.
+    \item $\mathrm{pol}(\lambda A)=\lambda\rev\mathrm{pol}(A)$.$\mathrm{pol}\br{\bigcup A_i}=\bigcap\mathrm{A_i}$.
+    \item 若VS $F\subset E, F^\circ=\cbr{x^*\in E^*:x^*|_F=0}$,称之为$F$的零化子空间,且这是$E^*$的$w$*-闭VS.
+\end{enumerate}
+其中需要注意到$\mathrm{pol}(A)=\bigcap_{a\in A}\hat{a}\rev (\overline{B}_\F), \mathrm{pol}(B)=\bigcap_{b\in B}b\rev(\overline{B}_\F)$.性质1,3需用定义,其中性质3需要说明极集中元素符合$\mathrm{ccb}(A)$的极集的定义.
+
+双极定理就是说,集合的极集的极集(即双极)等于自身,等价于这是一个$w$(*)-闭凸平衡集.一般集合的双极都等于其ccb.\\在上述性质下定理是容易证明的.\tbc
+
+\section{Banach空间的对偶理论}
+本章中$E$默认为赋范空间,由于存在$\varphi:E\to \widehat{E}, x\mapsto \hat{x}$(即$\abr{\widehat{x},f}=\abr{f,x}$)的线性等距同构,可以认为两者相等,并认为此映射是$E\to E^{**}$的自然嵌入.
+
+\subsection{共轭算子}
+首先我们对$u\in \mcBfunc{E,F}$定义其共轭算子$u^*\in\mcBfunc{F^*,E^*}:f^*\mapsto f^*\circ u$,且两者范数相等.这也导出了其一个性质:$\abr{u^*(f^*),x}=\abr{f^*,u(x)}$.
+
+\hint{这个定义是良好的.首先$f^*\circ u$线性连续,且$\norm{u^*(f^*)}\leq \norm{f^*}\norm{u}$,因此$u^*$也是.而且每个算子的共轭是唯一的,易证.最后,\\$\norm{u^*}=\sup_{\norm{f^*}\leq 1}\sup_{\norm{x}\leq 1}\abs{f^*\circ u(x)}=\sup_{\norm{x}\leq 1}\norm{u(x)}=\norm{u}$.}
+
+容易看出:$(u\circ v)^*=v^*\circ u^*$.
+
+因此我们得到一个$\mcBfunc{E,F}\hookrightarrow \mcBfunc{F^*,E^*}$的线性等距嵌入,当然不一定是满的.若$F$不完备,则必不满.
+
+下面我们给两个例子:\begin{itemize}
+    \item $\ell_2^n=\cbr{(x_1,\cdots,x_n):\sum_{k=1}^n \abs{x_k}^2<\infty,x_k\in \C},u\in \mcBfunc{\ell_2^n},u(x)=\cbr{\sum_{j=1}^n a_{ij}x_j}_{i\in [n]}$.\tbc
+    \item 若VS $F\subset$ VS $E$,$\iota:F\to E,x\mapsto x$,则$\iota^*$有$\abr{\iota^*(e^*),x}=\abr{e^*,x}$,因此$\iota^*(e^*)=e^*|_F$.若$E=F, \id_E^*=\id_{E^*}$.
+\end{itemize}
+
+我们给出共轭算子关于同构的一个性质:\begin{enumerate}
+    \item $u\in \mcBfunc{E}{F}$,$u$同构$\autorightleftharpoons{}{$E$完备} u^*$同构,且$(u^*)\rev=(u\rev)^*$.\\
+    \hint{$\implies:$由于$u$与其逆的左右乘为$\id$,取共轭后可知$(u\rev)^*$是$u^*$的逆.\\
+    $\impliedby:$首先证明$u$是等距单射.$u^{**}$也是等距同构,因此$C_1\norm{x^{**}}\leq \norm{u^{**}(x^{**})}\leq C_2\norm{x^{**}}$,这是关于算子范数的上下界.考虑将$x^{**}$限制在$E$上,取$f^*\in F^*$,反复运用共轭算子的上述公式,得到$\abr{u^{**}(\widehat{x}),f^*}=\abr{\widehat{u(x)},f^*}.$\why 因此可以认为$u^{**}(x)=u(x),u^{**}|_E\!=\!u$,故有$C_1\norm{x}\leq \norm{u(x)}\leq C_2\norm{x}$,这保证了双连续,即$E$和$u(E)$通过$u$同构.\\
+    其次$u$满.取$f^*|_{u(E)}=0$,则对$x\in E, \abr{u^*(f^*),x}=\abr{f^*,u(x)}=0$.又$u$单,$f^*=0$.而因$u(E)$同构于完备空间,其闭,最终由性质7.8得到$u(E)=F$.}
+\end{enumerate}
+这个思路非常特别,但说明同构可以先说明其等距再说明满是一个通用的技巧.对于前者,我们运用了范数的不等式,形似等价范数,这也说明了范数拓扑下的同构说明在像空间得到了原空间的等价范数.而等距同构意味着不仅等价,而且相同.最后得到满是在闭的前提下用了隔离定理的一个性质,可以说明有一些点是在稠密的范围(闭包)内的.
+
+\subsection{子空间和商空间的对偶}
+本节认为闭VS $F\subset$ VS $E$,且定义商空间上的范数$\norm{\widetilde{x}}=\inf_{y\in F}\norm{x+y}$.闭保证了正定性,即$\norm{\widetilde{x}}=0$时有$x+y_n\to 0, y_n\in F$,而闭保证了$-y_n\to x\in F$.
+
+我们首先考虑VS $F\subset E$的零化子空间$F^\perp\subset E^{*}$和VS $G\subset E^*$的预零化子空间$G_\perp\subset E$.实际上这就是闭VS的极集,因此我们可以说零化子空间的预零化子空间是($w$-)闭的,而预零化子空间的零化子空间是$w$*-闭的.也因此运用双极定理得到推论$(F^\perp)_\perp=F, (G_\perp)^\perp=G$.
+
+因此我们可以得到以下性质:对$u\in \mcBfunc{E,F}$,其中$E,F$赋范,有\begin{enumerate}[resume]
+    \item $\ker u^*=u(E)^\perp, \ker u=u^*(F^*)_\perp$.
+    \item $(\ker u^*)_\perp=\overline{u(E)}, (\ker u)^\perp=\overline{u^*(F^*)}^{w^*}$.
+    \item $u^*$单$\iff \overline{u(E)}=F, u$单$\iff \overline{u^*(F^*)}^{w^*}=E^*$.
+\end{enumerate}
+不难证第一条(验证定义,用共轭算子的定义性质),第二条是其自然推论,第三条是第二条的自然推论.\\[3pt]
+
+其次我们考虑商映射$\pi:E\to E/F$的共轭,可以证明$\norm{\pi}=1$(用$\varepsilon$和一些序列逼近另一个方向),因此$\norm{\pi^*}=1$.限制其到达域在$F$的零化子空间上,得到$\nu:f\mapsto f\circ\pi$.另一方面,可以定义$\sigma:E^*/F^\perp\to F^*, \widetilde{\varphi}\mapsto \varphi|_F$.可以证明这是一个合理的定义,而且线性.这也说明了在$E^*$上不区分$F^\perp$部分的映射,在$F$上的表现都是一样的.最后,$\abs{\sigma(\widetilde{\varphi})(x)}\leq \norm{\varphi}\norm{x}$可以得到$\norm{\sigma(\widetilde{\varphi})}\leq \norm{\widetilde{\varphi}}$,即$\sigma$连续.
+
+我们通过这两个映射可以得到此节两个最重要的性质:
+\begin{enumerate}[resume]
+    \item $(E/F)^*\cong F^\perp, E^*/F^\perp\cong F^*$,且均为等距同构.
+\end{enumerate}
+两者思路都是先证明等距(因此单射)再证明满.\begin{itemize}
+    \item 对前者而言,等距是自然的.\hint{我们也可以认为商映射的范数$\leq 1$,另一方面$\abs{\varphi(\widetilde{x})}\leq \norm{\nu(\varphi)(x)}$,综合起来即可.}其次考虑对$F^\perp$元素$f$考虑$\varphi:\widetilde{x}\mapsto f(x)$,此定义合理,线性,且$f=\varphi\circ\pi=\nu(\varphi)$,故满.
+    \item 等距:保范连续延拓$\sigma(\widetilde{\varphi})=\varphi|_F$到$E$上得到$\varphi'$,其在$F$上与$\varphi$表现一致.这是因为$\norm{\widetilde{\varphi}}$需要和$E^*$的元素比较.最后由$\norm{\varphi|_F}=\norm{\sigma(\widetilde{\varphi})}$得到反向不等式,故等距;满:对任意$F^*$元素,延拓之再商$F^\perp$,此即原像.
+\end{itemize}
+
+\subsection{自反性}
+自反空间即在自然嵌入$\iota_E:x\mapsto \widehat{x}$下$E=E^{**}$的空间.更准确地说,是$\widehat{E}=E^{**}$.换言之,自然嵌入是满射.
+
+在此节,我们首先给出自反空间的性质,然后给出例子.
+
+\begin{enumerate}[resume]
+    \item 自反空间是Banach空间.\hint{显然}
+    \item Banach空间是自反空间$\iff$其对偶空间自反.\\\hint{$\implies$:仅需说明$E^*=E^{***}$,显然.$\impliedby$:$E^*=E^{***}$中为0的泛函导出$\varphi|_E=0\implies \varphi|_{E^{**}}=0$,再由于$E$完备故闭,有$E=E^{**}$.}
+    \item 对同构的赋范空间,其自反性等价.\hint{考虑$u^{**}|_E=u$,若$u$同构则$u^{**}$也是.根据此二条件导出结论.}
+    \item 自反空间$E$的闭VS $F$和商空间$E/F$都是自反的.
+\end{enumerate}
+
+我们在此最麻烦的定理便是最后一条,因为我们不止需要证明等距同构,更需要证明同构映射即为自然嵌入.
+
+首先我们注意到,在自反空间中对任何闭VS $F\subset E^*$,(在自然嵌入意义下)$F_\perp\stackrel{\iota_{E}|_{F_\perp}}{\to}F^\perp, x\mapsto \widehat{x}$是等距同构,\hint{可以直接验证定义,再考虑自然嵌入.}因此可以认为$F_\perp=F^\perp$, 闭VS$F\subset E$有$F=F^{\perp\perp}$.
+
+然后我们给出同构:$$E/F=E/(F^\perp)_{\perp}\cong E^{**}/F^{\perp\perp}\cong(F^\perp)^*\cong(E/F)^{**},\qquad F=F^{\perp\perp}\cong(E^*/F^\perp)^*\cong F^{**}$$
+
+最后可以分别考虑映射:
+\begin{itemize}
+    \item $E/F\stackrel{\rho}{\to}E^{**}/F^{\perp\perp}\stackrel{\sigma_1}{\to}(F^\perp)^*\stackrel{\nu_1^*}{\to}(E/F)^{**}$,即需证明$\nu_1^*\circ\sigma_1\circ\rho_1=\iota_{E/F}$.其中定义$\rho:\widetilde{x}\mapsto\widetilde{\widehat{x}}$.\\
+    首先$\rho$的定义是合理的:$\widetilde{x_1}=\widetilde{x_2}$时$x=x_1-x_2\in F$,$\widehat{x}|_{F^\perp}:f\mapsto f(x)=0$,因此$\widehat{x}\in F^{\perp\perp}$,即$\rho(x_1)=\rho(x_2)$.
+    其次$\rho$是同构.首先$\norm{\widetilde{\widehat{x}}}=\inf_{\widehat{y}\in F^{\perp\perp}}\norm{\widehat{x+y}}=\inf_{y\in F}\norm{x+y}=\norm{\widetilde{x}}$,故等距.其次可以验证逆$\widehat{x}+F^{\perp\perp}\mapsto x+F$为一个映射,故双.\\
+    取$\widetilde{\widehat{x}}\in E^{**}/F^{\perp\perp}, \varphi\in (E/F)^*$, $\abr{\nu_1^*\circ\sigma_1(\widetilde{\widehat{x}}),\varphi}=\abr{\sigma_1(\widetilde{\widehat{x}}),\nu_1(\varphi)}=\abr{\widehat{x}|_{F^\perp},\varphi\circ\pi}=\abr{\varphi\circ\pi,x}=\abr{\varphi,\widetilde{x}}$.因此可知$\nu_1^*\circ\sigma_1(\widetilde{\widehat{x}})=\widehat{\widetilde{x}}$,因此$(\nu_1^*\circ\sigma_1)\circ\rho_1:\widetilde{x}\mapsto\widetilde{\widehat{x}}\mapsto\widehat{\widetilde{x}}$即为自然嵌入$\iota_{E/F}$.
+    \item $F\stackrel{\iota_F}{\to}F^{\perp\perp}\stackrel{\nu_2\rev}{\to}(E^*/F^\perp)^*\stackrel{(\sigma^*_2)\rev}{\to}F^{**}$,即证$(\sigma_2^*)\rev\circ\nu_2\rev\circ\iota_F=\iota_F$.\\
+    取$\widehat{x}\in F^{\perp\perp}, \varphi=\nu_2\rev(\widehat{x}), \psi=(\sigma_2^*)\rev(\varphi)$,再取$f\in F^*$,有$\abr{(\sigma_2^*)\rev\circ\nu_2\rev(\widehat{x}),f}=\abr{(\sigma_2\rev)^*\circ\varphi,f}=\abr{\varphi,\sigma_2\rev(f)}=\abr{\varphi,\widetilde{f}}$.而$\varphi\circ\pi_{F^\perp}=\widehat{x}:f\mapsto f(x)$,即$\varphi:\widetilde{f}\mapsto f(x)$.因此$\abr{\psi,f}=\abr{\varphi,\widetilde{f}}=f(x)$,因此$\widehat{x}=\psi:f\mapsto f(x)$,得证.
+\end{itemize}
+
+\subsection{弱*紧性}
+本节大致叙述了三个定理:
+\begin{enumerate}
+    \item (Alaoglu定理)$E^*$的闭单位球是弱*紧的.
+    \item (Goldstine定理)$E$的单位球在$E^{**}$的闭单位球中弱*稠密.
+    \item (Banach定理)$E$自反$\iff$其闭单位球弱紧.
+\end{enumerate}
+
+这一节基本说明了三个拓扑(范数拓扑,弱拓扑和弱*拓扑)在紧性上的差别.即:
+\begin{itemize}
+    \item $E^*$闭单位球紧$\iff E$有限维
+    \item $E^*$闭单位球弱紧$\iff E$自反
+    \item $E^*$闭单位球总弱*紧
+\end{itemize}
+
+\subsection{$L^p$空间的对偶空间}
+本节给出了一个重要结论:$L^p(\Omega)^*=L^q(\Omega)$,其中$p\in \babr{1,\infty},\frac{1}{p}+\frac{1}{q}=1$,且$\Omega$的测度$\mu$是$\sigma$-有限的.
+
+证明思路即为说明$J:L^q\to (L^p)^*, g\mapsto \varphi_g, \varphi_g:f\mapsto \int_\Omega fg\d \mu$是一个等距同构.
+
+首先说明$J$是线性等距的,($\norm{J(g)}\leq \norm{g}$可证,反向需讨论$p>1$和$p=1$并构造$f$.)然后最重要的部分即为证明其为满射,即给定$\varphi$寻找$g$.
+\begin{itemize}
+    \item $p\in \babr{1,2},\mu$有限:$L^2$嵌入$L^p$,再用Hilbert空间上的Riesz表示定理给出对$f\in L^2\subset L^p$存在$g$满足$\abs{\int fg}\leq \norm{\varphi}\norm{f}_p$.再如上讨论$p$,分别构造集族$A_n$和$f_n$使$\norm{g}_q$有限且$\varphi(f)=\int fg$.
+    \item $p\in \babr{1,2},\mu\; \sigma$-有限:可取有限可测集列$\cbr{\Omega_n}$,并为$\Omega$,由上可得到$\cbr{g_n}$,取$g=\sum g_n 1_{\Omega_n}$.如上分类讨论$p$,再如上构造支撑在有限个集合上的$f_n$使$\norm{g}_q$有限且$g$满足条件.
+    \item $p=2$:由$L^2(\Omega)$是Hilbert空间可由证明过程知$L^2=(L^2)^*$.
+    \item $p\in (2,\infty)$:首先证明此时任意$L^p$空间是自反的.\\
+    \hint{仅需证明$\overline{B}_{(L^p)^{**}}\subset \overline{B}_{L^p}$,考虑$\norm{x^{**}}=1$有$\overline{B}_{L^p}$中序列$x_n$依范数趋于$x^{**}$即可.考虑在弱*条件下收敛的序列,其若不范数收敛则有子项项差$\geq\varepsilon$.另外可以给出$\norm{x^{**}}\leq \varliminf \norm{x_n}$}
+\end{itemize}
+
+\section{正则Borel测度和Riesz表示定理}
+
+本章首先给出两个比较重要的引理,在后续内容会较多出现.我们记函数$f$的支撑$\supp f=\overline{f\rev(0)^c}$,$C_c(X)$指定义在$X$上具有紧支撑的函数全体.
+$C_c(X)$在$C_0(X)$中稠密.\why
+
+本章中记$K$总为紧集,$O$总为开集.对函数$f$有$K\prec f\iff 1_K\leq f\leq 1, f\prec O\iff 0\leq f\leq 1_O$.
+
+\begin{enumerate}
+    \item $K\subset O$,有$f\in C_c(X), K\prec f\prec O$(即$1_K\leq f\leq 1_O$).\hint{用Урысон引理.}
+    \item 开集$O_1,\cdots,O_n, K\subset \bigcup O_i$,则有$f_i\prec O_i$, 在$K$上$\sum f_i=1$.
+\end{enumerate}
+
+接下来我们要叙述正线性函数的表示定理.我们考虑局部紧$T_2$空间$X$上的局部有限Borel测度$\mu$.局部有限指任意紧集$K$有$\mu(K)<\infty$.正线性泛函指$f\geq 0$则$\varphi(f)\geq 0$的线性泛函$\varphi$.
+
+$(X,\mu)$中$f\in C_c(X)$一定可积,因此可以考虑正线性泛函$\varphi_\mu(f)=\int_Xf\d \mu$.而接下来我们要证明反向过程.
+
+\begin{enumerate}[resume]
+    \item (Riesz表示定理\footnotemark)$\varphi$是$C_c(X)$上的正线性泛函,则有$X$上$\sigma$-代数$\mathcal{A}$及其上唯一正测度$\mu$使得\begin{itemize}
+        \item $\mu$局部有限.
+        \item $f\in C_c(X), \varphi(f)=\int_Xf\d \mu$.
+        \item $\forall A\in \mathcal{A}:\mu(A)=\inf_{A\subset O, O\text{开}}\mu(O)$.
+        \item 对开集或有限测度集合$A\in \mathcal{A}:\mu(A)=\sup_{K\subset A, K\text{紧}}\mu(K)$.
+        \item $(X,\mathcal{A},\mu)$是完备测度空间.
+    \end{itemize}
+    $\mu$即相对$\varphi$的Radon测度.
+\end{enumerate}
+\footnotetext{也被称为Riesz-Марков-角谷表示定理.}
+
+证明是相当繁琐的,我们一条一条来.
+\begin{enumerate}
+    \item $\mu$的唯一性\hint{即紧集测度相等,取$K\prec f\prec O$能得到$\mu_1(K)\leq \mu_2(K)+\varepsilon$.}
+    \item 开集上定义$\mu(O)=\sup_{f\prec O, f\in C_c(X)}\varphi(f)$,这是递增,$\sigma$-次可加和$\sigma$-可加的.
+    \item 紧集上定义$\mu(K)=\inf_{K\subset O}\mu(O)$,这是递增,次可加和可加的.
+    \item 此二定义是一致的,即$\mu(O)=\sup_{K\subset O}\mu(K), \mu(K)=\inf_{K\prec f, f\in C_c(X)}\varphi(f)$.后者也说明$\mu$是局部有限的.\\\hint{前者$\geq:\sup_K$;前者$\leq:$取$f\prec O,K=\supp f, f\prec U\supset K$,取$\inf_{U\supset K}$,有$\varphi(f)\leq \mu(K)$,因此$\sup_{f\prec O}$,有$\mu(O)\leq\sup\mu(K)$.\\
+    后者$\geq:$取$K\prec f\prec O$有$\varphi(f)\leq \mu(O)$.取$\inf_{K\prec f}$再取$\inf_{K\subset O}$;后者$\leq:$取$f, K\prec f\prec O_\varepsilon=f\rev(\varepsilon,\infty)$.取$g\prec O_\varepsilon, \varepsilon g\leq fg\leq f$.取$\sup_g, \mu(O_\varepsilon)\leq \varphi(f/\varepsilon)$.再取$\inf_{O_\varepsilon}$,再取$\varepsilon\to 1$,有$\mu(K)\leq \varphi(f)$.最后$\sup_f$.}
+    \item 内外测度定义:$\mu^*(A)=\inf_{A\subset O}\mu(O), \mu_*(A)=\sup_{K\subset A}\mu(K)$.$\mu^*$和$\mu_*$递增,且对于开集或紧集两者相等.$\mu^*$是$\sigma$-次可加的,而$\mu_*$是$\sigma$-上可加的.
+    \item 由内外测度定义集族$\mathcal{A}_F=\cbr{A\subset X:\mu^*(A)=\mu_*(A)<\infty}$.因此紧集和有限测度开集$\in \mathcal{A}_F$.\begin{itemize}
+        \item 对$\mathcal{A}_F$中两两不交集,$\mu^*$(或$\mu_*$)是$\sigma$-可加的,即$\mu^*\br{\bigcup_n A_n}=\sum_n\mu^*(A_n)$.
+        \item 弱化的Лузин定理成立,即$A\in \mathcal{A}_F\iff \forall \varepsilon\exists K,O:K\subset A\subset O, \mu(O-K)<\varepsilon$,其中$K$紧$O$开.\\\hint{$\implies:\mu(O-K)<\mu_*(O)-\mu_*(K)<\varepsilon$.$\impliedby:\mu^*(A)\leq \mu^*(O)\leq \mu^*(K)+\varepsilon\leq \mu_*(A)+\varepsilon$.}
+        \item $\mathcal{A}_F$对于差和并是环.\hint{仅需对$K_i\subset A_i\subset O_i$考虑Лузин定理,其中有$K_1-O_2\subset A-B\subset O_1-K_2$.}
+    \end{itemize}
+    \item 定义可测集族及其上的测度:$\mathcal{A}=\cbr{A\subset X:\forall K:A\cap K\in \mathcal{A}_F}$,定义$\mu(A)=\mu^*(A)$.\begin{itemize}
+        \item $\mathcal{A}$是$\sigma$-代数,且有Borel代数$\mathcal{B}\subset \mathcal{A}$.\hint{由$\mathcal{A}_F$是$\sigma$-代数,以及仅需考虑任意闭集在$\mathcal{A}$中即可.}
+        \item $A\in \mathcal{A}_F\iff A\in\mathcal{A}\land \mu(A)<\infty$.
+    \end{itemize}
+\end{enumerate}
+
+\section{紧算子}
+
+\section{符号表}
+\begin{tabular}{ll}
+    LCS&Locally Convex Space, 局部凸空间\\
+    $T_2$&Hausdorff空间,即满足$\forall x,y\exists O(x),O(y):x\neq y\implies O(x)\cap O(y)=\emptyset$.\\
+    TVS&Topological Vector Space, 拓扑向量空间\\
+    VS&Vector Space, 向量空间
+\end{tabular}
+\end{document}

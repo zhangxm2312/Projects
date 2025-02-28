@@ -1,0 +1,194 @@
+{
+  "main": {
+    "id": "b6f1cc88f3fa943a",
+    "type": "split",
+    "children": [
+      {
+        "id": "29fd3b90e2c50138",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "068fb0e3a3622977",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "读书笔记/图论笔记.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "图论笔记"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5a9e9bb954e12d68",
+    "type": "split",
+    "children": [
+      {
+        "id": "d01fed19094bf8c6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5c1e9b64def06500",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "6845578cc80df5d9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "b5ab7de334411e5b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5b893e599f836778",
+    "type": "split",
+    "children": [
+      {
+        "id": "57c126eb126e51ef",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "de0d9fb87ef5a860",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "读书笔记/Graph theory-Springer (2008)-GTM244_含目录.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              },
+              "icon": "links-coming-in",
+              "title": "Graph theory-Springer (2008)-GTM244_含目录 的反向链接列表"
+            }
+          },
+          {
+            "id": "3122342a575ae436",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "读书笔记/Graph theory-Springer (2008)-GTM244_含目录.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Graph theory-Springer (2008)-GTM244_含目录 的出链列表"
+            }
+          },
+          {
+            "id": "5e056120a711e42a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "71e243af18ca2a43",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "读书笔记/图论笔记.md"
+              },
+              "icon": "lucide-list",
+              "title": "图论笔记 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "markdown-importer:打开 Markdown 格式转换器": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "obsidian-importer:Open Importer": false
+    }
+  },
+  "active": "068fb0e3a3622977",
+  "lastOpenFiles": [
+    "读书笔记/Chapter 0 读书笔记.md",
+    "论文笔记/论文笔记.md",
+    "论文笔记/A Linear Lower Bound for the Square Energy of Graphs.pdf",
+    "论文笔记/Some Results on Specturm and Energy of Graphs with Loops.pdf",
+    "论文笔记",
+    "读书笔记/Graph theory-Springer (2008)-GTM244_含目录.pdf",
+    "读书笔记/图论笔记.md",
+    "未命名.canvas",
+    "preamble.sty",
+    "param.tex",
+    "preamable.sty",
+    "preamable.sty.txt",
+    "新建 文本文档.txt",
+    "读书笔记/test.md",
+    "读书笔记/1.md",
+    "读书笔记/Untitled.pdf",
+    "未命名.md",
+    "2024-11-22.md",
+    "创建链接.md",
+    "欢迎.md"
+  ]
+}

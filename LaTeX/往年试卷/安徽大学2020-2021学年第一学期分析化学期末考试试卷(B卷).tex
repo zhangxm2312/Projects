@@ -1,0 +1,124 @@
+\documentclass[UTF8]{article}
+\usepackage{ctex,geometry,enumitem}
+\usepackage[compact]{titlesec}
+\usepackage[version=4]{mhchem}
+\geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
+% \pgfplotsset{width=10cm,compat=1.16}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=10pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+\newcounter{exercise}
+\renewcommand{\thesubsection}{\arabic{exercise}}
+\titleformat{\subsection}{\rmfamily}{\stepcounter{exercise}\thesubsection.}{0em}{}
+\renewcommand{\thesection}{\Roman{section}}
+%%% 小题*分数=总分
+\newcommand{\ptsMulti}[3]{ \small($#1\!\!$小题$\!\!\times #2\!\!$分$\!\!=\!\!#3\!\!$分)}
+\newcommand{\pts}[1]{ \small{(#1分)}}
+\newcommand{\p}{\mathrm{p}}
+\newcommand{\shortline}{\underline{\hspace{1cm}}}
+\newcommand{\longline}{\underline{\hspace{2cm}}}
+\newcommand{\bfA}{\textbf{A.}}
+\newcommand{\bfB}{\qquad \textbf{B.}}
+\newcommand{\bfC}{\qquad \textbf{C.}}
+\newcommand{\bfD}{\qquad \textbf{D.}}
+\newcommand{\ind}{\hspace{-1pt}}
+\newcommand{\indLarge}{\hspace{-0.6cm}}
+
+\title{安徽大学2020-2021学年第一学期分析化学期末考试试卷(B卷)}
+\author{出卷人:金葆康}
+\date{}
+\begin{document}
+    \maketitle
+    \section{\Large{\textbf{选择题}}\ptsMulti{15}{1}{15}}
+    \subsection{分析化学就其性质而言.是一门\shortline\ind 的科学.}
+        \indLarge \bfA 获取物质的物理性质
+        \indLarge \bfB 获取物质的化学性质
+        \indLarge \bfC 获取物质的化学组成与结构信息
+        \indLarge \bfD 获取物质的性质信息
+    
+    \subsection{以下各项措施中,不能减少系统误差的是\shortline.}
+        \bfA 进行仪器校准 \bfB 做对照试验 \bfC 增加平行测定次数 \bfD 做空白实验
+
+    \subsection{等体积混合pH=2.00的HCl和pH=11.00的NaOH溶液所得的溶液pH为\shortline.}
+    \bfA 2.35\bfB 3.35\bfC 4.35\bfD 5.35
+
+    \subsection{现有50.00mL的某二元酸\ce{H2B}(已知$\!c(\ce{H2B})\!\!=\!\!0.1000$moL/L). 用\ind 0.1000 mol/L NaOH\ind 溶液滴定. 在加入25.00mL NaOH溶液后, pH=4.80; 加入\ind 50.00mL NaOH溶液\ind (即在第一化学计量点)\ind 后, pH=7.15, 则$\p K_{a_2}$=\shortline.}
+    \bfA 4.8\bfB 9.5\bfC 7.2\bfD 6.0
+
+    \subsection{用0.1000 mol/L \ce{HCl}滴定等浓度的\ce{NH3}溶液至化学计量点时的质子平衡式为\shortline.}
+    \indLarge \bfA \ce{[H+] = [OH-] + [NH3]}
+    \indLarge \bfB \ce{[NH4^+] + [H+] = [OH-]}
+    \indLarge \bfC \ce{[H+] = [OH-] + [Cl-]}
+    \indLarge \bfD \ce{[H+] + [NH4^+] = [OH-] + [Cl-]}
+
+    \subsection{在pH=5的EDTA缓冲溶液中,以0.02000 mol/L \ce{EDTA}滴定同浓度\ce{Pb^{2+}},化学计量点时,pY=\shortline.(已知pH=5时$\lg \alpha_{\ce{Y(H)}}=6.4, \lg K_{\ce{PbY}}=1.80$)}
+    \bfA 6.8\bfB 7.2\bfC 10.0\bfD 13.2
+
+    \subsection{(1)用0.02 mol/L 的 \ce{KMnO4}溶液滴定0.02 mol/L的\ce{Fe2^+}溶液;(2)用0.02 mol/L 的 \ce{KMnO4}溶液滴定0.02 mol/L的\ce{Fe2^+}溶液.上述两种情况下其滴定突跃为\shortline.}
+    \bfA 一样大\bfB (1)$>$(2)\bfC (1)$<$(2)\bfD 无法判断
+
+    \subsection{以下银量法需要采用返滴定方式测定的是\shortline.}
+    \bfA Mohr法测定\ce{Cl^-}\bfB 吸附指示剂法测定\ce{Cl^-}\bfC Volhard法测定\ce{Cl^-}\bfD Mohr法测定\ce{Br^-}
+
+    \subsection{Mohr法测定\ce{Cl^-}含量时,要求介质的pH值在6.5$\sim$10范围内,若pH超出范围,则会\shortline.}
+    \bfA \ce{AgCl}沉淀不完全\bfB \ce{AgCl}吸附\ce{Cl^-}增强\bfC \ce{Ag2CrO4}沉淀不易形成\bfD \ce{AgCl}沉淀易胶溶
+
+    \subsection{\ce{Ag2CrO4}室温下包和溶解度为1.32$\times 10^{-4}$ mol/L,则其$K_{\ce{sp}}$=\shortline.}
+    \bfA $1.7\times 10^{-8}$\bfB $9.2\times 10^{-12}$\bfC $3.5\times 10^{-8}$\bfD $2.3\times 10^{-12}$
+
+    \subsection{下列要求中,不属于重量分析对称量形式的要求的是\shortline.}
+    \bfA 相对摩尔质量要大\bfB 沉淀颗粒要大\bfC 性质稳定\bfD 组成要与化学式完全符合
+
+    \subsection{相同质量的\ce{Fe^{3+}}和\ce{Cd^{2+}}(摩尔质量分别为55.85和112.4),各用显色剂在同样体积溶液中显色,用吸光光度法测定,前者用2cm比色皿,后者用1cm比色皿,测得的吸光度相同,则两有色化合物的摩尔吸光系数:\shortline.}
+    \bfA 基本相同\bfB \ce{Fe^{3+}}约为\ce{Cd^{2+}}的两倍\bfC \ce{Cd^{2+}}约为\ce{Fe^{3+}}的两倍\bfD \ce{Cd^{2+}}约为\ce{Fe^{3+}}的四倍
+
+    \subsection{电极电势对判断氧化还原反应的性质非常重要,但它不能判断\shortline.}
+        \indLarge \bfA 氧化还原反应的完全程度
+        \indLarge \bfB 氧化还原能力的大小
+        \indLarge \bfC 氧化还原反应的方向
+        \indLarge \bfD 氧化还原反应的反应速率
+
+    \subsection{水溶液中的\ce{Ni^{2+}}\ind 之所以能被丁二酮肟-\ce{CHCl3}萃取,是因为在萃取过程中发生下述何种变化?}
+        \indLarge \bfA \ce{Ni^{2+}}\ind 形成了离子缔合物
+        \indLarge \bfB 溶液酸度降低了
+        \indLarge \bfC \ce{Ni^{2+}}\ind 形成的产物质量增大了
+        \indLarge \bfD \ce{Ni^{2+}}\ind 形成的产物中引入了疏水基团
+
+    \subsection{对于难溶电解质MA,其溶度积为$K_{\ce{sp}}$, M和A在溶液中均存在副反应,若其副反应系数分别为$\alpha_{\ce{M}}$和$\alpha_{\ce{A}}$,则其溶解度可表述为\shortline.}
+    \bfA $\sqrt{K_{\ce{sp}}\alpha_M}$\bfB $\sqrt{K_{\ce{sp}}\alpha_A}$\bfC $\sqrt{K_{\ce{sp}}\alpha_M\alpha_A}$\bfD $\sqrt{K_{\ce{sp}}\dfrac{\alpha_M}{\alpha_A}}$
+
+    \section{填空题 \small($20\!\!$空$\!\!\times 1\!\!$分$\!\!=\!\!20\!\!$分)}
+    \subsection{选择酸碱指示剂的原则是使其变色点的pH处于滴定的\longline 范围内,所以指示剂的$\p K_a$越接近\longline 的pH值,结果就越准确.}
+    
+    \subsection{\ce{Na2C2O4}水溶液的质子平衡式为\underline{\hspace{5cm}}.}
+    
+    \subsection{由于利用化学反应不相同,滴定分析法可分为\longline ,\longline ,\longline ,\longline 等四种滴定分析方法;滴定分析法适用于\longline 含量组分的测定.}
+    
+    \subsection{金属离子与EDTA的绝对稳定常数越大,测定时允许的溶液pH值就越\shortline; 一般情况下,能准确滴定单一离子M的判别式为\underline{\hspace{5cm}}.}
+    
+    \subsection{在1mol/L \ce{H2SO4}溶液中,用0.1000mol/L \ce{Ce^{4+}}标准溶液滴定0.1000 mol/L \ce{Fe^{2+}}时,该滴定的电位突跃范围为\shortline 到\shortline. 化学计量点时,电极电位为\shortline. 已知$\varphi^\ominus_{\ce{Ce^{4+}/Ce^{3+}}}=1.44\ce{V}, \varphi^\ominus_{\ce{Fe^{3+}/Fe^{2+}}}=0.68\ce{V}$.}
+    
+    \subsection{\ce{KMnO4}在强酸介质下被还原为\longline,在强碱性介质中被还原为\longline.}
+    \section{简答题\ptsMulti{5}{6}{30}}
+
+    \subsection{为什么评价定量分析结果的优劣从精密度和准确度两个方面来衡量?两者是什么关系?如何保证分析方法的准确度?}
+    
+    \subsection{在滴定分析中常常使用基准物质,何为基准物质?作为基准物质须符合哪些标准?}
+    
+    \subsection{滴定分析对化学反应有哪些要求?}
+    
+    \subsection{AgCl沉淀在HCl中的溶解度随HCl的浓度增大时先减小随后又增大,最后超过其在纯水中的溶解度,这是为什么?}
+    
+    \subsection{分光光度法是一种重要的定量分析方法,合理选择参比溶液,是准确定量分析的前提.试简要说明,在测量吸光度时,如何选择参比溶液?}
+
+    \section{计算题\ptsMulti{4}{10}{40}}
+
+    \subsection{计算下列各溶液的pH:(1)0.10 mol/L \ce{NH4Cl}; (2)$1\times 10^{-4}$ mol/L \ce{NaCN}.\\ 已知\ce{NH3}的$K_b=1.8\times 10^{-5}$,\ce{HCN}的$K_{a}=6.2\times 10^{-10}$.}
+    
+    \subsection{计算\ce{CaC2O4}:(1)在水中的溶解度; (2)在0.010 mol/L \ce{(NH4)2C2O4}溶液中的溶解度. 已知$K_{\ce{CaC2O4}}=2.0\times 10^{-9}$.}
+    
+    \subsection{在\ind pH=10.00\ind 的氨性缓冲溶液中,以铬黑\ind T(EBT)\ind 为指示剂,用\ind 0.0200 mol/L EDTA\ind 滴定同浓度的\ce{Zn^{2+}},\ind 计算终点误差.\\ 已知$\lg K_{\ce{ZnY}}=16.5$,pH=10.00时,$\lg \alpha_{\ce{Y(H)}}=0.45, \lg \alpha_{\ce{Zn(NH3)}}=5.0, \lg \alpha_{\ce{Zn(OH)}}=2.4, \p\ce{Zn_{ep}(EBT)}=12.2$.}
+    
+    \subsection{浓度为25.5$\mu$g/50mL的\ce{Cu^{2+}}溶液,用双环己酮草酰二腙光度法进行测量,于波长600nm处,用2cm吸收池进行测定,测得T=50.5\%,求摩尔吸光系数$\varepsilon$和Sandel灵敏度S. 已知$M_{\ce{Cu}}$=63.5g/mol.}
+    \end{document}

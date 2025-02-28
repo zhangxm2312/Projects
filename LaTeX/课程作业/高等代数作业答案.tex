@@ -1,0 +1,274 @@
+\documentclass[11pt]{article}
+\input{../preamble.tex}
+
+\title{高等代数作业答案}
+\author{老师: 李换换; 助教: 王金峰, 章亦流}
+\date{\today}
+
+\begin{document}
+% \maketitle
+% \tableofcontents
+
+% \section{第一章 行列式}
+% \subsection{数域}
+% \subsection{排列}
+% \subsection{$n$阶行列式}
+% \subsection{行列式的性质与展开}
+% \subsection{行列式的计算}
+% \subsection{Cramer法则}
+% \subsection{复习题1}
+
+% \section{第二章 矩阵}
+% \subsection{矩阵的定义与运算}
+% \subsection{矩阵的初等变换与秩}
+% \subsection{可逆矩阵}
+% \subsection{分块矩阵}
+% \subsection{Gauss消元法}
+% \subsection{复习题2}
+
+% \section{第三章 线性空间}
+% \subsection{线性空间的定义和性质}
+% \subsection{向量组的线性相关性}
+% \subsection{基与坐标}
+% \subsection{线性子空间}
+% \subsection{子空间的交、和与直和}
+% \subsection{商空间}
+% \subsection{复习题3}
+
+% \section{第四章 线性映射}
+% \subsection{线性映射的定义与矩阵}
+% \subsection{线性空间的同构}
+% \subsection{线性映射的像与核}
+% \subsection{线性变换及其矩阵}
+% \subsection{不变子空间}
+% \subsection{复习题 4}
+
+\addtocounter{section}{4}
+\section{第五章 多项式}
+\subsection{一元多项式}
+\paragraph{5.1.1}$f,g\in\F[x]$,证明$fg=0\iff f$和$g$中至少一个是0.
+\begin{proof}[证明一]
+    $\impliedby$显然.$\implies:$若$f,g$均非零,则两者的首项系数之积非零,从而$fg\neq 0$.
+\end{proof}
+\begin{proof}[证明二]
+    $\implies:$按逐项系数递推,记
+    $$f(x)=\sum_{i=0}^{m}a_ix^i, g(x)=\sum_{j=0}^{n}b_jx^j, f(x)g(x)=\sum_{t=0}^{m+n}\br{\sum_{i+j=t}a_ib_j}x^t=0$$
+    从而$c_t=\sum_{i+j=t}a_ib_j=0, \forall t=0,\cdots,m+n$.若$f=0$则命题得证; 若$f\neq 0$,则$a_m\neq 0$,而$c_{m+n}=a_mb_n=0, b_n=0$.
+
+    下证明$b_{n-r}=0, r=0,\cdots,n$. 对$r$归纳, $r=0$时已证.若$<r$的情形已证,即
+    $$b_{n-0}=b_{n-1}=\cdots=b_{n-r+1}=0$$
+    则
+    $$c_{m+n-r}=a_mb_{n-r}+a_{m-1}b_{n-r+1}+\cdots+a_{m-r}b_{n}=a_mb_{n-r}=0$$
+    从而$b_{n-r}=0$,得证.
+\end{proof}
+\paragraph{5.1.2}$f,g,h\in \F[x]$,若$f\neq 0$,则$fg=fh\iff g=h$.
+\begin{proof}
+    $fg=fh\iff f(g-h)=0$,而$f\neq 0$,由上题知$g-h=0, g=h$.
+\end{proof}
+\paragraph{5.1.3}对于$f\in\R[x], f\neq 0$满足$f(x^2)=f^2(x)$,求多项式$f(x)$.
+\begin{proof}[证明一]
+    记$f(x)=\sum_{i=0}^{n}a_ix^i, a_i\in \R, a_n\neq 0$. 取$m=\max\cbr{k\mid a_k\neq 0, k=0,\cdots, n-1}$, 即除$a_nx^n$外最高非零项的次数,则
+    $$f(x^2)=\sum_{i=0}^{n}a_i x^{2i}=a_nx^{2n}+a_mx^{2m}+\cdots, f^2(x)=\sum_{t=0}^{2n}\br{\sum_{i+j=t}a_ia_j}x^t=a_n^2 x^{2n}+2a_na_m x^{n+m}+\cdots$$
+    比较系数,$a_n=a_n^2, a_n=1$.而$n+m>2m$,故$x^{n+m}$项系数$2a_na_m=0, a_m=0$.这与$m$定义矛盾,故$m$不存在,即$a_0=\cdots=a_{n-1}=0, f(x)=x^n$.
+\end{proof}
+\begin{proof}[证明二]
+    同上记号且易证$a_n=1$.对$f(x^2),f^2(x)$展开有:
+    $$f(x^2)=\sum_{i=0}^{n}a_i x^{2i}, f^2(x)=\sum_{t=0}^{2n}\br{\sum_{i+j=t}a_ia_j}x^t$$
+    逐项比较系数,可得:
+    $$a_k=\sum_{i+j=2k}a_ia_j,\qquad 0=\sum_{i+j=2k+1}a_ia_j,\qquad \forall k=0,\cdots,n$$
+    从而$0=2a_na_{n-1}, a_{n-1}=0$.下证$a_{n-r}=0, r=1,\cdots,n$. 对$r$归纳, $r=1$时已证.假设$<r$的情形已证,即$a_{n-1}=\cdots=a_{n-r+1}=0$时:若$r$为偶数,则
+    $$0=a_{n-r/2}=\sum_{i+j=2n-r}a_ia_j=2a_na_{n-r}$$
+    若$r$为奇数,则取$k=n-(r+1)/2$,
+    $$0=\sum_{i+j=2n-r}a_ia_j=2a_na_{n-r}$$
+    可知总有$a_{n-r}=0$,从而得证,即$f(x)=x^n$.
+\end{proof}
+\paragraph{5.1.4}$f,g,h\in \R[x]$,证明若$f^2(x)=xg^2(x)+xh^2(x)$,则$f=g=h=0$.
+\begin{proof}[证明一]
+    若$f\neq 0$则$\deg f^2=2\deg f$为偶数,且此时$g^2+h^2\neq 0$.由于$g^2$与$h^2$的首项系数均为正数,故两者和也为正数,故$\deg(g^2+h^2)=\max(\deg g^2,\deg h^2)$,从而有
+    $$2\deg f=\deg f^2=\deg\br{xg^2(x)+xh^2(x)}=2\max(\deg g,\deg h)+1$$
+    左端为偶数,右端为奇数,矛盾,从而$f=0,g^2+h^2=0,g=h=0$.
+\end{proof}
+\begin{proof}[证明二]
+    若$g,h$中至少有一个非零,取$g\neq 0$,则$\exists c\in\R, g(c)\neq 0$,故$g^2(c)+h^2(c)>0, g^2+h^2\neq 0$.而$\deg f^2$为偶数,$\deg\br{xg^2(x)+xh^2(x)}$为奇数,矛盾.故$g=h=0,f=0$.
+\end{proof}
+\paragraph{5.1.5}在$\C[x]$中找一组不全为0的多项式$f,g,h$使得$f^2(x)=xg^2(x)+xh^2(x)$.
+\begin{proof}
+    $f(x)=0, g(x)=\i, h(x)=1$.
+\end{proof}
+\begin{proof}[通解]
+    由于$x\mid f^2(x)$,则$x\mid f(x)$. 记$f(x)=xq(x)$, 有
+    $$xq^2(x)=g^2(x)+h^2(x)=(g(x)+\i h(x))(g(x)-\i h(x))$$
+    不失一般性地认为$g,h$互素,因为上式等价于
+    $$x\br{\frac{q(x)}{(g(x),h(x))}}^2=\br{\frac{g(x)}{(g(x),h(x))}}^2+\br{\frac{h(x)}{(g(x),h(x))}}^2$$
+    另一方面,$x\mid (g(x)+\i h(x))(g(x)-\i h(x))$,不失一般性地认为$x\mid g(x)+\i h(x)$.
+    
+    将$q(x)$分解为不可约多项式的乘积,即$q=p_1p_2\cdots p_m$,则
+    $$g(x)+\i h(x)=xp_1^2(x)\cdots p_{s}^2(x) p_{s+1}(x)\cdots p_{t}(x), g(x)-\i h(x)=p_{s+1}(x)\cdots p_{t}(x)p_{t+1}^2(x)\cdots p_{m}^2(x)$$
+    记
+    $$a(x)=p_1(x)\cdots p_{s}(x), b(x)=p_{t+1}(x)\cdots p_{m}(x), d(x)=p_{s+1}(x)\cdots p_{t}(x)$$
+    则$q=abd, g+\i h=x a^2d, g-\i h=db^2, (g+\i h, g-\i h)=d(a,b)^2$.而
+    $(g+\i h, g-\i h)=(g+\i h, 2g)=(g,h)=1$,因此$d=(a,b)=1, g+\i h=x a^2, g-\i h=b^2$,解得:
+    $$f=xq=xab, g=\frac{x a^2+b^2}{2}, h=\frac{x a^2-b^2}{2\i}$$
+    最后回代$g,h$不互素的情况,得到通解:对于$\forall a,b\in \C[x],$上式为通解.
+\end{proof}
+
+\subsection{整除}
+\paragraph{5.2.1}求下列$f(x)$除以$g(x)$的商式$q(x)$与余式$r(x)$:
+\begin{enumerate}
+    \item $f(x)=5x^4+3x^3+2x^2+x-1, g(x)=x^2+2x-2$;
+    \item $f(x)=6x+3x^4-4x^3, g(x)=x+2$.
+\end{enumerate}
+\begin{proof}
+    \begin{enumerate}
+        \item $q(x)=5 x^2-7x+26, r(x)=-65x+51$.
+        \item $q(x)=3 x^3-10  x^2+20  x-34, r(x)=68$.
+    \end{enumerate}
+\end{proof}
+\paragraph{5.2.2}求$f(x)$按$x-c$幂的展开式,即写成$f(x)=\sum_{k=0}^n a_k (x-c)^k$的形式:
+\begin{enumerate}
+    \item $f(x)=x^5, c=1$;
+    \item $f(x)=x^3-10x^2+13, c=-2$.
+\end{enumerate}
+\begin{proof}
+    \begin{enumerate}
+        \item $(x-1)^5+5(x-1)^4+10(x-1)^3+10(x-1)^2+5(x-1)+1$.
+        \item $(x+2)^3-16(x+2)^2+52(x+2)-35$.
+    \end{enumerate}
+\end{proof}
+\paragraph{5.2.3}问参数$m,n,p$满足什么条件时有
+\begin{enumerate}
+    \item $x^2-2x+1\mid x^4-5x^3+11x^2+mx+n$;
+    \item $x^2-2mx+2\mid x^4+3x^2+mx+n$;
+    \item $x^2+m-1\mid x^3+nx+p$;
+    \item $x^2+mx+1\mid x^4+nx^2+p$.
+\end{enumerate}
+\begin{proof}
+    \begin{enumerate}
+        \item 要求除法余式$r(x)=(m+11)x+(n-4)=0$,即$m=-11, n=4$.
+        \item 要求除法余式$r(x)=4mx^2-mx+(n-2)=0$,即$m=0, n=2$.
+        \item 要求除法余式$r(x)=(1-m+n)x+p=0$,即$m=n+1, p=0$.
+        \item 要求除法余式$r(x)=(m+n)x^2+2mx+(p+1)=0$,即$m=n=0, p=-1$.
+    \end{enumerate}
+\end{proof}
+\paragraph{5.2.4}求$u(x),v(x)$使得$uf+vg=(f,g)$.
+\begin{enumerate}
+    \item $f(x)=x^4+3x^3-x^2-4x-3, g(x)=3x^3+10x^2+2x-3$;
+    \item $f(x)=x^4-10x^2+1, g(x)=x^4-4\sqrt{2}x^3+6x^2+4\sqrt{2}x+1$;
+    \item $f(x)=x^4-x^3-4x^2+4x+1, g(x)=x^2-x-1$.
+\end{enumerate}
+\begin{proof}
+    \begin{enumerate}
+        \item $u(x)=\frac{3}{5}x-1, v(x)=-\frac{1}{5}x^2+\frac{2}{5}x$.
+        \item $u(x)=-\frac{\sqrt{2}}{8}x+\frac{1}{2}, v(x)=\frac{\sqrt{2}}{8}x+\frac{1}{2}$.
+        \item $u(x)=-x-1, v(x)=x^3+x^2-3x-2$.
+    \end{enumerate}
+    (答案均不唯一.)
+\end{proof}
+\paragraph{5.2.5}设$f(x)=x^3+(t+1)x^2+2x+2u$与$g(x)=x^3+tx^2+u$的最大公因式为二次多项式,求$t,u$.
+\begin{proof}
+    考虑带余除法$f=qg+r$,比较次数与系数可知$q(x)=1$,故$r(x)=f(x)-g(x)=x^2+2x+u$.继续辗转相除得到$g=q_1r+r_1$,其中$\deg r_1<\deg r=2$,而$(f,g)\mid r_1$,因此$r_1=0, g=q_1r$.比较系数知$q_1$为首项系数为1的一次多项式$(x-a)$,因此有
+    $$g(x)=x^3+tx^2+u=(x-a)(x^2+2x+u)=x^3+(2-a)x^2+(u-2a)x-au$$
+    比较系数可得
+    $$t=2-a,\quad 0=u-2a,\quad u=-au$$
+    解得$t=2, u=0, a=0$或$t=3, u=-2, a=-1$.
+\end{proof}
+\paragraph{5.2.6}对于多项式$f,g,d$,若$d\mid f, d\mid g$且存在多项式$u,v$使得$d=uf+vg$,证明$d=(f,g)$.
+\begin{proof}
+    由$d\mid f, d\mid g$知$d\mid (f,g)$,而$(f,g)\mid uf+vg=d$,因此$d$与$(f,g)$间差一个非零常数,即$d$是$f,g$的一个最大公因数.
+\end{proof}
+\paragraph{5.2.7}设$f,g\in\F[x]$,证明:
+\begin{enumerate}
+    \item 若$a,b,c,d\in \F$满足$ad-bc\neq 0$,则$(af+bg,cf+dg)=(f,g)$;
+    \item $(f^2,g^2)=(f,g)^2$;
+    \item $(f,f+g)=1\iff (f,g)=1$.
+\end{enumerate}
+\begin{proof}
+    首先证明引理:对于任意多项式$q\in \F[x], (f,g)=(f+qg,g)$. 证:由于$(f,g)$整除$f+qg$和$g$,因此$(f,g)\mid (f+qg,g)$,同理$(f+qg,g)\mid (f+qg-qg,g)=(f,g)$,从而两者相等.
+
+    1. 
+    $$\br{af+bg,cf+dg}=\br{af+bg,cf+dg-\frac{c}{a}(af+bg)}=\br{af+bg,\frac{ad-bc}{a}g}=(f,g)$$
+
+    2.记$d=(f,g)$,有$f=df_1, g=dg_1, (f_1,g_1)=1, (f^2,g^2)=d^2(f_1^2,g_1^2)$.而$(f_1,g_1)=1\iff (f_1^2,g_1^2)=1$(书上推论5.2.12,或由Bézout定理),从而得证.
+
+    3.由1或引理显然.
+\end{proof}
+\paragraph{5.2.8}$f,g\in \F[x]$不全为0,且$uf+vg=(f,g)$,证明$(u,v)=1$.
+\begin{proof}
+    记$f=(f,g)f_1, g=(f,g)g_1$,其中$(f_1,g_1)=1$.从而有$(f,g)=uf+vg=(f,g)(uf_1+vg_1)$,因此$uf_1+vg_1=1$,这等价于$(u,v)=1$.
+\end{proof}
+\paragraph{5.2.9}设$f_1,\cdots,f_m,g_1,\cdots,g_n\in \F[x]$且$(f_i,g_j)=1 (\forall i\in [m], j\in [n])$,证明$(f_1\cdots f_m, g_1\cdots, g_n)=1$.
+\begin{proof}
+    首先证明$n=1$的情形,即$\forall i=1,\cdots,m, (f_i,g)=1$则有$(f_1\cdots f_m,g)=1$.对$m$归纳,$m=1$时已证,下设$<m$的情形已得证,而$(f_1\cdots f_{m-1},g)=(f_m,g)=1\iff (f_1\cdots f_m,g)=1$(书上推论5.2.12),从而得证.
+
+    再对原命题考虑,记$f=f_1\cdots f_m$,由上知$(f,g_1)=\cdots=(f,g_n)=1$,从而又有$(f,g_1\cdots g_n)=1$.
+\end{proof}
+\paragraph{5.2.10}证明定理5.2.16
+\begin{quotation}
+    \textbf{定理5.2.16} 设$f_1,\cdots,f_k\in \F[x]$不全为0,则$(f_1,\cdots,f_km)$唯一存在,且
+    $$(f_1,\cdots,f_k)=((f_1,\cdots,f_{k-1}),f_k)$$
+    从而$\exists u_i\in \F[x], i\in [k]$使得
+    $$(f_1,\cdots,f_k)=\sum_{i=1}^k u_i f_i$$
+\end{quotation}
+\begin{proof}
+    
+\end{proof}
+\paragraph{5.2.11}多项式$m(x)$称为多项式$f(x),g(x)$的最小公倍式,若$f\mid m, g\mid m$且$f,g$的任意倍式是$m$的倍式.记$[f,g]$为$f,g$的(首项系数为1的)最大公倍式,证明若$f,g$首项系数为1,则$[f,g]=\frac{fg}{(f,g)}$.
+\begin{proof}
+    
+\end{proof}
+
+\paragraph{思考题1}对于$f(x)=\sum_{i=0}^{m}a_ix^i, g(x)=\sum_{i=0}^{n}b_ix^i, h(x)=\sum_{i=0}^{m-n}c_ix^i$,若有$f(x)=g(x)h(x)$,用$a_i$和$b_i$表示出$c_i$.
+\begin{proof}
+    考虑$g(x)$的最低非零次数$r=\min\cbr{i|b_i\neq 0, i=0,1,\cdots,n}$,则$g(x)=\sum_{i=r}^{n}b_ix^i$.又由于$a_k=\sum_{i+j=k}b_ic_j$,因此实际上即
+    $$a_{r+k}=\sum_{i+j=r+k}b_ic_j=b_rc_k+\sum_{i=0}^{k-1}b_{r+k-i}c_i, (k=0,\cdots,m-r)$$
+    因此有
+    $$c_k=\frac{1}{b_r}\br{a_{r+k}-\sum_{i=0}^{k-1}b_{r+k-i}c_i}$$
+    其在$r=0$,即$b_0\neq 0$时化为
+    $$c_k=\frac{1}{b_0}\br{a_{k}-\sum_{i=0}^{k-1}b_{k-i}c_i}$$
+\end{proof}
+
+% \subsection{因式分解定理}   
+% \subsection{复系数与实系数多项式的因式分解}
+% \subsection{有理系数多项式}
+% \subsection{复习题5}
+
+% \section{第六章 相似标准形}
+% \subsection{特征值与特征向量}
+% \subsection{特征子空间与根子空间}
+% \subsection{对角化}
+% \subsection{$\lambda$-矩阵}
+% \subsection{行列式因子、不变因子与初等因子}
+% \subsection{Jordan 标准形}
+% \subsection{复习题6}
+
+% \section{第七章 双线性函数与二次型}
+% \subsection{双线性函数}
+% \subsection{标准形}
+% \subsection{惯性定理}
+% \subsection{正定性}
+% \subsection{复习题7}
+
+% \section{第八章 内积空间}
+% \subsection{欧氏空间}
+% \subsection{标准正交基}
+% \subsection{欧氏空间的子空间}
+% \subsection{正交变换}
+% \subsection{对称变换}
+% \subsection{复习题8}
+\end{document}
+
+\paragraph{5.2.1}
+\paragraph{5.2.2}
+\paragraph{5.2.3}
+\paragraph{5.2.4}
+\paragraph{5.2.5}
+\paragraph{5.2.6}
+\paragraph{5.2.7}
+\paragraph{5.2.8}
+\paragraph{5.2.9}
+\paragraph{5.2.10}
+\paragraph{5.2.11}
+\paragraph{5.2.12}
+\paragraph{5.2.13}
+\paragraph{5.2.14}
+\paragraph{5.2.15}

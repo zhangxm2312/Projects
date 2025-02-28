@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{geometry,enumitem,amsmath,amssymb,fontspec}
+\usepackage[compact]{titlesec}
+\setmainfont{CMU Serif}
+\geometry{a4paper,left=1cm,right=1cm,top=0.8cm,bottom=1.2cm}
+% \pgfplotsset{width=10cm,compat=1.16}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=10pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+\renewcommand{\thesection}{\Roman{section}}
+\newcommand\ptsMulti[3]{ \textnormal{\small{($#2$ marks for each question, $#3$ marks in total)}}}
+\newcommand\pts[1]{ \small{(#1 marks)}}
+\newcommand{\shortline}{\underline{\hspace{1cm}}}
+\newcommand{\longline}{\underline{\hspace{2cm}}}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\bfA}{\vspace{5pt}\\ (A) }
+\newcommand{\bfB}{\qquad (B) }
+\newcommand{\bfC}{\qquad (C) }
+\newcommand{\bfD}{\qquad (D) }
+\newcommand{\ind}{\hspace{-1pt}}
+\newcommand{\indLarge}{\hspace{-0.6cm}}
+\newcommand{\para}[1]{\paragraph{#1.}\hspace{-10pt}}
+
+\title{Anhui University Semester 2, 2020-2021 Final Examination\\ Numerical Analysis (Paper A)}
+\author{Author: Donghui Pan}
+\date{}
+\begin{document}
+    \maketitle
+    \section{Single-choice Questions\ptsMulti{5}{3}{15}}
+    \para{1}Suppose that $f(x)\in C[a,b]$. For all $x\in [a,b], f(x)\in [a,b]$, then $f(x)$ has \shortline in $[a,b]$.
+    \bfA a fixed point \bfB no fixed point \bfC a unique fixed point \bfD a simple root
+
+    \para{2}Given the matrix $\ds T=\begin{pmatrix}
+        4 & 1 & -1\\ 1 & -5 & -1\\ 2& -1 & -6
+    \end{pmatrix}$, we have \shortline.
+    \bfA $T$ is a strictly diagonally dominant matrix;
+    \bfB $T$ is not a strictly diagonally dominant matrix;\\ 
+    \bfC $T$ is a singular matrix;\hspace{3.2cm}
+    \bfD $\det T=0$
+
+    \para{3}For the first kind Чебышев(Chebyshev) Polynomials $T_n(x)$ with $n=2,3,\cdots$, $T_n(x)=$\shortline .
+    \bfA $T_{n-1}(x)-2T_{n-2}(x)$ \bfB $2xT_{n-1}(x)-T_{n-2}(x)$ \bfC $4xT_{n-1}(x)-2T_{n-2}(x)$ \bfD $4xT_{n-1}(x)-T_{n-2}(x)$
+
+    \para{4}Given $n+1$ points $\{(x_k,y_k)\}_{k=0}^n$ where $a=x_0<x_1<\cdots<x_n=b$, if a cubic spline has endpoints constraints $S''(a)=S''(b)=0$, then the cubic spline is \shortline.
+    \bfA clamped cubic spline \bfB parabolically terminated spline\\ 
+    \bfC natural cubic spline \hspace{5pt}\bfD curvature-adjusted cubic spline
+
+    \para{5}Assuming $[a,b]$ subdivided into $M$ subintervals with width $\ds h=\frac{b-a}{M}$, and the composite trapezoidal rule $T(f,h)$ aimed to approximate the integral $\ds \int_a^b f(x) \d x$, the error $E_T(f,h)$ is \shortline.
+    \bfA $O(1)$ \bfB $O(h)$ \bfC $O(h^2)$ \bfD $O(h^3)$
+
+    \section{Fill-in-the-blanks Questions\ptsMulti{5}{3}{15}}
+    \para{6}Using Gaussian elimination, the triangular factorization of the matrix $\ds \begin{pmatrix}
+        1 & 1 & 6\\ -1 & 2 & 9\\ 1& -2 & 3
+    \end{pmatrix}$ is \longline\longline.
+
+    \para{7}For $N+1$ nodes $x_0,x_1,\cdots,x_N$ and its Lagrange coefficient polynomial $L_{N,k}(x)$ with degree of $N$ , we have $\ds \sum_{k=0}^N L_{N,k}(x_j)=$ \shortline for all $j=0,\cdots,N$.
+
+    \para{8}The divided difference $f[1,2,3,4]$ of $f(x) = x^2+1$ is \longline.
+    \para{9}The recurrence relation of Бернштейн(Bernstein) polynomial $B_{i,N}(t)$ is \longline.
+    \para{10}The degree of precision for Simpson's rule is \longline.
+
+    \section{Computation Problems \textnormal{\small{(10 marks for each problem; reserve 4 decimal places after the decimal point)}}}
+    \para{11}Given $f(x)=x\mathrm{e}^{-x}$. (a) Find its Newton-Raphson formula $p_k=g(p_{k-1})$;\\ (b) Find $p_1,p_2,p_3,p_4$ and $\ds \lim_{k\to \inf}p_k$ starting at $p_0=0.4$.
+
+    \para{12}In the linear equation system $$4x-y+z=7\qquad 4x-8y+z=-21\qquad -2x+y-5z=15$$
+    (a) Use Gauss-Seidel iteration to find $P_1,P_2$ while $P_0=(1,2,2)$;\\ (b) Prove that the Gauss-Seidel iteration is convergent.
+
+    \para{13}Let $f(x)=\log_2(x)$, use quadratic Newton interpolation polynomial based on the nodes $x_0=1,x_1=2,x_2=4$ to approximate $f(3)$.
+
+    \para{14}Find the least-squares polynomial approximation of degree 2 to the following data:$\qquad \begin{array}{c|ccccc}
+        x&0&1&2&4&6\\\hline y&3&1&0&1&4
+    \end{array}$
+    \para{15}Use the three-point \!Gauss-Legendre rule to approximate $\ds \!\!\int_1^5 \!\frac{\d t}{t}\!\!$ and compare the result with Simpson's rule $\!S(\!f,\!h)\!$ with $h\!\!=\!\!2$.
+
+    \section{Proof Problems\ptsMulti{2}{10}{20}}
+    \para{16}Use Heun's method to solve the initial value problem $\ds y'=\frac{t-y}{2}, t\in [0,3]$ with $y(0)=1$, for the step size $h=1$.
+    \para{17}Suppose that $[a,b]$ is subdivided into $M$ subintervals $[x_k,x_{k+1}]$ of width $\ds h=\frac{b-a}{M}$ and the composite trapezoidal rule $T(f,h)$ is an approximation to the integral $$\int_a^b f(x)\d x=T(f,h)+E(f,h).$$ If $f\in C^2[a,b]$, prove there exists a value $c\in (a,b)$ such that the error $E(f,h)$ has the form $$E(f,h)=-\frac{b-a}{12}f''(c)h^2=O(h^2).$$
+\end{document}
