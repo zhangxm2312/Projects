@@ -1,0 +1,109 @@
+\documentclass[11pt]{article}
+\input{../preamble.tex}
+
+\title{极值图论笔记 (编纂中)}
+\author{授课人: 彭兴, 窦春阳; 编辑: 章亦流}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Lecture 1: Tur\'an Theorem and Erd\"os-Stone-Simonovits Theorem}
+\begin{definition}[Tur\'an数]
+    
+\end{definition}
+\begin{theorem}[Mantel, 1902]
+    
+\end{theorem}
+\begin{proof}
+    
+\end{proof}
+\begin{proof}
+    
+\end{proof}
+\begin{proof}
+    
+\end{proof}
+\begin{theorem}[Tur\'an, 1941]
+    
+\end{theorem}
+\begin{proof}
+    
+\end{proof}
+\begin{proof}[Zykov]
+    
+\end{proof}
+\begin{theorem}[Erd\"os-Stone-Simonovits]\label{ESSThm}
+    
+\end{theorem}
+\begin{lemma}
+    
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+\begin{proof}[定理\ref{ESSThm}的证明]
+    
+\end{proof}
+
+\newpage
+\section{Lecture 2: Erd\"os-Stone-Simonovits Theorem and Szemer\'edi's Regularity Lemma}
+\begin{definition}[边密度]
+    顶点子集$A,B\subset V$间的边密度$d(A,B):=\frac{e(A,B)}{\abs{A}\abs{B}}$.
+\end{definition}
+\begin{definition}[$\varepsilon$-正则]
+    对于顶点子集$A,B\subset V$,称$(A,B)$是$\varepsilon$-正则对,若$\forall A'\subset A, B'\subset B$,其中$\abs{A'}\geq \varepsilon\abs{A}, \abs{B'}\geq \varepsilon\abs{B}$,都有$\abs{d(A',B')-d(A,B)}\leq \varepsilon$.称分划$P: V=\bigsqcup_{i=0}^k V_i$是$\varepsilon$-正则的,若$\sum_{(V_i, V_j)\text{不正则}}\frac{\abs{V_i}\abs{V_j}}{n^2}\leq \varepsilon$.
+
+    称分划$P: V=\bigsqcup_{i=0}^k V_i$为$\varepsilon$-正则的均分,若$\abs{V_1}=\dots=\abs{V_k},\abs{V_0}\leq \varepsilon n$,且$\cbr{(V_i,V_j)|V_i,V_j\in P}$中的非$\varepsilon$-正则对有$\leq\varepsilon k^2$个.
+\end{definition}
+\begin{theorem}[Szemer\'edi正则性引理]\label{SRL}
+    $\forall \varepsilon>0\forall m\in \N_+\exists n_0(\varepsilon,m)\exists M\in \N_+$使得对于任意顶点数$n\geq n_0$的图$G$,都有分划$V=\bigsqcup_{i=0}^k V_i$,满足
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\abs{V_0}\leq \varepsilon n$
+        \item $\abs{V_1}=\dots=\abs{V_k}$
+        \item $m\leq k\leq M$,其中$M=\left.2^{2^{{\dots}^2}}\right\}\approx\varepsilon^{-5}$个$2$.
+        \item $\cbr{(V_i,V_j)|V_i,V_j\in P}$中的非$\varepsilon$-正则对有至少一个,至多$\varepsilon k^2$个.
+    \end{enumerate}
+    即$P$是一个$\varepsilon$-正则的均分.
+\end{theorem}
+\begin{definition}[缩略图和爆破图]
+    给定$d\in \abbr{0,1}$,对于$\varepsilon$-正则均分$V=\bigsqcup_{i=0}^k V_i$,记$\ell=\abs{V_k}$,构造图$R, V(R)=\cbr{v_1,\dots,v_k}, E(R)=\cbr{v_iv_j|(V_i,V_j) \varepsilon\text{-正则且}d(V_i,V_j)\geq d}$,则称$R$是$G$的参数$\varepsilon,\ell,d$的缩略图.
+
+    对于$s\in \N_+, R$的爆破图$R(s)$即$k$部$s$个点$A_1,\dots,A_k$,其中$A_i,A_j$之间完备$\iff v_iv_j\in E(R)$.
+\end{definition}
+\begin{lemma}[图嵌入引理]\label{GEL}
+    $\forall d\in \abbr{0,1},\Delta\geq 1, \exists \varepsilon_0(d,\Delta)$使得:若图$G,H$满足(1)$\Delta(H)\leq \Delta$;\\
+    (2)$G$有参数为$\varepsilon\leq \varepsilon_0, \ell\geq 2s\Delta/d$和$d$的缩略图$R$;(3)$H\subset R(s)$,则$H\subset G$.
+\end{lemma}
+\begin{proof}[定理\ref{ESSThm}的另一证明]
+    
+\end{proof}
+\begin{definition}
+    
+\end{definition}
+\begin{lemma}
+    
+\end{lemma}
+\begin{lemma}
+    
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+\begin{proof}[定理\ref{SRL}的证明]
+    
+\end{proof}
+\begin{theorem}
+    
+\end{theorem}
+
+\newpage
+\section{Lecture 3: Embedding Lemma, Counting Lemma and Removal Lemma}
+\begin{lemma}
+    $(A,B)$是$\varepsilon$-正则对,令$d=d(A,B)$, 若有$Y\subset B, \abs{Y}\geq \varepsilon \abs{B}$,则$A$中有$>(1-\varepsilon)\abs{A}$个顶点都在$Y$中有$\geq (d-\varepsilon)\abs{Y}$个邻点.
+\end{lemma}
+\begin{proof}
+    取$X\subset A, \abs{X}\geq \varepsilon\abs{A}$则由$\varepsilon$-正则知$\abs{d(X,Y)-d}\leq \varepsilon$,故$e(X,Y)\geq (d-\varepsilon)\abs{X}\abs{Y}$
+\end{proof}
+
+\end{document}

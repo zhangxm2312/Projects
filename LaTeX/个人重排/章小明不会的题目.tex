@@ -1,11 +1,12 @@
 \documentclass{article}
-\input{newcommand.tex}
+\input{../newcommand.tex}
 \usepackage{bm}
-\newcommand{\T}{\mathsf{T}}
 \newcommand{\matrixtwo}[4]{\begin{pmatrix}#1&#2\\#3&#4 \end{pmatrix}}
-\renewcommand{\i}{\mathrm{i}}
 \newcommand{\Mag}{\mathrm{Mag}}
 \newcommand{\SMag}{\mathrm{SMag}}
+% \newcommand{\Dfunc}[2]{\frac{\partial #1}{\partial #2}}
+% \newcommand{\dfunc}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+% \newcommand{\convergeuni}{\overset{\mathrm{uni.}}{\longrightarrow}}
 
 \theoremstyle{definition}
 \newtheorem{exercise}{题}[section]
@@ -180,8 +181,8 @@ $$\ln\ln n<\!\!<\ln n<\!\!<n^a<\!\!<n^k<\!\!<a^n<\!\!<n!<\!\!<n^n$$
 \end{proof}
 
 \begin{exercise}
-    设$D=\cbr{z\in\C:\theta_0<\arg(z-a)<\theta_0+\alpha},f\in C(\overline{D}-\cbrnormal{a})$,有:\\
-    (1)$\lim_{\substack{z\to a\\z\in \overline{D}-\cbrnormal{a}}} (z-a)f(z)=A$,则$\lim_{r\to 0}\int_{\substack{\abs{z-a}=r\\z\in \overline{D}}}f(z)\d z=\i \alpha A$.(2)$\lim_{\substack{z\to \infty\\z\in \overline{D}-\cbrnormal{a}}} (z-a)f(z)=B$,则$\lim_{R\to \infty}\int_{\substack{\abs{z-a}=R\\z\in \overline{D}}}f(z)\d z=\i \alpha B$.
+    设$D=\cbr{z\in\C:\theta_0<\arg(z-a)<\theta_0+\alpha},f\in C(\overline{D}-\cbr{a})$,有:\\
+    (1)$\lim_{\substack{z\to a\\z\in \overline{D}-\cbr{a}}} (z-a)f(z)=A$,则$\lim_{r\to 0}\int_{\substack{\abs{z-a}=r\\z\in \overline{D}}}f(z)\d z=\i \alpha A$.(2)$\lim_{\substack{z\to \infty\\z\in \overline{D}-\cbr{a}}} (z-a)f(z)=B$,则$\lim_{R\to \infty}\int_{\substack{\abs{z-a}=R\\z\in \overline{D}}}f(z)\d z=\i \alpha B$.
 \end{exercise}
 \begin{proof}
     (1)$$\begin{aligned}
@@ -385,9 +386,9 @@ $$\ln\ln n<\!\!<\ln n<\!\!<n^a<\!\!<n^k<\!\!<a^n<\!\!<n!<\!\!<n^n$$
 \begin{exercise}\label{adjmat1}
     记$A\adj$为$A\in M_n(\F)$的伴随矩阵,则有
     $$\rank A\adj=\begin{cases}
-    n&\textif \rank A=n\\
-    1&\textif \rank A=n-1\\
-    0&\textif \rank A<n-1
+    n&\text{if } \rank A=n\\
+    1&\text{if } \rank A=n-1\\
+    0&\text{if } \rank A<n-1
     \end{cases}$$
 \end{exercise}
 \begin{proof}
@@ -402,7 +403,7 @@ $$\ln\ln n<\!\!<\ln n<\!\!<n^a<\!\!<n^k<\!\!<a^n<\!\!<n!<\!\!<n^n$$
     求证任意阶的斜对称矩阵$A$的行列式$\det A\geq 0$.特别的,奇数阶时$\det A=0$.
 \end{exercise}
 \begin{proof}
-    首先对于奇数阶的情况有$$\det A=\det A^\T=\det(-A)=(-1)^n\det A=-\det A\implies \det A=0$$
+    首先对于奇数阶的情况有$$\det A=\det A\T=\det(-A)=(-1)^n \det A=-\det A\implies \det A=0$$
 
     对偶数阶的情况:
 
@@ -558,7 +559,7 @@ $$\ln\ln n<\!\!<\ln n<\!\!<n^a<\!\!<n^k<\!\!<a^n<\!\!<n!<\!\!<n^n$$
     对$A\in M_n(\R)$有$\forall i\neq j: (n-1)|a_{ij}|<|a_{ii}|$,则$\det A\neq 0$.
 \end{exercise}
 \begin{proof}
-    若$\det A=0$,则$AX=0$有非零解$X^0=(x^0_1,\cdots,x^0_n)^\T$,其中$x_k^0$的模最大,因此
+    若$\det A=0$,则$AX=0$有非零解$X^0=(x^0_1,\cdots,x^0_n)\T$,其中$x_k^0$的模最大,因此
     $$A_{(k)}X^0=\sum_{i\in [n]}a_{ki}x^0_i=a_{kk}x^0_k+\sum_{i\neq k}a_{ki}x^0_i=0$$
     故$$(n-1)\abs{a_{kk}}\abs{x^0_k}=(n-1)\abs{\sum_{i\neq k}a_{ki}a^0_i}<(n-1)\abs{a_{kk}}\abs{x^0_k}$$
     得到矛盾.
@@ -658,18 +659,18 @@ $$\ln\ln n<\!\!<\ln n<\!\!<n^a<\!\!<n^k<\!\!<a^n<\!\!<n!<\!\!<n^n$$
     \item $$\begin{aligned}
         \det \matrixtwo{A}{B}{C}{D}&=
         \begin{cases}
-            (\det A)\det (D-CA\rev B)=\det (AD-ACA\rev B)& \textif \det A\neq 0\\
-            (\det D)\det (A-CD\rev B)=\det (DA-DCD\rev B)& \textif \det D\neq 0
+            (\det A)\det (D-CA\rev B)=\det (AD-ACA\rev B)& \text{if } \det A\neq 0\\
+            (\det D)\det (A-CD\rev B)=\det (DA-DCD\rev B)& \text{if } \det D\neq 0
         \end{cases}\\ 
     &=\begin{cases}
-        \det (AD-CB)& \textif AC=CA\\
-        \det (DA-CB)& \textif AB=BA
+        \det (AD-CB)& \text{if } AC=CA\\
+        \det (DA-CB)& \text{if } AB=BA
 \end{cases}
 \end{aligned}$$
     \item 记$A\adj$为$A\in M_n(\F)$的伴随矩阵,则有\begin{enumerate}
         \item 题\ref{adjmat1}
         \item $AA\adj=A\adj A=(\det A)I_n$,因此$\det A\adj=(\det A)^{n-1}$.$\det A\neq 0$时$A\rev=\dfrac{A\adj}{\det A}$.
-        \item $(AB)\adj=B\adj A\adj, (A^\T)\adj=(A\adj)^\T, (\lambda A)\adj=\lambda^{n-1}A\adj, (A\adj)\adj=(\det A)^{n-2}A$\\
+        \item $(AB)\adj=B\adj A\adj, (A\T)\adj=(A\adj)\T, (\lambda A)\adj=\lambda^{n-1}A\adj, (A\adj)\adj=(\det A)^{n-2}A$\\
         最后一式分类讨论:$\det A=0$时$\rhs=O$,而$\rank A\adj< n-1$,因此$\rank (A\adj)\adj=0, \lhs=O$.\\
         $\det A\neq 0$时,有$(A\adj)\adj A\adj=A\adj(A\adj)\adj=(\det A\adj)I_n$,因此$$(A\adj)\adj=\br{\dfrac{A\adj}{\det A\adj}}\rev=(\det A\adj)(A\adj)\rev=(\det A\adj)\dfrac{A}{\det A}=(\det A)^{n-2}A$$
     \end{enumerate}
@@ -990,14 +991,14 @@ $$\begin{aligned}
 \end{proof}
 
 \begin{exercise}
-    证明$\gl(3^3)=\cbr{a+b\i:a,b\in \Z_3}$构成9元域,且$\gl(3^3)^*$是8阶循环群.
+    证明$\GL(3^3)=\cbr{a+b\i:a,b\in \Z_3}$构成9元域,且$\GL(3^3)^*$是8阶循环群.
 \end{exercise}
 \begin{proof}
-    由于$(\gl(3^3),+,0)\cong \Z_3\oplus \Z_3$,故交换加法群得证.可以验证$a=1+\i$生成的循环群$\abr{a}=\cbr{1+\i,2\i,1+2\i,2,2+2\i,\i,2+\i,1}=\gl(3^3)^*$.分配性易证.下给出$\gl(3^3)^*$关于加法和乘法的Caylay表(由于0的运算是平凡的).
+    由于$(\GL(3^3),+,0)\cong \Z_3\oplus \Z_3$,故交换加法群得证.可以验证$a=1+\i$生成的循环群$\abr{a}=\cbr{1+\i,2\i,1+2\i,2,2+2\i,\i,2+\i,1}=\GL(3^3)^*$.分配性易证.下给出$\GL(3^3)^*$关于加法和乘法的Caylay表(由于0的运算是平凡的).
 
     另外应该注意到,$a+b\i$到$\matrixtwo{a}{b}{-b}{a}$有一个同构关系,因此也可以写成$M_2(\Z_3)$上的域.
 
-    实际上$\gl(9)$描述的是$x^9=x$的根之间的关系,更换写法变成:
+    实际上$\GL(9)$描述的是$x^9=x$的根之间的关系,更换写法变成:
 $$\begin{aligned}
     \cbr{0,\varepsilon_8,\varepsilon_8^2,\cdots,\varepsilon_8^8=1}&=\cbr{0,\frac{1+\i}{\sqrt{2}},\i,-\frac{1-\i}{\sqrt{2}},-1,-\frac{1+\i}{\sqrt{2}},-\i,\frac{1-\i}{\sqrt{2}},1}\\
     &\cong\cbr{0,1+\i,2\i,1+2\i,2,2+2\i,\i,2+\i,1}
@@ -1068,11 +1069,11 @@ $$\begin{aligned}
 \subsubsection{结论}
 \begin{enumerate}
     \item 随机变量$\xi\sim\chi^2_m,\eta\sim\chi^2_n$相互独立,求证$\alpha=\xi+\eta\sim\chi^2_{m+n},\beta=\frac{\xi/m}{\eta/n}\sim F(m,n)$且相互独立.
-    \item 若$\xi=(\xi_1,\xi_2)^\T$的密度函数为$p(x_1,x_2)$,而$(\eta_1,\eta_2)^\T=\eta=A\xi, A=\begin{pmatrix}a&b\\c&d\\ \end{pmatrix}$,则$\eta$的密度函数$q(y_1,y_2)$为:
+    \item 若$\xi=(\xi_1,\xi_2)\T$的密度函数为$p(x_1,x_2)$,而$(\eta_1,\eta_2)\T=\eta=A\xi, A=\begin{pmatrix}a&b\\c&d\\ \end{pmatrix}$,则$\eta$的密度函数$q(y_1,y_2)$为:
     $$q(y_1,y_2)=\frac{p\br{\dfrac{dy_1-by_2}{\det A},\dfrac{-cy_1+ay_2}{\det A}}}{\abs{\det A}}$$
-    \item 若$\xi=(\xi_1,\xi_2)^\T\sim N_2(\mu,\Sigma)$,其中$\mu=(0,0)^\T,\Sigma=\begin{pmatrix}\sigma_1^2&\rho\sigma_1\sigma_2\\\rho\sigma_1\sigma_2&\sigma_2^2\\ \end{pmatrix}, |\Sigma|=\sigma_1^2\sigma_2^2(1-\rho^2)$,其密度函数为
-    $$p(x_1,x_2)=\frac{1}{2\pi\sqrt{|\Sigma|}}\exp\left(-\frac{x\Sigma^{-1}x^\T}{2|\Sigma|}\right)=\frac{1}{2\pi\sqrt{|\Sigma|}}\exp\left(-\frac{\sigma_2^2 x_1^2+\sigma_1^2 x_2^2-2\rho\sigma_1 \sigma_2 x_1 x_2}{2|\Sigma|}\right)$$
-    现有旋转矩阵$A_\alpha=\begin{pmatrix}\cos\alpha&\sin\alpha\\-\sin\alpha&\cos\alpha\\ \end{pmatrix}$使$(\eta_1,\eta_2)^\T=\eta=A_\alpha \xi$,则使用上条结论,$\eta$的密度函数为
+    \item 若$\xi=(\xi_1,\xi_2)\T\sim N_2(\mu,\Sigma)$,其中$\mu=(0,0)\T,\Sigma=\begin{pmatrix}\sigma_1^2&\rho\sigma_1\sigma_2\\\rho\sigma_1\sigma_2&\sigma_2^2\\ \end{pmatrix}, |\Sigma|=\sigma_1^2\sigma_2^2(1-\rho^2)$,其密度函数为
+    $$p(x_1,x_2)=\frac{1}{2\pi\sqrt{|\Sigma|}}\exp\left(-\frac{x\Sigma^{-1}x\T}{2|\Sigma|}\right)=\frac{1}{2\pi\sqrt{|\Sigma|}}\exp\left(-\frac{\sigma_2^2 x_1^2+\sigma_1^2 x_2^2-2\rho\sigma_1 \sigma_2 x_1 x_2}{2|\Sigma|}\right)$$
+    现有旋转矩阵$A_\alpha=\begin{pmatrix}\cos\alpha&\sin\alpha\\-\sin\alpha&\cos\alpha\\ \end{pmatrix}$使$(\eta_1,\eta_2)\T=\eta=A_\alpha \xi$,则使用上条结论,$\eta$的密度函数为
     $$q(y_1,y_2)=p(y_1\cos\alpha-y_2\sin\alpha,y_1\sin\alpha+y_2\cos\alpha)=\frac{1}{2\pi \sqrt{|\Sigma|}}\exp\left(-\frac{Ay_1^2-2By_1y_2+Cy_2^2}{2|\Sigma|}\right)$$
     其中$$\begin{aligned}
         A&=\sigma_2^2\cos^2\alpha-2\rho\sigma_1\sigma_2\cos\alpha\sin\alpha+\sigma_1^2\sin^2\alpha\\

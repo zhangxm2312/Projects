@@ -1,13 +1,13 @@
 \documentclass[11pt]{article}
 \input{../preamble.tex}
 
-\title{高等代数作业答案}
-\author{老师: 李换换; 助教: 王金峰, 章亦流}
+\title{高等代数作业答案 (编纂中)}
+\author{章亦流 A24201011}
 \date{\today}
 
 \begin{document}
-% \maketitle
-% \tableofcontents
+\maketitle
+\tableofcontents
 
 % \section{第一章 行列式}
 % \subsection{数域}
@@ -112,6 +112,7 @@
     最后回代$g,h$不互素的情况,得到通解:对于$\forall a,b\in \C[x],$上式为通解.
 \end{proof}
 
+\newpage
 \subsection{整除}
 \paragraph{5.2.1}求下列$f(x)$除以$g(x)$的商式$q(x)$与余式$r(x)$:
 \begin{enumerate}
@@ -145,9 +146,9 @@
 \begin{proof}
     \begin{enumerate}
         \item 要求除法余式$r(x)=(m+11)x+(n-4)=0$,即$m=-11, n=4$.
-        \item 要求除法余式$r(x)=4mx^2-mx+(n-2)=0$,即$m=0, n=2$.
+        \item 要求除法余式$r(x)=(8 m^3-m) x-8 m^2+n-2=0$,解得$m=0, n=2$或$m=\pm\frac{\sqrt{2}}{4}, n=3$.
         \item 要求除法余式$r(x)=(1-m+n)x+p=0$,即$m=n+1, p=0$.
-        \item 要求除法余式$r(x)=(m+n)x^2+2mx+(p+1)=0$,即$m=n=0, p=-1$.
+        \item 要求除法余式$r(x)=(-m^3-m n+2 m)x -m^2-n+p+1=0$,解得$m=0, n=p+1$或$m^2+n=2, p=1$.
     \end{enumerate}
 \end{proof}
 \paragraph{5.2.4}求$u(x),v(x)$使得$uf+vg=(f,g)$.
@@ -204,22 +205,34 @@
 \end{proof}
 \paragraph{5.2.10}证明定理5.2.16
 \begin{quotation}
-    \textbf{定理5.2.16} 设$f_1,\cdots,f_k\in \F[x]$不全为0,则$(f_1,\cdots,f_km)$唯一存在,且
+    \textbf{定理5.2.16} 设$f_1,\cdots,f_k\in \F[x]$不全为0,则$(f_1,\cdots,f_k)$唯一存在,且
     $$(f_1,\cdots,f_k)=((f_1,\cdots,f_{k-1}),f_k)$$
     从而$\exists u_i\in \F[x], i\in [k]$使得
     $$(f_1,\cdots,f_k)=\sum_{i=1}^k u_i f_i$$
 \end{quotation}
 \begin{proof}
+    对$k$归纳,$k=2$时已得证.下设$k\geq 3, <k$的情形已证.设$d_1=(f_1,\cdots,f_{k-1})$,由归纳假设知其唯一确定,且有$v_1f_1+\cdots+v_{k-1}f_{k-1}=d_1$.
     
+    首先证明$d=(d_1,f_k)$为$f_1,\cdots,f_k$的最大公因式,从而证明存在性.显然$d\mid d_1\mid f_i (i=1,\cdots,k-1)$且$d\mid f_k$.又对于$f_1,\cdots,f_k$的任意公因式$g$,均有(由归纳假设)
+    $$g\mid v_1f_1+\cdots+v_{k-1}f_{k-1}=d_1, g\mid f_k$$
+    从而$g\mid (d_1,f_k)=d$,即$d$为最大公因式.
+
+    再证明唯一性:若有多项式$d,d'$均为$f_1,\cdots,f_k$的最大公因式,则$d'\mid d, d\mid d'$,从而相同(差一个非零常数而首项系数均为1).
+
+    最后,由归纳假设有$v_1f_1+\cdots+v_{k-1}f_{k-1}=d_1$,又有$ud_1+vf_k=d$,从而
+    $$u(v_1f_1+\cdots+v_{k-1}f_{k-1})+vf_k=uv_1f_1+\cdots+uv_{k-1}f_{k-1}+vf_k=d$$
+    综上得证.
 \end{proof}
-\paragraph{5.2.11}多项式$m(x)$称为多项式$f(x),g(x)$的最小公倍式,若$f\mid m, g\mid m$且$f,g$的任意倍式是$m$的倍式.记$[f,g]$为$f,g$的(首项系数为1的)最大公倍式,证明若$f,g$首项系数为1,则$[f,g]=\frac{fg}{(f,g)}$.
+\paragraph{5.2.11}称多项式$m(x)$为多项式$f(x),g(x)$的最小公倍式,若$f\mid m, g\mid m$且$f,g$的任意公倍式是$m$的倍式.记$m=[f,g]$,证明若$f,g$首项系数为1,则$[f,g]=\frac{fg}{(f,g)}$.
 \begin{proof}
+    记$d=(f,g), m=fg/d, f=df_1, g=dg_1, (f_1,g_1)=1$.从而$m=f_1g=fg_1$,故$f\mid m, g\mid m$.
     
+    再设$f,g$的任意公倍式$h=h_1f=h_2g$,有$h=dh_1f_1=dh_2g_1$,从而$h_1f_1=h_2g_1$.而$(f_1,g_1)=1$,因此$f_1\mid h_2, m=df_1g_1\mid dh_2g_1=h$.综上,$m$满足最小公倍式的所有条件,即$m=[f,g]$.
 \end{proof}
 
-\paragraph{思考题1}对于$f(x)=\sum_{i=0}^{m}a_ix^i, g(x)=\sum_{i=0}^{n}b_ix^i, h(x)=\sum_{i=0}^{m-n}c_ix^i$,若有$f(x)=g(x)h(x)$,用$a_i$和$b_i$表示出$c_i$.
+\paragraph{思考题1}对于$f(x)=\sum_{i=0}^{m}a_ix^i, g(x)=\sum_{i=0}^{n}b_ix^i, h(x)=\sum_{i=0}^{m-n}c_ix^i$,若有$f(x)=g(x)h(x)$,显式表达出$c_i$.
 \begin{proof}
-    考虑$g(x)$的最低非零次数$r=\min\cbr{i|b_i\neq 0, i=0,1,\cdots,n}$,则$g(x)=\sum_{i=r}^{n}b_ix^i$.又由于$a_k=\sum_{i+j=k}b_ic_j$,因此实际上即
+    考虑$g(x)$的最低非零次数$r=\min\cbr{i|b_i\neq 0, i=0,1,\cdots,n}$,则$g(x)=\sum_{i=r}^{n}b_ix^i$.又由$a_k=\sum_{i+j=k}b_ic_j$有:
     $$a_{r+k}=\sum_{i+j=r+k}b_ic_j=b_rc_k+\sum_{i=0}^{k-1}b_{r+k-i}c_i, (k=0,\cdots,m-r)$$
     因此有
     $$c_k=\frac{1}{b_r}\br{a_{r+k}-\sum_{i=0}^{k-1}b_{r+k-i}c_i}$$
@@ -227,9 +240,234 @@
     $$c_k=\frac{1}{b_0}\br{a_{k}-\sum_{i=0}^{k-1}b_{k-i}c_i}$$
 \end{proof}
 
-% \subsection{因式分解定理}   
-% \subsection{复系数与实系数多项式的因式分解}
-% \subsection{有理系数多项式}
+\newpage
+\subsection{因式分解定理}
+\paragraph{5.3.1}$x^2+1$在$\Q$上不可约.
+\begin{proof}
+    由于$x^2+1$在$\R$上的唯一分解式为$(x-\i)(x+\i)$,故其不能被分解为$\Q[x]$中的一次多项式之积,故在$\Q$上不可约.
+\end{proof}
+\paragraph{5.3.2}判别下列多项式是否有重因式:
+\begin{enumerate}
+    \item $f(x)=x^4+x^3+2x^2+x+1$,
+    \item $f(x)=x^6-3x^5+6x^3-3x^2-3x+2$.
+\end{enumerate}
+\begin{proof}
+    \begin{enumerate}
+        \item 辗转相除可得$(f,f')=1$从而无重因式.但辗转相除太过麻烦,有其他方法:
+        \begin{itemize}
+            \item 注意到$(f,g)=(f+qg,g), \forall q\in \F[x]$,故对第一小问有
+        $$\begin{aligned}
+            (f,f')&=(x^4+x^3+2x^2+x+1,4x^3+3x^2+4x+1)=\br{x^3+4x^2+3x+4,4x^3+3x^2+4x+1}\\
+            &=\br{x^3+4x^2+3x+4,13x^2+8x+15}=\br{11x^2+6x+13,13x^2+8x+15}\\
+            &=\br{11x^2+6x+13,10x-4}=\br{4 x + 5,10x-4}=1
+        \end{aligned}$$
+        但该方法对第二小问太麻烦.
+        \item 由于该题为四次多项式,故可设
+        $$x^4+x^3+2x^2+x+1=(x^2+ax+b)(x^2+cx+d)$$
+        展开后比较系数可得
+        $$a+c=1,\quad ac+b+d=2,\quad ad+bc=1,\quad bd=1$$
+        尝试带入$b=d=\pm 1$发现$b=d=1, a=0,c=1$时方程成立,即
+        $$f(x)=(x^2+1)(x^2+x+1)$$
+        从而无重因式.
+        \item 注意到方程系数$(1,1,2,1,1)$是对称的,因此可令$z=x+1/x$换元,即
+        $$\begin{aligned}
+            f(x)&=x^2\br{x^2+x+2+\frac{1}{x}+\frac{1}{x^2}}=x^2\br{\br{x+\frac{1}{x}}^2+\br{x+\frac{1}{x}}}\\
+            &=x^2\br{x+\frac{1}{x}+1}\br{x+\frac{1}{x}}=(x^2+1)(x^2+x+1)\\
+        \end{aligned}$$
+        从而无重因式.
+        \end{itemize}
+        \item 辗转相除可得$(f,f')=x^3- x^2- x+1$从而有重因式.也可直接试根:注意到$f(x)$的有理根$x_0=r/s$总有$r\mid 2, s\mid 1$,故$x_0$仅可能为$\pm 1, \pm 2$,故带入验算发现$1,-1,2$均为根,相除得到
+        $$\frac{f(x)}{(x-2)(x-1)(x+1)}=x^3-x^2-x+1=(x-1)^2 (x+1)$$
+        从而$f(x)=(x-1)^3(x+1)^2(x-2)$,其有重根.
+    \end{enumerate}
+\end{proof}
+\paragraph{5.3.3}求$A,B$使得$(x-1)^2\mid Ax^4+Bx^2+1$.
+\begin{proof}[证明一]
+    设$f(x)=Ax^4+Bx^2+1$,由题知$(x-1)\mid f'(x)=4Ax^3+2Bx$,从而$f(1)=f'(1)=0$,即$A+B+1=4A+2B=0$,解得$A=1, B=-2$.
+\end{proof}
+\begin{proof}[证明二]
+    设$f(x)=Ax^4+Bx^2+1$,注意到$(x-1)\mid (f,f')=(Ax^4+Bx^2+1,4Ax^3+2Bx)=(Bx^2/2+1,4Ax^3+2Bx)$,而$(x-1)\mid \frac{B}{2}x^2+1$要求$B=-2$,以及$(x-1)\mid x(4Ax^2-4)$要求$A=1$.
+\end{proof}
+\paragraph{5.3.4}设$f(x)=x^5-3x^4+2x^3+2x^2-3x+1$,在$\Q[x]$中求一个没有重因式的多项式$g$,使其与$f$有完全相同的不可约多项式(不计重数).
+\begin{proof}
+    观察多项式系数可知其有理根仅可能有$\pm 1$,验算可知均为根,从而有
+    $$\frac{f(x)}{(x-1)(x+1)}=x^3-3 x^2+3 x-1=(x-1)^3$$
+    从而取$g(x)=(x-1)(x+1)=x^2-1$即可.
+\end{proof}
+\paragraph{5.3.5}证明多项式$f(x)=x^4+2x^3-15x^2+4x+20$有重根,并求其所有根.
+\begin{proof}
+    辗转相除可得$(f,f')=x-2$,从而知$(x-2)^2\mid f(x)$,
+    $$\frac{f(x)}{(x-2)^2}=x^2+6 x+5=(x+1)(x+5)$$
+    从而$2,-1,-5$为其所有根.
+\end{proof}
+\paragraph{5.3.6}证明: 不可约多项式$p$是多项式$f$的$k$重因式$\iff p\mid f, p\mid f',\cdots,p\mid f^{(k-1)}$但$p\nmid f^{(k)}$.
+\begin{proof}[证明一]
+    容易看出,该命题等价于: $p^k\mid f \iff p$整除$f, f',\cdots, f^{(k-1)}$.下对$k$归纳,$k=1$时显然,下设$k\geq 2, <k$时命题成立.
+
+    $\implies:$显然$p^{k-1}\mid f$,故由归纳假设,$p$整除$f,f',\cdots,f^{(k-2)}$,下证$p\mid f^{(k-1)}$.由于有$f=p^kg$,即$f'=p^{k-1}(kp'g+pg')$,故$p^{(k-1)}\mid f'$.从而由归纳假设,$p\mid (f')^{(k-2)}=f^{(k-1)}$.
+    
+    $\impliedby:$由于$p$整除$f',(f')',\cdots,(f')^{(k-2)}$,故由归纳假设知$p^{k-1}\mid f'$,其等价于$p^k\mid f$.
+\end{proof}
+\begin{proof}[证明二]
+    $k=1$时已证,$k>1$时: $p$是$f$的$k$重因式$\iff p$是$f'$的$k-1$重因式$\iff\cdots\iff p$是$f^{(k-1)}$的2重因式$\implies p$是$f^{(k-2)}$的1重因式$\iff p\nmid (f^{(k-1)},f^{(k)})$,故$p\nmid f^{(k)}$.
+
+    另一方面,$p\nmid f^{(k)}, p\mid f^{(k-1)}$,故$p$不为$f^{(k-1)}$的重因式;而$p$整除$f^{(k-1)},f^{(k-2)}$,故$p$是$f^{(k-2)}$的重因式.综上,$p$是$f^{(k-1)}$的2重因式,其余同上,从而得证.
+\end{proof}
+\begin{remark}
+    该结果只对$\charfield\F>k$或$\charfield\F=0$的数域$\F$上的多项式成立.
+\end{remark}
+\paragraph{5.3.7}举例否定``若$\alpha$是$f'$的$m$重根,则$\alpha$是$f$的$m+1$重根''.
+\begin{proof}
+    取$f(x)=x^{m+1}+1, f'(x)=(m+1)x^m, 0$为$f'$的$m$重根但不是$f$的$m+1$重根.
+\end{proof}
+\begin{remark}
+    该命题若加上条件``$\alpha$是$f$的根''即正确.
+
+    证明: 由题知$(x-\alpha)\mid f, (x-\alpha)^m\mid f', (x-\alpha)^{m+1}\nmid f'$.由5.3.6知$(x-\alpha)$整除$f', f'', \cdots, (f')^{(m-1)}=f^{(m)}$但$(x-\alpha)\nmid f^{(m+1)}$,加上题设$(x-\alpha)\mid f$再由5.3.6知$(x-\alpha)$是$f$的$m+1$重因式.
+\end{remark}
+\paragraph{5.3.8}证明: 若$(x-1)\mid f(x^n)$则$(x^n-1)\mid f(x^n)$.
+\begin{proof}[证明一]
+    显然$f(1)=0$,故$(x-1)\mid f(x), f(x)=(x-1)g(x)$, 从而$f(x^n)=(x^n-1)g(x^n), (x^n-1)\mid f(x^n)$.
+\end{proof}
+\begin{proof}[证明二]
+    显然$f(1)=0$.考虑1的任意$n$次单位根$\omega_k=\e^{\frac{2k\pi\i}{n}}$,有$f(\omega_k^n)=f(1)=0$,故$(x-\omega_k)\mid f(x^n)$,从而
+    $$\prod_{k=0}^{n-1}(x-\omega_k)=(x^n-1)\mid f(x^n).$$
+\end{proof}
+\paragraph{5.3.9}$p\in \F[x], \deg p>0$.若对于$\forall f\in \F[x]$均有$p\mid f$或$(p,f)=1$,则$p$在$\F$中不可约.
+\begin{proof}
+    若$p$可被分解为次数小于$\deg p$的多项式$q,r$之积,则必有其中一个多项式次数非零,设其为$q$.从而取$f=q, (p,f)\neq 1, p\nmid f$,矛盾.
+\end{proof}
+\paragraph{5.3.10}$p\in \F[x], \deg p>0$.若对于$\forall f,g\in \F[x], p\mid fg\implies p\mid f$或$p\mid g$,则$p$在$\F$中不可约.
+\begin{proof}
+    若$p$可被分解为次数小于$\deg p$的多项式$q,r$之积,则$p\mid qr=p$但$p\nmid q, p\nmid r$,矛盾.
+\end{proof}
+
+\paragraph{思考题2}$x^2-2$在$\Q$上不可约而在$\R$上可约.
+\begin{proof}[证明一]
+    在$\R$上有$x^2-2=(x-\sqrt{2})(x+\sqrt{2})$从而可约.而该多项式在$\Q$上若有根$a=p/q$,则$q\mid 1,p\mid (-2)$,即$a$仅可能为$\pm 1, \pm 2$,而这些均不为根,从而无根,即不可约.
+\end{proof}
+\begin{proof}[证明二]
+    若在$\Q$上有唯一分解$x^2-2=(x-a)(x-b)$,即$a+b=0, ab=-2$,即$a^2=2$.对$\sqrt{2}$的无理性证明导出$x^2-2$在$\Q$上不可约.
+\end{proof}
+\begin{proof}[证明三]
+    书上例5.3.1.
+\end{proof}
+
+\paragraph{思考题3}设$f=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_s^{\alpha_s}, g=p_1^{\beta_1}p_2^{\beta_2}\cdots p_s^{\beta_s}$,其中$p_i$均为不可约多项式.证明$(f,g)=p_1^{\gamma_1}p_2^{\gamma_2}\cdots p_s^{\gamma_s}$,其中$\gamma_i=\min(\alpha_i,\beta_i), i=1,\cdots,s$.
+
+\begin{proof}
+    设$d=p_1^{\gamma_1}p_2^{\gamma_2}\cdots p_s^{\gamma_s}$,显然$d\mid f, d\mid g$.若有$f,g$的公因式$d'=p_1^{\delta_1}p_2^{\delta_2}\cdots p_s^{\delta_s}$,则$\forall i=1,2,\cdots,s, \delta_i\leq \alpha_i$且$\delta_i\leq \beta_i$,故$\delta_i\leq \gamma_i$,从而$d'\mid d$,故$d=(f,g)$.
+\end{proof}
+
+\paragraph{思考题4}$f_1,\cdots,f_s\in \F[x]$之间两两互素, 记$f=f_1\cdots f_s, g_i=f/f_i$,证明$(g_1,g_2,\cdots,g_s)=1$.
+\begin{proof}
+    对$s$归纳,$s=2$时$(g_1,g_2)=(f_2,f_1)=1$从而成立.设$<s$时命题成立,考虑两两互素的多项式$f_1,f_2,\cdots,f_s$,如上定义$f,g_i$,则有
+    $$d=\br{g_1,g_2,\cdots,g_s}=\br{\br{g_1,g_2,\cdots,g_{s-1}},g_s}$$
+    而
+    $$\br{g_1,g_2,\cdots,g_{s-1}}=\br{\frac{f_1\cdots f_s}{f_1},\frac{f_1\cdots f_s}{f_2},\cdots,\frac{f_1\cdots f_s}{f_{s-1}}}=f_s\br{\frac{f_1\cdots f_{s-1}}{f_1},\frac{f_1\cdots f_{s-1}}{f_2},\cdots,\frac{f_1\cdots f_{s-1}}{f_{s-1}}}$$
+    由归纳假设知右端项为$f_s$,从而$d=(f_s,f_1\cdots f_{s-1})=1$,从而得证.
+\end{proof}
+
+\newpage
+\subsection{复系数与实系数多项式的因式分解}
+\paragraph{5.4.1}求多项式$x^5-1$在$\C$和$\R$上的因式分解.
+\begin{proof}
+    在$\C$上显然有
+    $$x^5-1=(x-1)(x-\omega)(x-\omega^2)(x-\omega^3)(x-\omega^4)$$
+    其中$\omega=\e^{\frac{2\pi\i}{5}}=\cos\frac{2\pi}{5}+\i \sin\frac{2\pi}{5}$.而由于复数根成对,故在$\R$上有
+    $$\begin{aligned}
+        x^5-1&=(x-1)\bbr{(x-\omega)(x-\omega^4)}\bbr{(x-\omega^2)(x-\omega^3)}\\
+        &=(x-1)\br{x^2-2\cos\frac{2\pi}{5}x+1}\br{x^2-2\cos\frac{4\pi}{5}x+1}\\
+        &=(x-1)\br{x^2+\frac{1-\sqrt{5}}{2}x+1}\br{x^2+\frac{1+\sqrt{5}}{2}x+1}
+    \end{aligned}$$
+\end{proof}
+\paragraph{5.4.2}$f\in \R[x], \deg f=n$且$f$有$\ell$个实根(计重数),证明$n-\ell$是偶数.
+\begin{proof}
+    将$f$分解为不可约多项式的乘积,即
+    $$f=a p_1^{\alpha_1}\cdots p_s^{\alpha_s}q_1^{\beta_1}\cdots q_t^{\beta_t}$$
+    其中$p_i$均为一次多项式,$q_i$均为二次多项式,则
+    $$n=\sum_{i=1}^s \alpha_i + \sum_{i=1}^t 2\beta_i,\qquad \ell=\sum_{i=1}^s \alpha_i,\qquad n-\ell=2\sum_{i=1}^t \beta_i$$
+    从而$n-\ell$显然为偶数.
+\end{proof}
+\paragraph{5.4.3}求$x^4+1$在$\C$和$\R$上的标准分解.
+\begin{proof}
+    在$\C$上$x^4+1$有根$(-1)^{1/4}=\e^{\frac{\pi\i}{4}}, (-1)^{3/4}=\e^{\frac{3\pi\i}{4}},(-1)^{5/4}=\e^{\frac{5\pi\i}{4}},(-1)^{7/4}=\e^{\frac{7\pi\i}{4}}$,因此有
+    $$\begin{aligned}
+        x^4+1&=(x-\e^{\frac{\pi\i}{4}})(x-\e^{\frac{3\pi\i}{4}})(x-\e^{\frac{5\pi\i}{4}})(x-\e^{\frac{7\pi\i}{4}})\\
+        &=\bbr{(x-\e^{\frac{\pi\i}{4}})(x-\e^{\frac{7\pi\i}{4}})}\bbr{(x-\e^{\frac{3\pi\i}{4}})(x-\e^{\frac{5\pi\i}{4}})}\\
+        &=\br{x^2-2\cos\frac{\pi}{4}x+1}\br{x^2-2\cos\frac{3\pi}{4}x+1}\\
+        &=\br{x^2-\sqrt{2}x+1}\br{x^2+\sqrt{2}x+1}
+    \end{aligned}$$
+\end{proof}
+\paragraph{5.4.4}$f\in \R[x]$的首项系数$a_n>0$,若$f$无实根,则存在$g,h\in \R[x]$使得$f=g^2+h^2$.
+\begin{proof}
+    由于实系数多项式$f$无实根,故其不可约分解中均为二次不可约多项式,即在$\C$中有分解
+    $$f(x)=q_1(x)\cdots q_m(x)=\prod_{i=1}^m \bbr{(x-\lambda_i)(x-\bar{\lambda_i})}=\br{\prod_{i=1}^m (x-\lambda_i)}\br{\prod_{i=1}^m (x-\bar{\lambda_i})}=p(x)q(x)$$
+    其中$q_i(x)=(x-\lambda_i)(x-\bar{\lambda_i})$均为在$\R$上不可约的二次多项式,$\lambda_i\in\C$.将$p(x)$按系数的实部和虚部分为两个实系数多项式,即
+    $$p(x)=g(x)+\i h(x), \qquad g,h\in \R[x]$$
+    再对$p(x)$的系数取共轭,有
+    $$g(x)-\i h(x)=\bar{p}(x)=\prod_{i=1}^m (x-\bar{\lambda_i})=q(x)$$
+    从而$f=(g+\i h)(g-\i h)=g^2+h^2$.
+\end{proof}
+\paragraph{5.4.5}设$p,f\in \R[x]$且$p$在$\R$上不可约,证明:若$\exists\alpha\in\C, p(\alpha)=f(\alpha)=0$则$p\mid f$.
+\begin{proof}
+    显然$\deg p=1$或2.若$\deg p=1$则$\alpha\in\R, p(x)=a(x-\alpha)\mid f(x)$.若$\deg p=2$则$\alpha\notin\R, p(x)=a(x-\alpha)(x-\bar{\alpha})$,而$f(\alpha)=f(\bar{\alpha})=0$,从而$p(x)=a(x-\alpha)(x-\bar{\alpha})\mid f(x)$.
+\end{proof}
+
+\newpage
+\subsection{有理系数多项式}
+\paragraph{5.5.1}求下列多项式的有理根:
+\begin{enumerate}
+    \item $2x^4-x^3+2x-3$;
+    \item $4x^4-7x^2-5x-1$;
+    \item $x^4+6x^3+12x^2+11x+6$.
+\end{enumerate}
+\begin{proof}
+    (1)$1$; (2)$-1/2$ (2重); (3)$-2, -3$.
+\end{proof}
+\paragraph{5.5.2}判别下列多项式在$\Q$上是否可约:
+\begin{enumerate}
+    \item $x^6+x^3+1$;
+    \item $x^p+px+1, p$是奇素数;
+    \item $x^4+4$;
+    \item $x^4+4kx+1, k\in \Z$.
+\end{enumerate}
+\begin{proof}
+    \begin{enumerate}
+        \item 代换$x=t+1$,故原式$=(t+1)^6+(t+1)^3+1=t^6+6 t^5+15 t^4+21 t^3+18 t^2+9 t+3$.用Einstein判别法(取$p=3$)知其在$\Q$上不可约.
+        \item 令$x=t-1$,则原式$=(t-1)^p+pt+1-p=t^p+\sum_{k=2}^{p-1}\binom{p}{k}(-1)^{k}t^k+2pt+p$,从而由Einstein判别法知其在$\Q$上不可约.
+        \item $x^4+4=(x^2-2x+2)(x^2+2x+2)$,故可约.
+        \item 若原式$f(x)$在$\Q$上可约,则也在$\Z$上可约.显然$f(x)$的有理根仅可能有$\pm 1$,但$f(\pm 1)\neq 0, \pm 1$均不是根,从而$f(x)$在$\Z$上没有一次(和三次)因式.若原式在$\Z$上有二次因式,即设
+        $$x^4+4kx+1=(x^2+ax+b)(x^2+cx+d), \qquad a,b,c,d\in\Z$$
+        比较系数可得$a+c=0, ac+b+d=0, ad+bc=4k, bd=1$,从而$b=d=\pm 1$,$ac=-a^2=\mp 2$,矛盾于$a\in\Z$,故原式在$\Z$上也没有二次因式,故在$\Z$和$\Q$上不可约.
+    \end{enumerate}
+\end{proof}
+\paragraph{5.5.3}$p$为素数,证明$f(x)=x^p-px+(2p-1)$在$\Q$上不可约.
+\begin{proof}
+    令$x=t+1$,则
+    $$f(t+1)=(t+1)^p-p(t+1)+(2p-1)=t^p+\sum_{k=2}^{p-1}\binom{p}{k}t^k+p$$
+    从而由Einstein判别法知其在$\Q$上不可约.
+\end{proof}
+\paragraph{5.5.4}设$p_i (i=1,2,\dots,t)$为$t$个互异素数,证明$f(x)=x^n-p_1\cdots p_t$在$\Q$上不可约.
+\begin{proof}
+    取素数$p$为任一$p_i$,由Einstein判别法知$f(x)$在$\Q$上不可约.
+\end{proof}
+\paragraph{5.5.5}$f$是\textcolor{red}{首一}整系数多项式, 若$f(0)$和$f(1)$均为奇数,则$f$没有有理根.
+\begin{proof}[证明一]
+    设$f(x)=\sum_{k=0}^{n}a_kx^k$,若其有有理根$r/s$则$s\mid a_n=1, r\mid a_0=f(0)$,从而有理根仅可能为$c\in \Z, c\mid f(0)$.而$f(0)$为奇数,故$c$为奇数.由于$f(c)=0$,故
+    $$-f(1)=f(c)-f(1)=\sum_{k=0}^{n}a_k(c^k-1)$$
+    而对$\forall k\in\N, c^k-1$为偶数,故等式右端为偶数,但左端为奇数,矛盾,从而$f$无有理根.
+\end{proof}
+\begin{proof}[证明二]
+    若$f$有有理根$r/s$,则$s\mid a_n=1, r\mid a_0=f(0)$,即$s=\pm 1, r$为奇数.而$(r-ms)\mid f(m)$,故$(r\pm 1)\mid f(1)$,但$r\pm 1$为偶数,$f(1)$为奇数,矛盾,故无有理根.
+\end{proof}
+\begin{remark}
+    若无首一条件,可取$f(x)=2x-1, f(0)=1, f(1)=3$但有有理根$1/2$.
+\end{remark}
+\begin{remark}
+    命题可作简单推广:$f$是首一整系数多项式, $p$是素数, 若$f(0)\not\equiv 0, f(1)\not\equiv 0 \pmod p$,则$f$没有有理根.
+\end{remark}
+
 % \subsection{复习题5}
 
 % \section{第六章 相似标准形}
