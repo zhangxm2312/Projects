@@ -1,0 +1,212 @@
+%\documentclass[14pt,handout]{beamer} %去除暂停打印
+\documentclass[14pt]{beamer}
+\usepackage{ctex}
+\usepackage{makecell}
+\usepackage{setspace}
+\usepackage{ulem}
+
+
+\usefonttheme[onlymath]{serif}% 数学公式字体设置
+
+\usecolortheme[RGB={178,34,34}]{structure}% 耐火砖红
+%\usecolortheme[RGB={205,173,0}]{structure}% 土金黄
+\usetheme{Malmoe}
+
+%\newtheorem{thm}{定理}%中文定理包
+%\renewcommand\proofname{证明}%中文定理包
+
+
+\setbeamertemplate{footline}{
+	\begin{beamercolorbox}[sep=1ex]{author in head/foot}
+		\rlap{\textit{\insertshorttitle}}\hfill\insertauthor\hfill\llap{\insertframenumber}%
+	\end{beamercolorbox}%
+}%设置页面底部带页码的infolines
+
+\setbeamertemplate{items}[ball]%item 改为圆点
+\setbeamertemplate{blocks}[rounded][shadow=true]% 更改定理边框
+\setbeamertemplate{navigation symbols}{}% 去除底部工具导航栏
+
+\newcommand {\p} {\par \vspace{1ex}}
+\newcommand {\pp} {\par \vspace{1ex}\pause}
+\newcommand {\red} {\textcolor[RGB]{178,34,34}}
+\newcommand{\tk}[1][2.5]{\,\underline{\mbox{\hspace{#1 cm}}}\,}
+
+
+
+\author{}
+\title{第四章小结}
+\subtitle{}
+\institute{}
+\date{\today}
+
+
+\begin{document}
+	
+	\begin{frame}[plain]
+		\titlepage
+	\end{frame}
+	
+	
+	\begin{frame}{}
+	一、线性映射及其计算
+	
+	\begin{itemize}
+		\item<1->  设$ V, U  $是数域$  \mathbb{K}  $上的有限维线性空间，  $\boldsymbol{\varphi}, \boldsymbol{\psi}: V \rightarrow U  $是两个线性映射，证明：存在$  U  $上的线性变换$  \boldsymbol{\xi}  $，使得$  \psi=\xi \varphi  $成立的充要条件是$  \operatorname{Ker} \varphi \subseteq \operatorname{Ker} \psi  $．
+		\item<2-> 先证必要性：任取$  \boldsymbol{v} \in \operatorname{Ker} \boldsymbol{\varphi}  $，则  $\boldsymbol{\psi}(\boldsymbol{v})=\boldsymbol{\xi} \boldsymbol{\varphi}(\boldsymbol{v})=\mathbf{0}  $，即有$  \boldsymbol{v} \in \operatorname{Ker} \boldsymbol{\psi}  $，从而$  \operatorname{Ker} \boldsymbol{\varphi} \subseteq \operatorname{Ker} \boldsymbol{\psi}  $．\\
+		
+	\end{itemize}
+
+	\end{frame}
+\begin{frame}{}
+再证充分性：设$  \operatorname{dim} V=n$, $\operatorname{dim} U=m$, $\operatorname{dim} \operatorname{Ker} \boldsymbol{\varphi}=n-r  $．取  $\operatorname{Ker} \varphi  $的一组基$  \boldsymbol{e}_{r+1}, \cdots, e_{n}  $，扩张为$  V  $的一组基$  e_{1}, \cdots, e_{r}, e_{r+1}, \cdots, e_{n}  $． $\varphi\left(e_{1}\right), \cdots, \varphi\left(e_{r}\right) $ 是 $ \operatorname{Im} \varphi  $的一组基，将其扩张为$  U  $的一组基 $ \varphi\left(e_{1}\right), \cdots, \varphi\left(\boldsymbol{e}_{r}\right), g_{r+1}, \cdots, g_{m}  $．定义  $\boldsymbol{\xi}  $为$  U  $上的线性变换，它在基上的作用为：  $\boldsymbol{\xi}\left(\boldsymbol{\varphi}\left(\boldsymbol{e}_{i}\right)\right)=\boldsymbol{\psi}\left(\boldsymbol{e}_{i}\right)(1 \leq i \leq r), \boldsymbol{\xi}\left(\boldsymbol{g}_{j}\right)=\mathbf{0}(r+1 \leq j \leq m) $ ．由于$  \operatorname{Ker} \boldsymbol{\varphi} \subseteq \operatorname{Ker} \boldsymbol{\psi}  $，故容易验证  $\psi\left(\boldsymbol{e}_{i}\right)=\boldsymbol{\xi} \boldsymbol{\varphi}\left(\boldsymbol{e}_{i}\right)(1 \leq i \leq n) $ 成立，从而$  \psi=\boldsymbol{\xi} \boldsymbol{\varphi}  $．
+\end{frame}
+\begin{frame}
+	\begin{itemize}
+		\item<1-> 设$  V, U  $是数域$  \mathbb{K}  $上的有限维线性空间，  $\boldsymbol{\varphi}, \boldsymbol{\psi}: V \rightarrow U $ 是两个线性映射，证明：存在$  V  $上的线性变换$  \xi  $，使得$  \psi=\varphi \xi  $成立的充要条件是$  \operatorname{Im} \psi \subseteq \operatorname{Im} \varphi  $．
+		\item<2-> 先证必要性：任取$  v \in V  $，则$  \psi(v)=\varphi(\xi(v)) \in \operatorname{Im} \varphi  $，从而$  \operatorname{Im} \psi \subseteq \operatorname{Im} \varphi  $．再证充分性：取$  V  $的一组基$  e_{1}, e_{2}, \cdots, e_{n}  $，则$  \psi\left(e_{i}\right) \in \operatorname{Im} \psi \subseteq \operatorname{Im} \varphi  $，从而存在$  \boldsymbol{f}_{i} \in V  $，使得  $\boldsymbol{\varphi}\left(\boldsymbol{f}_{i}\right)=\boldsymbol{\psi}\left(\boldsymbol{e}_{i}\right)(1 \leq i \leq n)  $．定义$  \boldsymbol{\xi} $ 为$  V  $上的线性变换，它在基上的作用为：  $\boldsymbol{\xi}\left(\boldsymbol{e}_{i}\right)=\boldsymbol{f}_{i}(1 \leq i \leq n)  $．容易验证  $\boldsymbol{\psi}\left(\boldsymbol{e}_{i}\right)=\boldsymbol{\varphi} \boldsymbol{\xi}\left(\boldsymbol{e}_{i}\right)(1 \leq i \leq n)  $成立，从而$  \psi=\varphi \xi $.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+	\item<1-> 试构造无限维线性空间$  V  $以及$  V  $上的线性变换$  \varphi, \psi  $，使得$  \varphi \psi-   \psi \varphi=I_{V} $.\\
+	\item<2-> 设$  V  $是实系数多项式全体构成的实线性空间，线性变换$  \varphi, \psi  $定义为：对任一$  f(x) \in V, \boldsymbol{\varphi}(f(x))=f^{\prime}(x), \psi(f(x))=x f(x)  $．容易验证$  \boldsymbol{\varphi} \psi-\psi \varphi=\boldsymbol{I}_{V}  $成立．\\
+	事实上，满足上述性质的线性变换$  \boldsymbol{\varphi}, \boldsymbol{\psi}  $绝不可能存在于有限维线性空间$  V $上．若存在，取$  V  $的一组基并设$  \varphi, \psi  $的表示矩阵为$  A, B  $，则有$  A B-B A=I $ 成立．上式两边同时取迹，可得$0=\operatorname{tr}(\boldsymbol{A} \boldsymbol{B}-\boldsymbol{B} \boldsymbol{A})=\operatorname{tr}(\boldsymbol{I})=\operatorname{dim} V$,导出矛盾．
+	\end{itemize}
+	
+\end{frame}
+
+
+
+	\begin{frame}
+\begin{itemize}
+	\item<1-> 设$  \mathbb{F}^{4}  $上的线性变换$  \varphi  $在基  $\left\{\boldsymbol{e}_{1}, \boldsymbol{e}_{2}, \boldsymbol{e}_{3}, \boldsymbol{e}_{4}\right\}  $下的表示矩阵为$\left(\begin{array}{cccc}1 & 2 & 0 & 1 \\3 & 0 & -1 & 2 \\2 & 5 & 3 & 1 \\1 & 2 & 1 & 3\end{array}\right)$求在基  $\left\{e_{1}, e_{1}+e_{2}, e_{1}+e_{2}+e_{3}, e_{1}+e_{2}+e_{3}+e_{4}\right\}  $下它的表示矩阵．
+
+\end{itemize}
+\end{frame}	
+
+\begin{frame}
+
+答案：$\left(\begin{array}{cccc}-2 & 0 & 1 & 0 \\1 & -4 & -8 & -7 \\1 & 4 & 6 & 4 \\1 & 3 & 4 & 7\end{array}\right) \text {. }$
+
+
+\end{frame}
+\begin{frame}
+几何问题代数化\\
+\begin{itemize}
+	\item<1-> 设$  \varphi: V \rightarrow U  $为线性映射且$  \varphi  $的秩为$  r  $，证明：存在$  r  $个秩为$ 1 $的线性映射$  \boldsymbol{\varphi}_{i}: V \rightarrow U(1 \leq i \leq r)  $，使得  $\boldsymbol{\varphi}=\boldsymbol{\varphi}_{1}+\cdots+\boldsymbol{\varphi}_{r}  $．
+	\item<2-> 证明 取定$  V  $和$  U  $的两组基，设$  \boldsymbol{\varphi}  $在这两组基下的表示矩阵为$  \boldsymbol{A}  $，则$  \mathrm{r}(\boldsymbol{A})=   \mathrm{r}(\boldsymbol{\varphi})=r  $．因为存在$  r  $个秩为$ 1 $的矩阵  $\boldsymbol{A}_{i}(1 \leq i \leq r)  $，使得$  \boldsymbol{A}=   A_{1}+\cdots+A_{r}  $．由于线性映射和表示矩阵之间一一对应，故存在线性映射  $\varphi_{i}: V \rightarrow   U(1 \leq i \leq r)  ，使得  \boldsymbol{\varphi}=\boldsymbol{\varphi}_{1}+\cdots+\boldsymbol{\varphi}_{r}  $，且  $\mathrm{r}\left(\boldsymbol{\varphi}_{i}\right)=\mathrm{r}\left(\boldsymbol{A}_{i}\right)=1  $．
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+\item<1-> 设$\varphi: V \rightarrow V$ 是线性映射，$\varphi^m=0,n=mq+1$,证明：$r(\varphi) \leq n-q-1$.
+\item<2-> 转换成代数语言：设$A \in M_n (k)$,  $A^m=0$, $n=mq+1$, 要证：$r(A) \leq n-q-1$.\\
+用反证法，设$r(A) \geq n-q$.\\
+$0=r(A^m)=r(A^{m-1}*A) \geq r(A^{m-1})+r(A)-n \geq r(A^{m-1})-q$.\\
+故$r(A^{m-1}) \leq q$. 同样的，$r(A^{m-2}) \leq 2q, \cdots, r(A) \leq (m-1)q$.
+这与$r(A) \geq n-q$矛盾
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		 \item<1-> 设$  \boldsymbol{A}, \boldsymbol{B}  $都是数域$  \mathbb{F} $ 上的 $ m \times n  $矩阵，求证：方程组$  \boldsymbol{A x}=0, \boldsymbol{B x}=0 $同解的充要条件是存在可逆矩阵$  P  $，使得$  B=P A $ ．
+		 \item<2-> 将问题转化成几何的语言即为：设$  V  $是$  \mathbb{F}  $上的$  n $ 维线性空间，$ U $ 是$  \mathbb{F} $ 上的$  m  $维线性空间，$ \varphi, \psi: V \rightarrow U  $是两个线性映射．求证：若$  \operatorname{Ker} \varphi=\operatorname{Ker} \psi  $，则存在 $ U $ 上的自同构 $ \sigma $ ，使得 $ \psi=\sigma \varphi  $．设$  \mathrm{r}(\boldsymbol{\varphi})=r $ ，则$  \operatorname{dim} \operatorname{Ker} \boldsymbol{\varphi}=\operatorname{dim} \operatorname{Ker} \boldsymbol{\psi}=n-r  $．取 $ \operatorname{Ker} \boldsymbol{\varphi}=\operatorname{Ker} \boldsymbol{\psi} $ 的一组基  $\boldsymbol{e}_{r+1}, \cdots, \boldsymbol{e}_{n}  $，并将其扩张为$  V $ 的一组基 $ \boldsymbol{e}_{1}, \cdots, \boldsymbol{e}_{r}, \boldsymbol{e}_{r+1}, \cdots, \boldsymbol{e}_{n}  $． $\varphi\left(e_{1}\right), \cdots, \varphi\left(e_{r}\right)  $是  $\operatorname{Im} \varphi  $的一组基，故可将其扩张为$  U  $的一组基  $\varphi\left(e_{1}\right), \cdots, \varphi\left(e_{r}\right), f_{r+1}, \cdots, \boldsymbol{f}_{m}  $．
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	同理可知，$ \psi\left(e_{1}\right), \cdots, \psi\left(e_{r}\right)  $是 $ \operatorname{Im} \psi $ 的一组基，故可将其扩张为$  U$  的一组基 $ \psi\left(\boldsymbol{e}_{1}\right), \cdots, \boldsymbol{\psi}\left(\boldsymbol{e}_{r}\right), \boldsymbol{g}_{r+1}, \cdots, \boldsymbol{g}_{m} $ ．定义 $ U $ 上的线性变换  $\sigma$ 如下：$\boldsymbol{\sigma}\left(\boldsymbol{\varphi}\left(\boldsymbol{e}_{i}\right)\right)=\psi\left(\boldsymbol{e}_{i}\right), 1 \leq i \leq r ; \quad \boldsymbol{\sigma}\left(\boldsymbol{f}_{j}\right)=\boldsymbol{g}_{j}, r+1 \leq j \leq m$因为 $ \sigma  $把 $ U $ 的一组基映射为$  U  $的另一组基，故  $\sigma$  是 $ U $ 的自同构．又对  $r+1 \leq j \leq n  ，  \sigma\left(\varphi\left(e_{j}\right)\right)=0=\psi\left(e_{j}\right)  $，故 $ \sigma \varphi=\psi $ 成立． 
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item<1-> （Frobenius 不等式）证明：$  \mathrm{r}(\boldsymbol{A} \boldsymbol{B} \boldsymbol{C}) \geq \mathrm{r}(\boldsymbol{A} \boldsymbol{B})+\mathrm{r}(\boldsymbol{B C})-\mathrm{r}(\boldsymbol{B})  $．
+\item<2-> 将问题转化成几何的语言即为：设$  \varphi: V_{1} \rightarrow V_{2}, \psi: V_{2} \rightarrow   V_{3}, \boldsymbol{\theta}: V_{3} \rightarrow V_{4} $ 是线性映射，证明：$  \mathrm{r}(\boldsymbol{\theta} \psi \boldsymbol{\varphi}) \geq \mathrm{r}(\boldsymbol{\theta} \boldsymbol{\psi})+\mathrm{r}(\boldsymbol{\psi} \boldsymbol{\varphi})-\mathrm{r}(\boldsymbol{\psi})  $．下面考虑通过定义域的限制得到的线性映射．将 $ \theta $ 的定义域限制在$  \operatorname{Im} \psi \varphi  $上可得线性映射 $ \theta_{1}: \operatorname{Im} \psi \varphi \rightarrow V_{4} $ ，它的像空间是  $\operatorname{Im} \boldsymbol{\theta} \psi \varphi  $，核空间是  $\operatorname{Ker} \boldsymbol{\theta} \cap \operatorname{Im} \psi \varphi $ ；将 $ \theta  $的定义域限制在 $ \operatorname{Im} \psi $ 上可得线性映射 $ \theta_{2}: \operatorname{Im} \psi \rightarrow V_{4} $ ，它的像空间是 $ \operatorname{Im} \theta \psi  $，核空间是$  \operatorname{Ker} \boldsymbol{\theta} \cap \operatorname{Im} \psi $ ，
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	故由线性映射的维数公式可得$\begin{aligned}\operatorname{dim}(\operatorname{Im} \psi \boldsymbol{\varphi}) & =\operatorname{dim}(\operatorname{Ker} \boldsymbol{\theta} \cap \operatorname{Im} \psi \boldsymbol{\varphi})+\operatorname{dim}(\operatorname{Im} \boldsymbol{\theta} \psi \boldsymbol{\varphi}) \\\operatorname{dim}(\operatorname{Im} \psi) & =\operatorname{dim}(\operatorname{Ker} \boldsymbol{\theta} \cap \operatorname{Im} \psi)+\operatorname{dim}(\operatorname{Im} \boldsymbol{\theta} \psi)\end{aligned}$注意到$  \operatorname{Im} \boldsymbol{\psi} \boldsymbol{\varphi} \subseteq \operatorname{Im} \boldsymbol{\psi} $ ，故 $ \operatorname{dim}(\operatorname{Ker} \boldsymbol{\theta} \cap \operatorname{Im} \psi \boldsymbol{\varphi}) \leq \operatorname{dim}(\operatorname{Ker} \boldsymbol{\theta} \cap \operatorname{Im} \boldsymbol{\psi})  $，从而$\mathrm{r}(\boldsymbol{\psi} \boldsymbol{\varphi})-\mathrm{r}(\boldsymbol{\theta} \boldsymbol{\psi} \boldsymbol{\varphi}) \leq \mathrm{r}(\boldsymbol{\psi})-\mathrm{r}(\boldsymbol{\theta} \boldsymbol{\psi})$结论得证．
+\end{frame}
+
+\begin{frame}{}
+	
+	三、线性映射的像与核
+	
+	\textbf{定义 4.2.1} 设  $\varphi: V \rightarrow W$  是线性映射．称 $\operatorname{Im} \varphi=\{\varphi(\alpha) \in W \mid \alpha \in V\}$ 为  $\varphi$  的像, 也记为  $\varphi(V)$ 称  $\varphi$  的核为  $\operatorname{Ker} \varphi=\{\alpha \in V \mid \varphi(\alpha)=0\}$, 也记为  $\varphi^{-1}(0)$.
+	
+	\textbf{例 3.1} 设  $\varepsilon_{1}, \varepsilon_{2}, \varepsilon_{3}, \varepsilon_{4}$  是数域  $\mathbb{P}$   上 $4$ 维线性空间  $V$  的一组基, 线性变换  $\varphi$  在这组基下的矩阵  $A$ 为 $A=\left(\begin{array}{cccc}1 & 0 & 2 & 1 \\-1 & 2 & 1 & 3 \\1 & 2 & 5 & 5 \\2 & -2 & 1 & -2\end{array}\right)$. 求  $\varphi$  的核与像.
+\end{frame}
+
+\begin{frame}{}
+	\textbf{证明.} 对A进行初等行变换, 有 $$A=\begin{pmatrix}  1 & 0 & 2 & 1 \\-1 & 2 & 1 & 3 \\1 & 2 & 5 & 5 \\2 & -2 & 1 & -2\end{pmatrix} \rightarrow \begin{pmatrix} 1 & 0 & 2 & 1 \\0 & 2 & 3 & 4 \\0 & 0 & 0 & 0 \\0 & 0 & 0 & 0\end{pmatrix}.$$ 
+	$1^{\circ} \varphi(V)$: 因为 $A$  的前两列为  $A$  列向量组的极大线性无关组, 这两个列向量作为坐标对应的 $V$ 中的两个向量是  $\varepsilon_{1}-\varepsilon_{2}+\varepsilon_{3}+2 \varepsilon_{4}, 2 \varepsilon_{2}+2 \varepsilon_{3}-2 \varepsilon_{4}$. 所以, $\varphi(V)=L\left(\varepsilon_{1}-\varepsilon_{2}+\varepsilon_{3}+2 \varepsilon_{4}, 2 \varepsilon_{2}+2 \varepsilon_{3}-2 \varepsilon_{4}\right)$.\\
+	$2^{\circ} \varphi^{-1}(0)$: 因为 $AX=0$  的基础解系为  $\eta_{1}=\left(-2,-\frac{3}{2},1,0\right)^{\prime}, \eta_{2}=(-1,-2,0,1)^{\prime}$.
+\end{frame}
+
+\begin{frame}{}
+	它们作为坐标对应的 $V$ 中的两个向量  $-2 \varepsilon_{1}-\frac{3}{2} \varepsilon_{2}+\varepsilon_{3},-\varepsilon_{1}-2 \varepsilon_{2}+\varepsilon_{4}$.\\ 所以, $\operatorname{Ker} \varphi=L\left(-2 \varepsilon_{1}-\frac{3}{2} \varepsilon_{2}+\varepsilon_{3},-\varepsilon_{1}-2 \varepsilon_{2}+\varepsilon_{4}\right)$.
+	
+	\textbf{例 3.2} 设  $V=P[x]_{n}$, 定义  $V$  上的线性变换  $\varphi$  为 $\varphi(f(x))=x f^{\prime}(x)-f(x), f(x) \in V$. 求  $\varphi^{-1}(0)$  与  $\varphi(V)$, 并说明  $V=\varphi^{-1}(0) \oplus \varphi(V)$．
+\end{frame}
+
+\begin{frame}{}
+	\textbf{证明.} 取 $V$ 的一组基  $1,x, \ldots, x^{n-1}$. 因为 
+	\begin{small}
+		$\begin{aligned}\varphi(1,x, \ldots, x^{n-1})&=(-1,0,x^{2},\ldots,(n-2)x^{n-1})\\&=(1,x, \ldots, x^{n-1})\begin{pmatrix} -1 & 0 & 0 & \cdots  & 0\\  0& 0 & 0 & \cdots & 0\\ 0 & 0 & 1 & \cdots & 0\\ \vdots  & \vdots & \vdots & \ddots  & \vdots\\  0& 0 &  0& \cdots &n-2\end{pmatrix}.\end{aligned}$
+	\end{small}
+	$1^{\circ} \varphi^{-1}(0)$: $A x=0$ 的解为  $x_{1}=x_{3}=\cdots=x_{n}=0$, $x_{2}$ 为自由未知量. 所以, $A X=0$  的基础解系为  $\eta_{1}=(0,1,0, \ldots, 0)^{\prime}$.\\
+	所以,$\varphi^{-1}(0)=L(x), \operatorname{dim}\varphi^{-1}(0)=1$.\\
+	$2^{\circ}\varphi(V)=L(-1,0,x^{2},\ldots,(n-2)x^{n-1})=L\left(1, x, x^{2}, \ldots, x^{n-1}\right), \operatorname{dim}\varphi(V)=n-1$.\\
+	所以, $V=L\left(1,x,x^{2}, \ldots, x^{n-1}\right)=L(x) \oplus L\left(1, x^{2}, \ldots, x^{n-1}\right)=\varphi^{-1}(0) \oplus \varphi(V).$
+\end{frame}
+
+\begin{frame}{}
+	\textbf{定理 4.2.4} 设  $\varphi: V \rightarrow W$  是一个线性映射, 且 $\operatorname{dim}V=n$. 则 $\operatorname{dim} V=\operatorname{dim}\operatorname{Ker} \varphi + \operatorname{dim}\operatorname{Im} \varphi=n$. (方法:设小扩大)
+	
+	\textbf{证明.} 设 $\operatorname{dim}\operatorname{Ker} \varphi=s$, 任取 $\operatorname{Ker} \varphi$的一组基, 记为 $\alpha_{1}, \ldots, \alpha_{s}
+	$, 扩为 $V$ 的一组基 $\alpha_1, \ldots, \alpha_{s}, \alpha_{s+1}, \ldots, \alpha_{n}$. 则 $\operatorname{Im} \varphi=L(\varphi \alpha_{1}, \varphi \alpha_{2}, \ldots, \varphi \alpha_{n})=L(\varphi \alpha_{s+1}, \ldots, \varphi \alpha_{n})$.
+\end{frame}
+
+\begin{frame}{}
+	接下来说明  $\operatorname{dim}\operatorname{Im} \varphi=n-s$, 为此只需说明  $\varphi \alpha_{s+1}, \ldots, \varphi \alpha_{n}$  线性无关.\\ 设 
+	\begin{small}
+		$k_{s+1} \varphi \alpha_{s+1}+\cdots+k_{n} \varphi \alpha_{n}=0 \Rightarrow \varphi \left(k_{s+1} \alpha_{s+1}+\cdots+k_{n} \alpha_{n}\right)=0.$
+	\end{small} 
+	所以, $k_{s+1} \alpha_{s+1}+\cdots+k_{n} \alpha_{n} \in \operatorname{Ker} \varphi$, 可设 $k_{s+1} \alpha_{s+1}+\cdots+k_{n} \alpha_{n}=k_{1} \alpha_{1}+\cdots+k_{s} \alpha_{s}$, 即  $-k_{1} \alpha_{1}-\cdots-k_{s} \alpha_{s}+k_{s+1} \alpha_{s+1}+\cdots+k_{n} \alpha_{n}=0$.
+	因为 $\alpha_{1}, \ldots, \alpha_{s}, \alpha_{s+1}, \ldots, \alpha_{n}$  线性无关, 所以 $k_{1}=\cdots=k_{n}=0$. 所以, $\varphi \alpha_{s+1}, \ldots, \varphi \alpha_{n}$ 线性无关, $\operatorname{dim}\operatorname{Im} \varphi=n-s$. 所以, $\operatorname{dim} V=\operatorname{dim}\operatorname{Ker} \varphi + \operatorname{dim}\operatorname{Im} \varphi=n$.
+\end{frame}
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+\end{document}

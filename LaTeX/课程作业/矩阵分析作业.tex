@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+\input{../preamble.tex}
+
+\title{矩阵分析思考题及答案 (编纂中)}
+\author{章亦流 A24201011}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{矩阵范数}
+\paragraph{思考题1.1}$x\in \C^n$,则$\lim_{p\to\infty}\norm{x}_p=\norm{x}_\infty$.
+
+\paragraph{思考题1.2}$A\in \C^{m\times n}, \norm{A}_{M_2}=\sqrt{\sum_{i,j} \abs{a_{ij}}}$是矩阵范数.
+
+\paragraph{思考题1.3}$A\in M_n(\C), \norm{A}_{M'_\infty}=n\cdot \max_{i,j}\abs{a_{ij}}$是矩阵范数.
+
+\paragraph{思考题1.4}$\norm{\cdot}_a$是向量范数,$\norm{\cdot}_b$是矩阵范数,若
+$$\forall x\in \C^{n}, \forall A\in \C^{m\times n}: \norm{Ax}_a\leq \norm{A}_b\norm{x}_a,$$
+则称范数$\norm{\cdot}_a,\norm{\cdot}_b$相容.证明向量2-范数$\norm{x}_{\ell_2}=\sqrt{\sum_{i=1}^{n}\abs{x_i}^2}$与矩阵范数$\norm{A}_{M_2}=\sqrt{\sum_{i,j} \abs{a_{ij}}}$相容.
+
+\paragraph{思考题1.5}在$M_n(\C)$上证明$\norm{A}_\infty=\max_{x\neq 0}\frac{\norm{Ax}_{\infty}}{\norm{x}_\infty}$就是行和范数$\norm{A}_{r}=\max_{i}\sum_{j=1}^{n}\abs{a_{ij}}$.
+
+\paragraph{思考题1.6}对于$A\in M_n(\C)$,$\lim_{k\to\infty}A^k=O \iff \rho(A)<1$,其中$\rho(A)=\max_{\lambda\in \Spec A}\abs{\lambda}$是谱半径.
+
+\section{矩阵分解}
+\paragraph{思考题2.1}从几何直观的角度,用寻找空间中基底的方式,给出奇异值分解的另一个证明.
+\begin{quotation}
+    \textbf{Theorem (奇异值分解, SVD)} $A\in \C^{m\times n}$,存在酉矩阵$U\in M_m(\C), V\in M_n(\C)$使得$UAV=\mathrm{diag}(s_1,\dots,s_p)$,其中$s_1\geq\dots\geq s_p$是$A$的全体奇异值,$p=\min(m,n)$.
+\end{quotation}
+\paragraph{思考题2.2}证明QR分解.
+\begin{quotation}
+    \textbf{Theorem (QR分解)} 对于任意$n$阶矩阵$A$,存在酉矩阵$Q$和上三角矩阵$R$,使得$A=QR$.
+\end{quotation}
+
+\section{Hermite矩阵}
+\paragraph{思考题3.1}证明极大-极小原理的第二个等式.
+\begin{quotation}
+    \textbf{Theorem (极大-极小原理, Courant-Fischer定理)} $A$是Hermite矩阵,则$$\lambda_k(A)=\max_{\substack{S\subset \C^n\\ \dim S=k}}\min_{x\in S}R(x)=\max_{\substack{T\subset \C^n\\ \dim T=n-k+1}}\max_{x\in S}R(x), \text{where } R(x)=\frac{x^*Ax}{x^*x}.$$
+\end{quotation}
+\paragraph{思考题3.2}证明: $n$阶单圈图中谱半径最大的图是星图连接两个1度点形成的图.
+\begin{proof}
+    
+\end{proof}
+\paragraph{思考题3.3}给出所有满足$\rho(G)\leq \sqrt{2}$(或2)的图$G$.
+\begin{proof}
+    下仅考虑连通图,因为图的谱半径即所有连通分支的最大谱半径,因此若干个满足条件的连通图的不交并仍然满足条件.由于连通图总有$m\geq n-1$,故$\rho(G)\geq d(G)=2m/n\geq 2-2/n$.因此$\rho(G)\leq \sqrt{2}$时有$2-2/n\leq \sqrt{2}$,解得$n\leq 3$,可枚举出满足条件的图仅有$P_3,K_3,K_2,K_1$.
+
+    $\rho(G)\leq 2$的图被称作Smith图\footnote{J.H. Smith, \textit{Some properties of the spectrum of a graph}, in: Combinatorial Structures and Their Applications, Gordon and Breach, New York -- London -- Paris, 1970, pp. 403--406.}\footnote{\href{https://doi.org/10.1016/j.laa.2016.11.020}{Dragoš Cvetković, Irena M. Jovanović, \textit{Constructing graphs with given spectrum and the spectral radius at most 2}, in: Linear Algebra and its Applications, Volume 515, 2017, pp. 255-274,}}.下分类讨论:
+    \begin{enumerate}
+        \item 带圈图$G$是Smith图,其含圈$C$,故$\rho(G)\geq\rho(C)=2$,其仅在$G=C$时取等,即带圈Smith图仅能为圈图.
+        \item 树$T$是Smith图,且$\Delta(T)\leq 2$.此时$T$仅能为路图,而$\rho(P_n)=2\cos\frac{\pi}{n+1}<2$,故路图均为Smith图.
+        \item 树$T$是Smith图,且$\Delta(T)\geq 4$.此时必然有$K_{1,4}\subset T$,即$\rho(T)\geq \rho(K_{1,4})=2$,由取等条件知$T=K_{1,4}$.
+        \item 树$T$是Smith图,$\Delta(T)=3$,且存在两点$x,y$度数为3.由连通性知有$(x,y)$-路$P$, 从而记图$W_{n'}=T[V(P)\cup N(x)\cup N(y)]$,其为路$P_{n'}(n'\geq 2)$的首尾两点各与路外两点连边得到的$n'+4$点图. 再记$Z_{n'}$为$W_{n'}$删去一个末端点,从而由Heilbronner公式,对任意$n\geq 2$有
+        $$\begin{aligned}
+            \phi_{W_n}(x)&=x\phi_{Z_n}(x)-x\phi_{Z_{n-2}}(x)\\
+            &=x(x\phi_{P_{n+2}}(x)-x\phi_{P_n}(x))-x(x\phi_{P_n}(x)-x\phi_{P_{n-2}}(x))\\
+            &=x^2(\phi_{P_{n+2}}(x)+\phi_{P_{n-2}}(x)-2\phi_{P_n}(x))=x^2(x^2-4)\phi_{P_n}(x)
+        \end{aligned}$$
+        从而知$\rho(W_{n'})=2\leq \rho(T)$, 由取等条件知$T=W_{n-4}$.
+        \item 树$T$是Smith图,$\Delta(T)=3$,且仅有一点$x$度数为3.视$T$为以$x$为根节点的根树,则$x$分别连接三条路$P_{n_1},P_{n_2},P_{n_3}$.记$T=T_{n_1,n_2,n_3}$,计算可得$\rho(T_{5,2,1})=\rho(T_{3,3,1})=\rho(T_{2,2,2})=2$,因此满足条件的$T$仅能为$T_{5,2,1},T_{3,3,1}$或$T_{2,2,2}$的子图.
+    \end{enumerate}
+    综上所述, Smith图有且仅有$C_n, W_n, K_{1,4}, T_{5,2,1}, T_{3,3,1}, T_{2,2,2}$及其子图.
+\end{proof}
+\paragraph{思考题3.4}定义图$G$的无符号Laplace矩阵$Q(G)=D(G)+A(G)$,其中$A(G)$是$G$的邻接矩阵,$D(G)=\mathrm{diag}(d(v_1),\dots,d(v_n))$是$G$的度数矩阵.下记$Q(G)$有特征值$\lambda_1(G)\geq\dots\geq\lambda_n(G)$,对于$\forall e\in E(G)$,证明:
+\begin{enumerate}
+    \item $\lambda_1(G)\geq \lambda_1(G-e)\geq \lambda_2(G)\geq \dots \geq \lambda_{n-1}(G)\geq \lambda_{n-1}(G-e)\geq \lambda_n(G)\geq \lambda_n(G-e)$.
+    \item $\forall k\in [n-2], \lambda_k(G)\geq \lambda_k(G-e)\geq \lambda_{k+2}(G)$.
+\end{enumerate}
+\begin{proof}
+    记$e=v_i v_j$,则$Q(G)=Q(G-e)+E_{ij}$,其中$E_{ij}$的第$(i,i), (j,j), (i,j), (j,i)$个元素为1,其余元素为0.容易计算得$\lambda_1(E_{ij})=2, \lambda_2(E_{ij})=\dots=\lambda_n(E_{ij})=0$.由Weyl不等式可知,$\forall k\in [n]$,
+    $$\max_{r+s=k+n}\cbr{\lambda_r(G-e)+\lambda_s(E_{ij})}\leq \lambda_k(G)\leq \min_{r+s=k+1}\cbr{\lambda_r(G-e)+\lambda_s(E_{ij})}$$
+    对第一个不等式取$r=k, s=n$,有$\lambda_k(G)\geq \lambda_k(G-e)+\lambda_n(E_{ij})=\lambda_k(G-e)$; 若$k\geq 2$, 对第二个不等式取$r=k-1, s=2$,则$\lambda_k(G)\leq \lambda_{k-1}(G-e)+\lambda_2(E_{ij})=\lambda_{k-1}(G-e)$.综上得证(1).而$\forall k\in [n-2], \lambda_k(G-e)\geq \lambda_{k+1}(G)\geq \lambda_{k+2}(G)$,因此得证(2).(怀疑(2)的题目有误.)
+\end{proof}
+
+\section{非负矩阵}
+
+\end{document}
+
+\paragraph{思考题1.1}
+\paragraph{思考题1.2}
+\paragraph{思考题1.3}
+\paragraph{思考题1.4}
+\paragraph{思考题1.5}
+\paragraph{思考题1.6}

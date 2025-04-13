@@ -35,16 +35,260 @@
 % \subsection{商空间}
 % \subsection{复习题3}
 
-% \section{第四章 线性映射}
+\addtocounter{section}{3}
+\section{第四章\,线性映射}
 % \subsection{线性映射的定义与矩阵}
 % \subsection{线性空间的同构}
 % \subsection{线性映射的像与核}
-% \subsection{线性变换及其矩阵}
-% \subsection{不变子空间}
+
+\addtocounter{subsection}{3}
+\subsection{线性变换及其矩阵}
+\paragraph{4.4.1}判断下列变换是否为线性变换:
+\begin{enumerate}
+    \item 线性空间$V$中$\mathscr{A}\xi=\xi+\alpha, \alpha\in V$是一固定向量.
+    \item 线性空间$V$中$\mathscr{A}\xi=\alpha, \alpha\in V$是一固定向量.
+    \item $M_n(\F)$中$\mathscr{A}X=BXC, B,C\in M_n(\F)$是两个固定矩阵.
+\end{enumerate}
+\begin{proof}
+    1.不是; 2.不是; 3.是.
+\end{proof}
+\paragraph{4.4.2}$\mathscr{A,B}$为线性变换,且$\mathscr{AB-BA=I}$,证明$\mathscr{A}^k\mathscr{B}-\mathscr{BA}^k=k\mathscr{A}^{k-1}, \forall k\in \N$.
+\begin{proof}
+    对$k$归纳,$k=1$时已证($\mathscr{A}^0=\mathscr{I}$).假设$<k$时等式均成立,则
+    $$\begin{aligned}
+        \mathscr{A}^k\mathscr{B}-\mathscr{BA}^k&=\mathscr{A}\br{\mathscr{A}^{k-1}\mathscr{B}}-\mathscr{BA}^k=\mathscr{A}\br{(k-1)\mathscr{A}^{k-2}+\mathscr{BA}^{k-1}}-\mathscr{BA}^k\\
+        &=(k-1)\mathscr{A}^{k-1}+\br{\mathscr{AB-BA}}\mathscr{A}^{k-1}=(k-1)\mathscr{A}^{k-1}+\mathscr{A}^{k-1}=k\mathscr{A}^{k-1}
+    \end{aligned}$$
+    从而得证.
+\end{proof}
+\begin{remark}
+    需要注意的是,满足$\mathscr{AB-BA=I}$的线性变换在有限维线性空间中并不存在,因为$\tr(AB-BA)=0\neq n=\tr I_n$,但可以在无限维线性空间中存在,如在$C^{\infty}(\R)$中取$\mathscr{A}:f(x)\mapsto f'(x), \mathscr{B}:f(x)\mapsto xf(x)$.这两个线性变换实际上即量子力学中的位置算符与动量算符(差一个常数),而$\mathscr{AB-BA=I}$即两个算符的对易关系.
+    
+    从数学上来说,我们能在大量广泛的结构中定义Lie代数和Lie括号,在向量空间中通常定义Lie括号为线性变换的交换子$[\mathscr{A,B}]=\mathscr{AB-BA}$,导子$\mathrm{ad}_{\mathscr{B}}(\mathscr{X})=[\mathscr{B},\mathscr{X}]$.而该命题即(通过修改符号):若$\mathrm{ad}_{\mathscr{B}}(\mathscr{A})=\mathscr{I}$,则$\mathrm{ad}_{\mathscr{B}}(\mathscr{A}^k)=k\mathscr{A}^{k-1}$.这与微分中的$\frac{\d}{\d x}x^k=kx^{k-1}$具有形式上的相似性,这也暗示了Lie代数中的导子与微积分乃至微分流形中的微分有联系.
+\end{remark}
+\paragraph{4.4.3}$\mathscr{A,B}$为线性空间$V$中的线性变换,且$\mathscr{A}^2=\mathscr{A},\mathscr{B}^2=\mathscr{B}$,证明:
+\begin{enumerate}
+    \item $(\mathscr{A}+\mathscr{B})^2=\mathscr{A}+\mathscr{B}\iff \mathscr{AB}+\mathscr{BA}=\mathscr{O}$.
+    \item $(\mathscr{A}+\mathscr{B})^2=\mathscr{A}+\mathscr{B}\iff \mathscr{AB=O},\mathscr{BA=O}$.
+    \item 若$\mathscr{AB=BA}$,则$(\mathscr{A+B-AB})^2=\mathscr{A+B-AB}$.
+\end{enumerate}
+\begin{proof}
+    1. $(\mathscr{A}+\mathscr{B})^2=\mathscr{A}^2+\mathscr{AB}+\mathscr{BA}+\mathscr{B}^2=\mathscr{A}+\mathscr{AB}+\mathscr{BA}+\mathscr{B}=\mathscr{A}+\mathscr{B}\iff \mathscr{AB}+\mathscr{BA}=\mathscr{O}$.
+
+    2.(证法一) 由(1)知$\impliedby$显然.$\implies:$ 对于幂等变换$\mathscr{A}$的像中元素$v\in \im \mathscr{A}, \exists w\in V, \mathscr{A}w=v$,因此$\mathscr{A}v=\mathscr{A}^2w=\mathscr{A}w=v$,即$\forall v\in \im \mathscr{A}, \mathscr{A}v=v$.取$\forall v\in \im \mathscr{A}, \mathscr{AB}v=-\mathscr{BA}v=-\mathscr{B}v$,而$\mathscr{B}v\in \im \mathscr{A}$,因此$\mathscr{AB}v=\mathscr{B}v$,综上知$\mathscr{B}v=0$.故$\forall x\in V, \mathscr{BA}x=0, \mathscr{BA}=\mathscr{O}$,从而由(1)知$\mathscr{AB}=\mathscr{O}$.
+
+    2.(证法二) 由$\mathscr{AB}+\mathscr{BA}=\mathscr{O}$知$\mathscr{A}(\mathscr{AB}+\mathscr{BA})=\mathscr{AB}+\mathscr{ABA}=\mathscr{O}$和$(\mathscr{AB}+\mathscr{BA})\mathscr{A}=\mathscr{ABA}+\mathscr{BA}=\mathscr{O}$,故$\mathscr{BA}=-\mathscr{ABA}=\mathscr{AB}$,从而$2\mathscr{AB}=\mathscr{O}, \mathscr{AB}=\mathscr{BA}=\mathscr{O}$.
+
+    3. $(\mathscr{A+B-AB})^2=\mathscr{A}^2 \mathscr{B}^2-2 \mathscr{A}^2 \mathscr{B}+\mathscr{A}^2-2 \mathscr{A} \mathscr{B}^2+2 \mathscr{A} \mathscr{B}+\mathscr{B}^2=\mathscr{A}+\mathscr{B}-\mathscr{AB}$.
+\end{proof}
+\paragraph{4.4.4}取$A,B,C,D\in M_n(\F)$,令$\mathscr{A}(X)=AXB+CX+XD$,证明:若$\mathscr{A}$是$M_n(\F)$中的线性变换,且$C=D=O$时,$\mathscr{A}$可逆$\iff \det AB\neq 0$.
+\begin{proof}
+    $\implies:\mathscr{A}$可逆即有$\mathscr{A}\mathscr{A}\rev(Y)=A\mathscr{A}\rev(Y)B=Y, A\mathscr{A}\rev(I_n)B=I_n$,故$A,B$均满秩,即$\det AB\neq 0$.
+
+    $\impliedby: AB$可逆则$A,B$可逆,取$\mathscr{A}\rev(Y)=A\rev Y B\rev$即为$\mathscr{A}$的逆.
+\end{proof}
+\paragraph{4.4.5}$\R^3$上的线性变换$\mathscr{A}$将下列$\alpha_1,\alpha_2,\alpha_3$变换为$\beta_1,\beta_2,\beta_3$,求$\mathscr{A}$在$\R^3$中标准基下的矩阵$A$:
+\begin{enumerate}
+    \item $\alpha_1 = (2,3,5), \alpha_2 = (0,1,2), \alpha_3 = (1,0,0), \beta_1 = (1,1, 1), \beta_2 = (1,1, -1), \beta_3 = (2, 1, 2)$;
+    \item $\alpha_1 = (2,0,3), \alpha_2 = (4,1,5), \alpha_3 = (3,1, 2), \beta_1 = (1,2, -1), \beta_2 = (4,5, -2), \beta_3 = (1,1,0)$.
+\end{enumerate}
+\begin{proof}
+    设$\mathscr{A}$在标准基$e_1,e_2,e_3$下的矩阵为$A$,则有$\mathscr{A}(e_1,e_2,e_3)=(e_1,e_2,e_3)A$,从而有
+    $$(\beta_1,\beta_2,\beta_3)=\mathscr{A}(\alpha_1,\alpha_2,\alpha_3)=\mathscr{A}(e_1,e_2,e_3)(\alpha_1\T,\alpha_2\T,\alpha_3\T)=(e_1,e_2,e_3)A(\alpha_1\T,\alpha_2\T,\alpha_3\T)$$
+    又因$(\beta_1,\beta_2,\beta_3)=(e_1,e_2,e_3)(\beta_1\T,\beta_2\T,\beta_3\T)$,故$A= (\beta_1\T,\beta_2\T,\beta_3\T)(\alpha_1\T,\alpha_2\T,\alpha_3\T)\rev$.
+
+    \begin{enumerate}
+        \item $$A=\begin{pmatrix}
+        1&1&2\\
+        1&1&1\\
+        1&-1&2
+    \end{pmatrix}\begin{pmatrix}
+        2&0&1\\
+        3&1&0\\
+        5&2&0
+    \end{pmatrix}\rev=\begin{pmatrix}
+        1&1&2\\
+        1&1&1\\
+        1&-1&2
+    \end{pmatrix}\begin{pmatrix}
+        0 & 2 & -1 \\
+        0 & -5 & 3 \\
+        1 & -4 & 2 \\
+    \end{pmatrix}=\begin{pmatrix}
+        2 & -11 & 6 \\
+        1 & -7 & 4 \\
+        2 & -1 & 0 \\
+    \end{pmatrix}$$
+    \item $$A=\begin{pmatrix}
+        1 & 4 & 1 \\
+        2 & 5 & 1 \\
+        -1 & -2 & 0 \\
+    \end{pmatrix}\begin{pmatrix}
+        2 & 4 & 3 \\
+        0 & 1 & 1 \\
+        3 & 5 & 2 \\
+    \end{pmatrix}\rev=\begin{pmatrix}
+        1 & 4 & 1 \\
+        2 & 5 & 1 \\
+        -1 & -2 & 0 \\
+    \end{pmatrix}\begin{pmatrix}
+        1 & -7/3 & -1/3 \\
+        -1 & 5/3 & 2/3 \\
+        1 & -2/3 & -2/3 \\
+    \end{pmatrix}=\begin{pmatrix}
+        -2 & 11/3 & 5/3 \\
+        -2 & 3 & 2 \\
+        1 & -1 & -1 \\
+    \end{pmatrix}$$
+    \end{enumerate}
+\end{proof}
+\paragraph{4.4.6}$\mathscr{A}$在基$\alpha_1,\alpha_2,\alpha_3,\alpha_4$下的矩阵为
+$$A=\begin{pmatrix}
+    1&2&0&1\\
+    3&0&-1&2\\
+    2&5&3&1\\
+    1&2&1&3\\
+\end{pmatrix}$$
+求其在$\mathscr{A}$在下列基下的矩阵:
+\begin{enumerate}
+    \item $\alpha_2,\alpha_4,\alpha_3,\alpha_1$;
+    \item $\alpha_1,\alpha_1+\alpha_2,\alpha_1+\alpha_2+\alpha_3,\alpha_1+\alpha_2+\alpha_3+\alpha_4$.
+\end{enumerate}
+\begin{proof}
+    基$\alpha_1,\alpha_2,\alpha_3,\alpha_4$到如上两组基的过渡矩阵分别为
+    $$P_1=\begin{pmatrix}
+        0 & 0 & 0 & 1 \\
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 \\
+    \end{pmatrix}, P_2=\begin{pmatrix}
+        1 & 1 & 1 & 1 \\
+        0 & 1 & 1 & 1 \\
+        0 & 0 & 1 & 1 \\
+        0 & 0 & 0 & 1 \\
+    \end{pmatrix}, P_1\rev=\begin{pmatrix}
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1 \\
+        0 & 0 & 1 & 0 \\
+        1 & 0 & 0 & 0 \\
+    \end{pmatrix},P_2\rev=\begin{pmatrix}
+        1 & -1 & 0 & 0 \\
+        0 & 1 & -1 & 0 \\
+        0 & 0 & 1 & -1 \\
+        0 & 0 & 0 & 1 \\
+    \end{pmatrix}$$
+    故$\mathscr{A}$在两组基下的矩阵分别为
+    $$P_1\rev A P_1=\begin{pmatrix}
+        0 & 2 & -1 & 3 \\
+        2 & 3 & 1 & 1 \\
+        5 & 1 & 3 & 2 \\
+        2 & 1 & 0 & 1 \\
+    \end{pmatrix}, P_2\rev A P_2=\begin{pmatrix}
+        -2 & 0 & 1 & 0 \\
+        1 & -4 & -8 & -7 \\
+        1 & 4 & 6 & 4 \\
+        1 & 3 & 4 & 7 \\
+    \end{pmatrix}.$$
+\end{proof}
+\paragraph{4.4.7}$V$为$\F$上的$n$维线性空间,证明:与$V$上全体线性变换可交换的线性变换有且仅有数乘变换$c\mathscr{I}, c\in\F$.
+\begin{proof}
+    在$V$中任取一基,设线性变换$\mathscr{A}$在该基下的矩阵为$A$.若$\mathscr{A}$与$V$的任意线性变换可交换,即$A$与任意$n$阶方阵可交换.取$D=\diag(1,2,\dots,n)$,由$AD=DA$知乘积的第$(i,j)$元为$ja_{ij}=ia_{ij}$,故$a_{ij}=0 (i\neq j), A=\diag(a_{1},a_{2},\dots,a_{n})$.再对任意$i,j=1,2,\dots,n (i\neq j)$取矩阵$P_{ij}=I_n+E_{ij}$.由$AP_{ij}=P_{ij}A$知$a_i E_{ij}=a_j E_{ij}$,故$a_i=a_j$,再由$i,j$任意性知$a_1=\dots=a_n=c, A=cI_n, c\in \F$.
+\end{proof}
+\paragraph{4.4.8}$\mathscr{A}$为$\F$上$n$维线性空间$V$的一个线性变换,证明:若$\mathscr{A}$在任意基下的矩阵相同,则$\mathscr{A}$为数乘变换.
+\begin{proof}
+    在$V$中任取一基,设线性变换$\mathscr{A}$在该基下的矩阵为$A$.若$\mathscr{A}$在任意基下的矩阵相同,即等价于对任意可逆矩阵$P$有$P\rev AP=A$,即$AP=PA$.同上证法即得证.
+\end{proof}
+\paragraph{4.4.9}$\F$上的线性空间$V$有基$\alpha_1,\alpha_2,\dots,\alpha_n$,由$\mathscr{A}\alpha_i=\alpha_{i+1} (i=1,2,\dots,n-1), \mathscr{A}\alpha_n=0$定义了线性变换$\mathscr{A}$.
+\begin{enumerate}
+    \item 求$\mathscr{A}$在该基下的矩阵.
+    \item 证明$\mathscr{A}^n=\mathscr{O}, \mathscr{A}^{n-1}\neq\mathscr{O}$.
+    \item 若$V$上线性变换$\mathscr{B}$同样满足$\mathscr{B}^n=\mathscr{O}, \mathscr{B}^{n-1}\neq\mathscr{O}$,则存在$V$中的基使$\mathscr{B}$在该基下的矩阵与(1)中$\mathscr{A}$的矩阵相同.
+    \item 证明:$M,N\in M_n(\F)$若满足$M^n=N^n=O, M^{n-1}\neq O, N^{n-1}\neq O$,则$M$与$N$相似.
+\end{enumerate}
+\begin{proof}
+    容易看出
+    $$A=\begin{pmatrix}
+        0 &  &  &  &  \\
+        1 & 0 &  &  &  \\
+         & 1 & 0 &  &  \\
+         &  & \ddots & \ddots &  \\
+         &  &  & 1 & 0 \\
+    \end{pmatrix}, A^{2}=\begin{pmatrix}
+        0 &  &  &  &  \\
+        0 & 0 &  &  &  \\
+        1 & 0 & 0 &  &  \\
+         & \ddots & \ddots & \ddots &  \\
+         &  & 1 & 0 & 0 \\
+    \end{pmatrix}, \cdots, A^{n-1}=\begin{pmatrix}
+        0_{n-1\times 1}& O_{n-1}\\
+        1 & 0_{1\times n-1}
+    \end{pmatrix}\neq O, A^n=O$$
+
+    而对于$V$上线性变换$\mathscr{B}$,若有$\mathscr{B}^n=\mathscr{O}, \mathscr{B}^{n-1}\neq\mathscr{O}$,取$\alpha\in V$使$\mathscr{B}^{n-1}\alpha\neq 0$,下证$\alpha,\mathscr{B}\alpha,\dots,\mathscr{B}^{n-1}\alpha$是$V$的一组基.设有$k_1,\dots,k_n\in \F$使得$\alpha'=\sum_{i=1}^{n}k_i\mathscr{B}^{i-1}\alpha=0$,则$\mathscr{B}^{n-1}\alpha'=k_1\mathscr{B}^{n-1}\alpha=0, k_1=0$,故$\mathscr{B}^{n-2}\alpha'=k_2\mathscr{B}^{n-1}\alpha=0, k_2=0$,以此类推.从而$k_1=\dots=k_n=0$,即$\alpha,\mathscr{B}\alpha,\dots,\mathscr{B}^{n-1}\alpha$线性无关,是一组基,且有$\mathscr{B}(\mathscr{B}^i\alpha)=\mathscr{B}^{i+1}\alpha (i=0,1,\dots,n-1), \mathscr{B}(\mathscr{B}^{n-1})\alpha=0$,从而由(1)知$\mathscr{B}$在该基下的矩阵也为$A$.
+
+    最后,由上知$M,N$均相似于$A$,即$M$与$N$相似.
+\end{proof}
+
+\subsection{不变子空间}
+\paragraph{4.5.1}$\F^4$中的线性变换$\mathscr{A}$在基$\alpha_1,\alpha_2,\alpha_3,\alpha_4$下的矩阵为
+$$A=\begin{pmatrix}
+    1&0&2&-1\\
+    0&1&4&-2\\
+    2&-1&0&1\\
+    2&-1&-1&2\\
+\end{pmatrix}$$
+令$W=\Span(\alpha_1+2\alpha_2,\alpha_2+\alpha_3+2\alpha_4)$,证明$W$是$\mathscr{A}$-子空间.
+\begin{proof}
+    由于
+    $$\begin{aligned}
+        \mathscr{A}(\alpha_1+2\alpha_2)&=(\alpha_1+2\alpha_3+2\alpha_4)+2(\alpha_2-\alpha_3-\alpha_4)=\alpha_1+2\alpha_2\in W,\\
+        \mathscr{A}(\alpha_2+\alpha_3+2\alpha_4)&=(\alpha_2-\alpha_3-\alpha_4)+(2\alpha_1+4\alpha_2-\alpha_4)+2(\alpha_1-2\alpha_2+\alpha_3+2\alpha_4)\\
+        &=\alpha_2 + \alpha_3 + 2\alpha_4\in W
+    \end{aligned}$$
+    故$W$是$\mathscr{A}$-子空间.
+\end{proof}
+\paragraph{4.5.2}线性空间$V$有子空间$W=\Span(\alpha_1,\alpha_2,\dots,\alpha_k)$,证明$W$是$\mathscr{A}$-子空间$\iff \mathscr{A}\alpha_i\in W (i=1,2,\dots,k)$.
+\begin{proof}
+    $\implies$显然,$\impliedby$:由于$W$中任意向量$\alpha$可看作$\alpha_1,\alpha_2,\dots,\alpha_k$的线性组合$\alpha=\sum_{i=1}^{k}k_i\alpha_i$,则$\mathscr{A}\alpha=\sum_{i=1}^{k}k_i\mathscr{A}\alpha_i\in W$,故$W$是$\mathscr{A}$的不变子空间.
+\end{proof}
+\paragraph{4.5.3}$\mathscr{A,B}$为线性空间$V$上的线性变换,$U$为$\mathscr{A,B}$的不变子空间,证明$U$是$\mathscr{A+B, AB}$的不变子空间.若$\mathscr{A}$可逆,则$U$也是$\mathscr{A}\rev$的不变子空间.
+\begin{proof}
+    由于$\forall \alpha\in U, \mathscr{A}\alpha, \mathscr{B}\alpha\in U$,故$\mathscr{A}\alpha+\mathscr{B}\alpha\in U, \mathscr{A}\mathscr{B}\alpha\in U$,即$U$是$\mathscr{A+B, AB}$的不变子空间.而$\mathscr{A}$可逆时,$\dim \mathscr{A}U\leq \dim U=\dim (\mathscr{A}\rev \mathscr{A}U)\leq \dim \mathscr{A}U$,由$\mathscr{A}U\subset U$知$\mathscr{A}U=U$,故$\mathscr{A}\rev U=\mathscr{A}\rev\mathscr{A}U=U$,从而$U$是$\mathscr{A}\rev$的不变子空间.
+\end{proof}
+\paragraph{4.5.4}$n$维线性空间$V$上的线性变换$\mathscr{A}$在基$\alpha_1,\alpha_2,\cdots,\alpha_n$下的矩阵为
+$$A=\begin{pmatrix}
+    \lambda_0  & 1 &  &  &  \\
+     & \lambda_0 & 1 &  &  \\
+     &  & \ddots & \ddots &  \\
+     &  &  & \lambda_0 & 1 \\
+     &  &  &  & \lambda_0
+\end{pmatrix}$$
+\begin{enumerate}
+    \item 若$\alpha_n$在$\mathscr{A}$的不变子空间$U$中,则$U=V$;
+    \item $\alpha_1$属于$\mathscr{A}$的任意非零不变子空间中.
+    \item $V$不能被分解为两个非平凡$\mathscr{A}$-子空间的直和.
+\end{enumerate}
+\begin{proof}
+    1. 由于$\mathscr{A}\alpha_1=\lambda_0\alpha_1, \mathscr{A}\alpha_{k}=\alpha_{k-1}+\lambda_0\alpha_k (k=2,\dots,n)$,因此若$\alpha_n\in U$则$\alpha_{n-1}=\mathscr{A}\alpha_n-\lambda_0 \alpha_n\in U, \dots, \alpha_1=\mathscr{A}\alpha_2-\lambda_0\alpha_2\in U$,即$\alpha_1,\dots,\alpha_n\in U, V=\Span(\alpha_1,\dots,\alpha_n)\subset U$,从而$U=V$.
+
+    2. 任取$\mathscr{A}$的非零不变子空间$U$,易知$U$也在$\mathscr{B}=\mathscr{A}-\lambda_0\mathscr{I}$下不变,且$\mathscr{B}\alpha_1=0, \mathscr{B}\alpha_k=\alpha_{k-1} (k=2,\dots,n)$.因此任取$U$中非零向量$\alpha=\sum_{i=1}^{n}k_i\alpha_i=\sum_{i=1}^{m}k_i\alpha_i$,其中$k_{m+1}=\dots=k_n=0, k_m\neq 0$,从而有
+    $$\mathscr{B}\alpha=\sum_{i=2}^{m}k_i\alpha_{i-1}\in U, \mathscr{B}^2\alpha=\sum_{i=3}^{m}k_i\alpha_{i-2}\in U, \dots, \mathscr{B}^{m-1}\alpha=k_m\alpha_1\in U$$
+    故$\alpha_1\in U$.
+
+    3. 由于$\alpha_1$在任意非平凡$\mathscr{A}$-子空间中,故非平凡$\mathscr{A}$-子空间之间必有交,从而无法作直和.
+\end{proof}
+\paragraph{4.5.5}$\mathscr{A}$是$\R^2$上的线性变换,其在基$\alpha_1,\alpha_2$下的矩阵为$\begin{pmatrix}
+    -1&2\\ 3&-6
+\end{pmatrix}$.
+求$\mathscr{A}$的所有不变子空间.
+\begin{proof}
+    $\mathscr{A}$有平凡不变子空间$\R^2$和零空间,$\mathscr{A}$的非平凡子空间$U$仅能$\dim U=1$,从而$\forall \alpha\in U, \mathscr{A}\alpha\in U$.设$\alpha=k_1\alpha_1+k_2\alpha_2$,即有方程$k_1(-\alpha_1+3\alpha_2)+k_2(2\alpha_1-6\alpha_2)=(-k_1+2k_2)\alpha_1+(3k_1-6k_2)\alpha_2=\lambda(k_1\alpha_1+k_2\alpha_2)$.解得$k_1/k_2=3$或$-1/2$,从而可取$U_1=\Span(3\alpha_1+\alpha_2)$和$U_2=\Span(\alpha_1-2\alpha_2)$,它们和两个平凡不变子空间构成$\mathscr{A}$的所有不变子空间.
+\end{proof}
+
 % \subsection{复习题 4}
 
-\addtocounter{section}{4}
-\section{第五章 多项式}
+\newpage
+\section{第五章\,多项式}
 \subsection{一元多项式}
 \paragraph{5.1.1}$f,g\in\F[x]$,证明$fg=0\iff f$和$g$中至少一个是0.
 \begin{proof}[证明一]
@@ -53,12 +297,12 @@
 \begin{proof}[证明二]
     $\implies:$按逐项系数递推,记
     $$f(x)=\sum_{i=0}^{m}a_ix^i, g(x)=\sum_{j=0}^{n}b_jx^j, f(x)g(x)=\sum_{t=0}^{m+n}\br{\sum_{i+j=t}a_ib_j}x^t=0$$
-    从而$c_t=\sum_{i+j=t}a_ib_j=0, \forall t=0,\cdots,m+n$.若$f=0$则命题得证; 若$f\neq 0$,则$a_m\neq 0$,而$c_{m+n}=a_mb_n=0, b_n=0$.
+    从而$c_t=\sum_{i+j=t}a_ib_j=0, \forall t=0,\dots,m+n$.若$f=0$则命题得证; 若$f\neq 0$,则$a_m\neq 0$,而$c_{m+n}=a_mb_n=0, b_n=0$.
 
-    下证明$b_{n-r}=0, r=0,\cdots,n$. 对$r$归纳, $r=0$时已证.若$<r$的情形已证,即
-    $$b_{n-0}=b_{n-1}=\cdots=b_{n-r+1}=0$$
+    下证明$b_{n-r}=0, r=0,\dots,n$. 对$r$归纳, $r=0$时已证.若$<r$的情形已证,即
+    $$b_{n-0}=b_{n-1}=\dots=b_{n-r+1}=0$$
     则
-    $$c_{m+n-r}=a_mb_{n-r}+a_{m-1}b_{n-r+1}+\cdots+a_{m-r}b_{n}=a_mb_{n-r}=0$$
+    $$c_{m+n-r}=a_mb_{n-r}+a_{m-1}b_{n-r+1}+\dots+a_{m-r}b_{n}=a_mb_{n-r}=0$$
     从而$b_{n-r}=0$,得证.
 \end{proof}
 \paragraph{5.1.2}$f,g,h\in \F[x]$,若$f\neq 0$,则$fg=fh\iff g=h$.
@@ -67,16 +311,16 @@
 \end{proof}
 \paragraph{5.1.3}对于$f\in\R[x], f\neq 0$满足$f(x^2)=f^2(x)$,求多项式$f(x)$.
 \begin{proof}[证明一]
-    记$f(x)=\sum_{i=0}^{n}a_ix^i, a_i\in \R, a_n\neq 0$. 取$m=\max\cbr{k\mid a_k\neq 0, k=0,\cdots, n-1}$, 即除$a_nx^n$外最高非零项的次数,则
-    $$f(x^2)=\sum_{i=0}^{n}a_i x^{2i}=a_nx^{2n}+a_mx^{2m}+\cdots, f^2(x)=\sum_{t=0}^{2n}\br{\sum_{i+j=t}a_ia_j}x^t=a_n^2 x^{2n}+2a_na_m x^{n+m}+\cdots$$
-    比较系数,$a_n=a_n^2, a_n=1$.而$n+m>2m$,故$x^{n+m}$项系数$2a_na_m=0, a_m=0$.这与$m$定义矛盾,故$m$不存在,即$a_0=\cdots=a_{n-1}=0, f(x)=x^n$.
+    记$f(x)=\sum_{i=0}^{n}a_ix^i, a_i\in \R, a_n\neq 0$. 取$m=\max\cbr{k\mid a_k\neq 0, k=0,\dots, n-1}$, 即除$a_nx^n$外最高非零项的次数,则
+    $$f(x^2)=\sum_{i=0}^{n}a_i x^{2i}=a_nx^{2n}+a_mx^{2m}+\dots, f^2(x)=\sum_{t=0}^{2n}\br{\sum_{i+j=t}a_ia_j}x^t=a_n^2 x^{2n}+2a_na_m x^{n+m}+\dots$$
+    比较系数,$a_n=a_n^2, a_n=1$.而$n+m>2m$,故$x^{n+m}$项系数$2a_na_m=0, a_m=0$.这与$m$定义矛盾,故$m$不存在,即$a_0=\dots=a_{n-1}=0, f(x)=x^n$.
 \end{proof}
 \begin{proof}[证明二]
     同上记号且易证$a_n=1$.对$f(x^2),f^2(x)$展开有:
     $$f(x^2)=\sum_{i=0}^{n}a_i x^{2i}, f^2(x)=\sum_{t=0}^{2n}\br{\sum_{i+j=t}a_ia_j}x^t$$
     逐项比较系数,可得:
-    $$a_k=\sum_{i+j=2k}a_ia_j,\qquad 0=\sum_{i+j=2k+1}a_ia_j,\qquad \forall k=0,\cdots,n$$
-    从而$0=2a_na_{n-1}, a_{n-1}=0$.下证$a_{n-r}=0, r=1,\cdots,n$. 对$r$归纳, $r=1$时已证.假设$<r$的情形已证,即$a_{n-1}=\cdots=a_{n-r+1}=0$时:若$r$为偶数,则
+    $$a_k=\sum_{i+j=2k}a_ia_j,\qquad 0=\sum_{i+j=2k+1}a_ia_j,\qquad \forall k=0,\dots,n$$
+    从而$0=2a_na_{n-1}, a_{n-1}=0$.下证$a_{n-r}=0, r=1,\dots,n$. 对$r$归纳, $r=1$时已证.假设$<r$的情形已证,即$a_{n-1}=\dots=a_{n-r+1}=0$时:若$r$为偶数,则
     $$0=a_{n-r/2}=\sum_{i+j=2n-r}a_ia_j=2a_na_{n-r}$$
     若$r$为奇数,则取$k=n-(r+1)/2$,
     $$0=\sum_{i+j=2n-r}a_ia_j=2a_na_{n-r}$$
@@ -102,17 +346,16 @@
     $$x\br{\frac{q(x)}{(g(x),h(x))}}^2=\br{\frac{g(x)}{(g(x),h(x))}}^2+\br{\frac{h(x)}{(g(x),h(x))}}^2$$
     另一方面,$x\mid (g(x)+\i h(x))(g(x)-\i h(x))$,不失一般性地认为$x\mid g(x)+\i h(x)$.
     
-    将$q(x)$分解为不可约多项式的乘积,即$q=p_1p_2\cdots p_m$,则
-    $$g(x)+\i h(x)=xp_1^2(x)\cdots p_{s}^2(x) p_{s+1}(x)\cdots p_{t}(x), g(x)-\i h(x)=p_{s+1}(x)\cdots p_{t}(x)p_{t+1}^2(x)\cdots p_{m}^2(x)$$
+    将$q(x)$分解为不可约多项式的乘积,即$q=p_1p_2\dots p_m$,则
+    $$g(x)+\i h(x)=xp_1^2(x)\dots p_{s}^2(x) p_{s+1}(x)\dots p_{t}(x), g(x)-\i h(x)=p_{s+1}(x)\dots p_{t}(x)p_{t+1}^2(x)\dots p_{m}^2(x)$$
     记
-    $$a(x)=p_1(x)\cdots p_{s}(x), b(x)=p_{t+1}(x)\cdots p_{m}(x), d(x)=p_{s+1}(x)\cdots p_{t}(x)$$
+    $$a(x)=p_1(x)\dots p_{s}(x), b(x)=p_{t+1}(x)\dots p_{m}(x), d(x)=p_{s+1}(x)\dots p_{t}(x)$$
     则$q=abd, g+\i h=x a^2d, g-\i h=db^2, (g+\i h, g-\i h)=d(a,b)^2$.而
     $(g+\i h, g-\i h)=(g+\i h, 2g)=(g,h)=1$,因此$d=(a,b)=1, g+\i h=x a^2, g-\i h=b^2$,解得:
     $$f=xq=xab, g=\frac{x a^2+b^2}{2}, h=\frac{x a^2-b^2}{2\i}$$
     最后回代$g,h$不互素的情况,得到通解:对于$\forall a,b\in \C[x],$上式为通解.
 \end{proof}
 
-\newpage
 \subsection{整除}
 \paragraph{5.2.1}求下列$f(x)$除以$g(x)$的商式$q(x)$与余式$r(x)$:
 \begin{enumerate}
@@ -197,30 +440,30 @@
 \begin{proof}
     记$f=(f,g)f_1, g=(f,g)g_1$,其中$(f_1,g_1)=1$.从而有$(f,g)=uf+vg=(f,g)(uf_1+vg_1)$,因此$uf_1+vg_1=1$,这等价于$(u,v)=1$.
 \end{proof}
-\paragraph{5.2.9}设$f_1,\cdots,f_m,g_1,\cdots,g_n\in \F[x]$且$(f_i,g_j)=1 (\forall i\in [m], j\in [n])$,证明$(f_1\cdots f_m, g_1\cdots, g_n)=1$.
+\paragraph{5.2.9}设$f_1,\dots,f_m,g_1,\dots,g_n\in \F[x]$且$(f_i,g_j)=1 (\forall i\in [m], j\in [n])$,证明$(f_1\dots f_m, g_1\dots, g_n)=1$.
 \begin{proof}
-    首先证明$n=1$的情形,即$\forall i=1,\cdots,m, (f_i,g)=1$则有$(f_1\cdots f_m,g)=1$.对$m$归纳,$m=1$时已证,下设$<m$的情形已得证,而$(f_1\cdots f_{m-1},g)=(f_m,g)=1\iff (f_1\cdots f_m,g)=1$(书上推论5.2.12),从而得证.
+    首先证明$n=1$的情形,即$\forall i=1,\dots,m, (f_i,g)=1$则有$(f_1\dots f_m,g)=1$.对$m$归纳,$m=1$时已证,下设$<m$的情形已得证,而$(f_1\dots f_{m-1},g)=(f_m,g)=1\iff (f_1\dots f_m,g)=1$(书上推论5.2.12),从而得证.
 
-    再对原命题考虑,记$f=f_1\cdots f_m$,由上知$(f,g_1)=\cdots=(f,g_n)=1$,从而又有$(f,g_1\cdots g_n)=1$.
+    再对原命题考虑,记$f=f_1\dots f_m$,由上知$(f,g_1)=\dots=(f,g_n)=1$,从而又有$(f,g_1\dots g_n)=1$.
 \end{proof}
 \paragraph{5.2.10}证明定理5.2.16
 \begin{quotation}
-    \textbf{定理5.2.16} 设$f_1,\cdots,f_k\in \F[x]$不全为0,则$(f_1,\cdots,f_k)$唯一存在,且
-    $$(f_1,\cdots,f_k)=((f_1,\cdots,f_{k-1}),f_k)$$
+    \textbf{定理5.2.16} 设$f_1,\dots,f_k\in \F[x]$不全为0,则$(f_1,\dots,f_k)$唯一存在,且
+    $$(f_1,\dots,f_k)=((f_1,\dots,f_{k-1}),f_k)$$
     从而$\exists u_i\in \F[x], i\in [k]$使得
-    $$(f_1,\cdots,f_k)=\sum_{i=1}^k u_i f_i$$
+    $$(f_1,\dots,f_k)=\sum_{i=1}^k u_i f_i$$
 \end{quotation}
 \begin{proof}
-    对$k$归纳,$k=2$时已得证.下设$k\geq 3, <k$的情形已证.设$d_1=(f_1,\cdots,f_{k-1})$,由归纳假设知其唯一确定,且有$v_1f_1+\cdots+v_{k-1}f_{k-1}=d_1$.
+    对$k$归纳,$k=2$时已得证.下设$k\geq 3, <k$的情形已证.设$d_1=(f_1,\dots,f_{k-1})$,由归纳假设知其唯一确定,且有$v_1f_1+\dots+v_{k-1}f_{k-1}=d_1$.
     
-    首先证明$d=(d_1,f_k)$为$f_1,\cdots,f_k$的最大公因式,从而证明存在性.显然$d\mid d_1\mid f_i (i=1,\cdots,k-1)$且$d\mid f_k$.又对于$f_1,\cdots,f_k$的任意公因式$g$,均有(由归纳假设)
-    $$g\mid v_1f_1+\cdots+v_{k-1}f_{k-1}=d_1, g\mid f_k$$
+    首先证明$d=(d_1,f_k)$为$f_1,\dots,f_k$的最大公因式,从而证明存在性.显然$d\mid d_1\mid f_i (i=1,\dots,k-1)$且$d\mid f_k$.又对于$f_1,\dots,f_k$的任意公因式$g$,均有(由归纳假设)
+    $$g\mid v_1f_1+\dots+v_{k-1}f_{k-1}=d_1, g\mid f_k$$
     从而$g\mid (d_1,f_k)=d$,即$d$为最大公因式.
 
-    再证明唯一性:若有多项式$d,d'$均为$f_1,\cdots,f_k$的最大公因式,则$d'\mid d, d\mid d'$,从而相同(差一个非零常数而首项系数均为1).
+    再证明唯一性:若有多项式$d,d'$均为$f_1,\dots,f_k$的最大公因式,则$d'\mid d, d\mid d'$,从而相同(差一个非零常数而首项系数均为1).
 
-    最后,由归纳假设有$v_1f_1+\cdots+v_{k-1}f_{k-1}=d_1$,又有$ud_1+vf_k=d$,从而
-    $$u(v_1f_1+\cdots+v_{k-1}f_{k-1})+vf_k=uv_1f_1+\cdots+uv_{k-1}f_{k-1}+vf_k=d$$
+    最后,由归纳假设有$v_1f_1+\dots+v_{k-1}f_{k-1}=d_1$,又有$ud_1+vf_k=d$,从而
+    $$u(v_1f_1+\dots+v_{k-1}f_{k-1})+vf_k=uv_1f_1+\dots+uv_{k-1}f_{k-1}+vf_k=d$$
     综上得证.
 \end{proof}
 \paragraph{5.2.11}称多项式$m(x)$为多项式$f(x),g(x)$的最小公倍式,若$f\mid m, g\mid m$且$f,g$的任意公倍式是$m$的倍式.记$m=[f,g]$,证明若$f,g$首项系数为1,则$[f,g]=\frac{fg}{(f,g)}$.
@@ -232,15 +475,14 @@
 
 \paragraph{思考题1}对于$f(x)=\sum_{i=0}^{m}a_ix^i, g(x)=\sum_{i=0}^{n}b_ix^i, h(x)=\sum_{i=0}^{m-n}c_ix^i$,若有$f(x)=g(x)h(x)$,显式表达出$c_i$.
 \begin{proof}
-    考虑$g(x)$的最低非零次数$r=\min\cbr{i|b_i\neq 0, i=0,1,\cdots,n}$,则$g(x)=\sum_{i=r}^{n}b_ix^i$.又由$a_k=\sum_{i+j=k}b_ic_j$有:
-    $$a_{r+k}=\sum_{i+j=r+k}b_ic_j=b_rc_k+\sum_{i=0}^{k-1}b_{r+k-i}c_i, (k=0,\cdots,m-r)$$
+    考虑$g(x)$的最低非零次数$r=\min\cbr{i|b_i\neq 0, i=0,1,\dots,n}$,则$g(x)=\sum_{i=r}^{n}b_ix^i$.又由$a_k=\sum_{i+j=k}b_ic_j$有:
+    $$a_{r+k}=\sum_{i+j=r+k}b_ic_j=b_rc_k+\sum_{i=0}^{k-1}b_{r+k-i}c_i, (k=0,\dots,m-r)$$
     因此有
     $$c_k=\frac{1}{b_r}\br{a_{r+k}-\sum_{i=0}^{k-1}b_{r+k-i}c_i}$$
     其在$r=0$,即$b_0\neq 0$时化为
     $$c_k=\frac{1}{b_0}\br{a_{k}-\sum_{i=0}^{k-1}b_{k-i}c_i}$$
 \end{proof}
 
-\newpage
 \subsection{因式分解定理}
 \paragraph{5.3.1}$x^2+1$在$\Q$上不可约.
 \begin{proof}
@@ -300,16 +542,16 @@
     $$\frac{f(x)}{(x-2)^2}=x^2+6 x+5=(x+1)(x+5)$$
     从而$2,-1,-5$为其所有根.
 \end{proof}
-\paragraph{5.3.6}证明: 不可约多项式$p$是多项式$f$的$k$重因式$\iff p\mid f, p\mid f',\cdots,p\mid f^{(k-1)}$但$p\nmid f^{(k)}$.
+\paragraph{5.3.6}证明: 不可约多项式$p$是多项式$f$的$k$重因式$\iff p\mid f, p\mid f',\dots,p\mid f^{(k-1)}$但$p\nmid f^{(k)}$.
 \begin{proof}[证明一]
-    容易看出,该命题等价于: $p^k\mid f \iff p$整除$f, f',\cdots, f^{(k-1)}$.下对$k$归纳,$k=1$时显然,下设$k\geq 2, <k$时命题成立.
+    容易看出,该命题等价于: $p^k\mid f \iff p$整除$f, f',\dots, f^{(k-1)}$.下对$k$归纳,$k=1$时显然,下设$k\geq 2, <k$时命题成立.
 
-    $\implies:$显然$p^{k-1}\mid f$,故由归纳假设,$p$整除$f,f',\cdots,f^{(k-2)}$,下证$p\mid f^{(k-1)}$.由于有$f=p^kg$,即$f'=p^{k-1}(kp'g+pg')$,故$p^{(k-1)}\mid f'$.从而由归纳假设,$p\mid (f')^{(k-2)}=f^{(k-1)}$.
+    $\implies:$显然$p^{k-1}\mid f$,故由归纳假设,$p$整除$f,f',\dots,f^{(k-2)}$,下证$p\mid f^{(k-1)}$.由于有$f=p^kg$,即$f'=p^{k-1}(kp'g+pg')$,故$p^{(k-1)}\mid f'$.从而由归纳假设,$p\mid (f')^{(k-2)}=f^{(k-1)}$.
     
-    $\impliedby:$由于$p$整除$f',(f')',\cdots,(f')^{(k-2)}$,故由归纳假设知$p^{k-1}\mid f'$,其等价于$p^k\mid f$.
+    $\impliedby:$由于$p$整除$f',(f')',\dots,(f')^{(k-2)}$,故由归纳假设知$p^{k-1}\mid f'$,其等价于$p^k\mid f$.
 \end{proof}
 \begin{proof}[证明二]
-    $k=1$时已证,$k>1$时: $p$是$f$的$k$重因式$\iff p$是$f'$的$k-1$重因式$\iff\cdots\iff p$是$f^{(k-1)}$的2重因式$\implies p$是$f^{(k-2)}$的1重因式$\iff p\nmid (f^{(k-1)},f^{(k)})$,故$p\nmid f^{(k)}$.
+    $k=1$时已证,$k>1$时: $p$是$f$的$k$重因式$\iff p$是$f'$的$k-1$重因式$\iff\dots\iff p$是$f^{(k-1)}$的2重因式$\implies p$是$f^{(k-2)}$的1重因式$\iff p\nmid (f^{(k-1)},f^{(k)})$,故$p\nmid f^{(k)}$.
 
     另一方面,$p\nmid f^{(k)}, p\mid f^{(k-1)}$,故$p$不为$f^{(k-1)}$的重因式;而$p$整除$f^{(k-1)},f^{(k-2)}$,故$p$是$f^{(k-2)}$的重因式.综上,$p$是$f^{(k-1)}$的2重因式,其余同上,从而得证.
 \end{proof}
@@ -323,7 +565,7 @@
 \begin{remark}
     该命题若加上条件``$\alpha$是$f$的根''即正确.
 
-    证明: 由题知$(x-\alpha)\mid f, (x-\alpha)^m\mid f', (x-\alpha)^{m+1}\nmid f'$.由5.3.6知$(x-\alpha)$整除$f', f'', \cdots, (f')^{(m-1)}=f^{(m)}$但$(x-\alpha)\nmid f^{(m+1)}$,加上题设$(x-\alpha)\mid f$再由5.3.6知$(x-\alpha)$是$f$的$m+1$重因式.
+    证明: 由题知$(x-\alpha)\mid f, (x-\alpha)^m\mid f', (x-\alpha)^{m+1}\nmid f'$.由5.3.6知$(x-\alpha)$整除$f', f'', \dots, (f')^{(m-1)}=f^{(m)}$但$(x-\alpha)\nmid f^{(m+1)}$,加上题设$(x-\alpha)\mid f$再由5.3.6知$(x-\alpha)$是$f$的$m+1$重因式.
 \end{remark}
 \paragraph{5.3.8}证明: 若$(x-1)\mid f(x^n)$则$(x^n-1)\mid f(x^n)$.
 \begin{proof}[证明一]
@@ -353,22 +595,21 @@
     书上例5.3.1.
 \end{proof}
 
-\paragraph{思考题3}设$f=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_s^{\alpha_s}, g=p_1^{\beta_1}p_2^{\beta_2}\cdots p_s^{\beta_s}$,其中$p_i$均为不可约多项式.证明$(f,g)=p_1^{\gamma_1}p_2^{\gamma_2}\cdots p_s^{\gamma_s}$,其中$\gamma_i=\min(\alpha_i,\beta_i), i=1,\cdots,s$.
+\paragraph{思考题3}设$f=p_1^{\alpha_1}p_2^{\alpha_2}\dots p_s^{\alpha_s}, g=p_1^{\beta_1}p_2^{\beta_2}\dots p_s^{\beta_s}$,其中$p_i$均为不可约多项式.证明$(f,g)=p_1^{\gamma_1}p_2^{\gamma_2}\dots p_s^{\gamma_s}$,其中$\gamma_i=\min(\alpha_i,\beta_i), i=1,\dots,s$.
 
 \begin{proof}
-    设$d=p_1^{\gamma_1}p_2^{\gamma_2}\cdots p_s^{\gamma_s}$,显然$d\mid f, d\mid g$.若有$f,g$的公因式$d'=p_1^{\delta_1}p_2^{\delta_2}\cdots p_s^{\delta_s}$,则$\forall i=1,2,\cdots,s, \delta_i\leq \alpha_i$且$\delta_i\leq \beta_i$,故$\delta_i\leq \gamma_i$,从而$d'\mid d$,故$d=(f,g)$.
+    设$d=p_1^{\gamma_1}p_2^{\gamma_2}\dots p_s^{\gamma_s}$,显然$d\mid f, d\mid g$.若有$f,g$的公因式$d'=p_1^{\delta_1}p_2^{\delta_2}\dots p_s^{\delta_s}$,则$\forall i=1,2,\dots,s, \delta_i\leq \alpha_i$且$\delta_i\leq \beta_i$,故$\delta_i\leq \gamma_i$,从而$d'\mid d$,故$d=(f,g)$.
 \end{proof}
 
-\paragraph{思考题4}$f_1,\cdots,f_s\in \F[x]$之间两两互素, 记$f=f_1\cdots f_s, g_i=f/f_i$,证明$(g_1,g_2,\cdots,g_s)=1$.
+\paragraph{思考题4}$f_1,\dots,f_s\in \F[x]$之间两两互素, 记$f=f_1\dots f_s, g_i=f/f_i$,证明$(g_1,g_2,\dots,g_s)=1$.
 \begin{proof}
-    对$s$归纳,$s=2$时$(g_1,g_2)=(f_2,f_1)=1$从而成立.设$<s$时命题成立,考虑两两互素的多项式$f_1,f_2,\cdots,f_s$,如上定义$f,g_i$,则有
-    $$d=\br{g_1,g_2,\cdots,g_s}=\br{\br{g_1,g_2,\cdots,g_{s-1}},g_s}$$
+    对$s$归纳,$s=2$时$(g_1,g_2)=(f_2,f_1)=1$从而成立.设$<s$时命题成立,考虑两两互素的多项式$f_1,f_2,\dots,f_s$,如上定义$f,g_i$,则有
+    $$d=\br{g_1,g_2,\dots,g_s}=\br{\br{g_1,g_2,\dots,g_{s-1}},g_s}$$
     而
-    $$\br{g_1,g_2,\cdots,g_{s-1}}=\br{\frac{f_1\cdots f_s}{f_1},\frac{f_1\cdots f_s}{f_2},\cdots,\frac{f_1\cdots f_s}{f_{s-1}}}=f_s\br{\frac{f_1\cdots f_{s-1}}{f_1},\frac{f_1\cdots f_{s-1}}{f_2},\cdots,\frac{f_1\cdots f_{s-1}}{f_{s-1}}}$$
-    由归纳假设知右端项为$f_s$,从而$d=(f_s,f_1\cdots f_{s-1})=1$,从而得证.
+    $$\br{g_1,g_2,\dots,g_{s-1}}=\br{\frac{f_1\dots f_s}{f_1},\frac{f_1\dots f_s}{f_2},\dots,\frac{f_1\dots f_s}{f_{s-1}}}=f_s\br{\frac{f_1\dots f_{s-1}}{f_1},\frac{f_1\dots f_{s-1}}{f_2},\dots,\frac{f_1\dots f_{s-1}}{f_{s-1}}}$$
+    由归纳假设知右端项为$f_s$,从而$d=(f_s,f_1\dots f_{s-1})=1$,从而得证.
 \end{proof}
 
-\newpage
 \subsection{复系数与实系数多项式的因式分解}
 \paragraph{5.4.1}求多项式$x^5-1$在$\C$和$\R$上的因式分解.
 \begin{proof}
@@ -384,7 +625,7 @@
 \paragraph{5.4.2}$f\in \R[x], \deg f=n$且$f$有$\ell$个实根(计重数),证明$n-\ell$是偶数.
 \begin{proof}
     将$f$分解为不可约多项式的乘积,即
-    $$f=a p_1^{\alpha_1}\cdots p_s^{\alpha_s}q_1^{\beta_1}\cdots q_t^{\beta_t}$$
+    $$f=a p_1^{\alpha_1}\dots p_s^{\alpha_s}q_1^{\beta_1}\dots q_t^{\beta_t}$$
     其中$p_i$均为一次多项式,$q_i$均为二次多项式,则
     $$n=\sum_{i=1}^s \alpha_i + \sum_{i=1}^t 2\beta_i,\qquad \ell=\sum_{i=1}^s \alpha_i,\qquad n-\ell=2\sum_{i=1}^t \beta_i$$
     从而$n-\ell$显然为偶数.
@@ -402,7 +643,7 @@
 \paragraph{5.4.4}$f\in \R[x]$的首项系数$a_n>0$,若$f$无实根,则存在$g,h\in \R[x]$使得$f=g^2+h^2$.
 \begin{proof}
     由于实系数多项式$f$无实根,故其不可约分解中均为二次不可约多项式,即在$\C$中有分解
-    $$f(x)=q_1(x)\cdots q_m(x)=\prod_{i=1}^m \bbr{(x-\lambda_i)(x-\bar{\lambda_i})}=\br{\prod_{i=1}^m (x-\lambda_i)}\br{\prod_{i=1}^m (x-\bar{\lambda_i})}=p(x)q(x)$$
+    $$f(x)=q_1(x)\dots q_m(x)=\prod_{i=1}^m \bbr{(x-\lambda_i)(x-\bar{\lambda_i})}=\br{\prod_{i=1}^m (x-\lambda_i)}\br{\prod_{i=1}^m (x-\bar{\lambda_i})}=p(x)q(x)$$
     其中$q_i(x)=(x-\lambda_i)(x-\bar{\lambda_i})$均为在$\R$上不可约的二次多项式,$\lambda_i\in\C$.将$p(x)$按系数的实部和虚部分为两个实系数多项式,即
     $$p(x)=g(x)+\i h(x), \qquad g,h\in \R[x]$$
     再对$p(x)$的系数取共轭,有
@@ -414,7 +655,11 @@
     显然$\deg p=1$或2.若$\deg p=1$则$\alpha\in\R, p(x)=a(x-\alpha)\mid f(x)$.若$\deg p=2$则$\alpha\notin\R, p(x)=a(x-\alpha)(x-\bar{\alpha})$,而$f(\alpha)=f(\bar{\alpha})=0$,从而$p(x)=a(x-\alpha)(x-\bar{\alpha})\mid f(x)$.
 \end{proof}
 
-\newpage
+\paragraph{思考题5}找出$x^n-1$在$\C$上的所有$n$次本原单位根.
+\begin{proof}
+    取任一$n$次本原单位根$\omega=\e^{\frac{2k\pi\i}{n}}$,则其幂次$\omega^0, \omega^1, \omega^2,\dots,\omega^{n-1}$遍历所有$n$次单位根.设$d=\gcd(n,k)$,即$n=dm, k=d\ell$,则$\omega^m=\e^{\frac{2mk\pi\i}{n}}=\e^{\frac{2\ell n\pi\i}{n}}=1$,仅在$m=n, d=1$时能遍历所有$n$次单位根,故所有$n$次本原单位根即$\e^{\frac{2k\pi\i}{n}}, \gcd(n,k)=1$.
+\end{proof}
+
 \subsection{有理系数多项式}
 \paragraph{5.5.1}求下列多项式的有理根:
 \begin{enumerate}
@@ -434,8 +679,8 @@
 \end{enumerate}
 \begin{proof}
     \begin{enumerate}
-        \item 代换$x=t+1$,故原式$=(t+1)^6+(t+1)^3+1=t^6+6 t^5+15 t^4+21 t^3+18 t^2+9 t+3$.用Einstein判别法(取$p=3$)知其在$\Q$上不可约.
-        \item 令$x=t-1$,则原式$=(t-1)^p+pt+1-p=t^p+\sum_{k=2}^{p-1}\binom{p}{k}(-1)^{k}t^k+2pt+p$,从而由Einstein判别法知其在$\Q$上不可约.
+        \item 代换$x=t+1$,故原式$=(t+1)^6+(t+1)^3+1=t^6+6 t^5+15 t^4+21 t^3+18 t^2+9 t+3$.用Eisenstein判别法(取$p=3$)知其在$\Q$上不可约.
+        \item 令$x=t-1$,则原式$=(t-1)^p+pt+1-p=t^p+\sum_{k=2}^{p-1}\binom{p}{k}(-1)^{k}t^k+2pt+p$,从而由Eisenstein判别法知其在$\Q$上不可约.
         \item $x^4+4=(x^2-2x+2)(x^2+2x+2)$,故可约.
         \item 若原式$f(x)$在$\Q$上可约,则也在$\Z$上可约.显然$f(x)$的有理根仅可能有$\pm 1$,但$f(\pm 1)\neq 0, \pm 1$均不是根,从而$f(x)$在$\Z$上没有一次(和三次)因式.若原式在$\Z$上有二次因式,即设
         $$x^4+4kx+1=(x^2+ax+b)(x^2+cx+d), \qquad a,b,c,d\in\Z$$
@@ -446,11 +691,11 @@
 \begin{proof}
     令$x=t+1$,则
     $$f(t+1)=(t+1)^p-p(t+1)+(2p-1)=t^p+\sum_{k=2}^{p-1}\binom{p}{k}t^k+p$$
-    从而由Einstein判别法知其在$\Q$上不可约.
+    从而由Eisenstein判别法知其在$\Q$上不可约.
 \end{proof}
-\paragraph{5.5.4}设$p_i (i=1,2,\dots,t)$为$t$个互异素数,证明$f(x)=x^n-p_1\cdots p_t$在$\Q$上不可约.
+\paragraph{5.5.4}设$p_i (i=1,2,\dots,t)$为$t$个互异素数,证明$f(x)=x^n-p_1 \dots p_t$在$\Q$上不可约.
 \begin{proof}
-    取素数$p$为任一$p_i$,由Einstein判别法知$f(x)$在$\Q$上不可约.
+    取素数$p$为任一$p_i$,由Eisenstein判别法知$f(x)$在$\Q$上不可约.
 \end{proof}
 \paragraph{5.5.5}$f$是\textcolor{red}{首一}整系数多项式, 若$f(0)$和$f(1)$均为奇数,则$f$没有有理根.
 \begin{proof}[证明一]
@@ -461,6 +706,9 @@
 \begin{proof}[证明二]
     若$f$有有理根$r/s$,则$s\mid a_n=1, r\mid a_0=f(0)$,即$s=\pm 1, r$为奇数.而$(r-ms)\mid f(m)$,故$(r\pm 1)\mid f(1)$,但$r\pm 1$为偶数,$f(1)$为奇数,矛盾,故无有理根.
 \end{proof}
+\begin{proof}[证明三]
+    若$f$有有理根$c$,同上知$c$为奇数,从而有$f(x)=(x-c)g(x), g\in \Z[x]$.分别代入0,1知$f(0)=-cg(0), f(1)=(1-c)g(1)$,由$f(0), f(1)$均为奇数知$-c, 1-c$均为奇数,矛盾.
+\end{proof}
 \begin{remark}
     若无首一条件,可取$f(x)=2x-1, f(0)=1, f(1)=3$但有有理根$1/2$.
 \end{remark}
@@ -468,16 +716,551 @@
     命题可作简单推广:$f$是首一整系数多项式, $p$是素数, 若$f(0)\not\equiv 0, f(1)\not\equiv 0 \pmod p$,则$f$没有有理根.
 \end{remark}
 
+\paragraph{思考题6}设$a_1,\dots,a_n$是互不相同的整数,证明$f(x)=\prod_{i=1}^{n}(x-a_i)-1$在$\Q$上不可约.
+\begin{proof}
+    若$f$在$\Q$上可约,则在$\Z$上可约,设$f(x)=g(x)h(x), g,h\in\Z[x]$,则$\forall i=1,\dots,n, f(a_i)=g(a_i)h(a_i)=-1$,从而$g(a_i)=\pm 1, h(a_i)=\mp 1$,故$g(a_i)+h(a_i)=0$,即多项式$g(x)+h(x)$有$n$个不同的根.但$\deg (g+h)\leq \max(\deg g, \deg h)<\deg f=n$,从而由代数基本定理得到矛盾.
+\end{proof}
+% \paragraph{思考题7}Eisenstein判别法的另一种证明.
+
 % \subsection{复习题5}
 
-% \section{第六章 相似标准形}
-% \subsection{特征值与特征向量}
-% \subsection{特征子空间与根子空间}
-% \subsection{对角化}
-% \subsection{$\lambda$-矩阵}
-% \subsection{行列式因子、不变因子与初等因子}
-% \subsection{Jordan 标准形}
-% \subsection{复习题6}
+\newpage
+\section{第六章\,相似标准形}
+\subsection{特征值与特征向量}
+\paragraph{6.1.1}求下列矩阵的特征值与特征向量:
+$$(1) \begin{pmatrix}
+    3&2&-1\\ -2&-2&2\\ 3&6&-1
+\end{pmatrix},\qquad (2) \begin{pmatrix}
+    0&0&1\\ 0&1&0\\ 1&0&0
+\end{pmatrix}$$
+\begin{proof}
+    (1) $\det(\lambda I-A)=\lambda^3-12 \lambda+16=(\lambda-2)^2 (\lambda+4)$, 从而特征值为2 (1重)和$-4$ (2重). 可解得2对应的特征向量为$(1,0,1)\T, (2,-1,0)\T$; $-4$对应的特征向量为$(1,-2,3)\T$.
+
+    (2) $\det(\lambda I-A)=\lambda^3-\lambda^2-\lambda+1=(\lambda-1)^2 (\lambda+1)$,从而特征值为1 (2重)和$-1$ (1重). 可解得1对应的特征向量为$(1,0,1)\T, (0,1,0)\T$; $-1$对应的特征向量为$(1,0,-1)\T$.x
+\end{proof}
+\paragraph{6.1.2}若$A=\begin{pmatrix}
+    -2&0&0\\ 2&x&2\\ 3&1&1
+\end{pmatrix}$与$B=\begin{pmatrix}
+    -1&0&0\\ 0&2&0\\ 0&0&y
+\end{pmatrix}$相似,求$x,y$.
+\begin{proof}
+    $A$的特征多项式为$\phi_A(\lambda)=\lambda^3+(-x+1)\lambda^2+(-x-4)\lambda+(2x-4)$, $B$的特征多项式为$\phi_B(\lambda)=\lambda^3+(-y-1)\lambda^2+(y-2)\lambda+2y$.对比系数可得方程组
+    $$1-x=-y-1, -x-4=y-2, 2y=2x-4$$
+    解得$x=0, y=-2$.
+\end{proof}
+\paragraph{6.1.3}设$A=\begin{pmatrix}
+    a&1&1\\ 1&a&-1\\ 1&-1&a
+\end{pmatrix}$,其中$a\in \R$,求$A-I$的特征值.
+\begin{proof}
+    $\det(\lambda I-A)=(\lambda-a)^3-3(\lambda-a)-2=(\lambda-a-1)^2(\lambda-a+2)$, 因此$A$的特征值为$a+1$ (2重)和$a-2$ (1重),从而$A-I$的特征值为$a$ (2重)和$a-3$ (1重), $\det(A-I)=a^2(a-3)$.
+\end{proof}
+\paragraph{6.1.4}设$A=\begin{pmatrix}
+    2&0&1\\ 0&-1&2\\ 1&2&1
+\end{pmatrix}, k\in\N_+$,求$A^k$的特征值与特征向量.
+\begin{proof}
+    $A$的特征多项式$\phi_A(\lambda)=\det(\lambda I-A)=\lambda^3-2 \lambda^2-6 \lambda+9=(\lambda-3)(\lambda^2+\lambda-3)$,因此特征值为
+    $$\lambda_1=3, \lambda_2=\frac{-1+\sqrt{13}}{2}, \lambda_3=\frac{-1-\sqrt{13}}{2}$$
+    其分别对应特征向量
+    $$x_1=(2,1,2)\T, x_2=(3+\sqrt{13}, -4, -1-\sqrt{13})\T, x_3=(3-\sqrt{13},-4,-1+\sqrt{13})\T$$
+\end{proof}
+% $A^3-2A^2-6A+9I=O$,从而对$k\geq 3, A^k=2A^{k-1}+6A^{k-2}-9A^{k-3}$.
+\paragraph{6.1.5}线性空间$V$上的线性变换$\mathscr{A}$有特征值$\lambda_0$,证明: (1) 对任意$k\in \N, \lambda_0^k$为$\mathscr{A}^k$的特征值. (2) 若$\mathscr{A}$可逆,则$\lambda_0\neq 0$且$\lambda_0\rev$为$\mathscr{A}\rev$的特征值.
+\begin{proof}
+    (1) 取对应于$\lambda_0$的特征向量$x$,有$\mathscr{A}x=\lambda_0x$,因此$\mathscr{A}^2x=\lambda_0\mathscr{A}x=\lambda_0^2 x, \dots, \mathscr{A}^k x=\lambda_0^k x$,从而$\lambda_0^k$为$\mathscr{A}^k$的特征值.
+
+    (2) 若$\mathscr{A}$可逆,则其行列式非零,而行列式为全体特征值之积,故$\mathscr{A}$的所有特征值均非零. 取对应于$\lambda_0$的特征向量$x$,有$\mathscr{A}x=\lambda_0 x$,故$x=\lambda_0\mathscr{A}\rev x$,即$\mathscr{A}\rev x=\lambda_0\rev x$,即$\lambda_0\rev$是$\mathscr{A}\rev$的特征值.
+\end{proof}
+\paragraph{6.1.6}$A\in M_n(\F)$,若$A^2=A$,则$A$的特征值仅能为0或1.
+\begin{proof}
+    对$A$的任意特征值$\lambda$及其对应的特征向量$x$, $\lambda x=Ax=A^2 x=\lambda^2 x$,从而$\lambda=\lambda^2$,即$\lambda=0$或1.
+\end{proof}
+\paragraph{6.1.7}$A,B\in M_n(\F)$, 证明$AB$与$BA$的特征多项式相等.
+\begin{proof}[证明一]
+    由于$\forall A,B\in M_n(\F), \det(I-AB)=\det(I-BA)$,因此$\lambda\neq 0$时有$\phi_{AB}(\lambda)=\det(\lambda I-AB)=\lambda^n\det(I-AB/\lambda)=\lambda^n\det(I-BA/\lambda)=\det(\lambda-BA)=\phi_{BA}(\lambda)$,而$\lambda=0$时自然有$\phi_{AB}(0)=\det(AB)=\det(BA)=\phi_{BA}(0)$,从而两特征多项式相等.
+\end{proof}
+\begin{proof}[证明二]
+    对于$AB$的任意特征值$\lambda\in \C$及其特征向量$x\in \F^n$,有$BABx=B(\lambda x)=\lambda Bx$,从而$\lambda$是$BA$的特征值.同理知$BA$的特征值也是$AB$的特征值,因此$AB$与$BA$的特征值相同,故两者的特征多项式相同.
+\end{proof}
+\paragraph{6.1.8}$A\in M_n(\F), M\in M_m(\F), P\in \F^{n\times m}$是列满秩方阵.若$AP=PM$,证明$M$的特征值也是$A$的特征值.
+\begin{proof}
+    对$M$的任一特征值$\lambda$及其对应的特征向量$x\in \F^m$,有$APx=PMx=\lambda Px$.由于$P$列满秩,故由Sylvester不等式知$\rank(Px)\geq \rank P+\rank x-m=1$,因此$Px$不为零向量,从而$\lambda$为$A$的特征值,其特征向量为$Px$.
+
+    也可设$P=(\alpha_1,\dots,\alpha_m),x=(x_1,\dots,x_m)\T$,从而$Px=x_1\alpha_1+\dots+x_m\alpha_m$,由$P$列满秩知$\alpha_i$之间线性无关,故$Px\neq 0$.
+\end{proof}
+\paragraph{6.1.9}求如下方阵的极小多项式:
+$$(1) \begin{pmatrix}
+    3&1&-1\\ 2&2&-1\\ 2&2&0
+\end{pmatrix},\qquad (2) \begin{pmatrix}
+    1&1&0&0\\ -1&-1&0&0\\ -2&-2&2&1\\ 1&1&-1&0
+\end{pmatrix}$$
+\begin{proof}
+    (1) 特征多项式$\phi_A(\lambda)=\det(\lambda I-A)=\lambda^3-5 \lambda^2+8 \lambda-4=(\lambda-1)(\lambda-2)^2$,因此其极小多项式$m(\lambda)$仅能为$(\lambda-1)(\lambda-2)$或$\phi_A(\lambda)$.取前者可得
+    $$m(A)=(A-I)(A-2I)=\begin{pmatrix}
+        2&0&-1\\ 2&0&-1\\ 4&0&-2
+    \end{pmatrix}\neq O$$
+    因此其极小多项式$m(\lambda)=\phi_A(\lambda)=(\lambda-1)(\lambda-2)^2$.
+
+    (2) 特征多项式$\phi_A(\lambda)=\lambda^2(\lambda-1)^2$,因此其极小多项式$m(\lambda)=\lambda^i(\lambda-1)^j (i,j=1,2)$.分别计算:
+    $$A(A-I)=\begin{pmatrix}
+        -1 & -1 & 0 & 0 \\
+        1 & 1 & 0 & 0 \\
+        -1 & -1 & 1 & 1 \\
+        1 & 1 & -1 & -1 \\
+    \end{pmatrix},
+    A^2(A-I)=\begin{pmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        -1 & -1 & 1 & 1 \\
+        1 & 1 & -1 & -1 \\
+    \end{pmatrix},
+    A(A-I)^2=\begin{pmatrix}
+        1 & 1 & 0 & 0 \\
+        -1 & -1 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+    \end{pmatrix}$$
+    均不为$O$,因此$m(\lambda)=\phi_A(\lambda)=\lambda^2(\lambda-1)^2$.
+\end{proof}
+\paragraph{6.1.10}设$A=\diag(A_1,A_2)$为准对角方阵,若$A_1,A_2$的极小多项式分别为$m_1(\lambda), m_2(\lambda)$, 则$A$的极小多项式$m(\lambda)=[m_1(\lambda),m_2(\lambda)]$.
+\begin{proof}
+    对于$A$的任一零化多项式$f$,都有$f(A)=\diag(f(A_1),f(A_2))=O$,即$f(A_1)=O, f(A_2)=O$,因此$m_1\mid f, m_2\mid f$,故$[m_1,m_2]\mid f$,特别地$[m_1,m_2]\mid m$.易知$[m_1,m_2]$也是$A$的零化多项式,因此$A$的极小多项式$m\mid [m_1,m_2]$.综上$m=[m_1,m_2]$.
+\end{proof}
+
+\subsection{特征子空间与根子空间}
+\paragraph{6.2.1}$V$是$\C$上的$n$维线性空间, $V$上有线性变换$\mathscr{A,B}$,其满足$\mathscr{AB}=\mathscr{BA}$.证明: (1)若$\lambda_0$是$\mathscr{A}$的特征值,则$V_{\lambda_0}$是$\mathscr{B}$的不变子空间;(2)$\mathscr{A,B}$至少有一个公共特征向量.
+\begin{proof}
+    (1)$\forall x\in V_{\lambda_0}, \mathscr{A}(\mathscr{B}x)=\mathscr{BA} x=\lambda_0\mathscr{B}x$,因此$\mathscr{B}x\in V_{\lambda_0}$,从而$V_{\lambda_0}$是$\mathscr{B}$的不变子空间.
+
+    (2)取限制映射$\mathscr{B}|_{V_{\lambda_0}}$,则其在$V_{\lambda_0}$上有特征值$\mu$及特征向量$v\in V_{\lambda_0}$,满足$\mathscr{B}|_{V_{\lambda_0}}v=\mathscr{B}v=\mu v$.而$v\in V_{\lambda_0}$可知$v$也是$\mathscr{A}$的特征向量,从而得证.
+\end{proof}
+\paragraph{6.2.2}$V$是$\C$上的$n$维线性空间,$V$上的线性变换$\mathscr{A}$在基$\varepsilon_1,\dots,\varepsilon_n$下的矩阵为$A$,求$\mathscr{A}$的所有特征子空间和根子空间.
+$$(1)A=\begin{pmatrix}
+    1 & -3 & 4 \\
+    4 & -7 & 8 \\
+    6 & -7 & 7 \\
+\end{pmatrix},\qquad (2)A=\begin{pmatrix}
+    2 & 1 & 0 & 0 \\
+    0 & 2 & 1 & 0 \\
+    0 & 0 & 2 & 0 \\
+    0 & 0 & 0 & -1 \\
+\end{pmatrix}.$$
+\begin{proof}
+    (1)$\det(\lambda I-A)=\lambda^3-\lambda^2-5 \lambda-3=(\lambda-3) (\lambda+1)^2$,从而有特征值$\lambda_1=3, \lambda_2=-1$ (2重).计算得$\lambda_1=3$的特征向量为$\alpha_1=(1,2,2)\T$, 对于$\lambda_2=-1$,有
+    $$-I-A=\begin{pmatrix} 
+        -2 & 3 & -4 \\
+        -4 & 6 & -8 \\
+        -6 & 7 & -8 \\
+    \end{pmatrix}, (-I-A)^2=16\begin{pmatrix}
+        1 & -1 & 1 \\
+        2 & -2 & 2 \\
+        2 & -2 & 2 \\
+    \end{pmatrix},$$
+    从而$(-I-A)x=0$的基础解系为$\alpha_2=(1,2,1)\T, (-I-A)^2 x=0$的基础解系为$\alpha_2, \alpha_3=(1,0,-1)\T$,从而$V_3=\Span(\alpha_1), W_{-1}=\Span(\alpha_2,\alpha_3)$.
+
+    (2)$\det(\lambda I-A)=\lambda^4-5 \lambda^3+6 \lambda^2+4 \lambda-8=(\lambda-2)^3 (\lambda+1)$,从而有特征值$\lambda_1=2$ (3重)和$\lambda_2=-1$. 对于$\lambda_1=2$,有
+    $$2I-A=\begin{pmatrix}
+        0 & -1 & 0 & 0 \\
+        0 & 0 & -1 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 3 \\
+    \end{pmatrix}, (2I-A)^2=\begin{pmatrix}
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 9 \\
+    \end{pmatrix}, (2I-A)^3=\begin{pmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 27 \\
+    \end{pmatrix}$$
+    从而$(2I-A)x=0$的基础解系为$\alpha_1=(1,0,0,0)\T, (2I-A)^2x=0$的基础解系为$\alpha_1, \alpha_2=(0,1,0,0)\T, (2I-A)^3x=0$的基础解系为$\alpha_1, \alpha_2, \alpha_3=(0,0,1,0)\T$, 因此$W_{2}=\Span(\alpha_1,\alpha_2,\alpha_3)$. 对于$\lambda_2=-1$,可解得其特征向量为$\alpha_4=(0,0,0,1)\T$,即$V_{-1}=\Span(\alpha_4)$.
+\end{proof}
+
+\paragraph{6.2.3}$V$是$\C$上的$n$维线性空间,$V$上的线性变换$\mathscr{A}$的极小多项式$m(\lambda)=(\lambda-\lambda_1)^{m_1}\dots(\lambda-\lambda_s)^{m_s}$,其中$\lambda_1,\dots,\lambda_s$互不相同.证明根子空间$W_{\lambda_i}=\ker (\mathscr{A}-\lambda_i\mathscr{I})^{m_i}, i=1,\dots,s$.
+\begin{proof}
+    显然$\ker (\mathscr{A}-\lambda_i\mathscr{I})^{m_i}\subset W_{\lambda_i}$. 由于有准素分解$V=W_{\lambda_1}\oplus\dots\oplus W_{\lambda_s}$, 从而仅需证明
+    $$V=\ker (\mathscr{A}-\lambda_1\mathscr{I})^{m_1}\oplus \dots \oplus \ker (\mathscr{A}-\lambda_s\mathscr{I})^{m_s}.$$
+    设$f_i(\lambda)=m(\lambda)/(\lambda-\lambda_i)^{m_i}$,则显然$(f_1,\dots,f_s)=1$,即有多项式$u_1,\dots,u_s$满足
+    $$u_1f_1+\dots+u_sf_s=1$$
+    从而$\forall v\in V,$
+    $$u_1(\mathscr{A})f_1(\mathscr{A})v+\dots+u_s(\mathscr{A})f_s(\mathscr{A})v=v$$
+    记$v_i=u_i(\mathscr{A})f_i(\mathscr{A})v, (\mathscr{A}-\lambda_i\mathscr{I})^{m_i}v_i=u_i(\mathscr{A})m(\mathscr{A})v=0$,从而$v_i\in \ker (\mathscr{A}-\lambda_i\mathscr{I})^{m_i}$,从而得到
+    $$V=\ker (\mathscr{A}-\lambda_1\mathscr{I})^{m_1}+ \dots + \ker (\mathscr{A}-\lambda_s\mathscr{I})^{m_s}.$$
+    而由$W_{\lambda_i}$的和为直和得到上式的和为直和,从而得证.
+\end{proof}
+\paragraph{6.2.4}线性空间$V$上的线性变换$\mathscr{A}$有至少两个不同的特征值,证明$\mathscr{A}$的全体特征向量并上零向量不构成$V$的子空间.
+\begin{proof}
+    设$U=\cbr{v\in V | \exists \lambda\in \F, \mathscr{A}v=\lambda v}$.若其为线性子空间,由于$\mathscr{A}$有两个不同的特征值$\lambda_1,\lambda_2$,分别对应两个特征向量$v_1,v_2\in U$,则$\mathscr{A}(v_1+v_2)=\lambda_1 v_1+ \lambda_2 v_2=\lambda(v_1+v_2)$,即$(\lambda_1-\lambda)v_1+(\lambda_2-\lambda)v_2=0$.由于$v_1, v_2$线性无关,则该式仅有零解,即$\lambda=\lambda_1=\lambda_2$,矛盾.从而$U$不是线性子空间.
+\end{proof}
+\paragraph{6.2.5}$V$是$\F$上的线性空间,$V$上的线性变换$\mathscr{A}$有零化多项式$f\in \F[\lambda]$.设$f=f_1 \cdots f_k$,其中$f_1,\dots,f_k$之间两两互素.证明$V=\ker f_1(\mathscr{A})\oplus\dots\oplus\ker f_k(\mathscr{A})$.
+\begin{proof}
+    先证$V=\ker f_1(\mathscr{A})+\dots+\ker f_k(\mathscr{A})$.设$g_i=f/f_i$,则$(g_1,g_2,\dots,g_k)=1$(思考题5.4),从而有多项式$u_1,\dots,u_k$满足$u_1g_1+\dots+u_kg_k=1$,因此
+    $$u_1(\mathscr{A})g_1(\mathscr{A})+\dots+u_k(\mathscr{A})g_k(\mathscr{A})=\mathscr{I},$$
+    从而$\forall v\in V$, 
+    $$u_1(\mathscr{A})g_1(\mathscr{A})v+\dots+u_k(\mathscr{A})g_k(\mathscr{A})v=v.$$
+    设$v_i=u_i(\mathscr{A})g_i(\mathscr{A})v$,则$f_i(\mathscr{A})v_i=u_i(\mathscr{A})f(\mathscr{A})v=0$,即$v_i\in \ker f_i(\mathscr{A})$,且有
+    $$v=v_1+\dots+v_k,$$
+    从而得证.
+
+    再证直和,即证
+    $$\widehat{W}_i=\ker f_i(\mathscr{A})\cap \sum_{j\neq i} \ker f_j(\mathscr{A}) = \cbr{0}$$
+    任取$w\in \widehat{W}_i$,则$w$可写成$w_j\in \ker f_j(\mathscr{A}) (j\neq i)$的和的形式.而$f_i(\mathscr{A})w=0$,因此$g_j(\mathscr{A})w=0 (j\neq i)$,从而
+    $$w=\sum_{j\neq i}w_j=\sum_{j\neq i}u_j(\mathscr{A})g_j(\mathscr{A})w=0$$
+    从而得证.
+\end{proof}
+\paragraph{6.2.6}$\mathscr{A}$是线性空间$V$上的线性变换,$W$是$\mathscr{A}$的不变子空间,$\lambda_1,\dots,\lambda_k$是$\mathscr{A}$互不相同的特征值,$\alpha_1,\dots,\alpha_k$分别是$\mathscr{A}$属于$\lambda_1,\dots,\lambda_k$的根向量.若$\alpha=\alpha_1+\dots+\alpha_k\in W$,证明$\alpha_i\in W, i=1,\dots,k$.
+\begin{proof}
+    由准素分解知$\alpha\in \bigoplus_{i=1}^k W_{\lambda_i}$, 因此$\alpha\in \br{\bigoplus_{i=1}^k W_{\lambda_i}}\cap W=\bigoplus_{i=1}^k (W_{\lambda_i}\cap W)$.由于$\alpha_i\in W_{\lambda_i}$,因此$\alpha_i\in W_{\lambda_i}\cap W$,从而得证.
+\end{proof}
+\paragraph{6.2.7}证明推论6.2.10.
+\begin{quotation}
+    \textbf{推论6.2.10.} $\lambda_0$是线性变换$\mathscr{A}$的特征值,其代数重数为$r_0$, $W_{\lambda_0}$为$\mathscr{A}$属于特征值$\lambda_0$的根子空间,则$W_{\lambda_0}=\ker (\mathscr{A}-\lambda_0\mathscr{I})^{r_0}$且$\dim W_{\lambda_0}=r_0$.
+\end{quotation}
+\begin{proof}
+    由推论6.2.9知$\mathscr{A}|_{W_{\lambda_0}}$的特征多项式为$(\lambda-\lambda_0)^{r_0}$,因此$\dim W_{\lambda_0}=r_0$且$(\mathscr{A}|_{W_{\lambda_0}}-\lambda_0\mathscr{I}_{W_{\lambda_0}})^{r_0}=0$,从而$\forall \alpha\in W_{\lambda_0}, (\mathscr{A}-\lambda_0\mathscr{I})^{r_0}\alpha=0$,即$W_{\lambda_0}\subset \ker (\mathscr{A}-\lambda_0\mathscr{I})^{r_0}$.反之显然$W_{\lambda_0}\supset \ker (\mathscr{A}-\lambda_0\mathscr{I})^{r_0}$,从而得证.
+\end{proof}
+
+\subsection{对角化}
+\paragraph{6.3.1}设下列的$A$为复矩阵,求可逆矩阵$P$使得$P\rev A P$为对角阵.
+$$(1)A=\begin{pmatrix}
+    4 & 6 & 0 \\
+    -3 & -5 & 0 \\
+    -3 & -6 & 1 \\
+\end{pmatrix}, \qquad (2)A=\begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    2 & -2 & 2 & 0 \\
+    2 & 3 & 0 & 2 \\
+\end{pmatrix}$$
+\begin{proof}
+    $$(1)P=\begin{pmatrix}
+        -1 & 0 & -2 \\
+        1 & 0 & 1 \\
+        1 & 1 & 0 \\
+    \end{pmatrix}, P\rev AP=\diag(-2,1,1).\qquad (2)P=\begin{pmatrix}
+        0 & 0 & -1 & -3 \\
+        0 & 0 & -1 & 2 \\
+        0 & 1 & 0 & 10 \\
+        1 & 0 & 5 & 0 \\
+    \end{pmatrix}, P\rev AP=\diag(2,2,1,1)$$
+\end{proof}
+\paragraph{6.3.2}$V$是数域$\F$上的4维向量空间,线性变换$\mathscr{A}$在基$\varepsilon_1,\varepsilon_2,\varepsilon_3,\varepsilon_4$下的矩阵为
+$$A=\begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+\end{pmatrix}$$
+求$V$的一个基,使$\mathscr{A}$在其下的矩阵为对角矩阵,并写出该对角阵.
+\begin{proof}
+    可取可逆矩阵
+    $$P=\begin{pmatrix}
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1 \\
+        0 & 1 & 1 & 0 \\
+        1 & 0 & 0 & 0 \\
+    \end{pmatrix}$$
+    使得$P\rev A P=\diag(1,1,0,0)$.从而可知在基$\varepsilon_4, \varepsilon_1+\varepsilon_3,\varepsilon_3,\varepsilon_2$下$\mathscr{A}$的矩阵为对角矩阵.
+\end{proof}
+\paragraph{6.3.3}若线性变换$\mathscr{A}$满足$\mathscr{A}^2=\mathscr{I}$,证明$\mathscr{A}$可对角化.
+\begin{proof}
+    $\mathscr{A}$的零化多项式$\lambda^2-1=(\lambda-1)(\lambda+1)$无重根,从而极小多项式无重根,因此可知$\mathscr{A}$可对角化.
+\end{proof}
+\paragraph{6.3.4}若存在$m\in \N_+$使$n$阶矩阵$A$满足$A^m=I_n$,证明$A$可对角化.
+\begin{proof}
+    $\mathscr{A}$的零化多项式$\lambda^m-1=\prod_{k=0}^{m-1}(\lambda-\e^{\frac{2k\pi\i}{m}})$无重根,从而极小多项式无重根,因此可知$\mathscr{A}$可对角化.
+\end{proof}
+\paragraph{6.3.5}$\mathscr{A}$为$\C$上线性空间$V$上的线性变换,证明$\mathscr{A}$可对角化$\iff$对$\mathscr{A}$的任一不变子空间$V_1$都存在另一不变子空间$V_2$,使得$V=V_1\oplus V_2$.
+\begin{proof}
+    $\implies:$由于$\mathscr{A}$可对角化,故其极小多项式$m(\lambda)$无重根.而$m(\lambda)$是$\mathscr{A}|_{V_1}$的零化多项式,从而$\mathscr{A}|_{V_1}$的极小多项式无重根,即$\mathscr{A}|_{V_1}$可对角化.因此可在$V_1$中取一组基$\alpha_1,\dots,\alpha_r$,使每个基向量都是$\mathscr{A}|_{V_1}$的特征向量,从而也是$\mathscr{A}$的特征向量.因此可将其扩充为$V$上的一组基$\alpha_1,\dots,\alpha_r,\alpha_{r+1},\dots,\alpha_n$,其中每个基向量是$\mathscr{A}$的特征向量.因此取$V_2=\Span(\alpha_{r+1},\dots,\alpha_n)$即可.
+
+    $\impliedby:$任取$\mathscr{A}$的特征值$\lambda$,取特征子空间$V_{\lambda}$,由题设有不变子空间$V_2$使得$V=V_{\lambda}\oplus V_2$.从而根子空间$W_{\lambda}$与$V_2$的交$W_{\lambda}\cap V_2$也是不变子空间.任取$v\in W_{\lambda}\cap V_2, v\neq 0$,有$k\in \N_+$使得$(\mathscr{A}-\lambda\mathscr{I})^k v=0, (\mathscr{A}-\lambda\mathscr{I})^{k-1} v\neq 0$,故$(\mathscr{A}-\lambda\mathscr{I})^{k-1} v\in V_{\lambda}$,但该向量也在$V_2$中,故也在$V_2\cap V_{\lambda}=\cbr{0}$中,矛盾,从而$W_{\lambda}\cap V_2=\cbr{0}, W_\lambda=V_{\lambda}$.由$\lambda$的任意性可知, $V=\bigoplus_{i=1}^k W_{\lambda_k}=\bigoplus_{i=1}^k V_{\lambda_k}$, 其中$\lambda_1,\dots,\lambda_k$是$\mathscr{A}$的全体互不相同特征值,从而可知$\mathscr{A}$可对角化.
+
+    (证明二)$\impliedby:$记$\mathscr{A}$的全体特征子空间的直和为$V_1$.若$\mathscr{A}$不可对角化,则$V_1\subsetneq V$,从而有不变子空间$V_2, V=V_1\oplus V_2$.但$\mathscr{A}|_{V_2}$在$\C$上必然有特征向量$v\in V_1\cap V_2=\cbr{0}$,矛盾.
+\end{proof}
+\paragraph{6.3.6}设$A$为数域$\F$上的幂零矩阵,若$A$可对角化,证明$A=O$.
+\begin{proof}
+    $A$可对角化即存在可逆矩阵$P$使得$PAP\rev = D=\diag(\lambda_1,\dots,\lambda_n)$,而$A$幂零即存在$m\in \N_+$使$A^m=O$,从而$D^m=PA^mP\rev=O$,即$\lambda_i^m=0, \lambda_i=0$,故$D=O,A=O$.
+\end{proof}
+\paragraph{6.3.7}$n$阶矩阵$A$有$k$个不同的特征值$\lambda_1,\dots,\lambda_k$,证明:若$A$可对角化,则存在$n$阶矩阵$A_1,\dots,A_k$使得
+$$(1)A_iA_j=\delta_{ij}A_i, (2)\sum_{i=1}^{k}A_i=I_n, (3)A=\sum_{i=1}^{k}\lambda_i A_i $$
+\begin{proof}
+    $A$可对角化即存在可逆矩阵$P$使得$PAP\rev = D = \diag(\lambda_1 I_{r_1},\dots,\lambda_k I_{r_k})$,其中$r_i$为$\lambda_i$的重数.设$D_i=\diag(O_{r_1},\dots,I_{r_i},\dots,O_{r_k})$,记$A_i=P\rev D_i P$,下证$A_1,\dots,A_k$满足题设三条性质.
+    \begin{enumerate}
+        \item $A_iA_j=P\rev D_i D_j P$,若$i\neq j$则$D_iD_j=O, A_iA_j=O$;若$i=j$则$D_iD_j=D_i, A_iA_j=P\rev D_i P=A_i$.
+        \item $\sum_{i=1}^{k}A_i=P\rev\br{\sum_{i=1}^{k}D_i}P=P\rev I_n P=I_n$.
+        \item $\sum_{i=1}^{k}\lambda_i A_i=P\rev \br{\sum_{i=1}^{k}\lambda_i D_i}P=P\rev D P=A$.
+    \end{enumerate}
+    从而得证.
+\end{proof}
+\paragraph{6.3.8}设$\mathscr{A}$的所有互不相同特征值为$\lambda_1,\dots,\lambda_s$,$V_{\lambda_i},W_{\lambda_i}$分别为对应于$\lambda_i$的特征子空间和根子空间,证明$\mathscr{A}$可对角化$\iff V_{\lambda_i}=W_{\lambda_i}, i=1,\dots,s$.
+\begin{proof}
+    $\mathscr{A}$可对角化$\iff$每个特征值$\lambda_i$的几何重数和代数重数相等$\iff \dim V_{\lambda_i}=\dim W_{\lambda_i}\iff V_{\lambda_i}=W_{\lambda_i}$. 最后一个等价关系是由$V_{\lambda_i}\subset W_{\lambda_i}$得到的.
+\end{proof}
+
+\subsection{$\lambda$-矩阵}
+\paragraph{6.4.1}判断下列$\lambda$-矩阵是否可逆,若可逆则求其逆矩阵.
+$$(1)A(\lambda)=\begin{pmatrix}
+    1-2 \lambda ^2 & \lambda ^2-\lambda  & -\lambda  \\
+    \lambda ^2-\lambda  & -\lambda ^2-1 & \lambda  \\
+    \lambda  & -\lambda  & 1 \\
+\end{pmatrix}, \qquad (2)A(\lambda)=\begin{pmatrix}
+    1-\lambda  & \lambda ^2 & \lambda  & 1 \\
+    \lambda  & \lambda  & -\lambda  & \lambda +1 \\
+    \lambda ^2+1 & \lambda ^2 & -\lambda ^2 & 0 \\
+    1 & -1 & \lambda  & -\lambda  \\
+\end{pmatrix}$$
+\begin{proof}
+    (1)$\det A(\lambda)=-1\in \C$,因此可逆,且
+    $$A(\lambda)\rev=\begin{pmatrix}
+        1 & -\lambda  & \lambda ^2+\lambda  \\
+        -\lambda  & \lambda ^2-1 & -\lambda ^3-\lambda ^2+\lambda  \\
+        -\lambda ^2-\lambda  & \lambda ^3+\lambda ^2-\lambda  &-\lambda^4-2 \lambda ^3+1 \\
+    \end{pmatrix}$$
+    (2)$\det A(\lambda)=-\lambda ^6-3 \lambda ^5-2 \lambda ^4-\lambda ^3-\lambda ^2-2\lambda$,因此不可逆.事实上$\det A(0)=0$,因此$\det A(\lambda)$不为非零常数,从而不可逆.
+\end{proof}
+\paragraph{6.4.2}求下列$\lambda$-矩阵的标准型.
+$$(1)\begin{pmatrix}
+    \lambda ^3-\lambda  & 2 \lambda ^2 \\
+    \lambda ^2+5 \lambda  & 3 \lambda  \\
+\end{pmatrix} ,\qquad (2)\begin{pmatrix}
+    1-\lambda  & \lambda ^2 & \lambda  \\
+    \lambda  & \lambda  & -\lambda  \\
+    \lambda ^2+1 & \lambda ^2 & -\lambda ^2 \\
+\end{pmatrix}$$
+\begin{proof}
+    $(1)\diag(\lambda, \lambda(\lambda^2-10\lambda-3)), (2)\diag(1,\lambda,\lambda(\lambda+1)).$
+\end{proof}
+\paragraph{6.4.3}$n$阶$\lambda$-矩阵$A(\lambda)$可逆$\iff \forall c\in\C, A(c)$可逆.
+\begin{proof}
+    $A(\lambda)$可逆$\iff \det A(\lambda)=a\neq 0, a\in \F \iff \forall c\in \C, \det A(c)=a\neq 0, a\in \F\iff \forall c\in \C, A(c)$可逆.
+\end{proof}
+\paragraph{6.4.4}数域$\F$任一$m\times n$阶$\lambda$-矩阵$A(\lambda)$都可以写成$A(\lambda)=\lambda^kA_k+\dots+\lambda A_1+A_0$的形式,其中$A_0,A_1,\dots,A_k\in \F^{m\times n}, k\in\N$.
+\begin{proof}
+    $A(\lambda)$的每个元素都是$\F$上的多项式,记$A(\lambda)$的第$(i,j)$元$a_{ij}(\lambda)=\sum_{\ell=0}^{k}a_{ij\ell}\lambda^{\ell}$, 其中$k=\max_{i,j}\deg a_{ij}(\lambda)$.再对$\ell=0,1,\dots,k$取矩阵$A_\ell=(a_{ij\ell})_{i,j}\in \F^{m\times n}$,则$A(\lambda)=\sum_{\ell=0}^{k}A_\ell \lambda^\ell$.
+\end{proof}
+\paragraph{6.4.5}证明:任意满秩$\lambda$-方阵$A(\lambda)$都可以写成$P(\lambda), Q(\lambda)$的乘积,其中$P(\lambda)$为可逆$\lambda$-方阵,$Q(\lambda)$是上三角方阵,其对角元均为首一多项式,对角线以上的元素的次数都小于同列对角元的次数.
+\begin{proof}
+    命题等价于证明通过初等行变换将任意满秩$\lambda$-方阵$A(\lambda)$变换为上三角方阵$Q(\lambda)$,且$Q(\lambda)$的元素满足$\deg q_{ij}(\lambda)<q_{jj}(\lambda), 1\leq i<j$.下设$a_{11}(\lambda)$为第一列次数最低的非零多项式,因为总能用初等行变换做到这一点.
+
+    首先证明,通过初等行变换能将$A(\lambda)$变换为
+    $$B(\lambda)=\begin{pmatrix}
+        b_{11}(\lambda) & b_{12}(\lambda) & \cdots & b_{1n}(\lambda)\\
+        0 & b_{22}(\lambda) & \cdots & b_{2n}(\lambda)\\
+        \vdots & \vdots & & \vdots\\
+        0 & b_{n2}(\lambda) & \cdots & b_{nn}(\lambda)
+    \end{pmatrix}$$
+    的形式.若$a_{11}(\lambda)\mid a_{i1}(\lambda) (2\leq i\leq n)$则结论显然成立,否则对$\deg a_{11}(\lambda)$归纳.
+    
+    $\deg a_{11}(\lambda)=0$时总有$a_{11}(\lambda)\mid a_{i1}(\lambda)$,从而结论成立,下设$\deg a_{11}(\lambda)\leq k-1$时结论成立.若$\deg a_{11}(\lambda)=k$,对每个$2\leq i\leq n$作带余除法$a_{i1}(\lambda)=q_{i1}(\lambda)a_{11}(\lambda)+r_{i1}(\lambda)$,有$\deg r_{i1}(\lambda)< \deg a_{11}(\lambda)=k$,因此可作初等行变换将第$(i,1)$元变为$r_{i1}(\lambda)$.最后将次数最小的非零$r_{i1}(\lambda)$通过行变换换到第$(1,1)$元,其满足归纳假设,结论成立.
+
+    依次对$B(\lambda)$的右下角子矩阵作上述操作,从而可变为
+    $$C(\lambda)=\begin{pmatrix}
+        c_{11}(\lambda) & c_{12}(\lambda) & \cdots & c_{1n}(\lambda)\\
+         & c_{22}(\lambda) & \cdots & c_{2n}(\lambda)\\
+         &  &  \ddots & \vdots\\
+         &  &  & c_{nn}(\lambda)
+    \end{pmatrix}$$
+    再将对角线上元素用同列对角元除,可得到余式,因此可依次作初等行变换使得对角线上元素变为余式,其次数总小于同列对角元,从而可得到$Q(\lambda)$.
+\end{proof}
+\subsection{行列式因子、不变因子与初等因子}
+\paragraph{6.5.1}求下列$\lambda$-矩阵的不变因子和初等因子.
+$$(1)\begin{pmatrix}
+    1-\lambda  & \lambda ^2 & \lambda  \\
+    \lambda  & \lambda  & -\lambda  \\
+    \lambda ^2+1 & \lambda ^2 & -\lambda ^2 \\
+\end{pmatrix}, \qquad (2)\begin{pmatrix}
+    \lambda -4 & -10 & 19 & -4 \\
+    -1 & \lambda -6 & 8 & -3 \\
+    -1 & -4 & \lambda +6 & -2 \\
+    0 & 1 & -1 & \lambda  \\
+\end{pmatrix}.$$
+\begin{proof}
+    (1)不变因子为$1,\lambda,\lambda(\lambda+1)$,故初等因子为$\lambda;\lambda,\lambda+1$.
+    
+    (2)不变因子为$1,1,(\lambda-1)^2,(\lambda-1)^2$,故初等因子为$(\lambda-1)^2;(\lambda-1)^2$.
+\end{proof}
+\paragraph{6.5.2}$f,g\in \F[\lambda], (f,g)=1$,证明下列$\lambda$-矩阵等价:
+$$\begin{pmatrix}
+    f(\lambda) & 0 \\ 0 & g(\lambda)
+\end{pmatrix},\qquad \begin{pmatrix}
+    g(\lambda) & 0 \\ 0 & f(\lambda)
+\end{pmatrix},\qquad \begin{pmatrix}
+    1 & 0 \\ 0 & f(\lambda)g(\lambda)
+\end{pmatrix}.$$
+\begin{proof}
+    通过互换行列容易看出前两个矩阵等价,下证明第一个矩阵与第三个矩阵等价.由$(f,g)=1$知存在多项式$u,v$使得$uf+vg=1$,故作如下初等变换:
+    $$\begin{pmatrix}
+        f & 0\\ 0 & g
+    \end{pmatrix}\longrightarrow \begin{pmatrix}
+        f & uf\\ 0 & g
+    \end{pmatrix}\longrightarrow \begin{pmatrix}
+        f & uf+vg\\ 0 & g
+    \end{pmatrix}= \begin{pmatrix}
+        f & 1\\ 0 & g
+    \end{pmatrix}\longrightarrow \begin{pmatrix}
+        1 & f\\ g & 0
+    \end{pmatrix}\longrightarrow \begin{pmatrix}
+        1 & f\\ 0 & -fg
+    \end{pmatrix}\longrightarrow \begin{pmatrix}
+        1 & 0\\ 0 & fg
+    \end{pmatrix}$$
+    从而三个矩阵等价.
+\end{proof}
+\paragraph{6.5.3}$A(\lambda)$为满秩12阶$\lambda$-矩阵,若其初等因子为$(\lambda-1)^2,(\lambda-1)^2,(\lambda-1)^2,(\lambda+1),(\lambda+1),(\lambda-\i)^2,(\lambda+\i)^2$,求$A(\lambda)$的不变因子和行列式因子.
+\begin{proof}
+    将初等因子排序为:
+    $$\begin{array}{cccc}
+        (\lambda -1)^2 & \lambda +1 & (\lambda -\i)^2 & (\lambda +\i)^2 \\
+        (\lambda -1)^2 & \lambda +1 &  &  \\
+        (\lambda -1)^2 &  &  &  \\
+    \end{array}$$
+    从而不变因子为$d_{12}=(\lambda-1)^2(\lambda+1)(\lambda^2+1)^2, d_{11}=(\lambda-1)^2(\lambda+1), d_{10}=(\lambda-1)^2, d_9=\dots=d_1=1$.行列式因子为$D_1=\dots=D_9=1,D_{10}=(\lambda-1)^2, D_{11}=(\lambda+1)(\lambda-1)^4, D_{12}=(\lambda+1)^2(\lambda-1)^2(\lambda^2+1)^2$.
+\end{proof}
+\paragraph{6.5.4}证明
+$$A(\lambda)=\begin{pmatrix}
+    \lambda  & 0 & \cdots & 0 & a_n \\
+    -1 & \lambda  & \cdots & 0 & a_{n-1} \\
+     & -1 & \ddots & \vdots & \vdots \\
+     &  & \ddots & \lambda  & a_2 \\
+     &  &  & -1 & \lambda+a_1  \\
+\end{pmatrix}$$
+的不变因子为$1,\dots,1,f(\lambda)$,其中$f(\lambda)=\lambda^n+a_1\lambda^{n-1}+\dots+a_{n-1}\lambda+a_n$.
+\begin{proof}
+    由于$\det A(\lambda)=f(\lambda)$, 且$A(\lambda)$的第$2,3,\dots,n$行与第$1,2,\dots,n-1$列构成的子式$=(-1)^{n-1}$,从而由行列式因子的定义知$D_{n-1}=\dots=D_1=1, D_n=f(\lambda)$, 从而可得不变因子为$1,\dots,1,f(\lambda)$.
+\end{proof}
+\paragraph{6.5.5}$A(\lambda)$为$n$阶$\lambda$-矩阵,证明$A(\lambda)$与$A\T(\lambda)$等价.
+\begin{proof}
+    由于$A(\lambda)$与$A\T(\lambda)$的行列式因子等价,因此两者的不变因子等价,即两者等价.
+\end{proof}
+\subsection{Jordan 标准形}
+\paragraph{6.6.1}设
+$$A=\begin{pmatrix}
+    2 & -1 & 0 \\
+    1 & 0 & 0 \\
+    1 & 0 & 3 \\
+\end{pmatrix}$$
+求其Jordan标准型$J$及可逆方阵$P$,使$P\rev AP=J$.
+\begin{proof}
+    $$J=\begin{pmatrix}
+        1 & 1 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 3 \\
+    \end{pmatrix}, P=\begin{pmatrix}
+        -2 & 1 & 0 \\
+        -2 & 3 & 0 \\
+        1 & 0 & 1 \\
+    \end{pmatrix}.$$
+\end{proof}
+\paragraph{6.6.2}$A\in M_n(\F)$,证明$A$与$A\T$相似.
+\begin{proof}
+    由题6.5.5知$\lambda I-A$与$\lambda I-A\T=(\lambda I-A)\T$等价,因此$A$与$A\T$相似.
+\end{proof}
+\paragraph{6.6.3}设方阵$A$的非常数不变因子为$(\lambda-1),(\lambda-1)(\lambda+1),(\lambda-1)^2(\lambda+1)^2$,求$A$的Jordan标准型$J$.
+\begin{proof}
+    其初等因子为$\lambda-1;\lambda-1,\lambda+1;(\lambda-1)^2,(\lambda+1)^2$,故可得$J=\diag\br{1,1,\begin{pmatrix} 1&1\\0&1 \end{pmatrix},-1,\begin{pmatrix} -1&1\\0&-1 \end{pmatrix}}$.
+\end{proof}
+\paragraph{6.6.4}证明方阵$A$可对角化$\iff$对于任意$A$的特征值$\lambda$都有$\rank (\lambda I-A)^2=\rank (\lambda I-A)$.
+\begin{proof}[证明一]
+    该等式即等价于
+    $$\dim V_{\lambda}=n-\rank (\lambda I-A)=n-\rank (\lambda I-A)^2=\dim \ker (\lambda I-A)^2= \dim W_{\lambda}^{(2)}$$
+    又由$V_\lambda\subset W_{\lambda}^{(2)}$知$V_\lambda=W_{\lambda}^{(2)}$.若$A$可对角化,即$V_\lambda=W_\lambda$,则自然有$V_\lambda=W_{\lambda}^{(2)}$,从而得证.
+    
+    反之,若有$V_\lambda=W_{\lambda}^{(2)}$,则任取$v\in \ker (\lambda I-A)^3, (\lambda I-A)v\in W_{\lambda}^{(2)}=V_\lambda$,即$(\lambda I-A)^2 v=0$,从而$W_{\lambda}^{(3)}=\ker (\lambda I-A)^3\subset W_{\lambda}^{(2)}$,即$W_{\lambda}^{(2)}=W_{\lambda}^{(3)}$.以此类推有$V_\lambda=W_{\lambda}^{(2)}=W_{\lambda}^{(3)}=\dots=W_{\lambda}^{(n)}=W_\lambda$,因此$A$可对角化.
+\end{proof}
+\begin{proof}[证明二]
+    $\implies:$设$A$相似于对角阵$\diag(\lambda_1 I_{r_1},\dots,\lambda_k I_{r_k})$,故取任意特征值$\lambda_i$, $\lambda_i I_n-A$相似于
+    $$\diag((\lambda_i-\lambda_1) I_{r_1}, \dots, (\lambda_i-\lambda_k) I_{r_k}),$$
+    其中第$i$个对角分块矩阵取$O_{r_i}$,由于$\lambda_i-\lambda_j\neq 0 (i\neq j)$,故$\rank (\lambda_i I_n-A)=n-r_i$.而$(\lambda_i I_n-A)^2$相似于
+    $$\diag((\lambda_i-\lambda_1)^2 I_{r_1}, \dots, (\lambda_i-\lambda_k)^2 I_{r_k})$$
+    同理知$\rank (\lambda_i I_n-A)^2=n-r_i$,从而两者相等.
+
+    $\impliedby:$设$A$的Jordan标准型
+    $$J=\diag(J(\lambda_1,s_{11}),\dots,J(\lambda_1,s_{1m_1}),J(\lambda_2,s_{21}),\dots,J(\lambda_k,s_{km_k}))$$
+    其中$\sum_{i=1}^{m_k}=r_k$为特征值$\lambda_k$的代数重数.不失一般性的,取特征值$\lambda_1$,可知$\lambda_1 I_n-A$相似于
+    $$\lambda_1 I_n-J=\diag(J(0,s_{11}),\dots,J(0,s_{1m_1}),J(\lambda_1-\lambda_2,s_{21}),\dots,J(\lambda_1-\lambda_k,s_{km_k}))$$
+    而$(\lambda_1 I_n-A)^2$相似于
+    $$(\lambda_1 I_n-J)^2=\diag(J(0,s_{11})^2,\dots,J(0,s_{1m_1})^2,J(\lambda_1-\lambda_2,s_{21})^2,\dots,J(\lambda_1-\lambda_k,s_{km_k})^2)$$
+    由于$\rank J(\lambda_1-\lambda_i,s_{ij})=\rank J(\lambda_1-\lambda_i,s_{ij})^2, \rank J(0,1)=\rank J(0,1)^2$,仅有$s\geq 2$时有$\rank J(0,s)^2=\rank J(0,s)-1$,因此由题设条件知$s_{11}=\dots=s_{1m_1}=1$,又由$\lambda$的任意性知所有$s_{ij}=1$,从而$J$是对角阵,即$A$可对角化.
+\end{proof}
+\paragraph{6.6.5}若方阵$A$的特征值全为0,则$A$是幂零矩阵.
+\begin{proof}
+    $A$的Jordan标准型$J=\diag(J(0,s_1),\dots,J(0,s_k))$,从而取$m=\max_{1\leq i\leq k}s_k, J^m=O$,因此存在可逆矩阵$P$使得$A=PJP\rev, A^m=PJ^mP\rev=O$,即$A$是幂零矩阵.
+\end{proof}
+\paragraph{6.6.6}设$\lambda$是$n$阶矩阵$A$的$k$重特征值,证明$\rank(\lambda I-A)^k=n-k$.
+\begin{proof}[证明一]
+    即$\dim W_{\lambda}=\dim\ker(\lambda I-A)^k=k$,从而$\rank(\lambda I-A)^k=n-k$.
+\end{proof}
+\begin{proof}[证明二]
+    设$A$的Jordan标准型$J=\diag(J(\lambda,n_1),\dots,J(\lambda,n_t),J(\lambda_1,n_{11}),\dots,J(\lambda_s,n_{sm_s}))$,其中$\sum_{i=1}^t n_i=k, 1\leq n_i\leq k$,因此$J(0,n_i)^m=O$,从而$(\lambda I-A)^k$相似于$\diag(O_k,J(\lambda-\lambda_1,n_{11})^k,\dots,J(\lambda-\lambda_s,n_{sm_s})^k)$,即$\rank (\lambda I-A)^k=n-k$.
+\end{proof}
+
+\subsection{复习题6}
+\paragraph{6.1}设$n$维线性空间$V$的线性变换$\mathscr{A}$有$n$个互不相同的特征值,证明:线性变换$\mathscr{A}$与$\mathscr{B}$可交换$\iff \mathscr{B}$是$\mathscr{I, A},\dots,\mathscr{A}^{n-1}$的线性组合.
+\begin{proof}
+    若$\mathscr{B}$可被表为$\mathscr{A}$的多项式,则自然可与$\mathscr{A}$交换.反之,由题设知$\mathscr{A}$可对角化,则设$\mathscr{A}$在$V$的某基下的矩阵为$A=\diag(\lambda_1,\dots,\lambda_n)$,在此基下$\mathscr{B}$的矩阵为$B$.由$AB=BA$可解得$b_{ij}=0 (i\neq j)$,故可设$B=\diag(b_1,\dots,b_n)$.考虑方程$B=x_{n-1}A^{n-1}+\dots+x_1A+x_0I$,其等价于线性方程组
+    $$\begin{pmatrix}
+        b_1\\ b_2 \\ \vdots \\ b_n
+    \end{pmatrix}=\begin{pmatrix}
+        1 & \lambda_1 & \cdots & \lambda_1^{n-1}\\
+        1 & \lambda_2 & \cdots & \lambda_2^{n-1}\\
+        \vdots & \vdots & \vdots & \vdots\\
+        1 & \lambda_n & \cdots & \lambda_n^{n-1}\\
+    \end{pmatrix}\begin{pmatrix}
+        x_0\\ x_1 \\ \vdots \\ x_{n-1}
+    \end{pmatrix}$$
+    其系数矩阵的行列式为Vandermonde行列式$\prod_{1\leq i<j\leq n}(\lambda_i-\lambda_j)\neq 0$ (由$A$的特征值互不相同),因此方程有唯一解,从而$\mathscr{B}$可表为$\mathscr{A}$的多项式.
+\end{proof}
+\paragraph{6.2}$A\in \F^{m\times n}, B\in \F^{n\times m}$,证明$\phi_{AB}(\lambda)$与$\phi_{BA}(\lambda)$差一个$\lambda^{n-m}$.
+\begin{proof}
+    因为$\det(\lambda I_m -AB)=\lambda^m \det(I_m-AB/\lambda)=\lambda^m\det(I_n-BA/\lambda)=\lambda^{m-n}\det(\lambda I_n-BA)$,从而两多项式差一个$\lambda^{n-m}$.
+\end{proof}
+\paragraph{6.3}$\alpha=(a_1,\dots,a_n),\beta=(b_1,\dots,b_n)$,求$I+\alpha\T\beta$的特征值.
+\begin{proof}
+    其特征多项式为$\det(\lambda I-I-\alpha\T\beta)=(\lambda-1)^n \det\left(I-\frac{\alpha\T\beta}{\lambda-1}\right)=(\lambda-1)^n \det\left(I_1-\frac{\beta\alpha\T}{\lambda-1}\right)=(\lambda-1)^{n-1}\br{\lambda-1-\beta\alpha\T}$,因此其特征值为$1$($n-1$重)和$1+\beta\alpha\T=1+\sum_{i=1}^n a_ib_i$.
+\end{proof}
+\paragraph{6.4}$A,B$是复方阵,记$C=AB-BA$,若$AC=CA$,证明$C$是幂零矩阵.
+\begin{proof}
+    $C$幂零即所有特征值为0,为此仅需证明$\forall k\geq 1, \tr C^k=\sum_{\lambda\in \Spec C}\lambda^k=0$.任取$k\geq 1$,有
+    $$AC^k=CAC^{k-1}=C^2AC^{k-2}=\dots=C^{k-1}AC=C^kA$$
+    因此$\tr C^k=\tr\br{C^{k-1}AB-C^{k-1}BA}=\tr\br{A(C^{k-1}B)}-\tr\br{(C^{k-1}B)A}=0$,从而得证.
+\end{proof}
+\paragraph{6.5}设$B=\begin{pmatrix}
+    O&A\\ A&O
+\end{pmatrix}$,其中对称矩阵$A\in M_n(\R)$有特征值$\lambda_1,\dots,\lambda_n$,求$B$的特征值.
+\begin{proof}
+    $$\phi_B(\lambda)=\begin{vmatrix}
+        \lambda I_n & -A \\
+        -A & \lambda I_n
+    \end{vmatrix}=\begin{vmatrix}
+        \lambda_n I_n & -A\\
+        O & \lambda I_n - A^2/\lambda
+    \end{vmatrix}=\lambda^n \det(\lambda I_n-A^2/\lambda)=\det(\lambda^2 I_n-A^2)$$
+    而$A^2$特征值为$\lambda_1^2,\dots,\lambda_n^2$,故$\phi_B(\lambda)=\prod_{i=1}^{n}(\lambda^2-\lambda_i^2)$,因此$B$的特征值为$\pm \lambda_1,\dots,\pm \lambda_n$.
+\end{proof}
+\paragraph{6.6}若$\mathscr{A}^m=\mathscr{I} (m\geq 2)$,证明$\mathscr{A}$可对角化.
+\paragraph{6.7}$A\in M_n(\R)$的特征多项式为$f(\lambda)$,记$g=f/(f,f')$,证明$A$可对角化$\iff g(A)=O$.
+\paragraph{6.8}$A,B$是可交换的$n$阶矩阵,证明存在$n$阶可逆矩阵$Q$使得$Q\rev AQ, Q\rev BQ$均为上三角矩阵.
+\paragraph{6.9}$A,B\in M_n(\F), \rank A+\rank B<n$,证明两者有公共特征向量.
+\paragraph{6.10}设$\mathscr{A}$为$n$维线性空间$V$上的线性变换,$\mathscr{A}$有$n$个不同的特征值,证明$\mathscr{A}$有$2^n$个不变子空间.
+\paragraph{6.11}$A,B$是$n$阶矩阵,$A$有$n$个不同特征值,证明以下三者等价:
+\begin{enumerate}
+    \item $AB=BA$;
+    \item 存在可逆矩阵$P$使得$P\rev AP, P\rev BP$均为对角矩阵;
+    \item $A,B$有相同的$n$个线性无关特征向量.
+\end{enumerate}
+% \paragraph{6.12}
+% \paragraph{6.13}
+% \paragraph{6.14}
+% \paragraph{6.15}
+% \paragraph{6.16}
+% \paragraph{6.17}
+% \paragraph{6.18}
+% \paragraph{6.19}
+% \paragraph{6.20}
+% \paragraph{6.21}
+% \paragraph{6.22}
 
 % \section{第七章 双线性函数与二次型}
 % \subsection{双线性函数}
@@ -494,19 +1277,25 @@
 % \subsection{对称变换}
 % \subsection{复习题8}
 \end{document}
-
-\paragraph{5.2.1}
-\paragraph{5.2.2}
-\paragraph{5.2.3}
-\paragraph{5.2.4}
-\paragraph{5.2.5}
-\paragraph{5.2.6}
-\paragraph{5.2.7}
-\paragraph{5.2.8}
-\paragraph{5.2.9}
-\paragraph{5.2.10}
-\paragraph{5.2.11}
-\paragraph{5.2.12}
-\paragraph{5.2.13}
-\paragraph{5.2.14}
-\paragraph{5.2.15}
+\paragraph{6.2.1}
+\paragraph{6.2.2}
+\paragraph{6.2.3}
+\paragraph{6.2.4}
+\paragraph{6.2.5}
+\paragraph{6.2.6}
+\paragraph{6.2.7}
+\paragraph{6.2.8}
+\paragraph{6.2.9}
+\paragraph{6.2.10}
+\paragraph{6.2.11}
+\paragraph{6.2.12}
+\paragraph{6.2.13}
+\paragraph{6.2.14}
+\paragraph{6.2.15}
+\paragraph{6.2.16}
+\paragraph{6.2.17}
+\paragraph{6.2.18}
+\paragraph{6.2.19}
+\paragraph{6.2.20}
+\paragraph{6.2.21}
+\paragraph{6.2.22}

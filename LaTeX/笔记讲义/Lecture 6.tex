@@ -1,0 +1,415 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,amsfonts,amscd}
+\usepackage{epsfig,epstopdf,multicol,graphicx,color,setspace}
+\usepackage[active]{srcltx}
+
+\usepackage{draftwatermark}
+\SetWatermarkText{A04}
+
+\usepackage[a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+% \setlength{\topmargin}{0.5cm}
+% \setlength{\oddsidemargin}{0.5in}
+% \setlength{\evensidemargin}{0.5in}
+% \setlength{\textwidth}{400pt}
+% \setlength{\textheight}{620pt}
+
+\usepackage{enumitem}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{observation}{Observation}
+\newtheorem{question}{Question}
+\newtheorem{claim}{Claim}
+\newtheorem{fact}{Fact}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{construction}{Construction}
+
+\newcommand{\h}{\mathcal{H}}
+\newcommand{\f}{\mathcal{F}}
+\newcommand{\ex}{\mathrm{ex}}
+\newcommand{\EX}{\mathrm{EX}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\cl}{\mathcal{cl}}
+
+\title{Extremal Graph Theory}
+\author{}
+\date{}
+
+\begin{document}
+	\maketitle
+	\section{Tur\'an number of complete bipartite graphs}
+		\begin{theorem}[K\H{o}vari-S\'os-Tur\'an]
+			For any natural numbers $s$ and $t$ with $s \leq t$, there exists a constant $c$ such that 
+			\[
+			\mathrm{ex}(n, K_{s,t}) \leq c n^{2 - \frac{1}{s}}.
+			\]
+		\end{theorem}
+	{\bf Proof:}
+			Suppose that we have a graph $G$ with $n$ vertices, greater than $c n^{2 - \frac{1}{s}}$ edges and not containing $K_{s,t}$ as a subgraph. Note that the average degree of $G$ is greater than $2c n^{1 - \frac{1}{s}}$. We are going to count pairs $(v, S)$ consisting of sets $S$ of size $s$ all elements of which are connected by an edge to $v$. On the one hand, the number of such pairs is given by 
+			\[
+			\sum_{v} \binom{d(v)}{s} \geq n  \binom{\frac{1}{n} \sum_{v}d(v)}{s}> n  \binom{2cn^{1-\frac{1}{s}}}{s} \geq n \frac{c^{s} n^{s - 1}}{s!} = c^{s} \frac{n^{s}}{s!},
+			\]
+			for $n$ sufficiently large. On the other hand, the number of pairs $(v, S)$ is at most 
+			\[
+			(t - 1) \binom{n}{s} \leq (t - 1) \frac{n^{s}}{s!},
+			\]
+			for otherwise there would be some set $S$ of $s$ vertices which have $t$ neighbours in common. Therefore, if we choose $c$ so that $c^{s} \geq t - 1$, we have a contradiction. \hfill$\square$
+			
+		{\bf Remark:} By being a little more careful, we could have obtained the bound
+			\[
+			ex(n, K_{s,t}) \leq (1 + o(1))\frac{1}{2}(t - 1)^{\frac{1}{s}} n^{2 - \frac{1}{s}}.
+			\]
+			{\small \bf Hint: $\binom{n}{s}=(1+o(1))\tfrac{n^s}{s!}$}
+\section{Algebraic construction for $K_{2,2}$}
+\begin{theorem}
+	For infinite many $n$, $\ex(n,K_{2,2})=(\tfrac{1}{2}+o(1))n^{\frac{3}{2}}$.
+\end{theorem}
+{\bf Proof:}	We recall the definition of the Erd\H{o}s-R\'{e}nyi orthogonal polarity graph.  If $q$ is a prime power, then let $F_q$ be the Galois field with $q$ elements and $F_q^*=F_q\setminus\{0\}$.
+	For two vectors $(a_1,a_2,a_3)$, $(b_1,b_2,b_3)\in (F_q^3)^*$, we write $(a_1,a_2,a_3)\equiv(b_1,b_2,b_3)$ if there exists an element $\lambda\in F_q^*$ such that $(a_1,a_2,a_3)=\lambda(b_1,b_2,b_3)$.  Note that `$\equiv$' is an equivalence relation over $(F_q^3)^*=F_q^3\setminus\{(0,0,0)\}$.
+	Let $\langle a_1,a_2,a_3 \rangle$ denote the equivalence class containing $(a_1,a_2,a_3)$, and let $V_q$ be the set of all equivalence classes. Obviously, $|V_q|=q^2+q+1$.	
+	Let $G_q$ be a graph on vertex set $V_q$ in which any pair of vertices $\langle a_1,a_2,a_3 \rangle$ and $\langle b_1,b_2,b_3 \rangle$ are adjacent in $G_q$ if and only if $a_1b_1+a_2b_2+a_3b_3=0.$
+	Therefore, the graph $G_q$ contains a loop at the vertex $\langle a_1,a_2,a_3 \rangle$ if and only if $a_1^2+a_2^2+a_3^2=0.$
+	The Erd\H{o}s-R\'{e}nyi graph $ER_q$ is obtained from $G_q$ by deleting all loops. This construction can be seen in Erd\H{o}s, R\'{e}nyi and S\'{o}s  (or Brown).
+	
+	\medskip
+	We list some useful properties of $ER_q$ as follows.
+	\begin{lemma}[Erd\H{o}s, R\'{e}nyi and S\'{o}s]
+		For any prime power $q$, $ER_q$ has the following properties.
+		
+		\medskip
+		(i) The diameter of $ER_q$ is $2$;($n-$rank($A$).)
+		
+		(ii) $C_4\nsubseteq ER_q$;
+		
+		(iii) For any vertex $v\in V_q$, $d(v)=q$ or $d(v)=q+1$.
+		
+		(iv)There are exactly $q+1$ vertices with degree $q$ and $e(ER_q)=\frac{1}{2}(q+1)^2q.$
+	\end{lemma}
+		Note that $\langle a_1,a_2,a_3 \rangle$ is a $q$-vertex in $ER_q$ if and only if $a_1^2+a_2^2+a_3^2=0$.
+	\begin{lemma}
+	If $m$ is odd integer, then  the number of solutions of the equation $x_1^2+x_2^2+\cdots+x_{m}^2=0$ over the finite field $F_q$ is $q^{m-1}$ .
+	\end{lemma}
+	 \hfill$\square$
+	\begin{lemma}
+The set consisting of all q-vertices in $E R_{q}$ forms an independent set.
+	\end{lemma} 
+	\begin{lemma}[Zhang,Chen and Cheng]
+		Let $v$ be a $(q + 1)$-vertex in $ER_q$. For any vertex $u \in N(v)$, let $A_u = N(u) \setminus N[v]$. We have the following properties.
+		
+			$(1)$.If $u$ is a $q$-vertex, then $u$ has no neighbor in $N(v)$. If $u$ is a $(q + 1)$-vertex, then $u$ has a unique neighbor in $N(v)$ which is a $(q + 1)$-vertex;
+			
+			$(2)$ For each $u \in N(v)$, $|A_u| = q - 1$;
+			
+			$(3)$$V_q = \{v\} \cup N(v) \cup \left(\bigcup_{u \in N(v)} A_u\right)$.
+	\end{lemma}
+	\subsection{$q$ is even prime power}
+	\begin{lemma}
+		If $q$ is an even prime power, then $N(\langle 1,1,1\rangle )$ consists of all $q$-vertices in $ER_q$.
+			\end{lemma}
+			{\bf Proof:}	
+			Note that the characteristic of $F_q$ is $2$ since $q$ is an even prime power. Suppose that $\langle a_1,a_2,a_3\rangle$ is a $q$-vertex. Therefore,
+			\[
+			0 = a_1^2 + a_2^2 + a_3^2 = a_1^2 + a_2^2 + a_3^2 + 2a_1a_2 + 2a_2a_3 + 2a_1a_3 = (a_1 + a_2 + a_3)^2.
+			\]
+			It follows that $a_1 + a_2 + a_3 = 0$, which yields that $\langle a_1,a_2,a_3\rangle$ is a neighbor of $\langle 1,1,1\rangle$.\hfill$\square$
+
+	
+	\begin{remark}
+		It is clear that $\langle 1,1,1\rangle$ is a $(q + 1)$-vertex in $ER_q$ when $q$ is an even prime power.
+	\end{remark}
+	
+	\begin{corollary}
+		Let $q$ be an even prime power, and $N(\langle 1,1,1\rangle ) = \{w_1,w_2,\dots,w_{q+1}\}$ in $ER_q$. Then for $1 \leq i \leq q + 1$, each vertex in $N(w_i) \setminus N[\langle 1,1,1\rangle]$ is a $(q + 1)$-vertex.
+	\end{corollary}
+	{\bf Proof:}
+			Note that $\langle 1,1,1\rangle$ is a $(q + 1)$-vertex and each vertex in $N(\langle 1,1,1\rangle)$ is a $q$-vertex, we get that each vertex in $N(w_i) \setminus N[\langle 1,1,1\rangle]$ is a $(q + 1)$-vertex for $1 \leq i \leq q + 1$.\hfill$\square$
+
+	
+	\begin{lemma}
+		Let $q$ be an even prime power, and $N(\langle 1,1,1\rangle) = \{w_1,w_2,\dots,w_{q+1}\}$ in $ER_q$. For $1 \leq i \leq q + 1$, denote $A_{w_i} := N(w_i) \setminus N[\langle 1,1,1\rangle]$. Then for $1 \leq i < j \leq q + 1$, $E(A_{w_i},A_{w_j})$ is a perfect matching in $ER_q$.
+	\end{lemma}
+	{\bf Proof:}
+			Since $C_4 \nsubseteq ER_q$, we have that $E(A_{w_i},A_{w_j})$ is a matching. $|A_{w_i}| = |A_{w_j}| = q - 1$ for distinct $i$ and $j$. Thus it suffices to prove that for any vertex $x \in A_{w_i}$, $x$ has at least one neighbor in $A_{w_j}$. Indeed, any vertex $x \in A_{w_i}$ is adjacent to some vertices in $N(w_j)=\{\langle 1,1,1\rangle\} \cup A_{w_j}$ as the diameter of $ER_q$ is $2$. Since $x$ is not adjacent to $\langle 1,1,1\rangle$, we have that $x$ must be adjacent to some vertices in $A_{w_j}$. The assertion follows.\hfill$\square$
+	
+	
+	\begin{corollary}
+		 Let $q$ be an even prime power and $N(\langle 1,1,1\rangle) = \{w_1,w_2,\dots,w_{q+1}\}$ in $ER_q$. For $1 \leq i \leq q + 1$, $A_{w_i}$ induces an independent set in $ER_q$ where $A_{w_i} = N(w_i) \setminus N[\langle 1,1,1\rangle]$.
+	\end{corollary}
+	\subsection{$q$ is odd prime power}
+	Let \(q \geq 5\) be an odd prime power. We assume \(N(\langle 0,0,1\rangle) = \{w_1, w_2, \dots, w_{q+1}\}\) in \(ER_q\). For \(1 \leq i \leq q + 1\), let \(A_{w_i} = N(w_i) \setminus N[\langle 0,0,1\rangle]\).
+%	
+%	\begin{lemma}
+%		Let \(q \geq 5\) be an odd prime power. The corresponding \(ER_q\) have the following properties.
+%		
+%	 If \(q \equiv 3 \pmod{4}\), then \(w_i\) is a \((q + 1)\)-vertex for \(1 \leq i \leq q + 1\).
+%
+%	\end{lemma}
+	\begin{lemma}[Zhang,Chen and Cheng]
+		Let \(q \geq 5\) be an odd prime power. The corresponding \(ER_q\) have the following properties.
+		
+			$(1)$ If \(q \equiv 3 \pmod{4}\), then \(w_i\) is a \((q + 1)\)-vertex for \(1 \leq i \leq q + 1\).
+			
+			$(2)$ If \(q \equiv 3 \pmod{4}\), then there exist \(\frac{q+1}{2}\) vertices in \(N((0,0,1))\), say \(w_1,\dots,w_{\frac{q+1}{2}}\), such that \((w_i, w_{i+1})\) is an edge for odd \(i\) with \(1 \leq i \leq \frac{q + 1}{2}\) and \(w_i\) is adjacent to exactly two \(q\)-vertices for \(1 \leq i \leq \frac{q + 1}{2}\).
+			
+			$(3)$ If \(q \equiv 1 \pmod{4}\), then there exist exactly two \(q\)-vertices in \(N((0,0,1))\), say \(w_q\) and \(w_{q+1}\). This means \(w_i\) is a \((q + 1)\)-vertex for \(1 \leq i \leq q - 1\).
+			
+			$(4)$ If \(q \equiv 1 \pmod{4}\), then there exist \(\frac{q-1}{2}\) vertices in \(N((0,0,1))\), say \(w_1,\dots,w_{\frac{q-1}{2}}\), such that \((w_i, w_{i+1})\) is an edge for odd \(i\) with \(1 \leq i \leq \frac{q - 1}{2}\) and \(w_i\) is adjacent to exactly two \(q\)-vertices in \(ER_q\) for \(1 \leq t \leq \frac{q - 1}{2}\).
+	\end{lemma}
+	
+	\begin{lemma}[Zhang,Chen and Cheng]
+		Let \(q \geq 5\) be an odd prime power. If \(w_i\) is a \((q+1)\)-vertex, then there exists a unique \((q+1)\)-vertex \(w_{\ell} \in N(\langle 0,0,1\rangle)\) which is adjacent to \(w_i\), and \(E(A_{w_i}, A_{w_{\ell}})\) induces a perfect matching for \(k \neq \ell\), \(1 \leq k \leq q + 1\). Also, \(E(A_{w_i}, A_{w_i}) = \emptyset\).
+	\end{lemma}
+\section{Norm graph and $\ex(n,K_{s,t})$}
+\subsection{Construction of $K_{3,3}$-free graph}
+	Let $ GF(q)^* $ denote the multiplicative subgroup of the $ q $ element field. The graph $ H = H(q, 3) $ is defined as follows. The vertex set $ V(H) $ is $ GF(q^2) \times GF(q)^* $. Two distinct vertices $ (A, a) $ and $ (B, b) \in V(H) $ are connected if and only if $ N(A + B) = ab $, where $ N(X) = X^{1 + q} $ is the norm\footnotemark[1] of $ X \in GF(q^2) $ over $ GF(q) $. Of course $ N(X) \in GF(q) $ and it is clear that $ |V(H)| = q^3 - q^2 $. If $ (A, a) $ and $ (B, b) $ are adjacent, then $ (A, a) $ and $ B \neq -A $ determine $ b $. Thus $ H $ is regular of degree $ q^2 - 1 $.
+	
+	We prove that $ H(q, 3) $ is $ K_{3,3} $-free and hence provides an improvement (in the second term) over Brown's construction for a dense $ K_{3,3} $-free graph. (The Brown-graph has $ \frac{1}{2}n^{5/3} - \frac{1}{4}n^{4/3} $ edges for infinitely many values of $ n $.)
+	
+	\begin{theorem}\label{alonthm}
+		The graph $ H = H(q, 3) $ contains no subgraph isomorphic to $ K_{3,3} $. Thus there exists a constant $ C $ such that for every $ n = q^3 - q^2 $ where $ q $ is a prime power
+		\[
+		\mathrm{ex}(n, K_{3,3}) \geqslant \frac{1}{2}n^{5/3} + \frac{1}{4}n^{4/3} + C.
+		\]
+		It is worthwhile to note that the upper bound of F\"{u}redi  is $ \mathrm{ex}(n, K_{3,3}) \leqslant \frac{1}{2}n^{5/3} + n^{4/3} + 3n $.
+	\end{theorem}
+		{\bf Proof:} The statement of Theorem 1 is a direct consequence of the following: if $ (D_1, d_1) $, $ (D_2, d_2) $, $ (D_3, d_3) $ are distinct elements of $ V(H) $, then the system of equations
+		\[
+		\begin{cases}
+			N(X + D_1) = x d_1 \\
+			N(X + D_2) = x d_2 \\
+			N(X + D_3) = x d_3
+		\end{cases} \tag{4}
+		\]
+		has at most two solutions $ (X, x) \in GF(q^2) \times GF(q)^* $.
+		
+		Observe that if the system has at least one common solution $ (X, x) $, then
+		\begin{itemize}
+			\item[(i)] $ X \neq -D_i $ for any $ i = 1, 2, 3 $ and
+			\item[(ii)] $ D_i \neq D_j $ if $ i \neq j $.
+		\end{itemize}
+		The latter is true, because if $ D_i = D_j $, then the presence of a common neighbor implies $ d_i = d_j $.
+	Then
+			\[
+		\begin{cases}
+			N((X + D_1)/(X+D_3)) = d_1/d_3 \\
+			N((X + D_2)/(X+D_3)) = d_2/d_3 
+		\end{cases} 
+		\]
+		Meanwhile
+			\[
+		\begin{cases}
+			N(\frac{(X + D_1)}{(X+D_3)(D_1-D_3)}) = \frac{d_1}{d_3}\frac{1}{N(D_1-D_3)}\\
+			N(\frac{(X + D_2)}{(X+D_3)(D_2-D_3)}) = \frac{d_1}{d_2}\frac{1}{N(D_2-D_3)}
+		\end{cases} 
+		\]
+		We have
+		\[
+		N\left(\frac{1}{X+D_3}+\frac{1}{D_i-D_3}\right)=\frac{d_i}{d_3}\frac{1}{N(D_i-D_3)}
+		\]
+ Then we can substitute $ Y = 1/(X + D_3) $, $ A_i = 1/(D_i - D_3) $ and $ b_i = d_i/(d_3N(D_i - D_3)) $ and obtain the following two equations,
+		\begin{align*}\tag{5}
+			&N(Y + A_1) = (Y + A_1)(Y^q + A_1^q) = b_1 	\\		
+			&N(Y + A_2) = (Y + A_2)(Y^q + A_2^q) = b_2,
+		\end{align*}
+		where we used the fact that $ (A + B)^q = A^q + B^q $ for all $ A, B $ in $ GF(q^2) $. We need the following simple lemma.
+		
+		\begin{lemma}
+			Let $ K $ be a field and $ a_{ij}, b_i \in K $ for $ 1 \leqslant i, j \leqslant 2 $ such $ a_{1j} \neq a_{2j} $. Then the system of equations
+			\begin{align*}
+				(x_1 - a_{11})(x_2 - a_{12}) &= b_1, \\
+				(x_1 - a_{21})(x_2 - a_{22}) &= b_2\tag{6}
+			\end{align*}
+			has at most two solutions $ (x_1, x_2) \in K^2 $.
+		\end{lemma}
+		{\bf Proof:}
+			Subtracting the first equation from the second we get
+			\[
+			(a_{11} - a_{21})x_2 + (a_{12} - a_{22})x_1 + a_{21}a_{22} - a_{11}a_{12} = b_2 - b_1.
+			\]
+			Here we can express $ x_1 $ in terms of a linear function of $ x_2 $, since $ a_{12} \neq a_{22} $. Substituting this back into one of two equations of (6) we obtain a quadratic equation in $ x_2 $ with a nonzero leading coefficient (since $ a_{11} \neq a_{21} $). This has at most two solutions in $ x_2 $ and each one determines $ x_1 $ uniquely.\hfill$\square$
+			
+			We can apply the lemma with $K=GF(q^2)$, $ x_1 = Y $, $ x_2 = Y^q $, $ a_{11} = -A_1 $, $ a_{12} = -A_1^q $, $ a_{21} = -A_2 $, $ a_{22} = -A_2^q $. The conditions of the lemma hold since $ -A_1^q = a_{12} = a_{22} = -A_2^q $ would mean $ A_1 = A_2 $, which is impossible by (ii). Hence the system of Eq. (5) has at most two solutions in $ Y $. These solutions are in one-to-one correspondence with the solutions $ (X, x) $ of the equations (4), so Theorem \ref{alonthm} is proved. \hfill$\square$
+\section{The general projective norm-graphs}
+Now we are ready to define the improved norm-graph $ H = H(q, s) $ for any $ s > 2 $. Let $ V(H) = GF(q^{s-1}) \times GF(q)^* $. Two distinct $ (A, a) $ and $ (B, b) \in V(G) $ are adjacent if and only if $ N(A + B) = ab $, where the norm is understood over $ GF(q) $, that is, $ N(x) = x^{1 + q + \cdots + q^{s-2}} $. Note that $ |V(H)| = q^s - q^{s - 1} $. If $ (A, a) $ and $ (B, b) $ are adjacent, then $ (A, a) $ and $ B \neq -A $ determine $ b $. Thus $ H $ is regular of degree $ q^{s - 1} - 1 $. Note that 
+\[e(H)=\frac{q^{s - 1} - 1}{2}(q^s - q^{s - 1})=\theta(|V(H)|^{2-\tfrac{1}{s}}).\]
+
+\begin{lemma}
+	Let $ K $ be a field and $ a_{ij}, b_i \in K $ for $ 1 \leq i, j \leq s $ such that $ a_{i_1j} \neq a_{i_2j} $ if $ i_1 \neq i_2 $. Then the system of equations
+	\[\begin{aligned}
+		(x_1 - a_{11})(x_2 - a_{12}) \cdots (x_s - a_{1s}) &= b_1, \\
+		(x_1 - a_{21})(x_2 - a_{22}) \cdots (x_s - a_{2s}) &= b_2, \\
+		&\vdots \\
+		(x_1 - a_{s1})(x_2 - a_{s2}) \cdots (x_s - a_{ss}) &= b_s
+	\end{aligned}\]
+	has at most $ s! $ solutions $ (x_1, x_2, \ldots, x_s) \in K^s $.
+\end{lemma}
+\begin{theorem}
+	The graph $ H = H(q, s) $ contains no subgraph isomorphic to $ K_{s, (s - 1)! + 1} $.
+\end{theorem}
+\section{The upper bound of $C_{2k}$-free graph}
+\subsection{Background}
+\begin{itemize}
+	\item Bondy-Simonovits: $\ex(n,C_{2k})\le 20kn^{1+1/k}$ for all $n\gg k.$
+	\item Verstra\"ete: $\ex(n,C_{2k})\le 8(k-1)n^{1+1/k}$  for all $n\gg k.$
+	\item F\"uredi: $\ex(q^2+q+1,C_4)=\frac{1}{2}(q+1)^2q$ for all prime power $q\ge 16.$
+	\item Conjecture (Erd\H{o}s-Simonovits):  $\ex(n,C_{2k})=(\frac{1}{2}+o(1))n^{1+1/k}$. But it is not true.
+	\item Fur\"edi-Naor-Verstra\"ete: $0.5338n^{4/3}\le\ex(n,C_6)\le0.6272n^{4/3}.$
+	\item Lazebnik-Ustimenko-Woldar: $\ex(n,C_{10})\ge 0.5798n^{6/5}.$
+\end{itemize}
+
+\begin{theorem}[Pikhurko, 2010]\label{thm2k}
+	For all $ k \geq 2 $ and $ n \geq 1 $, we have
+	\[
+	\mathrm{ex}(n, C_{2k}) \leq (k - 1) n^{1+1/k} + 16(k - 1)n
+	\]
+\end{theorem}
+
+We define a $\Theta$-graph as a cycle of length at least 2k with a chord.
+
+\begin{lemma}[A--B path Lemma]\label{abpath}
+	Let $H$ be a $\Theta$-graph, and let $(A,B)$ be a non-trivial partition of $V(H)$. Then for any $\ell<n$, there is an $(A,B)$-path of length $\ell$ in $H$, unless $\ell$ is even and $H$ is bipartite with the partition $(A,B)$.
+\end{lemma}
+
+\begin{proof}
+	Let the cycle $C=(0,1,\dots,n - 1,0)$ with chord $(0,r)$. We take indices under modulus $n$. Denote $\chi:V(H)\to\{0,1\}$ by $\chi(i)=1$ for $i\in A$ and $\chi(i)=0$ for $i\in B$. Let 
+	$$P = \{p\in \mathbb{Z}/n \mid \forall i\in \mathbb{Z}/n, \chi(i)= \chi(i + p)\}.$$
+	So if $\ell\notin P$, we can find an $(A,B)$-path of length $\ell$ using only the edges of $C$. Therefore it suffices for us to consider $\ell\in P$.
+
+	Let $m\in P$ be the smallest positive integer in $P$. It can be easily shown that if $a,b\in P$, then $\gcd(a,b)\in P$. By the minimality of $m$, we know that $P=\{mi \mid i\in \mathbb{Z}/n\}$, therefore $m\mid n$, and if $\ell \in P$ then $\ell=km$, where $1\leq k\leq n/m-1$. Finally, $m\neq 1$, otherwise $(A,B)$ would be a trivial partition.
+
+	\vspace{-1em}
+	\paragraph{Case 1} Suppose $1<r\leq m$. Since $m + r - 1 \notin P$, there is some $-m<j\leq 0$ such that $\chi(j)\neq\chi(j + m + r - 1)=\chi(j + km + r - 1)$. Consider the path of length $km$:
+	$$(j,j + 1,\ldots,0,r,r + 1,\ldots,j + m + r - 1,\ldots,j + km + r - 1).$$ 
+	Note that $j+km+r-1<n+j$. This is an $(A,B)$-path of length $km=\ell$.
+
+	\vspace{-1em}
+	\paragraph{Case 2} Suppose $m<r<n - m$. For $-m<j<0$, we define 2 paths of length $m$: 
+	$$\begin{gathered}
+		P_j=(j,j + 1,\ldots,0,r,r - 1,\ldots,r - j - m + 1),\\
+		Q_j=(m + j,m + j - 1,\ldots,0,r,r + 1,\ldots,r - j - 1).
+	\end{gathered}$$
+
+	If either of them is an $(A,B)$-path, then we can extend it to an $(A,B)$-path of length $km (k\geq 1)$, by adding a subpath of length $m$ at a time, until the number of unused vertices in the two arcs is less than $m$. At this point $km\geq n-1-2(m-1)$, and by $m\mid n$ we have $km=n-m$. In summary, for any $1\leq k\leq n/m-1$, we can obtain an $(A,B)$-path of length $km$.
+
+	We may assume that $P_j$ and $Q_j$ are not $(A,B)$-paths for all $-m< j< 0$. Then we have 
+	$$\chi(r - j - m + 1)=\chi(j)=\chi(m + j)=\chi(r - j - 1), \text{for any} -m<j<0.$$
+	That is $\chi(i)=\chi(i + 2)$ for any $i$, so $m=2$, therefore $n$ is even, and the vertices of $C$ alternate between $A$ and $B$. If the chord $(0,r)$ is in the same part, we can check that $H$ contains $A$--$B$ paths of all possible lengths. Otherwise, the chord $(0,r)$ is between $A$ and $B$, then $H$ is bipartite with the partition $(A,B)$.
+
+	\vspace{-1em}
+	\paragraph{Case 3} $n - m\leq r<n - 1$. This case is the same as Case 1.
+\end{proof}
+
+\begin{lemma}\label{thetasublem}
+	Let $ k \geq 3 $. Any bipartite graph $H$ with $\delta(H)\geq k$ contains a $\Theta$-subgraph.
+\end{lemma}
+\begin{proof}
+	Take a longest path $ P=(x_1, \ldots, x_m) $ in $ H $, the endpoint $ x_1 $ has at least $ k $ neighbors in $ H $. By the maximality of $ P $, all of them lie on $ P $. So pick any $ k $ neighbors $ x_{i_1}, \ldots, x_{i_k} $ of $ x_1 $ where $ i_1 < \cdots < i_k $. Any two neighbors of $x_1$ are at least distance 2 apart on $P$ (since $H$ is bipartite). Thus $ i_k \geq 2k $ and the subpath of $ P $ between $ x_1 $ and $ x_{i_k} $ together with the edges $ x_1 x_{i_2} $ and $ x_1 x_{i_k} $ forms the required $ \Theta $-subgraph.
+\end{proof}
+
+\subsection{Proof of Theorem \ref{thm2k}}
+Suppose for the sake of contradiction that some $ C_{2k} $-free graph $ G $ on $ n $ vertices violates Theorem \ref{thm2k}. As is well known (see Graph Theory \textit{Bondy \& Murty}, Theorem 2.5), every graph $ G $ contains a subgraph $H$ with $\delta(H)\geq d(G)/2=e(G)/n$. So take any subgraph $H\subseteq G$ with
+\[
+\delta(H)\geq \delta := \frac{e(G)}{n} \geq (k-1) n^{1/k} + 16(k-1).
+\]
+
+Fix an arbitrary vertex $ x $ in $ H $. Let $ V_i $ consist of those vertices of $ H $ that are at distance $ i $ (with respect to the graph $ H $) from $ x $, thus $ V_0 = \{ x \} $ and $ V_1 = N(x) $. For any $ i \geq 0 $, let $ v_i = |V_i| $ and let $H_i = H[V_i, V_{i+1}]$ be the bipartite subgraph of $ H $ induced by the disjoint sets $ V_i $ and $ V_{i+1} $.
+\begin{claim}
+	For $ 1 \leq i \leq k - 1 $, neither of the graphs $ H[V_i] $ and $ H_i $ contains a $ \Theta $-subgraph that is bipartite.
+\end{claim}
+
+\begin{proof}[Proof of Claim]
+Suppose on the contrary that there exists a bipartite $ \Theta $-subgraph $ F \subseteq H[V_i] $, and let $ Y \cup Z $ be the bipartition of $ F $. Let $ T \subseteq H $ be a breadth-first search tree in $ H $ with the root $ x $. Let $ y $ be the farthest vertex from $ x $ in $T$, for which every vertex in $Y$ is a $ T $-descendant of $ y $. The paths inside $ T $ that from $ y $ to $ Y $ branch at $ y $. Pick one such branch, defined by some child $ z $ of $ y $, and let $ A $ be the set of the $ T $-descendants of $ z $ that lie in $ Y $, and $ B = (Y \cup Z) \setminus A $. Since $ Y \setminus A \neq \emptyset $ (by the definition of $y$ and $z$), $ B $ is not an independent set of $ F $.
+
+Let $ \ell $ be the distance between $ x $ and $ y $. We have $ \ell < i $ and $ 2k - 2i + 2\ell < 2k \leq v(F) $. By Lemma \ref{abpath} we can find a path $ P \subseteq F $ of length $ 2k - 2i + 2\ell $ that starts in some $ a \in A $ and ends in $ b \in B $. Since the length of $ P $ is even, we have $ b \in Y $. Let $ P_a $ and $ P_b $ be the unique paths in $ T $ that connect $ y $ to respectively $ a $ and $ b $. They intersect only in the vertex $ y $ since $ P_a $ starts with the edge $ yz $ while $ P_b $ uses some different child of $ y $. Also, each of these paths has length $ i - \ell $. Therefore the disjoint union of the paths $ P $, $ P_a $, and $ P_b $ forms a $ 2k $-cycle in $ H $, which gives a contradiction.
+
+The same proof (where we let $ Y = V(F) \cap V_i $) works for $ H_i = H[V_i, V_{i+1}] $.	
+\end{proof}
+
+For any $k\geq 3$ and $1\leq i \leq k-1$, the bipartite subgraph $H_i$ contains a subgraph $F$ satisfying $d(H_i)\leq 2\delta(F)$. By Lemma \ref{thetasublem} we have $\delta(F)\leq k-1$, which implies $d(H_i)\leq 2(k-1)$. For $H[V_i]$, it has a bipartite subgraph with at least half the edges (Theorem 2.4, \textit{Ibid.}), and similarly we have $d(H[V_i])\leq 4(k-1)$.
+
+If $ k = 2 $, then $ H[V_1] $ has no path of length 2 and no vertex of $ V_2 $ can send more than one edge to $ V_1 $, so we have 
+\[
+d(H[V_i])\leq 4(k-1), d(H_i)\leq 2(k-1), \forall k\geq 2. \tag{9}
+\]
+
+\vspace{0.6em}
+Define $ \varepsilon = 4(k - 1)^2 / \delta $. Let us show inductively on $ i = 0, 1, \ldots, k - 1 $ that 
+\[
+e(H_i) \leq (k - 1 + \varepsilon) v_{i+1}, % \leq (k-1)\left(1+\frac{4}{n^{1/k}+16}\right)v_{i+1}
+\]
+which bounds the average degree of the vertices in $ V_{i+1} $ into $ V_i $. This is true for $ i = 0 $ since each vertex of $ V_1 $ sends only one edge to $ V_0 $. Suppose that we want to prove the inequality above for some $ i > 0 $. By (9) and the inductive assumption, 
+\[
+\begin{aligned}
+	e(H_i) &= \sum_{y \in V_i} d_{V_{i+1}}(y) = \sum_{y \in V_i} [d(y)-d_{V_i}(y)-d_{V_{i-1}}(y)]\geq \left(\sum_{y \in V_i} (\delta-d(H[V_i]))\right) - e(H_{i-1})\\
+	&\geq (\delta - (4k - 4) - (k - 1 + \varepsilon)) v_i = (\delta - 5k + 5 - \varepsilon) v_i.
+\end{aligned}
+\]
+Thus the average degree of the vertices of $ V_i $ with respect to $ H_i $ is at least $ \delta - 5k + 5 - \varepsilon \geq 2k - 2 $. Here we used the facts that 
+\[
+\delta \geq 16(k - 1) \quad \text{and} \quad \varepsilon \leq \frac{k - 1}{4}.\tag{10}
+\]
+In particular, $ V_{i+1} \neq \emptyset $. In order to satisfy the second inequality in (9), it must be the case that the average $ V_i $-degree of a vertex in $ V_{i+1} $ is at most $ 2k - 2 $, that is, $ e(H_i) \leq (2k - 2) v_{i+1} $. Thus we have 
+\[
+v_i \leq \frac{e(H_i)}{\delta - 5k + 5 - \varepsilon} \leq \frac{2k - 2}{\delta - 5k + 5 - \varepsilon} v_{i+1}.
+\]
+By (9) we conclude that 
+\[
+\frac{2e(H_i)}{\left(1 + \frac{2k - 2}{\delta - 5k + 5 - \varepsilon}\right) v_{i+1}} \leq \frac{2e(H_i)}{v_{i+1} + v_i} = d(H_i) \leq 2k - 2,
+\]
+therefore
+$$\frac{e(H_i)}{v_{i+1}}\leq (k-1)\left(1+\frac{2(k-1)}{\delta-5k+5-\varepsilon}\right)\leq k-1+\frac{2(k-1)^2}{\delta-5.25(k-1)}\leq k-1+\frac{4(k-1)^2}{\delta}\leq k-1+\varepsilon$$
+which implies the desired bound.
+
+We conclude that for each $ i = 0, \ldots, k - 1 $ we have 
+\[
+\frac{v_{i+1}}{v_i} = \frac{v_{i+1}}{e(H_i)} \cdot \frac{e(H_i)}{v_i} \geq \frac{\delta - 5k + 5 - \varepsilon}{k - 1 + \varepsilon} \geq \frac{\delta}{k - 1 + 4\varepsilon},
+\]
+where the last inequality follows again from (10). Since $ \delta \geq (k - 1) n^{1/k} $, we have 
+\[
+n \geq v(H) \geq v_k \geq \left( \frac{\delta}{k - 1 + 4\varepsilon} \right)^k \geq \left( \frac{e(G)/n}{k - 1 + 16(k - 1) n^{-1/k}} \right)^k,
+\]
+implying the desired upper bound on $ e(G) $ (that is, a contradiction). This finishes the proof of theorem \ref{thm2k}.\hfill$\square$
+
+\section{Tur\'an number of $C_{2k+1}$}
+We already know, by the Erd\"os-Stone-Simonovits theorem, that $\ex(n, C_{2k+1})\approx n^2/4$. Here we will use the so-called stability approach to prove that, for $n$ sufficiently large, $\ex(n, C_{2k+1}) = \lfloor n^2/4 \rfloor$. The idea behind the stability approach is to show that a $C_{2k+1}$-free graph with roughly the maximal number of edges is approximately bipartite. This will be the first lemma below. Then one uses this approximate structural information to prove an exact result. This will be the theorem.
+
+\begin{lemma}
+	For every natural number $k \geq 2$ and $\varepsilon>0$, there exists $\delta>0$ and a natural number $n_0$ such that, if $G$ is a $C_{2k+1}$-free graph on $n \geq n_0$ vertices with at least $(\frac{1}{4}-\delta)n^2$ edges, then $G$ may be made bipartite by removing at most $\varepsilon n^2$ edges.
+\end{lemma}
+\begin{proof}
+	We will prove the result for $\delta=\varepsilon^2/100$ and $n$ sufficiently large. We begin by finding a subgraph $G'$ of $G$ with large minimum degree. We do this by deleting vertices one at a time, forming graphs $G=G_0, G_1, \dots, G_\ell$, at each stage removing a vertex with degree less than $\frac{1-4\sqrt{\delta}}{2} v(G_\ell)$, should it exist. By doing this, we delete at most $4\sqrt{\delta} n$ vertices. Otherwise, we would have a $C_{2k+1}$-free graph $G'$ on $n'=(1-4\sqrt{\delta})n$ vertices with at least
+
+	$$\begin{aligned}
+		e(G') &> e(G)-\sum_{i=n'+1}^{n} \frac{1-4\sqrt{\delta}}{2} i \geq \left(\frac{1}{4}-\delta\right)n^2-\frac{1-4\sqrt{\delta}}{2}\left[\binom{n+1}{2}-\binom{n'+1}{2}\right]\\
+		&= \left(\frac{1}{4}-\sqrt{\delta}\right)(n'^2+n'-n)+(\sqrt{\delta}-\delta)n^2\\
+		&\geq \left(1-4\sqrt{\delta}+\frac{4(\sqrt{\delta}-\delta)}{(1-4\sqrt{\delta})^2}\right)\frac{n'^2}{4}\geq (1+\delta)\frac{n'^2}{4}
+	\end{aligned}$$
+
+	But, by the Erd\"os-Stone-Simonovits theorem, for $n$ sufficiently large $G'$ will therefore contain a copy of $C_{2k+1}$, so we've reached a contradiction. We therefore have a subgraph $G'$ with $n'\geq (1-4\sqrt{\delta})n$ vertices and minimum degree $\delta(G')\geq \frac{1-4\sqrt{\delta}}{2}n'$.
+
+	Since $\ex(n, C_{2k}) = o(n^2)$, we know that for $n$ (and therefore $n'$) sufficiently large, the graph $G'$ will contain a cycle of length $2k$. Let $a_1, a_2 ,\dots, a_{2k}$ be such a cycle. Note that $N(a_1)$ and $N(a_2)$ cannot intersect, for otherwise there would be a cycle of length $2k+1$. Moreover, each of the two neighborhoods must contain a small number of edges. Indeed, if $N(a_1)$ contained more than $4kn'$ edges, then our result from Lecture 2 on extremal numbers for trees would imply that there was a path of length $2k$ in $N(a_1)$. But then the endpoints could be joined to $a_1$ to give a cycle of length $2k+1$. Therefore, we have two large disjoint vertex sets $N(a_1)$ and $N(a_2)$, each of size at least $\frac{1-4\sqrt{\delta}}{2}n'\geq \frac{1-8\sqrt{\delta}}{2}n$ such that each contains at most $4kn'$ edges. We can make the graph bipartite by deleting all the edges within $N(a_1)$ and $N(a_2)$ and all of the edges which have one end in the complement of these two sets. In total, this is at most $8kn' + 8\sqrt{\delta}n^2$ edges. Therefore, for $n$ sufficiently large and $\delta=\varepsilon^2/100$, we will have deleted at most $\varepsilon n^2$ edges, which gives the required result.
+\end{proof}
+
+\begin{theorem}
+	For $n$ sufficiently large, $\ex(n, C_{2k+1})=\lfloor n^2/4 \rfloor$.
+\end{theorem}
+\begin{proof}
+	Let $G$ be a $C_{2k+1}$-free graph on n vertices with the maximum number of edges. It will have at least $\lfloor n^2/4 \rfloor$ edges. Note that it is sufficient to prove the result in the case where $G$ has minimum degree $\delta(G)\geq \frac{1-4\sqrt{\varepsilon}}{2}n$. For suppose that we knew the result under this assumption for all $n \geq n_0$. As in the previous lemma, we form a sequence of graphs $G=G_0, G_1, \dots, G_\ell$. If there is a vertex in $G_\ell$ of degree less than $\frac{1-4\sqrt{\varepsilon}}{2} v(G_\ell)$, we remove it, forming $G_{\ell+1}$. This process must stop before we reach a graph $G'$ with $n' = (1 - 4\sqrt{\varepsilon})n$ vertices. Otherwise, we would have a graph with $n'$ vertices and more than $(1+\varepsilon)\frac{n'^2}{4}$ edges. It would therefore, for n sufficiently large, contain a copy of $C_{2k+1}$, which would be a contradiction. When we reach the required graph, we will have a graph with $n' > (1 - 4\sqrt{\varepsilon})n$ vertices, minimum degree at least $\frac{1-4\sqrt{\varepsilon}}{2} n'$ and more than $\lfloor n^2/4 \rfloor$ edges, so we will have a contradiction if the removal process begins at all. Hence, we may assume that the minimum degree of G at least $\frac{1-4\sqrt{\varepsilon}}{2} n$.
+
+	By the previous lemma, we know that $G$ is approximately bipartite between two sets of size roughly $n/2$. Consider a bipartition $V (G) = A\cup B$ such that $e(A)+e(B)$ is minimised. Then $e(A)+e(B) < \varepsilon n^2$, where $\varepsilon$ may be taken to be arbitrarily small provided n is sufficiently large. We may assume that $A$ and $B$ have size $\frac{1}{2}\pm \sqrt{\varepsilon}n$. Otherwise, $e(G) < |A||B| + \varepsilon n^2 < n^2/4$ , contradicting the choice of $G$ as having maximum size. Let $d_A(x)=|A\cap N(x)|, d_B(x)=|B\cap N(x)|$ for any vertex $x$. Note that for any $a\in A, d_A(a)\leq d_B(a)$. Otherwise, we could improve the partition by moving $a$ to $B$. Similarly, $d_B(b)\leq d_A(b)$ for any $b\in B$.
+
+	Let $c=2\sqrt{\varepsilon}$. We claim that there are no vertices $a\in A$ with $d_A(a)\geq cn$. If $d_A(a)\geq cn$, then also $d_B(a) \geq cn$. Moreover, $A\cap N(a)$ and $B\cap N(a)$ span a bipartite graph with no path of length $2k - 1$ and, therefore, there are at most $4kn$ edges between them. For n sufficiently large, this gives $(cn)^2 - 4kn > e(A) + e(B)$ missing edges between $A$ and $B$. Therefore, $e(G) < |A||B| \leq n^2/4$ , a contradiction. Similarly, there are no vertices $b\in B$ with $d_B(b) \geq cn$. Now suppose that there is an edge in $A$, say $aa'$. Then
+	$$|N_B(a)\cap N_B(a')|> d(a)-cn+d(a')-cn-|B|>\left(\frac{1}{2}-9\sqrt{\varepsilon}\right)n.$$
+	Let $A'=A\setminus\{a,a'\}$ and $B'=N_B(a)\cap N_B(a')$. There is no path of length $2k - 1$ of the form $b_1a_1b_2a_2 \dots b_{k-1}a_{k-1}b_k$ between $A'$ and $B'$. But this implies that there is no path of any type of length $2k$ (remember that since the graph is bipartite a path must alternate sides). But this implies that the number of edges between $A'$ and $B'$ is at most $4kn$. This then implies that the number of edges in the graph is at most
+	$$e(A', B') + e(A\setminus A', V (G)) + e(V (G), B\setminus B') \leq 4kn + 2n + 10\sqrt{\varepsilon}n^2,$$
+	a contradiction for $n$ large.
+
+	More generally, there is a result of Simonovits which shows that if $H$ is a graph with $\chi(H) = t$ and $\chi(H\setminus e) < t$, for some edge $e$, then $\ex(n, H) = \ex(n, K_t)$ for $n$ sufficiently large. We say that such graphs are colour-critical. It is easy to verify that odd cycles are colour-critical.
+\end{proof}
+\end{document}

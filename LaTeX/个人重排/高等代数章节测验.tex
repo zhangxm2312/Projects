@@ -1,0 +1,164 @@
+\documentclass{exam-zh}
+\usepackage{array}
+\examsetup{
+page/size = a3paper,
+solution/show-solution = show-stay,
+}
+
+\title{高等代数第五章章节测验}
+
+\begin{document}
+\maketitle
+\information{
+    学号\underline{\hspace{6em}},
+    姓名\underline{\hspace{6em}},
+}
+
+\renewcommand\arraystretch{1.5}
+\begin{center}
+\begin{tabular}{|c|>{\centering\arraybackslash}p{0.07\textwidth}|>{\centering\arraybackslash}p{0.07\textwidth}|>{\centering\arraybackslash}p{0.07\textwidth}|>{\centering\arraybackslash}p{0.07\textwidth}|>{\centering\arraybackslash}p{0.07\textwidth}|}
+    \hline
+    题号 & 一 & 二 & 三 & 四 & 总分\\
+    \hline
+    满分 & 10 & 20 & 40 & 30 & 100 \\
+    \hline
+    得分 &  &  &  &  & \\
+    \hline
+\end{tabular}
+\end{center}
+
+\raggedbottom
+\section{填空题 (本题共2小题, 每题5分, 共10分)}
+\begin{question}
+    多项式$x^3-6x^2+15x-14$的有理根是\underline{\hspace{4em}}.
+\end{question}
+\begin{solution}
+    2
+\end{solution}
+\begin{question}
+    若$(x-2)^2\mid Ax^4+Bx^2+16$, 则$4A+B=$\underline{\hspace{4em}}.
+\end{question}
+\begin{solution}
+    -4
+\end{solution}
+
+\section{辨析题 (本题共4小题, 每题5分, 其中判断正误2分, 给出理由3分, 共20分)}
+\begin{question}
+    对于多项式$f(x)$, 若$\alpha$是$f'(x)$的$m$重根, 则$\alpha$是$f(x)$的$m+1$重根.
+\end{question}
+\begin{solution}
+    错误.取$f(x)=x^{m+1}+1, f'(x)=(m+1)x^m, 0$为$f'$的$m$重根但不是$f$的$m+1$重根.
+\end{solution}
+\begin{question}
+    $x^2+1$在有理数域上可约.
+\end{question}
+\begin{solution}
+    错误.若$x^2+1$在$\mathbb{Q}$上可约则仅能分解为一次因式的积,且其有理根仅可能为$\pm 1$.代入计算发现均不是根,从而不可约.
+\end{solution}
+\begin{question}
+    $x^4-8x^3+12x^2+2$在有理数域上可约.
+\end{question}
+\begin{solution}
+    错误.取$p=2$用Eisenstein判别法,$2\mid -8, 2\mid 12, 2\mid 2, 2^2\nmid 2$,从而知其不可约.
+\end{solution}
+\begin{question}
+    $x^6+x^3+1$在有理数域上可约.
+\end{question}
+\begin{solution}
+    错误.代换$x=t+1$,故原式$=(t+1)^6+(t+1)^3+1=t^6+6 t^5+15 t^4+21 t^3+18 t^2+9 t+3$.用Eisenstein判别法(取$p=3$)知其在$\mathbb{Q}$上不可约.
+\end{solution}
+
+\newpage
+\section{计算题 (本题共4小题, 每题10分, 共40分)}
+\begin{problem}
+    把$x^5$表示为$x-1$的方幂和形式,即表示为$c_0+c_1(x-1)+\cdots$的形式.
+\end{problem}
+\begin{solution}
+    $$(x-1)^5+5 (x-1)^4+10 (x-1)^3+10 (x-1)^2+5 (x-1)+1$$
+\end{solution}
+\vspace{10em}
+\begin{problem}
+    求多项式$f(x)=x^4+x^3-3x^2-4x-1$与$g(x)=x^3+x^2-x-1$的最大公因式.
+\end{problem}
+\begin{solution}
+    $$\begin{gathered}
+        r(x)=f(x)-x g(x)=-2x^2-3x-1,\\
+        r_1(x)=g(x)-\frac{1-2x}{4}r(x)=-\frac{3}{4}(x-1),\\
+        r_2(x)=r(x)-\frac{8x+4}{3}r_1(x)=0
+    \end{gathered}$$
+    从而$(f(x),g(x))=x-1$.
+\end{solution}
+\vspace{10em}
+\begin{problem}
+    求使得多项式$f(x)=x^3-3x^2+tx-1$有重根的$t$值.
+\end{problem}
+\begin{solution}
+    $f'(x)=3x^2-6x+t$,从而
+    $$r(x)=f(x)-\frac{x-1}{3}f'(x)=\frac{t-3}{3}(2x+1),$$
+    因此$t=3$时$r(x)=0, f'(x)\mid f(x)$, 从而$f(x)$有重根. 若否, 则取
+    $$r_1(x)=f'(x)-\frac{6x-15}{4}(2x+1)=t+\frac{15}{4},$$
+    从而仅当$t=-15/4$时$r_1(x)=0, (f(x),f'(x))=2x+1$,从而$f(x)$有重根.因此答案为$t=3$或$t=-15/4$.
+\end{solution}
+\vspace{10em}
+
+\newpage
+\begin{problem}
+    求多项式$f(x)=x^3+px+q$有重根的条件.
+\end{problem}
+\begin{solution}
+    $p=q=0$时$f(x)=x^3$显然有重根; $p=0, q\neq 0$时$f(x)=x^3+q$没有重根; $p\neq 0, q=0$时$f(x)=x(x^2+p)$没有重根,因此下设$p\neq 0, q\neq 0$.
+
+    由于$f'(x)=3x^2+p$,因此作带余除法
+    $$r(x)=f(x)-\frac{x}{3}f'(x)=\frac{2p}{3}\left(x+\frac{3q}{2p}\right), r_1(x)=f'(x)-\left(3 x-\frac{9 q}{2 p}\right)\left(x+\frac{3q}{2p}\right)=\frac{27 q^2}{4 p^2}+p,$$
+    从而$r_1(x)=0$,即$4p^3+27q^2=0$时$(f(x),f'(x))\neq 1$,即$f(x)$有重根.而$p=q=0$时同样满足该式,因此$4p^3+27q^2=0$时$f(x)$有重根.
+\end{solution}
+\vspace{20em}
+
+\section{证明题 (本题共3小题, 每题10分, 共30分)}
+\begin{problem}
+    $p(x)$是次数大于0的多项式,若对于任意多项式$f(x), g(x), p(x)\mid f(x)g(x)$可推出$p(x)\mid f(x)$或$p(x)\mid g(x)$,证明$p(x)$是不可约多项式.
+\end{problem}
+\begin{solution}
+    若$p$可被分解为次数小于$\deg p$的多项式$q,r$之积,则$p\mid qr=p$但$p\nmid q, p\nmid r$,矛盾.
+\end{solution}
+\vspace{20em}
+
+\newpage
+\begin{problem}
+    对于多项式$f_1,\dots,f_m,g_1,\dots,g_n$,若$(f_i,g_j)=1 (i=1,\dots,m; j=1,\dots,n)$,证明$(f_1 \dots f_m, g_1 \dots g_n)=1$.
+\end{problem}
+\begin{solution}
+    首先证明$n=1$的情形,即$\forall i=1,\dots,m, (f_i,g)=1$则有$(f_1\dots f_m,g)=1$.对$m$归纳,$m=1$时已证,下设$<m$的情形已得证,而$(f_1\dots f_{m-1},g)=(f_m,g)=1\iff (f_1\dots f_m,g)=1$(书上推论5.2.12),从而得证.
+
+    再对原命题考虑,记$f=f_1\dots f_m$,由上知$(f,g_1)=\dots=(f,g_n)=1$,从而又有$(f,g_1\dots g_n)=1$.
+\end{solution}
+\vspace{20em}
+\begin{problem}
+    证明多项式$\displaystyle\sum_{k=0}^{n}\frac{x^k}{k!}$没有重根.
+\end{problem}
+\begin{solution}
+    设$\displaystyle f(x)=\sum_{k=0}^{n}\frac{x^k}{k!}$,则$\displaystyle f'(x)=\sum_{k=0}^{n-1}\frac{x^k}{k!}$,因此
+    $$(f(x),f'(x))=(f(x),f(x)-f'(x))=(f(x),x^n/n!)=(f(x),x^n)$$
+    而$f(0)=1\neq 0$, 因此$x\nmid f(x)$,从而$(f(x),x^n)=(f(x),f'(x))=1$,即$f(x)$没有重根.
+\end{solution}
+\vspace{20em}
+
+\end{document}
+
+% \documentclass[11pt]{article}
+% % 用ctex显示中文并用fandol主题
+% \usepackage[fontset=fandol]{ctex}
+% \setmainfont{CMU Serif} % 能显示大量外文字体
+% \xeCJKsetup{CJKmath=true} % 数学模式中可以输入中文
+
+% % AMS全家桶,\DeclareMathOperator依赖之
+% \usepackage{amsmath,amssymb,amsthm,amsfonts,amscd}
+% \usepackage{pgfplots,tikz,tikz-cd} % 用来画交换图
+% \usepackage{bm,mathrsfs} % 粗体字母(含希腊字母)和\mathscr字体
+% \everymath{\displaystyle} % 全体公式为行间形式
+% \usepackage[margin=2cm,landscape,a3paper,twocolumn]{geometry}
+% \title{高等代数第五章章节测验}
+% \author{author}
+% \begin{document}
+% \maketitle
+% \end{document}

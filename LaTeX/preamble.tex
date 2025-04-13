@@ -1,19 +1,19 @@
-%用ctex显示中文并用fandol主题
+% 用ctex显示中文并用fandol主题
 \usepackage[fontset=fandol]{ctex}
-\setmainfont{CMU Serif} %能显示大量外文字体
-\xeCJKsetup{CJKmath=true} %数学模式中可以输入中文
+\setmainfont{CMU Serif} % 能显示大量外文字体
+\xeCJKsetup{CJKmath=true} % 数学模式中可以输入中文
 
-%AMS全家桶,\DeclareMathOperator依赖之
+% AMS全家桶,\DeclareMathOperator依赖之
 \usepackage{amsmath,amssymb,amsthm,amsfonts,amscd}
-\usepackage{pgfplots,tikz,tikz-cd} %用来画交换图
-\usepackage{bm} %粗体字母(含希腊字母)
-\everymath{\displaystyle} %全体公式为行间形式
+\usepackage{pgfplots,tikz,tikz-cd} % 用来画交换图
+\usepackage{bm,mathrsfs} % 粗体字母(含希腊字母)和\mathscr字体
+\everymath{\displaystyle} % 全体公式为行间形式
 
-%纸张上下左右页边距
+% 纸张上下左右页边距
 \usepackage[a4paper,left=1cm,right=1cm,top=1.5cm,bottom=1.5cm]{geometry}
-%生成书签和目录上的超链接
+% 生成书签和目录上的超链接
 \usepackage[colorlinks=true,linkcolor=blue,filecolor=blue,urlcolor=blue,citecolor=cyan]{hyperref}
-%各种列表环境的行距
+% 各种列表环境的行距
 \usepackage{enumitem}
 \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
 \setenumerate[2]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
@@ -23,96 +23,97 @@
 \setlength\belowdisplayskip{2pt}
 \setlength\abovedisplayskip{2pt}
 
-%左右配对符号
-\newcommand{\br}[1]{\!\left(#1\right)} %括号
-\newcommand{\cbr}[1]{\left\{#1\right\}} %大括号
-\newcommand{\abr}[1]{\left<#1\right>} %尖括号(内积)
-\newcommand{\bbr}[1]{\left[#1\right]} %中括号
-\newcommand{\abbr}[1]{\left(#1\right]} %左开右闭区间
-\newcommand{\babr}[1]{\left[#1\right)} %左闭右开区间
-\newcommand{\abs}[1]{\left|#1\right|} %绝对值
-\newcommand{\norm}[1]{\left\|#1\right\|} %范数
-\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor} %下取整
-\newcommand{\ceil}[1]{\left\lceil#1\right\rceil} %上取整
-%常用数集简写
-\newcommand{\R}{\mathbb{R}} %实数域
-\newcommand{\N}{\mathbb{N}} %自然数集
-\newcommand{\Z}{\mathbb{Z}} %整数集
-\newcommand{\C}{\mathbb{C}} %复数域
-\newcommand{\F}{\mathbb{F}} %一般数域
-\newcommand{\kfield}{\Bbbk} %域
-\newcommand{\K}{\mathbb{K}} %域
-\newcommand{\Q}{\mathbb{Q}} %有理数域
-\newcommand{\Pprime}{\mathbb{P}} %全体素数,或概率
-%范畴记号
+% 左右配对符号
+\newcommand{\br}[1]{\!\left(#1\right)} % 括号
+\newcommand{\cbr}[1]{\left\{#1\right\}} % 大括号
+\newcommand{\abr}[1]{\left<#1\right>} % 尖括号(内积)
+\newcommand{\bbr}[1]{\left[#1\right]} % 中括号
+\newcommand{\abbr}[1]{\left(#1\right]} % 左开右闭区间
+\newcommand{\babr}[1]{\left[#1\right)} % 左闭右开区间
+\newcommand{\abs}[1]{\left|#1\right|} % 绝对值
+\newcommand{\norm}[1]{\left\|#1\right\|} % 范数
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor} % 下取整
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil} % 上取整
+% 常用数集简写
+\newcommand{\R}{\mathbb{R}} % 实数域
+\newcommand{\N}{\mathbb{N}} % 自然数集
+\newcommand{\Z}{\mathbb{Z}} % 整数集
+\newcommand{\C}{\mathbb{C}} % 复数域
+\newcommand{\F}{\mathbb{F}} % 一般数域
+\newcommand{\kfield}{\Bbbk} % 域
+\newcommand{\K}{\mathbb{K}} % 域
+\newcommand{\Q}{\mathbb{Q}} % 有理数域
+\newcommand{\Pprime}{\mathbb{P}} % 全体素数,或概率
+% 范畴记号
 \newcommand{\Ccat}{\mathsf{C}}
-\newcommand{\Grp}{\mathsf{Grp}} %群范畴
-\newcommand{\Ab}{\mathsf{Ab}} %交换群范畴
-\newcommand{\Ring}{\mathsf{Ring}} %(含幺)环范畴
-\newcommand{\Set}{\mathsf{Set}} %集合范畴
-\newcommand{\Mod}{\mathsf{Mod}} %模范畴
-\newcommand{\Vect}{\mathsf{Vect}} %向量空间范畴
-\newcommand{\Alg}{\mathsf{Alg}} %代数范畴
-\newcommand{\Comm}{\mathsf{Comm}} %交换
-%代数集合
-\DeclareMathOperator{\Hom}{Hom} %同态
-\DeclareMathOperator{\End}{End} %自同态
-\DeclareMathOperator{\Iso}{Iso} %同构
-\DeclareMathOperator{\Aut}{Aut} %自同构
-\DeclareMathOperator{\Inn}{Inn} %内自同构
+\newcommand{\Grp}{\mathsf{Grp}} % 群范畴
+\newcommand{\Ab}{\mathsf{Ab}} % 交换群范畴
+\newcommand{\Ring}{\mathsf{Ring}} % (含幺)环范畴
+\newcommand{\Set}{\mathsf{Set}} % 集合范畴
+\newcommand{\Mod}{\mathsf{Mod}} % 模范畴
+\newcommand{\Vect}{\mathsf{Vect}} % 向量空间范畴
+\newcommand{\Alg}{\mathsf{Alg}} % 代数范畴
+\newcommand{\Comm}{\mathsf{Comm}} % 交换
+% 代数集合
+\DeclareMathOperator{\Hom}{Hom} % 同态
+\DeclareMathOperator{\End}{End} % 自同态
+\DeclareMathOperator{\Iso}{Iso} % 同构
+\DeclareMathOperator{\Aut}{Aut} % 自同构
+\DeclareMathOperator{\Inn}{Inn} % 内自同构
 % \DeclareMathOperator{\inv}{Inv}
-\DeclareMathOperator{\GL}{GL} %一般线性群
-\DeclareMathOperator{\SL}{SL} %特殊线性群
-\DeclareMathOperator{\GF}{GF} %Galois域
-%正体符号
-\renewcommand{\i}{\mathrm{i}} %本产生无点i
-\newcommand{\id}{\mathrm{id}} %恒等映射
-\newcommand{\e}{\mathrm{e}} %自然常数e
-\renewcommand{\d}{\mathrm{d}} %微分符号，本产生重音符号
-\newcommand{\D}{\partial} %偏导符号
+\DeclareMathOperator{\GL}{GL} % 一般线性群
+\DeclareMathOperator{\SL}{SL} % 特殊线性群
+\DeclareMathOperator{\GF}{GF} % Galois域
+% 正体符号
+\renewcommand{\i}{\mathrm{i}} % 本产生无点i
+\newcommand{\id}{\mathrm{id}} % 恒等映射
+\newcommand{\e}{\mathrm{e}} % 自然常数e
+\renewcommand{\d}{\mathrm{d}} % 微分符号，本产生重音符号
+\newcommand{\D}{\partial} % 偏导符号
 \newcommand{\diff}[2]{\frac{\d #1}{\d #2}}
 \newcommand{\Diff}[2]{\frac{\D #1}{\D #2}}
-%运算符(分析)
-\DeclareMathOperator{\Arg}{Arg} %辐角
-\DeclareMathOperator{\re}{Re} %实部
-\DeclareMathOperator{\im}{im} %像,虚部
-\DeclareMathOperator{\grad}{grad} %梯度
-\DeclareMathOperator{\lcm}{lcm} %最小公倍数
-\DeclareMathOperator{\sgn}{sgn} %符号函数
-\DeclareMathOperator{\conv}{conv} %凸包
-\DeclareMathOperator{\supp}{supp} %支撑
-\DeclareMathOperator{\Log}{Log} %广义对数函数
-\DeclareMathOperator{\card}{card} %集合的势
-\DeclareMathOperator{\Res}{Res} %留数
-%运算符(代数,几何,数论)
-\newcommand{\Span}{\mathrm{span}} %张成空间
-\DeclareMathOperator{\tr}{tr} %迹
-\DeclareMathOperator{\rank}{rank} %秩
-\DeclareMathOperator{\charfield}{char} %域的特征
-\DeclareMathOperator{\codim}{codim} %余维度
-\DeclareMathOperator{\coim}{coim} %余维度
-\DeclareMathOperator{\coker}{coker} %余维度
-\DeclareMathOperator{\Spec}{Spec} %留数
-\newcommand{\Obj}{\mathrm{Obj}} %对象类
-\newcommand{\Mor}{\mathrm{Mor}} %态射类
-\newcommand{\Cen}{C} %群/环的中心 或记\mathrm{Cen}
+% 运算符(分析)
+\DeclareMathOperator{\Arg}{Arg} % 辐角
+\DeclareMathOperator{\re}{Re} % 实部
+\DeclareMathOperator{\im}{im} % 像,虚部
+\DeclareMathOperator{\grad}{grad} % 梯度
+\DeclareMathOperator{\lcm}{lcm} % 最小公倍数
+\DeclareMathOperator{\sgn}{sgn} % 符号函数
+\DeclareMathOperator{\conv}{conv} % 凸包
+\DeclareMathOperator{\supp}{supp} % 支撑
+\DeclareMathOperator{\Log}{Log} % 广义对数函数
+\DeclareMathOperator{\card}{card} % 集合的势
+\DeclareMathOperator{\Res}{Res} % 留数
+% 运算符(代数,几何,数论)
+\newcommand{\Span}{\mathrm{span}} % 张成空间
+\DeclareMathOperator{\tr}{tr} % 迹
+\DeclareMathOperator{\rank}{rank} % 秩
+\DeclareMathOperator{\charfield}{char} % 域的特征
+\DeclareMathOperator{\codim}{codim} % 余维度
+\DeclareMathOperator{\coim}{coim} % 余维度
+\DeclareMathOperator{\coker}{coker} % 余维度
+\DeclareMathOperator{\Spec}{Spec} % 谱
+\DeclareMathOperator{\diag}{diag} % 谱
+\newcommand{\Obj}{\mathrm{Obj}} % 对象类
+\newcommand{\Mor}{\mathrm{Mor}} % 态射类
+\newcommand{\Cen}{C} % 群/环的中心 或记\mathrm{Cen}
 \newcommand{\opcat}{^{\mathrm{op}}}
-%简写
+% 简写
 \newcommand{\hyphen}{\textrm{-}}
-\newcommand{\ds}{\displaystyle} %行间公式形式
-\newcommand{\ve}{\varepsilon} %手写体ε
-\newcommand{\rev}{^{-1}\!} %逆
-\newcommand{\T}{^{\mathsf{T}}} %转置
-\renewcommand{\H}{^{\mathsf{H}}} %共轭转置
-\newcommand{\adj}{^\lor} %伴随
-\newcommand{\dual}{^\vee} %对偶
+\newcommand{\ds}{\displaystyle} % 行间公式形式
+\newcommand{\ve}{\varepsilon} % 手写体ε
+\newcommand{\rev}{^{-1}\!} % 逆
+\newcommand{\T}{^{\mathsf{T}}} % 转置
+\renewcommand{\H}{^{\mathsf{H}}} % 共轭转置
+\newcommand{\adj}{^\lor} % 伴随
+\newcommand{\dual}{^\vee} % 对偶
 \DeclareMathOperator{\lhs}{LHS}
 \DeclareMathOperator{\rhs}{RHS}
-\newcommand{\hint}[1]{{\small (#1)}} %提示
+\newcommand{\hint}[1]{{\small (#1)}} % 提示
 \newcommand{\why}{\textcolor{red}{(Why?)}}
-\newcommand{\tbc}{\textcolor{red}{(To be continued...)}} %未完待续
+\newcommand{\tbc}{\textcolor{red}{(To be continued...)}} % 未完待续
 
-%定理环境(随笔记形式更改)
+% 定理环境(随笔记形式更改)
 \newtheorem{definition}{定义}
 \newtheorem{remark}{注}
 \newtheorem{example}{例}

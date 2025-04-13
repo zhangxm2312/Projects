@@ -1,0 +1,225 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{ctex} %%%引入中文包
+\usepackage{pifont}
+\usepackage{pifont}
+\usepackage{graphicx}
+\usepackage{amsmath, amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{rotating}
+\usepackage{fancyhdr}
+\graphicspath{{./}{./figs/}}
+\usepackage[
+%showframe,
+%paperwidth=235mm,paperheight=280mm,
+top=15mm,
+bottom=30mm,
+left=25mm,right=25mm
+]{geometry}
+%\oddsidemargin=-10pt
+%\evensidemargin=-20pt
+\usepackage{CJK}
+
+\renewcommand{\baselinestretch}{1.5}
+\renewcommand{\arraystretch}{0.8}
+\newcommand{\D}{\displaystyle}
+\newcommand{\DF}[2]{\frac{\D#1}{\D#2}}
+\def\la{$\lambda$}
+\def \e{$\varepsilon$}
+\def \de{$\delta$}
+\def \tr{$\triangle$}
+\def \li{$\lim_{x \to x_0}$}
+\def \w{$\omega$}
+\def \R{$\mathbb{R}$}
+\def \p{$\partial$}
+\def \De{$\Delta$}
+\def\al{$\alpha$}
+\def\d {{$\rm d}$}
+\def\dx{$\d x$}
+\def\dy{$\d y$}
+\def\r{$\vec{r}$}
+\def\pinf{${+\infty$}}
+\def\k{$\kaishu$}
+\def\Int{$\D{\int}$}
+\def\q{\quad}
+\def\A{$\mathscr{A}$}
+\def\Lim{$\lim\limits$}
+\newcommand{\intt}[2]{\D{\int}_{#1}^{#2}}
+\def\theend{\hfill $\blacksquare$}
+\newcommand{\sm}{\sum\limits}
+\newcommand{\pian}[2]{\DF{\partial\,#1}{\partial\,#2}}
+
+
+
+%\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+	
+	
+	\fancyhf{}
+	
+	\cfoot{{\footnotesize《高等代数（下）》第4章单元测试试卷\quad 第\ \thepage \ 页\quad 共\ 4\ 页}}
+	
+	
+	
+	\vspace{0em}
+	\begin{center}
+		{\bf \Large 安徽大学2024-2025学年第二学期}
+		
+		\vspace{2mm}
+		
+		{\bf \Large {《高等代数（下）}》第4单元测试试卷}
+		
+		\vspace{5mm}
+		
+		{\large（ 闭卷 \quad 时间 120分钟）}
+		
+		\vspace{0.5cm}
+		
+		姓名$\underline{~~~~~~~~~~~~~~~~~~~~}$
+		学号$\underline{~~~~~~~~~~~~~~~~~~~~}$\\
+		\vspace{0.3cm}
+	\end{center}
+	\setlength{\parindent}{0pt}
+	{\bf 一、填空题}{(每小题5分, 共15分).}
+	\renewcommand{\arraystretch}{1.2}
+	\hfill
+	\begin{tabular}{|c|c|}
+		\hline
+		\makebox[2.5em]{得分} & \makebox[3.0em]{} \\
+		\hline
+	\end{tabular}
+	\renewcommand{\arraystretch}{1.0}
+	\vspace{0.1cm}
+	
+	1.  设 $ V$ 是数域$\mathbb{F}$ 上的一维空间，写出$ V$ 上所有的线性变换 $\underline{~~~~~~~~~~~~~~~}$.
+	
+	2. 十维向量空间$  V  $上的线性变换$  \varphi $ 在一组基下的表示矩阵为  $\boldsymbol{A}  $，已知齐次线性方程组 $ A x=0 $ 的解空间维数为 $3 $，则  $\operatorname{dim} \operatorname{Im} \varphi=\underline{~~~~~~~~~~~~~~~}$．
+	
+	
+	3.设 $ V$  是 $ n $维向量空间，则$V$上线性变换全体组成的向量空间的维数为 $\underline{~~~~~~~~~~~~~~~}$.
+	\vspace{0.1cm}
+	\renewcommand{\arraystretch}{0.8}
+	
+	{\bf 二、选择题}
+	{(每小题5分, 共15分).}
+	\renewcommand{\arraystretch}{1.2}
+	\hfill
+	\begin{tabular}{|c|c|}
+		\hline
+		\makebox[2.5em]{得分} & \makebox[3.0em]{} \\
+		\hline
+	\end{tabular}
+	\renewcommand{\arraystretch}{1.0}
+	
+	
+	\vspace{0.2cm}
+	4. 设  $\varphi$  是  $n$  维向量空间  $V$  上的线性变换, 适合下列条件的  $\varphi$  不是同构的是(\quad\quad\quad ).\\
+	(A) $\varphi$  是单映射; \ \ (B)  $\operatorname{dim} \operatorname{Im} \varphi=n$;\par
+	(C) $\varphi$  是一一对应; \ \ (D)  $\varphi$  适合条件  $\varphi^{n}=0$.\\
+	
+	5. 设  $n$  维向量空间  $V$  有一组基, 使得这组基的每个基向量生成的子空间都是  $V$  上线性变换  $\varphi$  的不变子空间, 则  $\varphi$  在这组基下的表示矩阵(\quad\quad\quad ).\par
+	(A) 必是可逆矩阵; \ \ (B)  必是上三角矩阵但不一定是对角矩阵;\ \ \par
+	(C) 必是下三角矩阵但不一定是对角矩阵; \ \ (D)  必是对角矩阵.\\
+	
+	
+	6. 下列条件不能保证  $n$  维向量空间  $V$  上的非零线性变换  $\varphi$  为可逆变换的是(\quad\quad\quad ).\par
+	(A)  $\varphi$  在  $V$  的某组基下的表示矩阵的行列式不为零; \ \  (B)   $\varphi$  在  $V$  的某组基下的表示矩阵是一个对称矩阵;\ \ \par
+	(C)  $\varphi$  将  $V$  的  $n$  个线性无关的向量变成  $n$  个线性无关的向量; \ \ (D) $\varphi$  没有非平凡不变子空间.\\
+	
+	\renewcommand{\arraystretch}{1.5}
+	
+	\vspace{0.2cm}
+	
+	%\vspace{0.1cm}
+	
+
+	
+	
+	{\bf 三、计算题}
+	{\CJKfamily{kai}(每小题10分, 共40分).}
+	\renewcommand{\arraystretch}{1.2}
+	\hfill
+	\begin{tabular}{|c|c|}
+		\hline
+		\makebox[2.5em]{得分} & \makebox[3.0em]{} \\
+		\hline
+	\end{tabular}
+	\renewcommand{\arraystretch}{1.0}\\
+
+	7.设线性空间$  V  $上的线性变换$  \varphi $ 在基$  \left\{e_{1}, e_{2}, e_{3}, e_{4}\right\}  $下的表示矩阵为$\boldsymbol{A}=\left(\begin{array}{cccc}1 & 0 & 2 & -1 \\0 & 1 & 4 & -2 \\2 & -1 & 0 & 1 \\2 & -1 & -1 & 2\end{array}\right)$,
+	$ U=L\left(e_{1}+2 e_{2}, e_{3}+e_{4}, e_{1}+e_{2}\right) $,求$U$的维数并证明$U$ 是 $ \varphi $ 的不变子空间．
+	
+
+
+	\vspace*{8cm}
+	
+	
+	
+	
+	
+	
+	
+	
+	8.设线性空间$ V $ 上的线性变换 $ \varphi$ 在基$\left\{e_{1}, e_{2}, e_{3}, e_{4}\right\} $下的表示矩阵为\\$\boldsymbol{A}=\left(\begin{array}{cccc}1 & 0 & 2 & 1 \\-1 & 2 & 1 & 3 \\1 & 2 & 5 & 5 \\2 & -2 & 1 & -2\end{array}\right)$\\ 求 $\varphi$ 的核空间与像空间（用基的线性组合来表示）．
+	
+	
+	
+	
+	\vspace*{9cm}
+	
+	9. 设$  V, W  $是数域$  P  $上的线性空间，$ \varphi: V \rightarrow W  $是线性映射且在$  V $ 的基  $\varepsilon_{1}, \varepsilon_{2}, \varepsilon_{3}, \varepsilon_{4}  $下的矩阵为$  A=\left\{\begin{array}{cccc}1 & 2 & 3 & 4 \\ 2 & 3 & 4 & 5 \\ 3 & 4 & 5 & 6\end{array}\right\}  $．求 $ P^{4} $ 的基  $\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4} , P^{3} $ 的基 $ \beta_{1}, \beta_{2}, \beta_{3} $ ，使得 $ \varphi$  在这两个基下
+	的矩阵形如
+	  $\left(\begin{array}{cc}I_{r} & O \\ O & O\end{array}\right) $ ．
+	
+	
+	
+	\vspace*{10cm}
+	
+	
+	10.设$  V  $是由数域$  \mathbb{F}  $上的二阶矩阵全体组成的向量空间，定义$  V $ 上的线性变换 $ \varphi  $如下：\\$\varphi(\boldsymbol{A})=\left(\begin{array}{ll}1 & 1 \\1 & 1\end{array}\right) \boldsymbol{A}\left(\begin{array}{ll}2 & 0 \\0 & 1\end{array}\right)$,求 $ \varphi $ 的秩和零度．
+	
+	
+	
+	
+	
+	
+	\vspace*{10cm}
+	
+	{\bf 四、证明题}
+	{\CJKfamily{kai}(每小题10分, 共30分).}
+	\renewcommand{\arraystretch}{1.2}
+	\hfill
+	\begin{tabular}{|c|c|}
+		\hline
+		\makebox[2.5em]{得分} & \makebox[3.0em]{} \\
+		\hline
+	\end{tabular}
+	\renewcommand{\arraystretch}{1.0}\\
+	11. 设  $\mathscr{A}$  是有限维线性空间  $V$  的线性变换, $W$  是  $V$  的子空间,  $\mathscr{A} W$  表示  $W$  中向量的像组成的子空间. 证明 $\operatorname{dim} \mathscr{A} W+\operatorname{dim}\left(\mathscr{A}^{-1}(0) \cap W\right)=\operatorname{dim} W$.
+\vspace*{7cm}
+	
+	12. 设  $V$  是数域  $\mathbb{P}$  上  $n$  维线性空间．证明： $V$  上的与全体线性变换可以交换的线性变换是数乘变换.
+	
+	
+	\vspace*{7cm}
+	
+	
+	13. 设  $\mathscr{A}^{2}=\mathscr{A}, \mathscr{B}^{2}=\mathscr{B}$. 证明： \par
+	(1) $\mathscr{A}$  与   $\mathscr{B}$  有相同值域的充要条件是  $\mathscr{A}  \mathscr{B}= \mathscr{B},  \mathscr{B} \mathscr{A}=\mathscr{A}$;\par
+	(2) $\mathscr{A}$ 与   $\mathscr{B}$  有相同的核充要条件是  $\mathscr{A}  \mathscr{B}=\mathscr{A},  \mathscr{B} \mathscr{A}= \mathscr{B}$.
+	
+	
+	
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
