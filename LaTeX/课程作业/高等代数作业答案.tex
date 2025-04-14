@@ -1116,7 +1116,7 @@ $$\begin{pmatrix}
         (\lambda -1)^2 & \lambda +1 &  &  \\
         (\lambda -1)^2 &  &  &  \\
     \end{array}$$
-    从而不变因子为$d_{12}=(\lambda-1)^2(\lambda+1)(\lambda^2+1)^2, d_{11}=(\lambda-1)^2(\lambda+1), d_{10}=(\lambda-1)^2, d_9=\dots=d_1=1$.行列式因子为$D_1=\dots=D_9=1,D_{10}=(\lambda-1)^2, D_{11}=(\lambda+1)(\lambda-1)^4, D_{12}=(\lambda+1)^2(\lambda-1)^2(\lambda^2+1)^2$.
+    从而不变因子为$d_{12}=(\lambda-1)^2(\lambda+1)(\lambda^2+1)^2, d_{11}=(\lambda-1)^2(\lambda+1), d_{10}=(\lambda-1)^2, d_9=\dots=d_1=1$.行列式因子为$D_1=\dots=D_9=1,D_{10}=(\lambda-1)^2, D_{11}=(\lambda-1)^4(\lambda+1), D_{12}=(\lambda+1)^6(\lambda-1)^2(\lambda^2+1)^2$.
 \end{proof}
 \paragraph{6.5.4}证明
 $$A(\lambda)=\begin{pmatrix}
@@ -1165,24 +1165,26 @@ $$A=\begin{pmatrix}
 \begin{proof}[证明一]
     该等式即等价于
     $$\dim V_{\lambda}=n-\rank (\lambda I-A)=n-\rank (\lambda I-A)^2=\dim \ker (\lambda I-A)^2= \dim W_{\lambda}^{(2)}$$
-    又由$V_\lambda\subset W_{\lambda}^{(2)}$知$V_\lambda=W_{\lambda}^{(2)}$.若$A$可对角化,即$V_\lambda=W_\lambda$,则自然有$V_\lambda=W_{\lambda}^{(2)}$,从而得证.
+    又由$V_\lambda\subset W_{\lambda}^{(2)}$知$V_\lambda=W_{\lambda}^{(2)}$.若$A$可对角化,即$V_\lambda=W_\lambda$,故有$V_\lambda=W_{\lambda}^{(2)}$,从而必要性得证.
     
-    反之,若有$V_\lambda=W_{\lambda}^{(2)}$,则任取$v\in \ker (\lambda I-A)^3, (\lambda I-A)v\in W_{\lambda}^{(2)}=V_\lambda$,即$(\lambda I-A)^2 v=0$,从而$W_{\lambda}^{(3)}=\ker (\lambda I-A)^3\subset W_{\lambda}^{(2)}$,即$W_{\lambda}^{(2)}=W_{\lambda}^{(3)}$.以此类推有$V_\lambda=W_{\lambda}^{(2)}=W_{\lambda}^{(3)}=\dots=W_{\lambda}^{(n)}=W_\lambda$,因此$A$可对角化.
+    充分性:若有$V_\lambda=W_{\lambda}^{(2)}$,则$\forall v\in W_\lambda^{(3)}, (\lambda I-A)v\in W_\lambda^{(2)}=V_\lambda$,故$(\lambda I-A)^2 v=0$, 即$v\in W_{\lambda}^{(2)}$,因此$W_{\lambda}^{(2)}=W_{\lambda}^{(3)}$.以此类推有$V_\lambda=W_{\lambda}^{(2)}=W_{\lambda}^{(3)}=\dots=W_{\lambda}^{(n)}=W_\lambda$,由$\lambda$任意性知$A$可对角化.
 \end{proof}
 \begin{proof}[证明二]
-    $\implies:$设$A$相似于对角阵$\diag(\lambda_1 I_{r_1},\dots,\lambda_k I_{r_k})$,故取任意特征值$\lambda_i$, $\lambda_i I_n-A$相似于
-    $$\diag((\lambda_i-\lambda_1) I_{r_1}, \dots, (\lambda_i-\lambda_k) I_{r_k}),$$
-    其中第$i$个对角分块矩阵取$O_{r_i}$,由于$\lambda_i-\lambda_j\neq 0 (i\neq j)$,故$\rank (\lambda_i I_n-A)=n-r_i$.而$(\lambda_i I_n-A)^2$相似于
-    $$\diag((\lambda_i-\lambda_1)^2 I_{r_1}, \dots, (\lambda_i-\lambda_k)^2 I_{r_k})$$
-    同理知$\rank (\lambda_i I_n-A)^2=n-r_i$,从而两者相等.
+    $\implies:$设$A$相似于对角阵$\diag(\lambda_1 I_{r_1},\dots,\lambda_k I_{r_k})$,任取特征值$\lambda_i$, 有相似关系
+    $$\begin{aligned}
+        \lambda_i I_n-A &\sim \diag((\lambda_i-\lambda_1) I_{r_1}, \dots, (\lambda_i-\lambda_k) I_{r_k}),\\
+        (\lambda_i I_n-A)^2 &\sim \diag((\lambda_i-\lambda_1)^2 I_{r_1}, \dots, (\lambda_i-\lambda_k)^2 I_{r_k}),
+    \end{aligned}$$
+    两者的第$i$个对角分块矩阵均为$O_{r_i}$.又由于$i\neq j$时$\lambda_i-\lambda_j\neq 0$,故$\rank (\lambda_i I_n-A)=\rank (\lambda_i I_n-A)^2=n-r_i$,从而得证.
 
     $\impliedby:$设$A$的Jordan标准型
-    $$J=\diag(J(\lambda_1,s_{11}),\dots,J(\lambda_1,s_{1m_1}),J(\lambda_2,s_{21}),\dots,J(\lambda_k,s_{km_k}))$$
-    其中$\sum_{i=1}^{m_k}=r_k$为特征值$\lambda_k$的代数重数.不失一般性的,取特征值$\lambda_1$,可知$\lambda_1 I_n-A$相似于
-    $$\lambda_1 I_n-J=\diag(J(0,s_{11}),\dots,J(0,s_{1m_1}),J(\lambda_1-\lambda_2,s_{21}),\dots,J(\lambda_1-\lambda_k,s_{km_k}))$$
-    而$(\lambda_1 I_n-A)^2$相似于
-    $$(\lambda_1 I_n-J)^2=\diag(J(0,s_{11})^2,\dots,J(0,s_{1m_1})^2,J(\lambda_1-\lambda_2,s_{21})^2,\dots,J(\lambda_1-\lambda_k,s_{km_k})^2)$$
-    由于$\rank J(\lambda_1-\lambda_i,s_{ij})=\rank J(\lambda_1-\lambda_i,s_{ij})^2, \rank J(0,1)=\rank J(0,1)^2$,仅有$s\geq 2$时有$\rank J(0,s)^2=\rank J(0,s)-1$,因此由题设条件知$s_{11}=\dots=s_{1m_1}=1$,又由$\lambda$的任意性知所有$s_{ij}=1$,从而$J$是对角阵,即$A$可对角化.
+    $$J=\diag(J(\lambda_1,m_{11}),\dots,J(\lambda_1,m_{1t_1}),J(\lambda_2,m_{21}),\dots,J(\lambda_s,m_{st_s}))$$
+    其中$\sum_{j=1}^{t_i}m_{ij}=r_i$为特征值$\lambda_i$的重数.任取特征值$\lambda_k$,则有相似关系
+    $$\begin{aligned}
+        \lambda_k I_n-A &\sim \diag(J(\lambda_k-\lambda_1, m_{11}), \dots, J(\lambda_k-\lambda_s, m_{st_s})),\\
+        (\lambda_k I_n-A)^2 &\sim \diag(J(\lambda_k-\lambda_1, m_{11})^2, \dots, J(\lambda_k-\lambda_s, m_{st_s})^2),
+    \end{aligned}$$
+    而对于每个Jordan块$J_{ij}=J(\lambda_k-\lambda_i,m_{ij})$,由$i\neq k$时$\lambda_i\neq \lambda_k$知$\rank J_{ij}^2=\rank J_{ij}$.而$i=k$时$J_{ij}=J(0,m_{ij})$,若$m_{kj}\geq 2$则$\rank J(0,m_{ij})^2=\rank J(0,m_{ij})-1$.因此由题设$\rank (\lambda_k I-A)^2=\rank (\lambda_k I-A)$知,$m_{kj}=1$.又由$k$的任意性知所有Jordan块的尺寸$m_{ij}=1$,即$J$为对角阵,即$A$可对角化.
 \end{proof}
 \paragraph{6.6.5}若方阵$A$的特征值全为0,则$A$是幂零矩阵.
 \begin{proof}
@@ -1196,10 +1198,11 @@ $$A=\begin{pmatrix}
     设$A$的Jordan标准型$J=\diag(J(\lambda,n_1),\dots,J(\lambda,n_t),J(\lambda_1,n_{11}),\dots,J(\lambda_s,n_{sm_s}))$,其中$\sum_{i=1}^t n_i=k, 1\leq n_i\leq k$,因此$J(0,n_i)^m=O$,从而$(\lambda I-A)^k$相似于$\diag(O_k,J(\lambda-\lambda_1,n_{11})^k,\dots,J(\lambda-\lambda_s,n_{sm_s})^k)$,即$\rank (\lambda I-A)^k=n-k$.
 \end{proof}
 
-\subsection{复习题6}
+\subsection*{复习题6}
+\addcontentsline{toc}{subsection}{复习题6}
 \paragraph{6.1}设$n$维线性空间$V$的线性变换$\mathscr{A}$有$n$个互不相同的特征值,证明:线性变换$\mathscr{A}$与$\mathscr{B}$可交换$\iff \mathscr{B}$是$\mathscr{I, A},\dots,\mathscr{A}^{n-1}$的线性组合.
 \begin{proof}
-    若$\mathscr{B}$可被表为$\mathscr{A}$的多项式,则自然可与$\mathscr{A}$交换.反之,由题设知$\mathscr{A}$可对角化,则设$\mathscr{A}$在$V$的某基下的矩阵为$A=\diag(\lambda_1,\dots,\lambda_n)$,在此基下$\mathscr{B}$的矩阵为$B$.由$AB=BA$可解得$b_{ij}=0 (i\neq j)$,故可设$B=\diag(b_1,\dots,b_n)$.考虑方程$B=x_{n-1}A^{n-1}+\dots+x_1A+x_0I$,其等价于线性方程组
+    若$\mathscr{B}$可被表为$\mathscr{A}$的多项式,则自然可与$\mathscr{A}$交换.反之,由题设知$\mathscr{A}$可对角化,则设$\mathscr{A}$在$V$的某基下的矩阵为$A=\diag(\lambda_1,\dots,\lambda_n)$,在此基下$\mathscr{B}$的矩阵为$B$.由$AB=BA$可解得$b_{ij}=0 (i\neq j)$,故可设$B=\diag(b_1,\dots,b_n)$.考虑方程$B=x_0I+x_1A+\dots+x_{n-1}A^{n-1}$,其等价于线性方程组
     $$\begin{pmatrix}
         b_1\\ b_2 \\ \vdots \\ b_n
     \end{pmatrix}=\begin{pmatrix}
@@ -1210,11 +1213,13 @@ $$A=\begin{pmatrix}
     \end{pmatrix}\begin{pmatrix}
         x_0\\ x_1 \\ \vdots \\ x_{n-1}
     \end{pmatrix}$$
-    其系数矩阵的行列式为Vandermonde行列式$\prod_{1\leq i<j\leq n}(\lambda_i-\lambda_j)\neq 0$ (由$A$的特征值互不相同),因此方程有唯一解,从而$\mathscr{B}$可表为$\mathscr{A}$的多项式.
+    其系数矩阵的行列式为Vandermonde行列式$\prod_{1\leq i<j\leq n}(\lambda_i-\lambda_j)\neq 0$ (由$A$的特征值互不相同),因此方程有唯一解,从而$\mathscr{B}$可表为$\mathscr{I, A},\dots,\mathscr{A}^{n-1}$的线性组合.
 \end{proof}
 \paragraph{6.2}$A\in \F^{m\times n}, B\in \F^{n\times m}$,证明$\phi_{AB}(\lambda)$与$\phi_{BA}(\lambda)$差一个$\lambda^{n-m}$.
 \begin{proof}
-    因为$\det(\lambda I_m -AB)=\lambda^m \det(I_m-AB/\lambda)=\lambda^m\det(I_n-BA/\lambda)=\lambda^{m-n}\det(\lambda I_n-BA)$,从而两多项式差一个$\lambda^{n-m}$.
+    在有理函数域$\F(\lambda)$上有
+    $$\det(\lambda I_m -AB)=\lambda^m \det(I_m-AB/\lambda)=\lambda^m\det(I_n-BA/\lambda)=\lambda^{m-n}\det(\lambda I_n-BA),$$
+    从而两多项式差一个$\lambda^{n-m}$. 或者考虑$\lambda\neq 0$时上式依然成立,而$\lambda=0$时$\phi_{AB}(0)=\det(-AB)=\det(-BA)=\phi_{BA}(0)$,综上得证.
 \end{proof}
 \paragraph{6.3}$\alpha=(a_1,\dots,a_n),\beta=(b_1,\dots,b_n)$,求$I+\alpha\T\beta$的特征值.
 \begin{proof}
@@ -1222,9 +1227,9 @@ $$A=\begin{pmatrix}
 \end{proof}
 \paragraph{6.4}$A,B$是复方阵,记$C=AB-BA$,若$AC=CA$,证明$C$是幂零矩阵.
 \begin{proof}
-    $C$幂零即所有特征值为0,为此仅需证明$\forall k\geq 1, \tr C^k=\sum_{\lambda\in \Spec C}\lambda^k=0$.任取$k\geq 1$,有
+    $C$幂零即所有特征值为0,为此仅需证明$\forall k\geq 1, \tr C^k=\sum_{\lambda\in \Spec C}\lambda^k=0$.任取$k\geq 0$,有
     $$AC^k=CAC^{k-1}=C^2AC^{k-2}=\dots=C^{k-1}AC=C^kA$$
-    因此$\tr C^k=\tr\br{C^{k-1}AB-C^{k-1}BA}=\tr\br{A(C^{k-1}B)}-\tr\br{(C^{k-1}B)A}=0$,从而得证.
+    因此$\tr C^{k+1}=\tr\br{C^kAB-C^kBA}=\tr\br{A(C^kB)}-\tr\br{(C^kB)A}=0$,从而得证.
 \end{proof}
 \paragraph{6.5}设$B=\begin{pmatrix}
     O&A\\ A&O
@@ -1240,16 +1245,54 @@ $$A=\begin{pmatrix}
     而$A^2$特征值为$\lambda_1^2,\dots,\lambda_n^2$,故$\phi_B(\lambda)=\prod_{i=1}^{n}(\lambda^2-\lambda_i^2)$,因此$B$的特征值为$\pm \lambda_1,\dots,\pm \lambda_n$.
 \end{proof}
 \paragraph{6.6}若$\mathscr{A}^m=\mathscr{I} (m\geq 2)$,证明$\mathscr{A}$可对角化.
+\begin{proof}
+    $\mathscr{A}$零化多项式有$f(\lambda)=\lambda^m-1$,其无重根,故极小多项式无重根,即可对角化.
+\end{proof}
 \paragraph{6.7}$A\in M_n(\R)$的特征多项式为$f(\lambda)$,记$g=f/(f,f')$,证明$A$可对角化$\iff g(A)=O$.
-\paragraph{6.8}$A,B$是可交换的$n$阶矩阵,证明存在$n$阶可逆矩阵$Q$使得$Q\rev AQ, Q\rev BQ$均为上三角矩阵.
+\begin{proof}
+    记$A$的极小多项式为$m(\lambda)$.设$f(\lambda)$在$\C$上有不可约分解$f(\lambda)=\prod_{i=1}^{s}(\lambda-\lambda_i)^{r_i}$,则$g(\lambda)=\prod_{i=1}^{s}(\lambda-\lambda_i)$,显然$g(\lambda)\mid m(\lambda)$.因此$A$可对角化$\iff m(A)$无重根$\iff m(\lambda)=g(\lambda), g(A)=O$.
+\end{proof}
+\paragraph{6.8}$A,B\in M_n(\C)$可交换,证明存在$n$阶可逆矩阵$Q$使得$Q\rev AQ, Q\rev BQ$均为上三角矩阵.
+\begin{proof}
+    对$n$归纳,$n=1$时自然成立,下设$<n$时命题已成立.视$A,B$为$\C^n$上线性变换$\mathscr{A,B}$在标准基下的矩阵,故可由题6.2.1知$A,B$有公共特征向量$v_1$.扩充其为$\C^n$上的一组基.从而在此基下$\mathscr{A,B}$的矩阵为
+    $$A_1=\begin{pmatrix}
+        \lambda & *\\  & A'
+    \end{pmatrix}, B_1=\begin{pmatrix}
+        \mu & *\\  & B'
+    \end{pmatrix}$$
+    其中$\lambda,\mu$分别为$A,B$的特征值.从而存在可逆矩阵$Q_1$使得$Q_1\rev AQ_1=A_1, Q_1\rev BQ_1=B_1$,且由$AB=BA$知$A'B'=B'A'$.对$A',B'$运用归纳假设,则存在$n-1$阶可逆矩阵$Q_2$使$Q_2\rev A'Q_2, Q_2\rev B'Q_2$均为上三角矩阵,从而可取$Q=Q_1 \diag(1,Q_2)$,使得
+    $$Q\rev AQ=\begin{pmatrix}
+        \lambda & * \\  & Q_2\rev A' Q_2
+    \end{pmatrix}, Q\rev BQ=\begin{pmatrix}
+        \lambda & * \\  & Q_2\rev B' Q_2
+    \end{pmatrix}$$
+    均为上三角矩阵.
+\end{proof}
+\begin{remark}
+    该命题的推广为Lie定理,其在$M_n(\C)$(或者说,$\mathfrak{gl}(n,\C)$)上的一个特例是:若矩阵$A,B$生成的Lie代数$\mathfrak{g}=\Span(A,B,[A,B],[A,[A,B]],\dots)$可解(即导出列终于0),则其中元素可同时上三角化.在该题中$[A,B]=O$,则$\mathfrak{g}^{(1)}=[\mathfrak{g},\mathfrak{g}]=\Span\cbr{}{[X,Y]|X,Y\in \mathfrak{g}}=0$,故导出列$\mathfrak{g}>\mathfrak{g}^{(1)}=0$,从而$\mathfrak{g}=\Span(A,B)$中元素均可同时上三角化.
+\end{remark}
 \paragraph{6.9}$A,B\in M_n(\F), \rank A+\rank B<n$,证明两者有公共特征向量.
+\begin{proof}
+    由题知$\dim \ker A + \dim \ker B > n$,故有$v\in \ker A \cap \ker B, v\neq 0$,其为$A,B$关于特征值0的特征向量.
+\end{proof}
 \paragraph{6.10}设$\mathscr{A}$为$n$维线性空间$V$上的线性变换,$\mathscr{A}$有$n$个不同的特征值,证明$\mathscr{A}$有$2^n$个不变子空间.
+\begin{proof}
+    由题知$\mathscr{A}$有$n$个线性无关特征向量$v_1,\dots,v_n$,从而其任意子集$S$张成的线性子空间均为$\mathscr{A}$的不变子空间,共有$2^n$个.而对于任意$\mathscr{A}$的不变子空间$U$,由准素分解知
+    $$U=U\cap V=U\cap \br{\bigoplus_{i=1}^n V_{\lambda_i}}=\bigoplus_{i=1}^n (U\cap V_{\lambda_i})$$
+    故$U$有基底$u_1,\dots,u_k$,其中每个向量都在$U\cap V_\lambda$中,故$U$也有特征向量张成,即在上述$2^n$个不变子空间中,从而得证.
+\end{proof}
+\begin{remark}
+    可改条件为$A$可对角化,证明同上.
+\end{remark}
 \paragraph{6.11}$A,B$是$n$阶矩阵,$A$有$n$个不同特征值,证明以下三者等价:
 \begin{enumerate}
     \item $AB=BA$;
     \item 存在可逆矩阵$P$使得$P\rev AP, P\rev BP$均为对角矩阵;
     \item $A,B$有相同的$n$个线性无关特征向量.
 \end{enumerate}
+\begin{proof}
+    $(1)\implies (2)$:证明同题6.8,对$n$归纳.
+\end{proof}
 % \paragraph{6.12}
 % \paragraph{6.13}
 % \paragraph{6.14}
