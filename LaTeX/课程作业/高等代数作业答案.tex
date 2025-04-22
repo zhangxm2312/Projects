@@ -1291,13 +1291,19 @@ $$A=\begin{pmatrix}
     \item $A,B$有相同的$n$个线性无关特征向量.
 \end{enumerate}
 \begin{proof}
-    $(1)\implies (2)$:证明同题6.8,对$n$归纳.
+    $(1)\implies (2)$:由$A$可对角化知可取可逆矩阵$P$使得$D_1=P\rev AP$为对角阵,设$D_1=\diag(\lambda_1,\dots,\lambda_n)$.设$D_2=P\rev BP$,下证$D_2=(d_{ij})$也为对角阵.由$A,B$可交换知$D_1,D_2$可交换,因此
+    $$\lambda_i d_{ij}=(D_1D_2)_{ij}=(D_2D_1)_{ij}=\lambda_j d_{ij}$$
+    由$A$的特征值均不相等知$i\neq j$时$\lambda_i-\lambda_j\neq 0$,因此$d_{ij}=0$,故$D_2$仅有对角元,从而得证.
+
+    $(2)\implies (3)$:显然
+
+    $(3)\implies (1)$:$A,B$在这些特征向量构成的基下可同时对角化,而对角矩阵之间可交换,从而$A,B$可交换.
 \end{proof}
-% \paragraph{6.12}
+\paragraph{6.12}$A,B\in M_n(\F)$可交换,若$\exists m\in \N_+, A^m=O$,则$\det(A+B)=\det B$.
 % \paragraph{6.13}
 % \paragraph{6.14}
 % \paragraph{6.15}
-% \paragraph{6.16}
+\paragraph{6.16}设$A,B\in M_3(\C)$,若$A,B$有相同的特征多项式与极小多项式,证明$A$与$B$相似.并举反例说明对于4阶以上矩阵,结论不再成立.
 % \paragraph{6.17}
 % \paragraph{6.18}
 % \paragraph{6.19}

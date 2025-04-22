@@ -17,6 +17,10 @@ ObsidianVault/*/*.pdf
 !Wolfram
 !.vscode
 
+!sage
+sage/unicyc_data
+*/.ipynb_checkpoints
+
 !/.git
 !.gitignore
 !.gitattributes
